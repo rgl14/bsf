@@ -1,0 +1,27 @@
+<a [routerLink]="'/userdashboard'" *ngIf="data.username!=undefined">{{data.username}}</a>
+<a [routerLink]="'/matchdashboard'" *ngIf="data.title!=undefined">{{data.title}}</a>
+<!-- <div class="col-md-12 row" style="padding: 0" *ngIf="currentroute=='/fancy'">
+    <div class="col-md-6 auto" style="padding: 0">
+    <input type="radio" value="Auto" data-ng-model="rbtfancy" id="first-117973" data-ng-click="UpdateFRateMode(fancy.fancyCode,1);" class="ng-pristine ng-untouched ng-valid ng-not-empty" name="auto0">
+    <label for="first-117973">Auto</label>
+    </div>
+    <div class="col-md-6 manual" style="padding: 0">
+    <input type="radio" value="Manual" data-ng-model="rbtfancy" id="second-117973" data-ng-click="UpdateFRateMode(fancy.fancyCode,0)" class="ng-pristine ng-untouched ng-valid ng-not-empty" name="auto0">
+    <label for="second-117973">Manual</label>
+    </div>
+</div> -->
+<mat-radio-group aria-label="Select an option" *ngIf="currentroute=='/fancy'">
+    <mat-radio-button value="1">Auto</mat-radio-button>
+    <mat-radio-button value="2" style="margin-left: 5px">Manual</mat-radio-button>
+</mat-radio-group>
+
+<div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
+    <button 
+    (click)="getvalue(data)" 
+    mat-raised-button
+    color="accent"
+    title="Settle"
+    >
+    Settle
+    </button>
+</div>

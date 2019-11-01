@@ -1,0 +1,133 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+         <div class="col-lg-12">
+             <div class="ibox float-e-margins">
+                 <div class="ibox-title">
+                     <h5>New Client</h5>
+                 </div>
+                 
+                 <div class="ibox-content-form table-responsive">
+                    
+                     
+                     <form [formGroup]="clientform" (ngSubmit)="onSubmit()"  class="form-horizontal" >
+                         <div class="form-group"><label class="col-sm-2 control-label">User Name</label>
+                                   <div class="col-sm-10">              
+                                     <input class="form-control" formControlName="username" name="user_name" placeholder="User Name" readonly="readonly" type="text" >
+    
+                                  </div>
+                         </div>
+    
+    
+                         <div class="hr-line-dashed"></div>
+    
+                         <div class="form-group">
+                                   <label class="col-sm-2 control-label">Full Name</label>
+                                   <div class="col-sm-10">              
+                                     <input formControlName="fullname" class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"  placeholder="Full Name" type="text" >
+                                     
+                                     <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.fullname.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                  </div>
+                         </div>
+                         <div class="hr-line-dashed"></div>
+    
+                          <div class="form-group">
+                                   <label class="col-sm-2 control-label">My Share</label>
+                                   <div class="col-sm-10">              
+                                     <input formControlName="myshare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.myshare.errors }"  max="100.00" min="0.00" name="agent_share" placeholder="My Share"  type="number" value="0.0">
+                                     <div *ngIf="submitted && f.myshare.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.myshare.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                     <mat-hint class="hint"><b>Note:</b>Max Admin Share + My Share should be set below or equal to <b>80.0</b></mat-hint>
+                                  </div>
+                         </div>
+    
+                         <div class="hr-line-dashed"></div>
+    
+                          <div class="form-group">
+                                   <label class="col-sm-2 control-label">Max Admin Share</label>
+                                   <div class="col-sm-10">              
+                                     <input  formControlName="share" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.share.errors }"  max="100.00" min="0.00" name="maximum_share" placeholder="Admin Share"  type="number" value="0.0">
+                                     <div *ngIf="submitted && f.share.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.share.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                     <mat-hint class="hint" ><b>Note:</b>Max Admin Share + My Share should be set below or equal to <b>80.0</b></mat-hint>
+                                  </div>
+                         </div>
+    
+                         <div class="hr-line-dashed"></div>
+    
+                          <div class="form-group">
+                                   <label class="col-sm-2 control-label">Admin Fix Limit</label>
+                                   <div class="col-sm-10">              
+                                     <input  formControlName="limit" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.limit.errors }"  min="0.00" name="fix_limit" placeholder="Admin Fix Limit"  type="number" value="0.0" >
+                                     <div *ngIf="submitted && f.limit.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.limit.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                     <mat-hint class="hint" ><b>Note</b> : Admin Fix Limit set below or equal to <b>130738.76</b></mat-hint>
+                                  </div>
+                         </div>
+    
+                         <div class="hr-line-dashed"></div>
+                          <div class="form-group">
+                                   <label class="col-sm-2 control-label">Admin Match Commission</label>
+                                   <div class="col-sm-10">              
+                                     <input  formControlName="matchcomm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.matchcomm.errors }"  max="100.00" min="0.00" name="match_commission" placeholder="Admin Match Commission"  type="text" value="0.0">
+                                     <div *ngIf="submitted && f.matchcomm.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.matchcomm.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                     <mat-hint class="hint" ><b>Note</b> : Admin Match Commission set below or equal to <b>2.0</b></mat-hint>
+                                  </div>
+                         </div>
+    
+                         <div class="hr-line-dashed"></div>
+                          <div class="form-group">
+                                   <label class="col-sm-2 control-label">Admin Session Commission</label>
+                                   <div class="col-sm-10">              
+                                     <input  formControlName="sesscomm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sesscomm.errors }"  max="100.00" min="0.00" name="session_commission" placeholder="Admin Session Commission" type="text" value="0.0"> 
+                                     <div *ngIf="submitted && f.sesscomm.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.sesscomm.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                                     <mat-hint class="hint" ><b>Note</b> : Admin Session Commission set below or equal to <b>2.0</b></mat-hint>
+                                  </div>    
+                         </div>  
+    
+                         
+                         <div class="hr-line-dashed"></div>
+    
+                         <div class="form-group">
+                                   <label class="col-sm-2 control-label">Password</label>
+                                   <div class="col-sm-10">         
+                                    <input  formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name ="password"  placeholder="Password"  type="password" >
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.password.errors.required">This field is mandatory.</mat-error>
+                                        <mat-error *ngIf="f.password.errors.minlength">Password must be at least 6 characters</mat-error>
+                                    </div>
+                                  </div>                                         
+                                
+                           </div>
+                           <div class="hr-line-dashed"></div>  
+    
+    
+                           <div class="form-group">
+                                  <label class="col-sm-2 control-label">Confirm Password</label>
+                                  <div class="col-sm-10">                 
+                                    <input  formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"  name="confirmpassword" placeholder="Confirm Password"  type="password" >
+                                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.confirmPassword.errors.required">This field is mandatory.</mat-error>
+                                        <mat-error *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</mat-error>
+                                    </div>
+                                  </div>                                            
+                           </div>
+                           <div class="hr-line-dashed"></div>
+    
+                         <div class="form-group col-sm-4 col-sm-offset-2 button-row">
+                                <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
+                                <button mat-raised-button color="primary"  type="submit">Save</button>
+                         </div>
+    </form>                        </div>
+             </div>         
+         </div>
+     </div>
+    </div>

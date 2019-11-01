@@ -1,0 +1,96 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+           <div class="col-lg-12">
+              <div class="ibox float-e-margins">
+                 <div class="ibox-title">
+                    <h1>Match Dashboard</h1>
+                 </div>
+                        <div class="button-row ibox-content mob-button">
+                          <button mat-raised-button color="primary" [routerLink]="'/betslips'">Bet Slips</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/sessionbetslips'">Session Bet Slip</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/livereport'">Live Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/companyreport'">Company Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/clientreport'">Client Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/clientcollectionreport'">Collection Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="'/sessionearningrepport'">Session Earning Report</button>
+                        </div>
+              </div>
+           </div>
+        </div>
+     
+     </div>
+     <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="ibox float-e-margins">
+                     <div class="ibox-title">
+                        <h5>Match Markets</h5>
+                        <div class="ibox-tools">
+                        </div>
+                     </div>
+                     <div class="ibox-content table-responsive">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>ID</th>
+                                 <th>Betfair Market Id</th>
+                                 <th>Betfair Market Type</th>
+                                 <th>RUNNER</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>66443</td>  
+                                 <td><a [routerLink]="'/marketinfo'">Match Winner_5308</a></td>
+                                 <td>Match Winner</td>
+                                 <td>2</td>
+                              </tr>
+                              <tr>
+                                 <td>66459</td>  
+                                 <td><a [routerLink]="'/marketinfo'">10_5308_even_odd</a></td>
+                                 <td>Western Australia 10 Over Last Digit Even Odd</td>
+                                 <td>2</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                   <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                         <div class="ibox-title">
+                            <h5>Match Sessions</h5>
+                            <div class="ibox-tools">
+                            </div>
+                         </div>
+                         <div class="ibox-content table-responsive">
+                            <table class="table">
+                               <thead>
+                                  <tr>
+                                     <th>Session ID</th>
+                                     <th>Session Market</th>
+                                     <th>Session Runs</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  <tr>
+                                     <td>14652</td>  
+                                     <td><a [routerLink]="'/sessioninfo'">50 Overs Lambi,Western Australia</a></td>
+                                     <td>298</td>
+                                  </tr>
+                                  <tr>
+                                     <td>14653</td>  
+                                     <td><a [routerLink]="'/sessioninfo'">10 Overs,Western Australia</a></td>
+                                     <td>41</td>
+                                  </tr>
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>

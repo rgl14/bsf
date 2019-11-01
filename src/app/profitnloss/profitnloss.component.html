@@ -1,0 +1,71 @@
+
+    <div class="row">
+          </div>
+          <div class="wrapper wrapper-content animated fadeInRight"> 
+                <div class="row">
+                  <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                          <div class="ibox-title">
+                              <h5>Summary</h5>                                
+                  </div>
+                  <div class="ibox-content table-responsive">
+    
+                      <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                          <thead>
+                              <tr>
+                                 <th>All Time Total</th> 
+                                 <th class="profit">211669.61</th>                            
+                              </tr>
+                          </thead>
+                          <tbody>                            
+                    </tbody></table>
+                  </div>
+                  </div>
+                  </div>  
+                </div>
+    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>Earning Report</h5>
+                                </div>
+                        <div class="ibox-content-table table-responsive">
+                                        <div class="search-div">
+                                            <!-- <div class="download-buttons">
+                                                <button mat-mini-fab ><i class="fa fa-file-pdf-o"></i></button>
+                                                <button mat-mini-fab ><i class="fa fa-file-excel-o"></i></button>
+                                            </div> -->
+                                        </div>
+                                        <div class="table-container mat-elevation-z8">
+                                            <div class="Table-Title">
+                                                <mat-form-field class="search-form-field" floatLabel="never">
+                                                    <input matInput  id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                                                    <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+                                                      <mat-icon>close</mat-icon>
+                                                    </button>
+                                                  </mat-form-field>
+                                                <mat-form-field class="select-page-size">
+                                                    <mat-label>Page Size</mat-label>
+                                                    <select matNativeControl (change)="onPageSizeChanged()" id="page-size">
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                        <option value="500">500</option>
+                                                        <option value="1000">1000</option>
+                                                    </select>
+                                                  </mat-form-field>
+                                              </div>
+                                          <ag-grid-angular 
+                                            style="width: 100%; height: 350px"
+                                            class="ag-theme-balham"
+                                            [gridOptions]="gridOptions"
+                                            [animateRows]="true"
+                                            [pagination]="true"
+                                            >
+                                          </ag-grid-angular>
+                                        </div>
+                      </div>
+                  </div>
+              </div>  
+          </div>
+      </div>
