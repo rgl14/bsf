@@ -11,16 +11,26 @@ export class RatesnavigationComponent implements OnInit {
   currentroute: any;
 
   constructor(private router: Router) {
-    this.currentroute=this.router.url
+    this.currentroute = this.router.url
   }
-   
-  agInit(params){
-    this.data=params.data;
+
+  agInit(params) {
+    this.data = params.data;
   }
   ngOnInit() {
   }
-  getvalue(data:any){
+  getvalue(data: any) {
     console.log(data)
+  }
+
+  openRatePage() {
+    // console.log(this.data);
+    if(this.data.bookCode){
+      window.open('BookRate.html?book_id=' + this.data.bookCode, '_blank');
+    }
+    if(this.data.fancyCode){
+      window.open('Fancyrate.html?f_id=' + this.data.fancyCode, '_blank');
+    }
   }
 
 }

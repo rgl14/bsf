@@ -16,6 +16,11 @@
 </mat-radio-group>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
+    <select class="form-control d-inline-block mr-1" [(ngModel)]="runner"
+        style="margin-top: 2px;width:180px;">
+        <option value="">Select Runner</option>
+        <option value="runner" *ngFor="let runner of data.runners">{{runner.name}}</option>
+    </select>
     <button (click)="getvalue(data)" mat-raised-button color="primary" title="Settle">
         Settle
     </button>

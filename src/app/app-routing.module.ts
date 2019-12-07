@@ -88,6 +88,7 @@ const routes: Routes = [
   { path: 'editfancy/:fancyId', component: AddfancyComponent },
   { path: 'bookmaker', component: BookmakerComponent },
   { path: 'addbook', component: AddbookComponent },
+  { path: 'editbook/:bookId', component: AddbookComponent },
   { path: 'evenodd', component: EvenoddComponent },
   { path: 'balance', component: BalanceComponent },
   { path: 'fancy', component: FancyComponent },

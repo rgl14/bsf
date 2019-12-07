@@ -1,27 +1,13 @@
 <div class="Action-buttons">
-<button *ngIf="currentroute=='/fancy'"  [routerLink]="'/fancyrate'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">redo</mat-icon> -->
-        <i class="fa fa-cog"></i>
-</button>
-<button *ngIf="currentroute=='/bookmaker'"  [routerLink]="'/bookrate'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-cog"></i>
-</button>
-<button *ngIf="currentroute=='/importrate'"  [routerLink]="'/matchsetting'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Match Settings"
-        >
-        <i class="fa fa-cog"></i>
-</button>
+  <button *ngIf="currentroute=='/fancy'" (click)="openRatePage()" mat-raised-button color="Accent" title="Edit">
+    <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">redo</mat-icon> -->
+    <i class="fa fa-cog"></i>
+  </button>
+  <button *ngIf="currentroute=='/bookmaker'" (click)="openRatePage()" mat-raised-button color="Accent" title="Edit">
+    <i class="fa fa-cog"></i>
+  </button>
+  <button *ngIf="currentroute=='/importrate'" [routerLink]="'/matchsetting'" (click)="getvalue(data)" mat-raised-button
+    color="Accent" title="Match Settings">
+    <i class="fa fa-cog"></i>
+  </button>
 </div>

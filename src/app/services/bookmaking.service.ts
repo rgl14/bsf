@@ -13,7 +13,7 @@ export class BookmakingService {
 
 
   AddBook(data): Observable<any> {
-    return this.http.get(`${BASEURL}/BookMaking/AddBook`, data);
+    return this.http.post(`${BASEURL}/BookMaking/AddBook`, data);
   }
   BookTypes(): Observable<any> {
     return this.http.get(`${BASEURL}/BookMaking/BookTypes`);
@@ -25,7 +25,7 @@ export class BookmakingService {
     return this.http.post(`${BASEURL}/BookMaking/EditBetStatus?id=${ID}&status=${STATUS}`, {});
   }
   EditBookSettings(data): Observable<any> {
-    return this.http.get(`${BASEURL}/BookMaking/EditBookSettings`, data);
+    return this.http.post(`${BASEURL}/BookMaking/EditBookSettings`, data);
   }
   EditStatus(ID, STATUS): Observable<any> {
     return this.http.post(`${BASEURL}/BookMaking/EditStatus?id=${ID}&status=${STATUS}`, {});
@@ -37,6 +37,6 @@ export class BookmakingService {
     return this.http.get(`${BASEURL}/BookMaking/GetBookList?status=${STATUS}&isettled=${ISETTLED}`);
   }
   UpdateBook(data): Observable<any> {
-    return this.http.get(`${BASEURL}/BookMaking/UpdateBook`, data);
+    return this.http.post(`${BASEURL}/BookMaking/UpdateBook`, data);
   }
 }

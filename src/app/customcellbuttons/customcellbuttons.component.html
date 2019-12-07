@@ -79,13 +79,15 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
-        <button [routerLink]="'/addbookmaker'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+        <button [routerLink]="['/editbook',data.bookCode]" mat-raised-button color="Accent"
+                title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
         <button *ngIf="data.status=='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn" title="Reverse">
                 Reverse
         </button>
-        <button (click)="CloseBookBulk()" mat-raised-button color="accent" title="Close" [disabled]="disabled || data.status=='CLOSED'">
+        <button (click)="CloseBookBulk()" mat-raised-button color="accent" title="Close"
+                [disabled]="disabled || data.status=='CLOSED'">
                 Close
         </button>
         <button *ngIf="data.status!='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn" title="Cancel">
