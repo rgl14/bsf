@@ -1,187 +1,101 @@
 <div class="Action-buttons" *ngIf="currentroute=='/admin'">
-        <button  [routerLink]="'/createadmin'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createadmin'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/supermaster'">
-        <button  [routerLink]="'/createsuper'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createsuper'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/master'">
-        <button  [routerLink]="'/createmaster'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createmaster'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/agent'">
-        <button  [routerLink]="'/createagent'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createagent'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/superagent'">
-        <button  [routerLink]="'/createsuperagent'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createsuperagent'" (click)="getvalue(data)" mat-raised-button color="Accent"
+                title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/clients'">
-        <button  [routerLink]="'/createclient'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/createclient'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  [routerLink]="'/managepassword'" 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Change Password"
-        >
-        <i class="fa fa-key"></i>
+        <button [routerLink]="'/managepassword'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/fancy'">
-        <button  [routerLink]="'/addfancy'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="['/editfancy',data.fancyCode]" (click)="getvalue(data)" mat-raised-button color="Accent"
+                title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="accent"
-        title="Settle"
-        >
-        Settle
+        <button *ngIf="data.betStatus!='SETTLED'" (click)="getvalue(data)" mat-raised-button color="accent"
+                title="Settle">
+                Settle
         </button>
-        <button  *ngIf="data.status=='settled'"
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Reverse"
-        >
-        Rev
+        <button *ngIf="data.betStatus=='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn"
+                title="Reverse">
+                Reverse
         </button>
-        <button  *ngIf="data.status=='Open'"
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Cancel"
-        >
-        Cancel
+        <button *ngIf="data.betStatus!='SETTLED'" (click)="CancelFancybyId()" [disabled]="disabled" mat-raised-button
+                color="warn" title="Cancel">
+                Cancel
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
-        <button  [routerLink]="'/addbookmaker'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/addbookmaker'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
-        <button  *ngIf="data.status=='settled'"
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Reverse"
-        >
-        Rev
+        <button *ngIf="data.status=='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn" title="Reverse">
+                Reverse
         </button>
-        <button  *ngIf="data.status=='OPEN'"
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Cancel"
-        >
-        Cancel
+        <button (click)="CloseBookBulk()" mat-raised-button color="accent" title="Close" [disabled]="disabled || data.status=='CLOSED'">
+                Close
+        </button>
+        <button *ngIf="data.status!='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn" title="Cancel">
+                Cancel
         </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/importrate'">
-        <button  [routerLink]="'/'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Bets"
-        >
-        Bets
+        <button [routerLink]="'/'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Bets">
+                Bets
         </button>
         <!-- <button 
         (click)="getvalue(data)" 
@@ -194,84 +108,42 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/newsticker'">
-        <button  [routerLink]="'/addnews'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/addnews'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/rolelist'">
-        <button  [routerLink]="'/addrole'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/addrole'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/userlist'">
-        <button  [routerLink]="'/adduser'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/sportlist'">
-        <button  [routerLink]="'/adduser'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/tournamentlist'">
-        <button  [routerLink]="'/adduser'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/matchlist'">
-        <button  [routerLink]="'/adduser'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/marketlist'">
-        <button  [routerLink]="'/adduser'" 
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="Accent"
-        title="Edit"
-        >
-        <i class="fa fa-pencil"></i>
+        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/updatelimit'">
-        <button  
-        (click)="getvalue(data)" 
-        mat-raised-button
-        color="accent"
-        title="Update"
-        >
-        Update
+        <button (click)="getvalue(data)" mat-raised-button color="accent" title="Update">
+                Update
         </button>
 </div>
-
-

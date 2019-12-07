@@ -598,3 +598,29 @@ ul.marquee li {
     margin-left: 16.66666667%;
 }
 }
+
+
+
+
+/* Login page css */
+
+html,
+body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  /* background-image: url(https://lh4.googleusercontent.com/-XplyTa1Za-I/VMSgIyAYkHI/AAAAAAAADxM/oL-rD6VP4ts/w1184-h666/Android-Lollipop-wallpapers-Google-Now-Wallpaper-2.png) !important; */
+  /* background-image: url(https://cdn.hipwallpaper.com/i/81/45/e6Et3x.jpg) !important; */
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  min-height: 100vh !important;
+}
+.login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0.8375em 0;
+}
+
+/* Login page css */

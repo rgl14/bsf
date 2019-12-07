@@ -1,0 +1,190 @@
+<mat-toolbar id="mainToolbar" class="bg-header">
+  <!-- <mat-icon
+      (click)="onToolbarMenuToggle()"
+      id="toolbarMenu">subject</mat-icon> -->
+  DUO<sup>Exch</sup>
+  <span class="toolbar-spacer"></span>
+  <!-- <button
+      class="toolbar-avatar"
+      mat-mini-fab
+      color="primary"
+      (click)="openBottomSheet()"
+    >
+  </button> -->
+  <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <!-- <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu> -->
+  <mat-menu #menu="matMenu">
+    <!-- <i matListIcon class="fa fa-thumbs-up"></i>
+      <i matListIcon class="fa fa-thumbs-up"></i>
+      <i matListIcon class="fa fa-thumbs-up"></i>
+      <i matListIcon class="fa fa-thumbs-up"></i> -->
+    <div>
+      <mat-nav-list class="bottom-sheet-nav-list">
+        <!-- <mat-divider></mat-divider> -->
+        <!-- <mat-list-item [routerLink]="'/home'">
+                <i matListIcon class="fa fa-thumbs-up"></i>
+                <h3 matLine>Sports</h3>
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/home'">
+                <i matListIcon class="fa fa-thumbs-up"></i>
+                <h3 matLine>Tournament</h3>
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/home'">
+                <i matListIcon class="fa fa-thumbs-up"></i>
+                <h3 matLine>Matches</h3>
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/home'">
+                <i matListIcon class="fa fa-thumbs-up"></i>
+                <h3 matLine>Markets</h3>
+          </mat-list-item> -->
+        <mat-list-item [routerLink]="'/betting'">
+          <i matListIcon class="fa fa-thumbs-up"></i>
+          <h3 matLine>Betting</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/fancy'">
+          <i matListIcon class="fa fa-thumbs-up"></i>
+          <h3 matLine>Fancy</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/bookmaker'">
+          <i matListIcon class="fa fa-thumbs-up"></i>
+          <h3 matLine>Book Maker</h3>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="'/administration'">
+          <i matListIcon class="fa fa-user-secret"></i>
+          <h3 matLine>Administration</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/importrate'">
+          <i matListIcon class="fa fa-download"></i>
+          <h3 matLine>Import Rate</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/newsticker'">
+          <i matListIcon class="fa fa-newspaper-o"></i>
+          <h3 matLine>News Ticker</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/balance'">
+          <i matListIcon class="fa fa-balance-scale"></i>
+          <h3 matLine>Balance</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/matchsetting'">
+          <i matListIcon class="fa fa-cogs"></i>
+          <h3 matLine>Match Setting</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/managepassword'">
+          <i matListIcon class="fa fa-lock"></i>
+          <h3 matLine>Manage Password</h3>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div>
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="Logout()">
+          <i matListIcon class="fa fa-sign-out"></i>
+          <h3 matLine>Logout</h3>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div style="height:150px;width: 275px"></div>
+  </mat-menu>
+</mat-toolbar>
+
+<!-- <mat-sidenav-container
+    id="sidenavContainer"
+   fullscreen>
+    <mat-sidenav
+      mode="side"
+      #sidenav
+      id="sidenav"
+      [class.menu-open]="isMenuOpen"
+      [class.menu-close]="!isMenuOpen"
+      opened>
+      
+      <mat-list id="menus">
+        <mat-card>
+          <mat-card-header>
+            <div 
+              mat-card-avatar 
+              class="avatar"></div>
+  
+            <mat-card-title>John Doe</mat-card-title>
+            <mat-card-subtitle>Internal</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <mat-list-item>
+          <button 
+          class="menu-item"
+            mat-flat-button>
+            <mat-icon>dashboard</mat-icon>
+          Dashboard</button>
+        </mat-list-item>
+  
+        <mat-list-item>
+            <button 
+            class="menu-item"
+              mat-flat-button>
+              <mat-icon>work</mat-icon>
+            Project</button>
+          </mat-list-item>
+  
+          <mat-list-item>
+              <button 
+              class="menu-item"
+                mat-flat-button>
+                <mat-icon>settings_application</mat-icon>
+              Settings</button>
+            </mat-list-item>
+  
+      </mat-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content
+    [ngStyle]="{ 'margin-left.px': contentMargin }"
+    >
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+<!-- <app-header></app-header> -->
+<app-sidebar></app-sidebar>
+<mat-card><a [routerLink]="['/']"><i class="fa fa-home"></i> Dashboard{{currentroute}}</a></mat-card>
+<router-outlet></router-outlet>
+<nav class="Bottomnav">
+  <ul style="display: inline-flex">
+    <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select">
+        <mat-icon>home</mat-icon><br><span>Home</span>
+      </button></li>
+    <li id="inplay"><button [routerLink]="'/agentlist'" routerLinkActive="select" mat-button>
+        <mat-icon>account_tree</mat-icon><br><span>Agent</span>
+      </button></li>
+    <li id="sports"><button [routerLink]="'/inplaylist'" routerLinkActive="select" mat-button>
+        <mat-icon>play_circle_outline</mat-icon><br><span>In-Play</span>
+      </button></li>
+    <li id="multiMarket"><button [routerLink]="'/sportslist'" routerLinkActive="select" mat-button>
+        <mat-icon>gamepad</mat-icon><br><span>Sports</span>
+      </button></li>
+    <li id="account"><button [routerLink]="'/reportlist'" routerLinkActive="select" mat-button>
+        <mat-icon>table_chart</mat-icon><br><span>Ledger</span>
+      </button></li>
+  </ul>
+</nav>
+<!-- <div class="footer">
+                <div class="pull-right">
+                   Stockist Panel <strong>v1.0.0</strong>
+                </div>
+                <div>
+                    <strong>BSF777</strong> | Powered By <strong> BSF Gaming </strong> | Copyright © 2014-2019 </div>
+            </div> -->

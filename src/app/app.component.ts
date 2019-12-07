@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MatBottomSheet,MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { Router } from '@angular/router';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -11,49 +11,48 @@ export class AppComponent {
   title = 'Admin';
   currentroute: string;
   // title = 'AngularMaterialGettingStarted';
-  constructor(private _bottomSheet: MatBottomSheet,private router: Router) {
-    this.currentroute=this.router.url
-  }
+  isLoggedIn: boolean = false;
 
-    openBottomSheet(): void {
-      this._bottomSheet.open(BottomSheetComponent);
+  constructor(private router: Router, private tokenService: TokenService) {
+    this.currentroute = this.router.url
+
+    console.log(this.tokenService.getToken());
+    if (this.tokenService.getToken()) {
+      this.isLoggedIn = true;
     }
   }
-  // isMenuOpen = true;
-  // contentMargin = 240;
 
-  // task: string[] = [
-  //   'Clearning out my closet', 'Take out trash bins', 'Wash car', 'Tank up the motorcycles', 'Go for flight training'
-  // ]
-
-  // onToolbarMenuToggle() {
-  //   console.log('On toolbar toggled', this.isMenuOpen);
-  //   this.isMenuOpen = !this.isMenuOpen;
-
-  //   if(!this.isMenuOpen) {
-  //     this.contentMargin = 70;
-  //   } else {
-  //     this.contentMargin = 240;
-  //   }
-  // }
-  // myFunction() {
-  //   var x = document.getElementById("myNavbar");
-  //   if (x.className === "navbar") {
-  //     x.className += " responsive";
-  //   } else {
-  //     x.className = "navbar";
-  //   }
-  // }
-
-@Component({
-  selector: 'bottom-sheet',
-  templateUrl: './bottom-sheet/bottom-sheet.html',
-})
-export class BottomSheetComponent {
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>) {}
-
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
+  checkLoggedIn(value: boolean) {
+    console.log(value);
+    this.isLoggedIn = value;
   }
+
+
 }
+// isMenuOpen = true;
+// contentMargin = 240;
+
+// task: string[] = [
+//   'Clearning out my closet', 'Take out trash bins', 'Wash car', 'Tank up the motorcycles', 'Go for flight training'
+// ]
+
+// onToolbarMenuToggle() {
+//   console.log('On toolbar toggled', this.isMenuOpen);
+//   this.isMenuOpen = !this.isMenuOpen;
+
+//   if(!this.isMenuOpen) {
+//     this.contentMargin = 70;
+//   } else {
+//     this.contentMargin = 240;
+//   }
+// }
+// myFunction() {
+//   var x = document.getElementById("myNavbar");
+//   if (x.className === "navbar") {
+//     x.className += " responsive";
+//   } else {
+//     x.className = "navbar";
+//   }
+// }
+
+

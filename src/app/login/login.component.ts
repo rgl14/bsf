@@ -1,0 +1,63 @@
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { TokenService } from '../services/token.service';
+import { NotificationService } from '../shared/notification.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  @Output() isLoggedIn = new EventEmitter<any>();
+
+  loginForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private tokenService: TokenService,
+    private notifyService: NotificationService,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.initLoginForms();
+  }
+
+  initLoginForms() {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      pwd: ['', Validators.required],
+      context: [''],
+      MachineId: [''],
+      imeiAddress: [''],
+      mobModelBrowserVers: ['']
+    })
+  }
+
+  login() {
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loginService.Login(this.loginForm.value).subscribe(data => {
+      if (data.description.status == "Success") {
+        this.notifyService.success(data.description.result);
+        this.tokenService.setToken(data.response.AuthToken);
+        this.tokenService.setUserType(data.type);
+        this.loginForm.reset();
+        this.isLoggedIn.emit(true);
+        this.router.navigateByUrl("home");
+      }
+      else {
+        this.notifyService.error(data.description.result);
+      }
+    });
+  }
+
+}

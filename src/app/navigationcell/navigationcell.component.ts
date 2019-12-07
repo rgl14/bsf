@@ -7,15 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigationcell.component.css']
 })
 export class NavigationcellComponent implements OnInit {
-  data:any;
+  data: any;
   currentroute: string;
-
+  automatic: string;
   constructor(private router: Router) {
-    this.currentroute=this.router.url
-   }
+    this.currentroute = this.router.url
+  }
 
-  agInit(params:any){
-    this.data=params.data
+  agInit(params: any) {
+    // console.log(params);
+    this.data = params.data;
+    if (this.currentroute == "/fancy") {
+      this.automatic = this.data.automatic.toString();
+    }
   }
 
   ngOnInit() {

@@ -10,18 +10,13 @@
     <label for="second-117973">Manual</label>
     </div>
 </div> -->
-<mat-radio-group aria-label="Select an option" *ngIf="currentroute=='/fancy'">
+<mat-radio-group aria-label="Select an option" [(ngModel)]="automatic" *ngIf="currentroute=='/fancy'">
     <mat-radio-button value="1">Auto</mat-radio-button>
-    <mat-radio-button value="2" style="margin-left: 5px">Manual</mat-radio-button>
+    <mat-radio-button value="0" style="margin-left: 5px">Manual</mat-radio-button>
 </mat-radio-group>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
-    <button 
-    (click)="getvalue(data)" 
-    mat-raised-button
-    color="accent"
-    title="Settle"
-    >
-    Settle
+    <button (click)="getvalue(data)" mat-raised-button color="primary" title="Settle">
+        Settle
     </button>
 </div>
