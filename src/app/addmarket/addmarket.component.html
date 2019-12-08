@@ -1,1 +1,149 @@
-<p>addmarket works!</p>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+     <div class="col-lg-12">
+         <div class="ibox float-e-margins">
+             <div class="ibox-title">
+                 <h5>New Market</h5>
+             </div>
+             
+             <div class="ibox-content-form table-responsive">
+                
+                 
+                 <form [formGroup]="addmarketform" (ngSubmit)="onSubmit()"  class="form-horizontal" >
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Sport Name<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                    <select formControlName="MKTsportname"  class="form-control"  >
+                                      <option value="" class="" selected="selected">Select Sport</option>
+                                      <option value="1">Cricket</option>
+                                      <option value="2" >Soccer</option>
+                                    </select>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Tournament Name<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                    <select formControlName="MKTtourname"  class="form-control" >
+                                      <option value="" class="" selected="selected">Select Tournament</option>
+                                      <option value="1" >IPL</option>
+                                      <option value="2" >Big Bash</option>
+                                      <option value="3" >Test Matches</option>
+                                    </select>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Match Name<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                    <select formControlName="MKTmatchname"  class="form-control" >
+                                      <option value="" class="" selected="selected">Select Match</option>
+                                      <option value="1" >Ireland vs Bangladesh</option>
+                                      <option value="2" >Sril Lanka vs India</option>
+                                      <option value="3" >India Vs Pakistan</option>
+                                    </select>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Market Name<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                  <input formControlName="MKTname" class="form-control" name="mktname" [ngClass]="{ 'is-invalid': submitted && f.MKTname.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTname.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTname.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Market Status<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                    <select formControlName="marketstatus"  class="form-control" id="marketstatus" >
+                                      <option value="" class="" selected="selected">Select Status</option>
+                                      <option value="OPEN">OPEN</option>
+                                      <option value="CURRENT">CURRENT</option>
+                                      <option value="SETTLED">SETTLED</option>
+                                      <option value="CLOSED">CLOSED</option>
+                                      <option value="INACTIVE">INACTIVE</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.marketstatus.errors" class="invalid-feedback">
+                                        <mat-error *ngIf="f.marketstatus.errors.required">This field is mandatory.</mat-error>
+                                    </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                        <input formControlName="MKTbfid" class="form-control" name="mktbfid" [ngClass]="{ 'is-invalid': submitted && f.MKTbfid.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTbfid.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTbfid.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Market Rate<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                  <input formControlName="MKTrate" class="form-control" name="mktrate" [ngClass]="{ 'is-invalid': submitted && f.MKTrate.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTrate.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTrate.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Runner 1<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                  <input formControlName="MKTrunner1" class="form-control" name="runner1" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner1.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTrunner1.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTrunner1.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Runner 2<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                  <input formControlName="MKTrunner2" class="form-control" name="runner2" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner2.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTrunner2.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTrunner2.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control">Runner 3<span class="danger">*</span> :</label>
+                                <div class="col-md-10 col-sm-3">              
+                                  <input formControlName="MKTrunner3" class="form-control" name="runner3" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner3.errors }"  placeholder="" type="text" >
+                                  
+                                  <div *ngIf="submitted && f.MKTrunner3.errors" class="invalid-feedback">
+                                     <mat-error *ngIf="f.MKTrunner3.errors.required">This field is mandatory.</mat-error>
+                                 </div>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 label-control"></label>
+                            <div class="col-md-6">
+                                    <mat-checkbox>Is Active</mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control"></label>
+                                <div class="col-md-6">
+                                        <mat-checkbox>Is BetAllow</mat-checkbox>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control"></label>
+                                <div class="col-md-6">
+                                        <mat-checkbox>Is Limit</mat-checkbox>
+                                </div>
+                        </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="button-row" style="text-align: center">
+                        <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
+                        <button mat-raised-button color="primary"  type="submit">Save</button>
+                    </div>
+</form>                        
+</div>
+         </div>         
+     </div>
+ </div>
+</div>

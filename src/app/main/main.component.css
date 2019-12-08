@@ -4,11 +4,16 @@
     .footer{display: block;}
   }
   .bg-header{
-    background-image: linear-gradient(to top left, #0084e7, #00407f);
+    /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
+    background: #434343;
     color: #fff;
   }
   nav .select {
     color:red !important;
+  }
+  .marq{
+    font-weight: 600;
+    /* color: rgba(255,255,255,.5); */
   }
   nav {
     position: fixed;

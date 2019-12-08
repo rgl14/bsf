@@ -56,11 +56,12 @@ button:focus {
 }
 .create-button{
   float: right;
-  background-image: linear-gradient(to top left, #0084e7, #00407f);
-  color: white;
+  /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
+  background:#000;
+  color: #8b8b8b;
 }
 .mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
-  background-color: #0084e7;
+  background-color: #434343;
 }
 .download-buttons button{
   margin-left:8px;
@@ -137,7 +138,9 @@ mat-footer-row mat-footer-cell{
   justify-content: center;
   font-style: italic;
 }
-
+.ag-theme-balham .ag-ltr .ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected){
+  border:none !important;
+}
 @media screen and (max-width: 960px) {
   .mat-table {
     border: 0;
@@ -337,16 +340,17 @@ h3, h4, h5 {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  /* background-color: #ffffff; */
-  background-image: linear-gradient(to top left, #0084e7, #00407f);
-  border-color: #e7eaec;
+  background-color: #000;
+  border-top: 4px solid #00a826;
+  /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
+  /* border-color: #e7eaec; */
   border-image: none;
   border-style: solid solid none;
   border-width: 3px 0 0;
-  color: #fff;
+  color: rgba(255,255,255,.5);
   margin-bottom: 0;
-  padding: 14px 15px 7px;
-  min-height: 48px;
+  padding: 10px 10px;
+  min-height: 40px;
 }
 .ibox {
   clear: both;
@@ -356,8 +360,8 @@ h3, h4, h5 {
 }
 .ibox-content {
   background-color: #ffffff;
-  color: inherit;
-  padding: 15px 20px 20px 20px;
+  color: #626768 !important;
+  padding: 15px 15px 15px 15px;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;
@@ -586,7 +590,7 @@ ul.marquee li {
     position: relative;
     flex: auto;
     min-width: 0;
-    width: 165px !important;
+    width: 155px !important;
   }
   .mob-button{
     display:grid;
@@ -599,28 +603,16 @@ ul.marquee li {
 }
 }
 
-
-
-
-/* Login page css */
-
-html,
-body {
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.Data-Filters{
+  padding:0px 100px;
 }
 
-body {
-  /* background-image: url(https://lh4.googleusercontent.com/-XplyTa1Za-I/VMSgIyAYkHI/AAAAAAAADxM/oL-rD6VP4ts/w1184-h666/Android-Lollipop-wallpapers-Google-Now-Wallpaper-2.png) !important; */
-  /* background-image: url(https://cdn.hipwallpaper.com/i/81/45/e6Et3x.jpg) !important; */
-  background-position: center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  min-height: 100vh !important;
-}
-.login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
-  padding: 0.8375em 0;
+@media (max-width: 768px){
+  .Data-Filters{
+      padding:0px 0px;
+  }
 }
 
-/* Login page css */
+.Data-Filter-padding-up-down{
+  padding: 10px 0px;
+}

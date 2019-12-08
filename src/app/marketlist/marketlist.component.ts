@@ -20,14 +20,19 @@ export class MarketlistComponent implements OnInit {
   constructor() { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Market Name', field: 'marketname', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Active', field: 'isactive', sortable: true, width: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', sortable: true, width: 650,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'ID', field: 'id', width: 75,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Market Name', field: 'mktname', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Tournament Name', field: 'tourname', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Date', field: 'matchdate', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Status', field: 'status', sortable: true, width: 75,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Is Active', field: 'isactive', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Bet Allow', field: 'betallow', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     this.gridOptions.rowData = [
-      { isactive:1,marketname:'',rolsedesc:'only create client fancy and book maker',id: '1' },
+      { isactive:1,betallow:1,mktname:'Match Odds',matchname:'Ireland v Netherlands',tourname:'ICC World T20 Qualifiers',status:'OPEN',matchdate:'2019-11-01 15:40:00',id: '1' },
+      { isactive:1,betallow:1,mktname:'Match Odds',matchname:'Papua New Guinea v Namibia',tourname:'ICC World T20 Qualifiers',status:'OPEN',matchdate:'2019-11-01 21:00:00',id: '2' },
      ];
 
     this.gridOptions.paginationPageSize=10;

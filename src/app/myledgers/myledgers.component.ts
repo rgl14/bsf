@@ -1,5 +1,8 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild  } from '@angular/core';
 import {GridOptions} from "ag-grid-community";
+import * as _moment from "moment";
+import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
 @Component({
   selector: 'app-myledgers',
@@ -15,8 +18,11 @@ export class MyledgersComponent implements OnInit {
   paginationSetPageSize:number;
   paginationNumberFormatter:any;
   rowData=[];
+  selected: any;
+  alwaysShowCalendars: boolean;
   constructor() {
     this.gridOptions = <GridOptions>{};
+    this.alwaysShowCalendars = true;
     this.gridOptions.columnDefs = [
       {headerName: 'Date/Time', field: 'date', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
       {headerName: 'Entry', field: 'entry', sortable: true, width: 500,cellStyle: {color: '#0084e7'}},
@@ -47,13 +53,19 @@ export class MyledgersComponent implements OnInit {
     };
   }
 
-  onPageSizeChanged(newPageSize:any) {
-    var value = (document.getElementById('page-size') as HTMLInputElement).value;
-    this.gridOptions.api.paginationSetPageSize(Number(value));
-  }
 
-  onFilterTextBoxChanged() {
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+ranges: any = {
+  'Today': [moment(), moment()],
+  'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+  'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+  'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+  'This Month': [moment().startOf('month'), moment().endOf('month')],
+  'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+}
+@ViewChild(BsDaterangepickerDirective, { static: false }) datepicker: BsDaterangepickerDirective;
+  @HostListener('window:scroll')
+  onScrollEvent() {
+    this.datepicker.hide();
   }
   
   ngOnInit(){
