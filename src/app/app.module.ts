@@ -23,8 +23,6 @@ import { MainComponent, BottomSheetComponent } from './main/main.component';
 import { TokenInterceptor } from './services/token-interceptor';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,15 +49,15 @@ import { TokenInterceptor } from './services/token-interceptor';
   ],
   entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent],
   providers: [
-    ManageformService, 
+    ManageformService,
     CookieService,
     TokenService,
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:TokenInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
