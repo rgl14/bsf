@@ -21,6 +21,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from './services/token.service';
 import { MainComponent, BottomSheetComponent } from './main/main.component';
 import { TokenInterceptor } from './services/token-interceptor';
+import { CelltextfieldComponent } from './celltextfield/celltextfield.component';
+import { CelldisabledtextfieldComponent } from './celldisabledtextfield/celldisabledtextfield.component';
+import { CelldisabledusedlimitComponent } from './celldisabledusedlimit/celldisabledusedlimit.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -34,6 +38,9 @@ import { TokenInterceptor } from './services/token-interceptor';
     NavigationcellComponent,
     ButtontogglecellComponent,
     RatesnavigationComponent,
+    CelltextfieldComponent,
+    CelldisabledtextfieldComponent,
+    CelldisabledusedlimitComponent,
     LoginComponent,
     MainComponent,
   ],
@@ -45,9 +52,10 @@ import { TokenInterceptor } from './services/token-interceptor';
     FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
+    BsDatepickerModule.forRoot(),
     HttpClientModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent,CelltextfieldComponent,CelldisabledtextfieldComponent,CelldisabledusedlimitComponent],
   providers: [
     ManageformService,
     CookieService,
