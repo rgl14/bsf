@@ -36,7 +36,7 @@ export class MainComponent implements OnInit {
         this.notifyService.error(data.result);
       }
     }, err => {
-      if (err.status === 405) {
+      if (err.status === 401) {
         this.tokenService.removeToken();
       }
     })

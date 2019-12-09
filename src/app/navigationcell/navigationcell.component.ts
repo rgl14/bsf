@@ -10,6 +10,7 @@ export class NavigationcellComponent implements OnInit {
   data: any;
   currentroute: string;
   automatic: string;
+  runner: any = "";
   constructor(private router: Router) {
     this.currentroute = this.router.url
   }

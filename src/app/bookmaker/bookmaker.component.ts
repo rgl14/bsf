@@ -43,8 +43,8 @@ export class BookmakerComponent implements OnInit {
       { headerName: 'Rate', field: '', sortable: true, width: 100, cellRendererFramework: RatesnavigationComponent },
       { headerName: 'Active', field: 'isActive', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
       { headerName: 'Bet Allow', field: 'isBetAllow', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
-      { headerName: 'Settle', field: '', sortable: true, width: 100, cellRendererFramework: NavigationcellComponent },
-      { headerName: 'Actions', field: '', sortable: true, width: 400, cellRendererFramework: CustomcellbuttonsComponent },
+      { headerName: 'Settle', field: '', sortable: true, width: 300, cellRendererFramework: NavigationcellComponent },
+      { headerName: 'Actions', field: '', sortable: true, width: 350, cellRendererFramework: CustomcellbuttonsComponent },
     ];
 
     // this.gridOptions.rowData = [
@@ -83,8 +83,6 @@ export class BookmakerComponent implements OnInit {
   ngOnInit() {
     this.GetBookList();
   }
-
-
 
   GetBookList() {
     let status = "";

@@ -4,7 +4,7 @@ import { NotificationService } from '../shared/notification.service';
 import { FancyService } from '../services/fancy.service';
 import { SportDataService } from '../services/sport-data.service';
 import _ from 'lodash';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-addfancy',
@@ -31,7 +31,7 @@ export class AddfancyComponent implements OnInit {
     private fancyService: FancyService,
     private sportService: SportDataService,
     private route: ActivatedRoute,
-
+    private router: Router
   ) {
     this.route.params.subscribe(params => {
       // console.log(params);
@@ -248,10 +248,8 @@ export class AddfancyComponent implements OnInit {
     this.fancyService.UpdateFancy(fancyData).subscribe(data => {
       if (data.status == "Success") {
         this.notifyService.success(data.result);
-        // this.fancyForm.reset();
-
         setTimeout(() => {
-          // this.router.navigateByUrl('/fancy_list')
+          this.router.navigateByUrl('/fancy')
         }, 2000)
       }
       else {
@@ -264,7 +262,11 @@ export class AddfancyComponent implements OnInit {
 
 
   onClear() {
-
+    // this.fancyForm.reset();
+    // this.fancyForm.controls["fancyType"].setValue("");
+    // this.fancyForm.controls["sport"].setValue("");
+    // this.fancyForm.controls["tournament"].setValue("");
+    // this.fancyForm.controls["match"].setValue("");
   }
 
 }
