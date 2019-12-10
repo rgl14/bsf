@@ -10,7 +10,7 @@ import { MaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManageformService } from './manageform.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { CustomcellbuttonsComponent } from './customcellbuttons/customcellbuttons.component';
+import { CustomcellbuttonsComponent, SetMatchLiveTvDialog } from './customcellbuttons/customcellbuttons.component';
 import { NavigationcellComponent } from './navigationcell/navigationcell.component';
 import { ButtontogglecellComponent } from './buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from './ratesnavigation/ratesnavigation.component';
@@ -25,6 +25,9 @@ import { CelltextfieldComponent } from './celltextfield/celltextfield.component'
 import { CelldisabledtextfieldComponent } from './celldisabledtextfield/celldisabledtextfield.component';
 import { CelldisabledusedlimitComponent } from './celldisabledusedlimit/celldisabledusedlimit.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MarketCtlgComponent } from './market-ctlg/market-ctlg.component';
+import { PackageSettingsComponent } from './package-settings/package-settings.component';
+import { CreatePackageComponent } from './create-package/create-package.component';
 
 
 @NgModule({
@@ -43,6 +46,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CelldisabledusedlimitComponent,
     LoginComponent,
     MainComponent,
+    MarketCtlgComponent,
+    PackageSettingsComponent,
+    CreatePackageComponent,
+    SetMatchLiveTvDialog
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     BsDatepickerModule.forRoot(),
     HttpClientModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent,CelltextfieldComponent,CelldisabledtextfieldComponent,CelldisabledusedlimitComponent],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
   providers: [
     ManageformService,
     CookieService,

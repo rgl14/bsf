@@ -79,8 +79,7 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
-        <button [routerLink]="['/editbook',data.bookCode]" mat-raised-button color="Accent"
-                title="Edit">
+        <button [routerLink]="['/editbook',data.bookCode]" mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
         <button *ngIf="data.status=='SETTLED'" (click)="getvalue(data)" mat-raised-button color="warn" title="Reverse">
@@ -94,19 +93,19 @@
                 Cancel
         </button>
 </div>
+<div class="Action-buttons" *ngIf="currentroute=='/packages'">
+        <button [routerLink]="['/edit_pckg',data.id]" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+</div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/importrate'">
-        <button [routerLink]="'/'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Bets">
+        <!-- <button [routerLink]="'/'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Bets">
                 Bets
-        </button>
-        <!-- <button 
-        (click)="getvalue(data)" 
-        mat-raised-button 
-        color="warn" 
-        title="Live TV"
-        >
-        TV
         </button> -->
+        <button (click)="openDialog()" mat-raised-button color="warn" title="Live TV">
+                TV
+        </button>
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/newsticker'">

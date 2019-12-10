@@ -1,0 +1,153 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Create Package</h5>
+        </div>
+
+        <div class="ibox-content-form table-responsive">
+          <form [formGroup]="savePackageForm" (ngSubmit)="savePackageForm.valid && saveMarketsSettingPackageData()">
+            <div class="row">
+
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Package Name</label>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" formControlName="name" [attr.disabled]="marketPkgId"
+                      [ngClass]="{ 'is-invalid': f.name.invalid && f.name.touched}" />
+                    <div *ngIf="f.name.invalid && f.name.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Min Rate</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="minRate"
+                      [ngClass]="{ 'is-invalid': f.minRate.invalid && f.minRate.touched}" />
+                    <div *ngIf="f.minRate.invalid && f.minRate.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Max Rate</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="maxRate"
+                      [ngClass]="{ 'is-invalid': f.maxRate.invalid && f.maxRate.touched}" />
+                    <div *ngIf="f.maxRate.invalid && f.maxRate.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Min Stake</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="minStake"
+                      [ngClass]="{ 'is-invalid': f.minStake.invalid && f.minStake.touched}" />
+                    <div *ngIf="f.minStake.invalid && f.minStake.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Max Stake</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="maxStake"
+                      [ngClass]="{ 'is-invalid': f.maxStake.invalid && f.maxStake.touched}" />
+                    <div *ngIf="f.maxStake.invalid && f.maxStake.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Bet Delay</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="betDelay"
+                      [ngClass]="{ 'is-invalid': f.betDelay.invalid && f.betDelay.touched}" />
+                    <div *ngIf="f.betDelay.invalid && f.betDelay.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">IsUnMatched Allowed</label>
+                  <div class="col-md-7">
+                    <mat-checkbox class="example-margin" formControlName="isUnMatched">IsUnMatched Allowed
+                    </mat-checkbox>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">IsCheck Volume</label>
+                  <div class="col-md-7">
+                    <mat-checkbox class="example-margin" formControlName="isCheckVol">IsCheck Volume</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Max Profit</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="maxProfit"
+                      [ngClass]="{ 'is-invalid': f.maxProfit.invalid && f.maxProfit.touched}" />
+                    <div *ngIf="f.maxProfit.invalid && f.maxProfit.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Max Loss</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="maxLoss"
+                      [ngClass]="{ 'is-invalid': f.maxLoss.invalid && f.maxLoss.touched}" />
+                    <div *ngIf="f.maxLoss.invalid && f.maxLoss.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Market Before Inplay Limit</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="mktBeforeInplayStake"
+                      [ngClass]="{ 'is-invalid': f.mktBeforeInplayStake.invalid && f.mktBeforeInplayStake.touched}" />
+                    <div *ngIf="f.mktBeforeInplayStake.invalid && f.mktBeforeInplayStake.touched"
+                      class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Bet Before Inplay Minutes</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="betBeforeInplayMins"
+                      [ngClass]="{ 'is-invalid': f.betBeforeInplayMins.invalid && f.betBeforeInplayMins.touched}" />
+                    <div *ngIf="f.betBeforeInplayMins.invalid && f.betBeforeInplayMins.touched"
+                      class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">Market Volume Into</label>
+                  <div class="col-md-7">
+                    <input type="number" class="form-control" formControlName="mktVolMulti"
+                      [ngClass]="{ 'is-invalid': f.mktVolMulti.invalid && f.mktVolMulti.touched}" />
+                    <div *ngIf="f.mktVolMulti.invalid && f.mktVolMulti.touched" class="invalid-feedback">
+                      <mat-error>This field is mandatory.</mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group col-sm-4 col-sm-offset-2 button-row">
+              <button mat-raised-button color="warn" type="reset" [routerLink]="['/markets_ctlg']">Cancel</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="savePackageForm.invalid">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
