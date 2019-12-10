@@ -11,15 +11,10 @@
     (click)="openBottomSheet()"
   >
 </button> -->
-<button
-    [matMenuTriggerFor]="menu"
-    class="toolbar-avatar"
-    mat-mini-fab
-    color="primary"
-  >
-  <mat-icon>more_vert</mat-icon>
-</button>
-<!-- <mat-menu #menu="matMenu">
+  <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <!-- <mat-menu #menu="matMenu">
   <button mat-menu-item>
     <mat-icon>dialpad</mat-icon>
     <span>Redial</span>
@@ -33,13 +28,13 @@
     <span>Disable alerts</span>
   </button>
 </mat-menu> -->
-<mat-menu #menu="matMenu">
+  <mat-menu #menu="matMenu">
     <!-- <i matListIcon class="fa fa-thumbs-up"></i>
     <i matListIcon class="fa fa-thumbs-up"></i>
     <i matListIcon class="fa fa-thumbs-up"></i>
     <i matListIcon class="fa fa-thumbs-up"></i> -->
-<div>
-    <mat-nav-list  class="bottom-sheet-nav-list">
+    <div>
+      <mat-nav-list class="bottom-sheet-nav-list">
         <!-- <mat-divider></mat-divider> -->
         <!-- <mat-list-item [routerLink]="'/home'">
               <i matListIcon class="fa fa-thumbs-up"></i>
@@ -69,44 +64,52 @@
           <i matListIcon class="fa fa-thumbs-up"></i>
           <h3 matLine>Book Maker</h3>
         </mat-list-item>
+        <mat-list-item [routerLink]="'/packages'">
+          <i matListIcon class="fa fa-thumbs-up"></i>
+          <h3 matLine>Packages Settings</h3>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/markets_ctlg'">
+          <i matListIcon class="fa fa-thumbs-up"></i>
+          <h3 matLine>Markets Catalogue</h3>
+        </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="'/administration'">
           <i matListIcon class="fa fa-user-secret"></i>
-            <h3 matLine>Administration</h3>
+          <h3 matLine>Administration</h3>
         </mat-list-item>
         <mat-list-item [routerLink]="'/importrate'">
           <i matListIcon class="fa fa-download"></i>
-            <h3 matLine>Import Rate</h3>
+          <h3 matLine>Import Rate</h3>
         </mat-list-item>
         <mat-list-item [routerLink]="'/newsticker'">
           <i matListIcon class="fa fa-newspaper-o"></i>
-            <h3 matLine>News Ticker</h3>
+          <h3 matLine>News Ticker</h3>
         </mat-list-item>
         <mat-list-item [routerLink]="'/balance'">
           <i matListIcon class="fa fa-balance-scale"></i>
-            <h3 matLine>Balance</h3>
+          <h3 matLine>Balance</h3>
         </mat-list-item>
         <mat-list-item [routerLink]="'/matchsetting'">
-              <i matListIcon class="fa fa-cogs"></i>
-              <h3 matLine>Match Setting</h3>
+          <i matListIcon class="fa fa-cogs"></i>
+          <h3 matLine>Match Setting</h3>
         </mat-list-item>
         <mat-list-item [routerLink]="'/managepassword'">
           <i matListIcon class="fa fa-lock"></i>
           <h3 matLine>Manage Password</h3>
         </mat-list-item>
-    </mat-nav-list>
-</div> 
-<div>
+      </mat-nav-list>
+    </div>
+    <div>
       <mat-nav-list>
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="'/home'">
-              <i matListIcon class="fa fa-sign-out"></i>
-              <h3 matLine>Logout</h3>
+          <i matListIcon class="fa fa-sign-out"></i>
+          <h3 matLine>Logout</h3>
         </mat-list-item>
       </mat-nav-list>
-</div>
-<div style="height:10px;width: 275px"></div>
-</mat-menu>
+    </div>
+    <div style="height:10px;width: 275px"></div>
+  </mat-menu>
 </mat-toolbar>
 
 <!-- <mat-sidenav-container
@@ -167,21 +170,31 @@
 <!-- <app-markets></app-markets> -->
 <app-sidebar></app-sidebar>
 <mat-card style="padding: 0px !important;">
-    <marquee class="marq">
-        <div>!! Welcome To NewAdmin !!</div>
-    </marquee>
+  <marquee class="marq">
+    <div>!! Welcome To NewAdmin !!</div>
+  </marquee>
 </mat-card>
 <router-outlet></router-outlet>
-      <nav class="Bottomnav">
-          <ul style="display: inline-flex">
-            <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select" ><mat-icon>home</mat-icon><br><span>Home</span></button></li>
-            <li id="inplay" ><button [routerLink]="'/agentlist'" routerLinkActive="select"  mat-button><mat-icon>account_tree</mat-icon><br><span>Agent</span></button></li>
-            <li id="sports" ><button [routerLink]="'/inplaylist'" routerLinkActive="select" mat-button><mat-icon>play_circle_outline</mat-icon><br><span>In-Play</span></button></li>
-            <li id="multiMarket" ><button [routerLink]="'/sportslist'" routerLinkActive="select" mat-button><mat-icon>gamepad</mat-icon><br><span>Sports</span></button></li>
-            <li id="account"><button [routerLink]="'/reportlist'" routerLinkActive="select" mat-button><mat-icon>table_chart</mat-icon><br><span>Report</span></button></li>
-          </ul>
-      </nav>
-      <!-- <div class="footer">
+<nav class="Bottomnav">
+  <ul style="display: inline-flex">
+    <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select">
+        <mat-icon>home</mat-icon><br><span>Home</span>
+      </button></li>
+    <li id="inplay"><button [routerLink]="'/agentlist'" routerLinkActive="select" mat-button>
+        <mat-icon>account_tree</mat-icon><br><span>Agent</span>
+      </button></li>
+    <li id="sports"><button [routerLink]="'/inplaylist'" routerLinkActive="select" mat-button>
+        <mat-icon>play_circle_outline</mat-icon><br><span>In-Play</span>
+      </button></li>
+    <li id="multiMarket"><button [routerLink]="'/sportslist'" routerLinkActive="select" mat-button>
+        <mat-icon>gamepad</mat-icon><br><span>Sports</span>
+      </button></li>
+    <li id="account"><button [routerLink]="'/reportlist'" routerLinkActive="select" mat-button>
+        <mat-icon>table_chart</mat-icon><br><span>Report</span>
+      </button></li>
+  </ul>
+</nav>
+<!-- <div class="footer">
               <div class="pull-right">
                  Stockist Panel <strong>v1.0.0</strong>
               </div>

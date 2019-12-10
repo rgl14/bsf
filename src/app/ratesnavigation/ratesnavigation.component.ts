@@ -29,7 +29,7 @@ export class RatesnavigationComponent implements OnInit {
       window.open('BookRate.html?book_id=' + this.data.bookCode, '_blank');
     }
     if(this.data.fancyCode){
-      window.open('Fancyrate.html?f_id=' + this.data.fancyCode, '_blank');
+      window.open('FancyRate.html?f_id=' + this.data.fancyCode, '_blank');
     }
   }
 

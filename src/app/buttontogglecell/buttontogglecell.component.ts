@@ -3,6 +3,7 @@ import { FancyService } from '../services/fancy.service';
 import { NotificationService } from '../shared/notification.service';
 import { BookmakingService } from '../services/bookmaking.service';
 import { UsermanagementService } from '../services/usermanagement.service';
+import { SportDataService } from '../services/sport-data.service';
 
 @Component({
   selector: 'app-buttontogglecell',
@@ -20,7 +21,8 @@ export class ButtontogglecellComponent implements OnInit {
     private fancyService: FancyService,
     private notifyService: NotificationService,
     private bmService: BookmakingService,
-    private  usermanagement:UsermanagementService
+    private  usermanagement:UsermanagementService,
+    private sportService: SportDataService
   ) { }
   agInit(params) {
     console.log(params);
@@ -60,6 +62,23 @@ export class ButtontogglecellComponent implements OnInit {
       }
     }
 
+    if (this.params.colDef.field == "active") {
+      if (this.data.active == 1) {
+        this.isActive = false;
+      }
+      else {
+        this.isActive = true;
+      }
+    }
+    if (this.params.colDef.field == "betAllow") {
+      if (this.data.betAllow == 1) {
+        this.isActive = false;
+      }
+      else {
+        this.isActive = true;
+      }
+    }
+
   }
 
   ngOnInit() {
@@ -90,6 +109,15 @@ export class ButtontogglecellComponent implements OnInit {
       if (this.params.colDef.field == "accStatus") {
         this.UpdateUserStatus();
       }
+    else if (this.data.marketInfo) {
+      if (this.params.colDef.field == "active") {
+        this.UpdateMktStatus();
+      }
+
+      if (this.params.colDef.field == "betAllow") {
+        this.UpdateMktBetStatus();
+      }
+    }
 
       if (this.params.colDef.field == "betStatus") {
         this.UpdateBetStatus();
@@ -257,5 +285,59 @@ export class ButtontogglecellComponent implements OnInit {
       this.disabled = false;
     })
   }
+
+  UpdateMktStatus() {
+    this.disabled = true;
+    if (this.isActive) {
+      this.data.active = 1;
+    }
+    else {
+      this.data.active = 0;
+    }
+
+    this.sportService.UpdateMktStatus(this.data.id, this.data.active).subscribe(data => {
+      if (data.status == "Success") {
+        if (this.isActive) {
+          this.isActive = false;
+        }
+        else {
+          this.isActive = true;
+        }
+        this.notifyService.success(data.result);
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+
+      this.disabled = false;
+    })
+  }
+
+  UpdateMktBetStatus() {
+    this.disabled = true;
+    if (this.isActive) {
+      this.data.betAllow = 1;
+    }
+    else {
+      this.data.betAllow = 0;
+    }
+    this.sportService.UpdateMktBetStatus(this.data.id, this.data.betAllow).subscribe(data => {
+      if (data.status == "Success") {
+        if (this.isActive) {
+          this.isActive = false;
+        }
+        else {
+          this.isActive = true;
+        }
+        this.notifyService.success(data.result);
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+
+      this.disabled = false;
+    })
+  }
+
 
 }
