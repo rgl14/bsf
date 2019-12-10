@@ -171,8 +171,8 @@
                               <h5>MY USERNAME</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">SST3</h1>
-                                 <small>Dummy </small>
+                              <h1 class="no-margins">{{userinfo?.myLevel}}</h1>
+                                 <small>{{userinfo?.userName}}</small>
                            </div>
                         </div>
                      </div>
@@ -182,7 +182,7 @@
                               <h5>MY LEVEL</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins"><span class="translation_missing" title="translation missing: en.super stockist">Super Stockist</span></h1>
+                              <h1 class="no-margins"><span class="translation_missing" title="translation missing: en.super stockist">{{userinfo?.myLevel}}</span></h1>
                            </div>
                         </div>
                      </div>
@@ -192,7 +192,7 @@
                               <h5>MY FIX LIMIT</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">2500000.0</h1>
+                              <h1 class="no-margins">{{userinfo?.fixLimit | number : '1.2-2'}}</h1>
                            </div>
                         </div>
                      </div>
@@ -204,7 +204,7 @@
                               <h5>Balance</h5>
                            </div>
                            <div class="ibox-content">
-                                 <h1 class="no-margins">2000000.00</h1>
+                                 <h1 class="no-margins">{{userinfo?.remainingLimit | number : '1.2-2'}}</h1>
                            </div>
                         </div>
                      </div>
@@ -214,7 +214,7 @@
                               <h5>Maximum My Share</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">80.0%</h1>
+                              <h1 class="no-margins">{{userinfo?.maxMyShare}}%</h1>
                            </div>
                         </div>
                      </div>
@@ -224,7 +224,7 @@
                               <h5>Minimum Company Share</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">20.0%</h1>
+                              <h1 class="no-margins">{{userinfo?.minCompanyShare}}%</h1>
                            </div>
                         </div>
                      </div>
@@ -236,7 +236,7 @@
                               <h5>Match Commission</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">2.0</h1>
+                              <h1 class="no-margins">{{userinfo?.matchComm}}</h1>
                            </div>
                         </div>
                      </div>
@@ -246,7 +246,7 @@
                               <h5>Session Commission</h5>
                            </div>
                            <div class="ibox-content">
-                              <h1 class="no-margins">2.0</h1>
+                              <h1 class="no-margins">{{userinfo?.sessionComm}}</h1>
                            </div>
                         </div>
                      </div>

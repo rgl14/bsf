@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FancyService } from '../services/fancy.service';
 import { NotificationService } from '../shared/notification.service';
 import { BookmakingService } from '../services/bookmaking.service';
+import { UsermanagementService } from '../services/usermanagement.service';
 
 @Component({
   selector: 'app-buttontogglecell',
@@ -18,10 +19,11 @@ export class ButtontogglecellComponent implements OnInit {
   constructor(
     private fancyService: FancyService,
     private notifyService: NotificationService,
-    private bmService: BookmakingService
+    private bmService: BookmakingService,
+    private  usermanagement:UsermanagementService
   ) { }
   agInit(params) {
-    // console.log(params);
+    console.log(params);
     this.params = params;
     this.data = this.params.data;
 
@@ -39,6 +41,22 @@ export class ButtontogglecellComponent implements OnInit {
       }
       else {
         this.isActive = true;
+      }
+    }
+    if (this.params.colDef.field == "betStatus") {
+      if (this.data.betStatus == 1) {
+        this.isActive = true;
+      }
+      else {
+        this.isActive = false;
+      }
+    }
+    if (this.params.colDef.field == "accStatus") {
+      if (this.data.accStatus == 1) {
+        this.isActive = true;
+      }
+      else {
+        this.isActive = false;
       }
     }
 
@@ -68,8 +86,63 @@ export class ButtontogglecellComponent implements OnInit {
         this.EditBookBetStatus();
       }
     }
+    else if (this.data.userId) {
+      if (this.params.colDef.field == "accStatus") {
+        this.UpdateUserStatus();
+      }
+
+      if (this.params.colDef.field == "betStatus") {
+        this.UpdateBetStatus();
+      }
+    }
 
 
+  }
+
+  UpdateUserStatus(){
+    if (this.isActive) {
+      this.data.accStatus = 0;
+    }
+    else {
+      this.data.accStatus = 1;
+    }
+    this.usermanagement.getUserStatusUpdate(this.data.userId,this.data.accStatus,0).subscribe(data=>{
+      if (data.status == "Success") {
+        if (this.isActive) {
+          this.isActive = false;
+        }
+        else {
+          this.isActive = true;
+        }
+        this.notifyService.success(data.result);
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+
+  UpdateBetStatus(){
+    if (this.isActive) {
+      this.data.betStatus = 0;
+    }
+    else {
+      this.data.betStatus = 1;
+    }
+    this.usermanagement.getUpdateBetStatus(this.data.userId,this.data.betStatus,0).subscribe(data=>{
+      if (data.status == "Success") {
+        if (this.isActive) {
+          this.isActive = false;
+        }
+        else {
+          this.isActive = true;
+        }
+        this.notifyService.success(data.result);
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
   }
 
   UpdateFancyStatus() {

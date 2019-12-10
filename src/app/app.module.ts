@@ -25,6 +25,7 @@ import { CelltextfieldComponent } from './celltextfield/celltextfield.component'
 import { CelldisabledtextfieldComponent } from './celldisabledtextfield/celldisabledtextfield.component';
 import { CelldisabledusedlimitComponent } from './celldisabledusedlimit/celldisabledusedlimit.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { UsermanagementService } from './services/usermanagement.service';
 
 
 
@@ -62,6 +63,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ManageformService, 
     CookieService,
     TokenService,
+    UsermanagementService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptor,

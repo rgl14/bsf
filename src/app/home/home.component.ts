@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsermanagementService } from '../services/usermanagement.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  userinfo: any;
 
-  constructor() { }
+  constructor(private usermanagement:UsermanagementService) { }
 
   ngOnInit() {
+    this.usermanagement.getAccountInfo().subscribe(resp=>{
+      this.userinfo=resp.data;
+    })
   }
 
 }
