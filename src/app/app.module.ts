@@ -29,6 +29,7 @@ import { MarketCtlgComponent } from './market-ctlg/market-ctlg.component';
 import { PackageSettingsComponent } from './package-settings/package-settings.component';
 import { CreatePackageComponent } from './create-package/create-package.component';
 import { UsermanagementService } from './services/usermanagement.service';
+import { SharedataService } from './services/sharedata.service';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { UsermanagementService } from './services/usermanagement.service';
     CookieService,
     TokenService,
     UsermanagementService,
+    SharedataService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

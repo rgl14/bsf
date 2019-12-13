@@ -9,13 +9,13 @@ export class TokenService {
   constructor(private cookieService: CookieService) { }
 
   setToken(token) {
-    this.cookieService.set('AuthToken', token);
+    this.cookieService.set('kancha', token);
   }
   getToken() {
-    return this.cookieService.get('AuthToken');
+    return this.cookieService.get('kancha');
   }
   removeToken() {
-    this.cookieService.delete('AuthToken');
+    this.cookieService.delete('kancha');
     window.location.href = "";
   }
 

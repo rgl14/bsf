@@ -3,6 +3,8 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { LoginService } from '../services/login.service';
 import { NotificationService } from '../shared/notification.service';
 import { TokenService } from '../services/token.service';
+import { UsermanagementService } from '../services/usermanagement.service';
+import { SharedataService } from '../services/sharedata.service';
 
 @Component({
   selector: 'app-main',
@@ -15,10 +17,15 @@ export class MainComponent implements OnInit {
     private _bottomSheet: MatBottomSheet,
     private loginService: LoginService,
     private tokenService: TokenService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private sharedata :SharedataService,
+    private usermanagement:UsermanagementService
   ) { }
 
   ngOnInit() {
+    this.usermanagement.getAccountInfo().subscribe(resp=>{
+      this.sharedata.shareAccountInfo(resp.data);
+    })
   }
 
   openBottomSheet(): void {

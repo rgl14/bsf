@@ -25,7 +25,7 @@ export class ButtontogglecellComponent implements OnInit {
     private sportService: SportDataService
   ) { }
   agInit(params) {
-    console.log(params);
+    // console.log(params);
     this.params = params;
     this.data = this.params.data;
 

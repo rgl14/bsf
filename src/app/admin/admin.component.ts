@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
       {headerName: 'S-Comm  (%)', field: 'maxshare', sortable: true, width: 100},
       {headerName: 'Status', field: 'accStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', width: 230,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: '', width: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     
