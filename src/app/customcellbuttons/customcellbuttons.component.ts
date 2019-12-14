@@ -30,7 +30,7 @@ export class CustomcellbuttonsComponent implements OnInit {
 
   agInit(params) {
     this.params = params;
-    console.log(this.params)
+    // console.log(this.params)
     this.data = this.params.data;
   }
   ngOnInit() {

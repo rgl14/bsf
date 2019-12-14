@@ -227,7 +227,7 @@ export class CreatemasterComponent implements OnInit {
         username:resp.data.userName,
         firstName:resp.data.name,
         fixLimit:resp.data.fixLimit,
-        Supershare:this.maxmastershare,
+        Mastershare:this.maxmastershare,
         myShare:resp.data.myShare,
         MComm:resp.data.mComm,
         SComm:resp.data.sComm,

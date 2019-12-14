@@ -140,7 +140,7 @@ export class CreatesuperagentComponent implements OnInit {
               "isSComm":this.issessioncomm,
               "myShare":this.userdata.myShare,
               "password":this.userdata.password,
-              "userType":4
+              "userType":5
             }
             // console.log(data,"userdata")
             this.usermanagement.getCreatUser(data).subscribe(resp=>{

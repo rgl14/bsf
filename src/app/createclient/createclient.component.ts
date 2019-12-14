@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { ManageformService } from '../manageform.service';
 import { NotificationService } from '../shared/notification.service';
 import { MustMatch } from '../shared/must-match.validator';
+import { UsermanagementService } from '../services/usermanagement.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedataService } from '../services/sharedata.service';
 
 @Component({
   selector: 'app-createclient',
@@ -12,22 +15,59 @@ import { MustMatch } from '../shared/must-match.validator';
 export class CreateclientComponent implements OnInit {
   clientform:FormGroup;
   submitted=false;
-  constructor(private formbuilder : FormBuilder,public notification:NotificationService) { }
+  isdisabled: boolean=false;
+  accountInfo: any;
+  userId: any;
+  maxsupershare: any;
+  totalremaininglimit: number=0;
+  edituserdata: any;
+  userdata: any;
+  ismatchcomm: any;
+  issessioncomm: any;
+  constructor(
+    private usermanagement:UsermanagementService,
+    private formbuilder : FormBuilder,
+    public notification:NotificationService,
+    private route:ActivatedRoute,
+    private router: Router,
+    private sharedata: SharedataService
+    ) { }
 
   ngOnInit() {
+    this.userId=this.route.snapshot.paramMap.get('userId');
+
+    
+    this.sharedata.AccountInfoSource.subscribe(data=>{
+      if(data!=null){
+        console.log(data)
+        this.accountInfo=data;
+        if(this.userId){
+          this.getuserdata();
+          this.isdisabled=true;
+        }
+      }
+    })
     this.clientform=this.formbuilder.group({
-      username:['SS7326',Validators.required],
-      fullname:['',Validators.required],
-      limit:['',Validators.required],
-      share:['',Validators.required],
-      myshare:['',Validators.required],
-      matchcomm:['',Validators.required],
-      sesscomm:['',Validators.required],
-      password:['',[Validators.required, Validators.minLength(6)]],
-      confirmPassword:['',Validators.required],
+      username:[''],
+      firstName:['',Validators.required],
+      fixLimit:['',Validators.required],
+      Clientshare:['',Validators.required],
+      myShare:['',Validators.required],
+      MComm:['',Validators.required],
+      SComm:['',Validators.required],
+      password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+      confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+      isMComm: false,
+      isSComm: false,
     }, {
       validator: MustMatch('password', 'confirmPassword')
     })
+
+    this.formControlsmysharechanged()
+    this.formControlsmaxsharechanged()
+    this.formControlfixlimitChanged()
+    this.formControlmcommchanged()
+    this.formControlscommchanged()
   }
   onClear() {
     this.submitted = false;
@@ -42,8 +82,160 @@ export class CreateclientComponent implements OnInit {
         // stop here if form is invalid
         if (this.clientform.invalid) {
             return;
+        }else{
+          // console.log(this.clientform)
+          if(this.userId){
+              this.edituserdata=this.clientform.value;
+              if(this.edituserdata.isMComm){
+                this.ismatchcomm=1;
+              }else{
+                this.ismatchcomm=0;
+              }
+              if(this.edituserdata.isSComm){
+                this.issessioncomm=1;
+              }else{
+                this.issessioncomm=0;
+              }
+              var editusersdata={
+                "MComm":this.edituserdata.MComm,
+                "SComm":this.edituserdata.SComm,
+                "agentShare":this.edituserdata.Supershare,
+                "context":"web",
+                "firstName":this.edituserdata.firstName,
+                "fixLimit":this.edituserdata.fixLimit,
+                "isMComm":this.ismatchcomm,
+                "isSComm":this.issessioncomm,
+                "myShare":this.edituserdata.myShare,
+                "userID":this.userId
+              }
+              this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
+                if (resp.status == "Success") {
+                  this.notification.success(resp.result);
+                  this.router.navigateByUrl("/clients");
+                }else{
+                  this.notification.error(resp.result);
+                }
+              })
+          }else{
+            this.userdata=this.clientform.value;
+            if(this.userdata.isMComm){
+              this.ismatchcomm=1;
+            }else{
+              this.ismatchcomm=0;
+            }
+            if(this.userdata.isSComm){
+              this.issessioncomm=1;
+            }else{
+              this.issessioncomm=0;
+            }
+            var data={
+              "MComm":this.userdata.MComm,
+              "SComm":this.userdata.SComm,
+              "agentShare":this.userdata.Supershare,
+              "context":"web",
+              "firstName":this.userdata.firstName,
+              "fixLimit":this.userdata.fixLimit,
+              "isMComm":this.ismatchcomm,
+              "isSComm":this.issessioncomm,
+              "myShare":this.userdata.myShare,
+              "password":this.userdata.password,
+              "userType":7
+            }
+            // console.log(data,"userdata")
+            this.usermanagement.getCreatUser(data).subscribe(resp=>{
+              if (resp.status == "Success") {
+                this.notification.success(resp.result);
+                this.router.navigateByUrl("/clients");
+              }else{
+                this.notification.error(resp.result);
+              }
+            })
+          }
         }
-      this.notification.success('Submitted successfully');
+    // if (this.service.form.valid) {
+    //   this.service.form.reset();
+    //   this.service.initializeFormGroup();
+      
+    // }
+  }
+
+  formControlsmysharechanged(){
+    this.clientform.get('myShare').valueChanges.subscribe(
+      (mode: number) => {
+          
+          if(mode > this.accountInfo.minCompanyShare){
+            this.clientform.controls['myShare'].setValue(this.accountInfo.minCompanyShare);
+          }else{
+            let myshare = this.accountInfo.minCompanyShare-mode;
+            this.accountInfo.CompanyShare=myshare;
+          }
+    });
+  }
+  formControlsmaxsharechanged(){
+    this.clientform.get('Clientshare').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.CompanyShare){
+            this.clientform.controls['Clientshare'].setValue(this.accountInfo.CompanyShare)
+          }else{
+            let maxshare = this.accountInfo.minCompanyShare-mode;
+
+          }
+    });
+  }
+  formControlfixlimitChanged() {
+    this.clientform.get('fixLimit').valueChanges.subscribe(
+        (mode: number) => {
+          this.totalremaininglimit=mode;
+            if(mode > this.accountInfo.remainingLimit){
+              this.clientform.controls['fixLimit'].setValue(this.accountInfo.remainingLimit)
+            }
+    });
+  }
+  formControlmcommchanged(){
+    this.clientform.get('MComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.matchComm){
+            this.clientform.controls['MComm'].setValue(this.accountInfo.matchComm)
+          }
+    });
+  }
+  formControlscommchanged(){
+    this.clientform.get('SComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sessionComm){
+            this.clientform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+          }
+    });
+  }
+
+  getuserdata(){
+    this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{
+      console.log(resp.data)
+      if(resp.data.isMComm==1){
+        var mcomm=true;
+      }else{
+        var mcomm=false;
+      }
+      if(resp.data.isSComm==1){
+        var scomm=true;
+      }else{
+        var scomm=false;
+      }
+      this.maxsupershare=this.accountInfo.minCompanyShare-resp.data.myShare;
+      this.clientform.setValue({  
+        username:resp.data.userName,
+        firstName:resp.data.name,
+        fixLimit:resp.data.fixLimit,
+        Clientshare:this.maxsupershare,
+        myShare:resp.data.myShare,
+        MComm:resp.data.mComm,
+        SComm:resp.data.sComm,
+        password:'123456',
+        confirmPassword:'123456',
+        isMComm: mcomm,
+        isSComm: scomm,
+      });  
+    })
   }
 
 }

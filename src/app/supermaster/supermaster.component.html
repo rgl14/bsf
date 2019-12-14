@@ -20,7 +20,18 @@
                 <button class="create-button" mat-raised-button [routerLink]="'/createsuper'">Create Supermaster</button>
               </div>
               <div class="table-container mat-elevation-z8">
-                <ag-grid-angular style="width: 100%; height: 450px" class="ag-theme-balham" [gridOptions]="gridOptions" [animateRows]="true" [pagination]="true"></ag-grid-angular>
+                  <ag-grid-angular 
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="rowData" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    (gridReady)="onGridReady($event)"
+                    >
+                  </ag-grid-angular>
               </div>
             </div>
           </div>
