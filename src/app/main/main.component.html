@@ -11,9 +11,12 @@
     (click)="openBottomSheet()"
   >
 </button> -->
-  <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary">
+  <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary" *ngIf="userType==1">
     <mat-icon>more_vert</mat-icon>
   </button>
+  <button (click)="Logout()" class="toolbar-avatar" mat-mini-fab color="warn" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
+      <mat-icon>logout</mat-icon>
+    </button>
   <!-- <mat-menu #menu="matMenu">
   <button mat-menu-item>
     <mat-icon>dialpad</mat-icon>
@@ -102,7 +105,7 @@
     <div>
       <mat-nav-list>
         <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="'/home'">
+        <mat-list-item (click)="Logout()">
           <i matListIcon class="fa fa-sign-out"></i>
           <h3 matLine>Logout</h3>
         </mat-list-item>

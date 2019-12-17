@@ -1,134 +1,158 @@
 <div class="wrapper wrapper-content">
   <div class="row">
     <div class="col-lg-12">
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==1">
         <div class="ibox-title">
           <h5>Update Limit For Company</h5>
         </div>
         <div class="ibox-content-table table-responsive">
             <div class="search-div">
                 <mat-form-field class="search-form-field" floatLabel="never">
-                  <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                  <input matInput id="filter-company" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                 </mat-form-field>
               </div>
               <div class="table-container mat-elevation-z8">
                   <ag-grid-angular 
-                    style="width: 100%; height: 450px"
-                    class="ag-theme-balham"
-                    [gridOptions]="gridOptions"
-                    [animateRows]="true"
-                    [pagination]="true"
-                    >
+                  style="width: 100%; height: 450px"
+                  class="ag-theme-balham"
+                  [gridOptions]="gridOptions"
+                  [rowData]="adminList" 
+                  [overlayLoadingTemplate]="overlayLoadingTemplate"
+                  [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                  [animateRows]="true"
+                  [pagination]="true"
+                  (gridReady)="onGridReady($event)"
+                  >
                   </ag-grid-angular>
               </div>
         </div>
       </div>
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2">
           <div class="ibox-title">
             <h5>Update Limit For SuperMaster</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
                   <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                    <input matInput id="filter-supermaster" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                   </mat-form-field>
                 </div>
                 <div class="table-container mat-elevation-z8">
                     <ag-grid-angular 
-                      style="width: 100%; height: 450px"
-                      class="ag-theme-balham"
-                      [gridOptions]="gridOptions"
-                      [animateRows]="true"
-                      [pagination]="true"
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="superMasterList" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    
                       >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2 || userType==3">
           <div class="ibox-title">
             <h5>Update Limit For Master</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
                   <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                    <input matInput id="filter-master" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                   </mat-form-field>
                 </div>
                 <div class="table-container mat-elevation-z8">
                     <ag-grid-angular 
-                      style="width: 100%; height: 450px"
-                      class="ag-theme-balham"
-                      [gridOptions]="gridOptions"
-                      [animateRows]="true"
-                      [pagination]="true"
-                      >
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="masterList" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    
+                    >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2 || userType==3 || userType==4">
           <div class="ibox-title">
             <h5>Update Limit For Super Agent</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
                   <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                    <input matInput id="filter-superagent" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                   </mat-form-field>
                 </div>
                 <div class="table-container mat-elevation-z8">
                     <ag-grid-angular 
-                      style="width: 100%; height: 450px"
-                      class="ag-theme-balham"
-                      [gridOptions]="gridOptions"
-                      [animateRows]="true"
-                      [pagination]="true"
-                      >
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="agentList" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    
+                    >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==2 || userType==3 || userType==4 || userType==5">
           <div class="ibox-title">
             <h5>Update Limit For Agent</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
                   <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                    <input matInput id="filter-agent" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                   </mat-form-field>
                 </div>
                 <div class="table-container mat-elevation-z8">
                     <ag-grid-angular 
-                      style="width: 100%; height: 450px"
-                      class="ag-theme-balham"
-                      [gridOptions]="gridOptions"
-                      [animateRows]="true"
-                      [pagination]="true"
-                      >
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="rowData" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    
+                    >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins">
+      <div class="ibox float-e-margins" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
           <div class="ibox-title">
             <h5>Update Limit For Client</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
                   <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
+                    <input matInput id="filter-client" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                   </mat-form-field>
                 </div>
                 <div class="table-container mat-elevation-z8">
                     <ag-grid-angular 
-                      style="width: 100%; height: 450px"
-                      class="ag-theme-balham"
-                      [gridOptions]="gridOptions"
-                      [animateRows]="true"
-                      [pagination]="true"
-                      >
+                    style="width: 100%; height: 450px"
+                    class="ag-theme-balham"
+                    [gridOptions]="gridOptions"
+                    [rowData]="userList" 
+                    [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    [animateRows]="true"
+                    [pagination]="true"
+                    
+                    >
                     </ag-grid-angular>
                 </div>
           </div>
@@ -152,12 +176,12 @@
                   </thead>
                   <tbody>
                       <tr>
-                          <td>2500000.0</td>
-                          <td>540000.0</td>  
-                          <td>1178440.41</td> 
-                          <td>-766311.55 </td>    
-                          <td>1733688.45</td>  
-                          <td>15248.04</td>                                      
+                          <td>{{summaryData?.fixLimit | number : '1.2-2'}}</td>     
+                          <td>{{summaryData?.limitDistributedBelow | number : '1.2-2'}}</td>     
+                          <td>{{summaryData?.limitWithClients | number : '1.2-2'}}</td>     
+                          <td>{{summaryData?.LedgerExposure | number : '1.2-2'}}</td>     
+                          <td>{{summaryData?.currentLimit | number : '1.2-2'}}</td>     
+                          <td>{{summaryData?.remainingLimit | number : '1.2-2'}}</td>     
                       </tr>
                 </tbody>
             </table>

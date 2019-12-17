@@ -5,6 +5,7 @@ import { NotificationService } from '../shared/notification.service';
 import { BookmakingService } from '../services/bookmaking.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { SportDataService } from '../services/sport-data.service';
+import { UsermanagementService } from '../services/usermanagement.service';
 
 @Component({
   selector: 'app-customcellbuttons',
@@ -23,7 +24,8 @@ export class CustomcellbuttonsComponent implements OnInit {
     private bmService: BookmakingService,
     private notifyService: NotificationService,
     private dialog: MatDialog,
-    private sportService: SportDataService
+    private sportService: SportDataService,
+    private usermanagement:UsermanagementService
   ) {
     this.currentroute = this.router.url
   }
@@ -36,8 +38,17 @@ export class CustomcellbuttonsComponent implements OnInit {
   ngOnInit() {
 
   }
-  getvalue(data: any) {
-    console.log(data)
+  getvalue(userdata:any) {
+    console.log(userdata)
+    this.usermanagement.UpdateFixLimits(userdata.id,userdata.fixLimit).subscribe(data=>{
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+        // this.params.context.componentParent.GetFancyList();
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
   }
 
   CancelFancybyId() {

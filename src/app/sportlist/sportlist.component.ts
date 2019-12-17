@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { CustomcellbuttonsComponent } from '../customcellbuttons/customcellbuttons.component';
-import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
+import { SportDataService } from '../services/sport-data.service';
+import { CustomsporttogglecellComponent } from '../customsporttogglecell/customsporttogglecell.component';
 
 @Component({
   selector: 'app-sportlist',
@@ -16,21 +17,24 @@ export class SportlistComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  gridApi: any;
+  gridColumnApi: any;
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
 
-  constructor() { 
+  constructor(private SportSettingdata:SportDataService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Sport Name', field: 'sportname', sortable: true, width: 400,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Active', field: 'isactive', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'ID', field: 'betfairId', width: 100,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Sport Name', field: 'sportName', sortable: true, width: 400,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Active', field: 'isActive', sortable: true, width: 100,cellRendererFramework:CustomsporttogglecellComponent},
       {headerName: 'Actions', field: '', sortable: true, width: 850,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
-    this.gridOptions.rowData = [
-      { isactive:1,sportname:'Cricket',id: '1' },
-      { isactive:1,sportname:'Soccer',id: '2' },
-      { isactive:1,sportname:'Tennis',id: '3' },
-     ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -58,6 +62,15 @@ export class SportlistComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.SportSettingdata.GetSportList().subscribe(resp=>{
+      this.rowData=resp.tickerList;
+    })
   }
 
 }

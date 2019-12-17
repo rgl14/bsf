@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { CustomcellbuttonsComponent } from '../customcellbuttons/customcellbuttons.component';
-import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
+import { SportDataService } from '../services/sport-data.service';
+import { CustomsporttogglecellComponent } from '../customsporttogglecell/customsporttogglecell.component';
+import { TournamenttogglecellComponent } from '../tournamenttogglecell/tournamenttogglecell.component';
 
 @Component({
   selector: 'app-tournamentlist',
@@ -16,22 +18,34 @@ export class TournamentlistComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
+  sportsList=[];
+  sport: any = "";
+  sportbfId: string;
 
-  constructor() { 
+  constructor(private SportSettingdata:SportDataService) { 
     this.gridOptions = <GridOptions>{};
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
+    };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Sport Name', field: 'sportname', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Tournament Name', field: 'tourname', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Active', field: 'isactive', sortable: true, width: 75,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Sport Name', field: 'sportName', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Tournament Name', field: 'tournamentName', sortable: true, width: 350,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Active', field: 'isActive', sortable: true, width: 75,cellRendererFramework:TournamenttogglecellComponent},
       {headerName: 'Actions', field: '', sortable: true, width: 650,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
-    this.gridOptions.rowData = [
-      { isactive:1,tourname:'Orleans Challenger 2019',sportname:'Tennis',id: '1' },
-      { isactive:1,tourname:'ICC World T20 Qualifiers',sportname:'Cricket',id: '2' },
-      { isactive:1,tourname:'English Championship',sportname:'Soccer',id: '3' },
-     ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -59,6 +73,28 @@ export class TournamentlistComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.SportSettingdata.GetSportList().subscribe(resp=>{
+      this.sportsList=resp.tickerList;
+    })
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.SportSettingdata.GetTournamentList("0",1).subscribe(resp=>{
+      this.rowData=resp.tournamentList;
+    })
+  }
+
+  GetTournamentList(){
+    this.sportbfId=this.sport.betfairId
+    if(this.sportbfId==undefined){
+      this.sportbfId="0";
+    }
+    this.SportSettingdata.GetTournamentList(this.sportbfId,1).subscribe(resp=>{
+      this.rowData=resp.tournamentList;
+    })
   }
 
 }

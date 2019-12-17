@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-agentlist',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agentlist.component.css']
 })
 export class AgentlistComponent implements OnInit {
+  userType: string;
 
-  constructor() { }
+  constructor(private tokenService: TokenService,) { }
 
   ngOnInit() {
+    this.userType=this.tokenService.getUserType();
   }
 
 }

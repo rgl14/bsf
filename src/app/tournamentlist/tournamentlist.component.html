@@ -6,6 +6,15 @@
                 <h5>Tournament List</h5>
               </div>
               <div class="ibox-content-table table-responsive">
+                  <div class="form-group row mt-2">
+                      <div class="col-md-3 top_marg">
+                        <select [(ngModel)]="sport" (change)="GetTournamentList()" class="form-control">
+                          <option value="">Select Sport</option>
+                          <option [ngValue]="sport" *ngFor="let sport of sportsList">{{sport.sportName}}</option>
+                        </select>
+                      </div>
+
+                    </div>
                   <div class="search-div">
                       <mat-form-field class="search-form-field" floatLabel="never">
                         <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
@@ -19,8 +28,12 @@
                           style="width: 100%; height: 450px"
                           class="ag-theme-balham"
                           [gridOptions]="gridOptions"
+                          [rowData]="rowData" 
+                          [overlayLoadingTemplate]="overlayLoadingTemplate"
+                          [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                           [animateRows]="true"
                           [pagination]="true"
+                          (gridReady)="onGridReady($event)"
                           >
                         </ag-grid-angular>
                     </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ReturnStatement } from "@angular/compiler";
+import { CookieService } from 'ngx-cookie-service';
 
 const BASEURL = "http://173.249.43.228/BSF777Adm/Admin.svc";
 @Injectable({
@@ -9,7 +10,7 @@ const BASEURL = "http://173.249.43.228/BSF777Adm/Admin.svc";
 })
 export class UsermanagementService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private cookieService: CookieService) {}
 
   changePassword(data): Observable<any> {
     return this.http.post(`${BASEURL}/ChangePwd`, data);
@@ -17,6 +18,10 @@ export class UsermanagementService {
 
   Logout(data): Observable<any> {
     return this.http.post(`${BASEURL}/Logout`, data);
+  }
+
+  getUserType(){
+    return this.cookieService.get('UserType');
   }
 
   getUserlist(userid): Observable<any> {

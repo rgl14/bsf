@@ -30,6 +30,10 @@ import { PackageSettingsComponent } from './package-settings/package-settings.co
 import { CreatePackageComponent } from './create-package/create-package.component';
 import { UsermanagementService } from './services/usermanagement.service';
 import { SharedataService } from './services/sharedata.service';
+import { CustomsporttogglecellComponent } from './customsporttogglecell/customsporttogglecell.component';
+import { TournamenttogglecellComponent } from './tournamenttogglecell/tournamenttogglecell.component';
+import { MatchtogglecellComponent } from './matchtogglecell/matchtogglecell.component';
+import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.component';
 
 
 @NgModule({
@@ -42,6 +46,7 @@ import { SharedataService } from './services/sharedata.service';
     CustomcellbuttonsComponent,
     NavigationcellComponent,
     ButtontogglecellComponent,
+    CustomsporttogglecellComponent,
     RatesnavigationComponent,
     CelltextfieldComponent,
     CelldisabledtextfieldComponent,
@@ -51,7 +56,10 @@ import { SharedataService } from './services/sharedata.service';
     MarketCtlgComponent,
     PackageSettingsComponent,
     CreatePackageComponent,
-    SetMatchLiveTvDialog
+    SetMatchLiveTvDialog,
+    TournamenttogglecellComponent,
+    MatchtogglecellComponent,
+    MarkettogglecellComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,7 @@ import { SharedataService } from './services/sharedata.service';
     BsDatepickerModule.forRoot(),
     HttpClientModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
   providers: [
     ManageformService,
     CookieService,

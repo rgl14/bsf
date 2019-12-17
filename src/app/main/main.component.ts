@@ -12,6 +12,7 @@ import { SharedataService } from '../services/sharedata.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  userType: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -26,6 +27,8 @@ export class MainComponent implements OnInit {
     this.usermanagement.getAccountInfo().subscribe(resp=>{
       this.sharedata.shareAccountInfo(resp.data);
     })
+
+    this.userType=this.tokenService.getUserType();
   }
 
   openBottomSheet(): void {
@@ -38,6 +41,8 @@ export class MainComponent implements OnInit {
       if (data.status == "Success") {
         this.notifyService.success(data.result);
         this.tokenService.removeToken();
+        this.tokenService.removeUserType();
+        window.location.reload();
       }
       else {
         this.notifyService.error(data.result);

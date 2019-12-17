@@ -13,28 +13,29 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Sport Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                    <select formControlName="matchsportname"  class="form-control" id="sport" >
-                                      <option value="" class="" selected="selected">Select Sport</option>
-                                      <option value="Cricket">Cricket</option>
-                                      <option value="Soccer" >Soccer</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.matchsportname.errors" class="invalid-feedback">
-                                        <mat-error *ngIf="f.matchsportname.errors.required">This field is mandatory.</mat-error>
-                                    </div>
+                                             <select formControlName="sport" (change)="GetTournamentList()" class="form-control" [ngClass]="{ 'is-invalid': f.sport.invalid && f.sport.touched}">
+                                                <option value="">Select Sport</option>
+                                                <option [ngValue]="sport" *ngFor="let sport of sportsList">{{sport.sportName}}</option>
+                                              </select>
+                                              <div *ngIf="f.sport.invalid && f.sport.touched" class="invalid-feedback">
+                                                  <mat-error>This field is mandatory.
+                                                  </mat-error>
+                                              </div>
                                </div>
                         </div>
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Tournament Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                    <select formControlName="matchtourname"  class="form-control" id="Tournament" >
-                                      <option value="" class="" selected="selected">Select Tournament</option>
-                                      <option value="IPL">IPL</option>
-                                      <option value="Big Bash" >Big Bash</option>
-                                      <option value="Test Matches" >Test Matches</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.matchtourname.errors" class="invalid-feedback">
-                                        <mat-error *ngIf="f.matchtourname.errors.required">This field is mandatory.</mat-error>
-                                    </div>
+                                        <select formControlName="tournament" class="form-control" [ngClass]="{ 'is-invalid': f.tournament.invalid && f.tournament.touched}">
+                                                <option value="">Select Tournaments</option>
+                                                <option [ngValue]="tournament" *ngFor="let tournament of tournamentList">{{tournament.tournamentName}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="f.tournament.invalid && f.tournament.touched"
+                                                    class="invalid-feedback">
+                                                    <mat-error>This field is mandatory.
+                                                    </mat-error>
+                                            </div>
                                </div>
                         </div>
                         <div class="form-group">
@@ -50,13 +51,10 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Date<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3"> 
-                                 <mat-form-field class="example-full-width" formControlName="matchdate">
-                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                                        <mat-datepicker-toggle matSuffix [for]="picker">
-                                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                                        </mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
+                                        <input formControlName="matchDate" class="form-control" name="MatchDate" [ngClass]="{ 'is-invalid': submitted && f.matchDate.errors }"  placeholder="" type="text" >
+                                        <div *ngIf="submitted && f.matchDate.errors" class="invalid-feedback">
+                                           <mat-error *ngIf="f.matchDate.errors.required">This field is mandatory.</mat-error>
+                                       </div>
                                </div>
                                
                         </div>
@@ -65,7 +63,6 @@
                                 <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
                                         <input formControlName="matchbfid" class="form-control" name="Matchbfid" [ngClass]="{ 'is-invalid': submitted && f.matchbfid.errors }"  placeholder="" type="text" >
-                                  
                                   <div *ngIf="submitted && f.matchbfid.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.matchbfid.errors.required">This field is mandatory.</mat-error>
                                  </div>
@@ -74,31 +71,34 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Status<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                    <select formControlName="matchstatus"  class="form-control" id="Matchstatus" >
-                                      <option value="" class="" selected="selected">Select Status</option>
-                                      <option value="OPEN">OPEN</option>
-                                      <option value="CURRENT">CURRENT</option>
-                                      <option value="SETTLED">SETTLED</option>
-                                      <option value="CLOSED">CLOSED</option>
-                                      <option value="INACTIVE">INACTIVE</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.matchstatus.errors" class="invalid-feedback">
-                                        <mat-error *ngIf="f.matchstatus.errors.required">This field is mandatory.</mat-error>
-                                    </div>
+                                        <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': f.status.invalid && f.status.touched}">
+                                                <option value="">Select Status</option>
+                                                <option [ngValue]="status" *ngFor="let status of statusList">{{status.value}}</option>
+                                            </select>
+                                            <div *ngIf="f.status.invalid && f.status.touched" class="invalid-feedback">
+                                                <mat-error>This field is mandatory.
+                                                </mat-error>
+                                            </div>
                                </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 label-control"></label>
                             <div class="col-md-6">
-                                    <mat-checkbox>Is Active</mat-checkbox>
+                                    <mat-checkbox formControlName="isactive">Is Active</mat-checkbox>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control"></label>
+                                <div class="col-md-6">
+                                    <mat-checkbox formControlName="isinplay">Is Inplay</mat-checkbox>
+                                </div>
+                            </div>
                     <div class="hr-line-dashed"></div>
                     <div class="button-row" style="text-align: center">
                         <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
                         <button mat-raised-button color="primary"  type="submit">Save</button>
                     </div>
-</form>                        
+                </form>                        
 </div>
          </div>         
      </div>

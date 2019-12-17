@@ -4,6 +4,7 @@ import { CustomcellbuttonsComponent } from '../customcellbuttons/customcellbutto
 import { CelltextfieldComponent } from '../celltextfield/celltextfield.component';
 import { CelldisabledtextfieldComponent } from '../celldisabledtextfield/celldisabledtextfield.component';
 import { CelldisabledusedlimitComponent } from '../celldisabledusedlimit/celldisabledusedlimit.component';
+import { UsermanagementService } from '../services/usermanagement.service';
 
 @Component({
   selector: 'app-updatelimit',
@@ -18,26 +19,34 @@ export class UpdatelimitComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
+  adminList: any;
+  superMasterList: any;
+  masterList: any;
+  agentList: any;
+  summaryData: any;
+  userList: any;
+  userType: string;
 
-  constructor() { 
+  constructor(private usermanagement:UsermanagementService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Client Name', field: 'clientname', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Match Commission', field: 'Mcomm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Session Commission', field: 'scomm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Fix Limit', field: 'fixlimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
-      {headerName: 'Used Limit', field: 'usedlimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'Client Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
       {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
-    this.gridOptions.rowData = [
-      {clientname:'STTT01',Mcomm:'2',scomm:'2',fixlimit:'1000000.00',usedlimit:'5000.00',id: '1' },
-      {clientname:'STTT02',Mcomm:'2',scomm:'3',fixlimit:'2000000.00',usedlimit:'7000.00',id: '2' },
-      {clientname:'STTT03',Mcomm:'2',scomm:'2',fixlimit:'5000000.00',usedlimit:'10000.00',id: '3' },
-      {clientname:'STTT04',Mcomm:'2',scomm:'1',fixlimit:'1500000.00',usedlimit:'12000.00',id: '4' },
-      {clientname:'STTT05',Mcomm:'2',scomm:'2',fixlimit:'1400000.00',usedlimit:'15000.00',id: '5' },
-     ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -61,10 +70,33 @@ export class UpdatelimitComponent implements OnInit {
   }
 
   onFilterTextBoxChanged() {
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-company') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-supermaster') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-master') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-superagent') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-agent') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-client') as HTMLInputElement).value);
   }
 
   ngOnInit() {
+    this.userType=this.usermanagement.getUserType();
+    this.usermanagement.GetCommNLimits().subscribe(resp=>{
+      console.log(resp) 
+      this.adminList=resp.adminList
+      this.superMasterList=resp.superMasterList
+      this.masterList=resp.masterList
+      this.agentList=resp.agentList
+      this.summaryData=resp.summaryData
+      console.log(this.summaryData)
+      this.userList=resp.userList
+    })
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    
   }
 
 }

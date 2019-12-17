@@ -7,32 +7,32 @@
                </div>
                <div class="ibox-content-list table-responsive" >
                                 <mat-nav-list>
-                                    <mat-list-item [routerLink]="'/admin'">
+                                    <mat-list-item [routerLink]="'/admin'" *ngIf="userType==1">
                                       <i matListIcon class="fa fa-user-secret"></i>
                                         <h3 matLine>Company</h3>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item [routerLink]="'/supermaster'">
+                                    <mat-list-item [routerLink]="'/supermaster'" *ngIf="userType==1 || userType==2">
                                           <i matListIcon class="fa fa-user"></i>
                                           <h3 matLine>Super Master</h3>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item [routerLink]="'/master'">
+                                    <mat-list-item [routerLink]="'/master'" *ngIf="userType==1 || userType==2 || userType==3">
                                           <i matListIcon class="fa fa-user-md"></i>
                                           <h3 matLine>Master</h3>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item [routerLink]="'/superagent'">
+                                    <mat-list-item [routerLink]="'/superagent'" *ngIf="userType==1 || userType==2 || userType==3 || userType==4">
                                           <i matListIcon class="fa fa-user-circle-o"></i>
                                           <h3 matLine>Super Agent</h3>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item [routerLink]="'/agent'">
+                                    <mat-list-item [routerLink]="'/agent'" *ngIf="userType==2 || userType==3 || userType==4 || userType==5">
                                           <i matListIcon class="fa fa-user-o"></i>
                                           <h3 matLine>Agent</h3>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item [routerLink]="'/clients'">
+                                    <mat-list-item [routerLink]="'/clients'" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
                                           <i matListIcon class="fa fa-users"></i>
                                           <h3 matLine>Client</h3>
                                     </mat-list-item>
