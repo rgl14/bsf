@@ -33,9 +33,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 label-control"></label>
                             <div class="col-md-6">
-                                    <mat-checkbox>Is Active</mat-checkbox>
+                                    <mat-checkbox formControlName="isactive">Is Active</mat-checkbox>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 label-control"></label>
+                                <div class="col-md-6">
+                                        <mat-checkbox formControlName="showmenu">Show Menu</mat-checkbox>
+                                </div>
+                            </div>
                     <div class="hr-line-dashed"></div>
                     <div class="button-row" style="text-align: center">
                         <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>

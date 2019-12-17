@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../shared/notification.service';
+import { SportDataService } from '../services/sport-data.service';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-addsport',
@@ -11,18 +13,20 @@ export class AddsportComponent implements OnInit {
 
   addSportform:FormGroup;
   submitted=false;
-  constructor(private formbuilder:FormBuilder,private notification:NotificationService) { }
+  formdata: any;
+  constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router) { }
 
   ngOnInit() {
     this.addSportform=this.formbuilder.group({
       sportname:['',Validators.required],
       sportbfid:['',Validators.required],
+      isactive:false,
+      showmenu:false
     })
   }
 
   onClear() {
     this.submitted = false;
-    this.notification.error('Not Submitted');
     this.addSportform.reset();
   }
 
@@ -33,10 +37,39 @@ export class AddsportComponent implements OnInit {
     this.submitted = true;
         // stop here if form is invalid
         if (this.addSportform.invalid) {
-          this.notification.error('Not Submitted');
             return;
+        }else{
+          // console.log(this.addSportform.value);
+          this.formdata=this.addSportform.value;
+          if(this.formdata.isactive==true){
+            var isactive=1;
+          }else{
+            var isactive=0;
+          }
+          if(this.formdata.showmenu==true){
+            var showmenu=1;
+          }else{
+            var showmenu=0;
+          }
+          var data={
+            "betfairId":this.formdata.sportbfid,
+            "img":"",
+            "isActive":isactive,
+            "showInMenu":showmenu,
+            "sportName":this.formdata.sportname
+          };
+          // console.log(data)
+          this.SportSettingdata.AddTournament(data).subscribe(data=>{
+            if (data.status == "Success") {
+              this.notifyService.success(data.result);
+              setTimeout(() => {
+                this.router.navigateByUrl('/sportlist')
+              }, 2000)
+            }else{
+              this.notifyService.error(data.result);
+            }
+          })
         }
-      this.notification.success('Submitted successfully');
   }
 
 }
