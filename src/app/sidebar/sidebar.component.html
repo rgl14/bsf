@@ -4,7 +4,7 @@
         <li><a [routerLink]="'/home'"><i class="fa fa fa-users"></i> Manage Clients</a>
             <div class="sub-menu-1">
                     <ul>
-                            <li class="hover-me"><a [routerLink]="'/admin'" *ngIf="userType==1"><i class="fa fa fa-users"></i> Company</a></li>
+                            <li *ngIf="userType==1"><a [routerLink]="'/admin'" ><i class="fa fa fa-users"></i> Company</a></li>
                             <li *ngIf="userType==1 || userType==2"><a [routerLink]="'/supermaster'"><i class="fa fa fa-users"></i> Super Master</a></li>
                             <li *ngIf="userType==1 || userType==2 || userType==3"><a [routerLink]="'/master'"><i class="fa fa fa-users"></i> Master</a></li>
                             <li *ngIf="userType==1 || userType==2 || userType==3 || userType==4"><a [routerLink]="'/superagent'"><i class="fa fa fa-users"></i> Super Agent</a></li>

@@ -34,6 +34,9 @@ import { CustomsporttogglecellComponent } from './customsporttogglecell/customsp
 import { TournamenttogglecellComponent } from './tournamenttogglecell/tournamenttogglecell.component';
 import { MatchtogglecellComponent } from './matchtogglecell/matchtogglecell.component';
 import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.component';
+import { CKEditorModule } from "ngx-ckeditor";
+import {DatePipe} from '@angular/common';
+import { SettingfancybookcellComponent,FancyBooksettingDialog } from './settingfancybookcell/settingfancybookcell.component';
 
 
 @NgModule({
@@ -61,6 +64,8 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
     TournamenttogglecellComponent,
     MatchtogglecellComponent,
     MarkettogglecellComponent,
+    SettingfancybookcellComponent,
+    FancyBooksettingDialog
     
   ],
   imports: [
@@ -72,11 +77,13 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
     BsDatepickerModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    CKEditorModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettingfancybookcellComponent,FancyBooksettingDialog],
   providers: [
     ManageformService,
+    DatePipe,
     CookieService,
     TokenService,
     UsermanagementService,

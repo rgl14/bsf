@@ -101,6 +101,7 @@ export class ButtontogglecellComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       var isAll=result.statusSelected
+      console.log(result)
       this.update(isAll);
     });
   }

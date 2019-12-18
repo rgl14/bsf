@@ -76,6 +76,7 @@ import { LoginComponent } from './login/login.component';
 import { MarketCtlgComponent } from './market-ctlg/market-ctlg.component';
 import { PackageSettingsComponent } from './package-settings/package-settings.component';
 import { CreatePackageComponent } from './create-package/create-package.component';
+import { RulesComponent } from './rules/rules.component';
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -165,7 +166,8 @@ const routes: Routes = [
   { path: 'markets_ctlg', component: MarketCtlgComponent },
   { path: 'packages', component: PackageSettingsComponent },
   { path: 'create_pckg', component: CreatePackageComponent },
-  { path: 'edit_pckg/:packageId', component: CreatePackageComponent }
+  { path: 'edit_pckg/:packageId', component: CreatePackageComponent },
+  { path: 'rules', component: RulesComponent },
 ];
 
 @NgModule({
@@ -246,5 +248,6 @@ export const componentRouting = [
   FancyrateComponent,
   BmrateComponent,
   UpdatelimitComponent,
-  MarketCtlgComponent
+  MarketCtlgComponent,
+  RulesComponent
 ]

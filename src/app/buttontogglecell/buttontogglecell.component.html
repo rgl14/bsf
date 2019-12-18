@@ -4,7 +4,7 @@
   (click)="update()"
   >
 </mat-slide-toggle>
-<mat-slide-toggle *ngIf="currentroute!='/fancy' || currentroute!='/bookmaker'" class="example-margin" [color]="warn" 
+<mat-slide-toggle *ngIf="currentroute=='/admin' || currentroute=='/supermaster' || currentroute=='/master' || currentroute=='/superagent' || currentroute=='/agent' || currentroute=='/client'" class="example-margin" [color]="warn" 
   [checked]="isActive" 
   [disabled]="disabled"
   (click)="openDialog()"

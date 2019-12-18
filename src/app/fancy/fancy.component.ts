@@ -6,6 +6,7 @@ import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.
 import { RatesnavigationComponent } from '../ratesnavigation/ratesnavigation.component';
 import { FancyService } from '../services/fancy.service';
 import { SportDataService } from '../services/sport-data.service';
+import { SettingfancybookcellComponent } from '../settingfancybookcell/settingfancybookcell.component';
 
 @Component({
   selector: 'app-fancy',
@@ -46,6 +47,7 @@ export class FancyComponent implements OnInit {
       { headerName: 'Status', field: 'betStatus', sortable: true, width: 100 },
       { headerName: 'Mode', field: 'automatic', sortable: true, width: 175, cellRendererFramework: NavigationcellComponent },
       { headerName: 'Rate', field: '', sortable: true, width: 100, cellRendererFramework: RatesnavigationComponent },
+      { headerName: 'Setting', field: '', sortable: true, width: 100, cellRendererFramework: SettingfancybookcellComponent },
       { headerName: 'Active', field: 'isActive', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
       { headerName: 'Bet Allow', field: 'isBetAllow', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
       // { headerName: 'Commission', field: 'isApplyComm', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
@@ -67,7 +69,7 @@ export class FancyComponent implements OnInit {
       return "[" + params.value.toLocaleString() + "]";
     };
     this.gridOptions.getRowHeight = function (params: any) {
-      return 45;
+      return 50;
     }
     // all rows assigned CSS class 'my-green-class'
     this.gridOptions.rowClass = 'my-green-class';

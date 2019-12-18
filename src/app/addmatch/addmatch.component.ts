@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../shared/notification.service';
 import { SportDataService } from '../services/sport-data.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-addmatch',
@@ -24,7 +25,7 @@ export class AddmatchComponent implements OnInit {
     { key: '5', value: 'INACTIVE' }
   ];
   formdata: any;
-  constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router) { }
+  constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router,private datepipe:DatePipe) { }
 
   ngOnInit() {
     this.SportSettingdata.GetSportList().subscribe(resp=>{
@@ -59,6 +60,8 @@ export class AddmatchComponent implements OnInit {
         }else{
           console.log(this.addmatchform.value)
           this.formdata=this.addmatchform.value;
+          var medium = this.datepipe.transform(new Date(this.formdata.matchDate),"yyyy-MM-dd HH:mm:ss");
+          console.log(medium); //output - Feb 14, 2019, 3:45:06 PM
           if(this.formdata.isactive==true){
             var isActive=1
           }else{
@@ -73,7 +76,7 @@ export class AddmatchComponent implements OnInit {
             "betfairId":this.formdata.matchbfid,
             "isActive":isActive,
             "isInplay":isInplay,
-            "matchDate":this.formdata.matchDate,
+            "matchDate":medium,
             "matchName":this.formdata.matchname,
             "matchStatus":this.formdata.status.value,
             "sportName":this.formdata.sport.sportName,

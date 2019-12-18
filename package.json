@@ -33,6 +33,7 @@
     "ngx-bootstrap": "^5.2.0",
     "ngx-cookie-service": "^2.2.0",
     "ngx-daterangepicker-material": "^2.1.8",
+    "ngx-ckeditor": "^8.0.0",
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "signalr-no-jquery": "^0.1.10",

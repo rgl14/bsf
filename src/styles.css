@@ -60,8 +60,8 @@ button:focus {
 .account-type button {
   vertical-align: top;
 }
-.account-info {
-}
+/* .account-info {
+} */
 .create-button {
   float: right;
   /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
@@ -339,7 +339,7 @@ mat-footer-row mat-footer-cell {
   font-weight: 600;
   padding: 0;
   text-overflow: ellipsis;
-  float: left;
+  /* float: left; */
 }
 h1 {
   font-size: 30px;

@@ -5,6 +5,7 @@ import { NavigationcellComponent } from '../navigationcell/navigationcell.compon
 import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from '../ratesnavigation/ratesnavigation.component';
 import { BookmakingService } from '../services/bookmaking.service';
+import { SettingfancybookcellComponent } from '../settingfancybookcell/settingfancybookcell.component';
 
 @Component({
   selector: 'app-bookmaker',
@@ -41,6 +42,7 @@ export class BookmakerComponent implements OnInit {
       { headerName: 'Match', field: 'matchName', sortable: true, width: 300, cellStyle: { 'font-weight': 'bolder' } },
       { headerName: 'Status', field: 'status', sortable: true, width: 100 },
       { headerName: 'Rate', field: '', sortable: true, width: 100, cellRendererFramework: RatesnavigationComponent },
+      { headerName: 'Setting', field: '', sortable: true, width: 100, cellRendererFramework: SettingfancybookcellComponent },
       { headerName: 'Active', field: 'isActive', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
       { headerName: 'Bet Allow', field: 'isBetAllow', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
       { headerName: 'Settle', field: '', sortable: true, width: 300, cellRendererFramework: NavigationcellComponent },
@@ -60,7 +62,7 @@ export class BookmakerComponent implements OnInit {
       return "[" + params.value.toLocaleString() + "]";
     };
     this.gridOptions.getRowHeight = function (params: any) {
-      return 45;
+      return 50;
     }
     // all rows assigned CSS class 'my-green-class'
     this.gridOptions.rowClass = 'my-green-class';
