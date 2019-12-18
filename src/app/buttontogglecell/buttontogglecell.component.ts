@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FancyService } from '../services/fancy.service';
 import { NotificationService } from '../shared/notification.service';
 import { BookmakingService } from '../services/bookmaking.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SportDataService } from '../services/sport-data.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buttontogglecell',
@@ -16,14 +18,20 @@ export class ButtontogglecellComponent implements OnInit {
   data: any;
 
   params: any;
+  isAll: any;
+  currentroute: any;
 
   constructor(
     private fancyService: FancyService,
     private notifyService: NotificationService,
     private bmService: BookmakingService,
     private  usermanagement:UsermanagementService,
-    private sportService: SportDataService
-  ) { }
+    private sportService: SportDataService,
+    public dialog: MatDialog,
+    private router: Router,
+  ) {
+    this.currentroute = this.router.url
+   }
   agInit(params) {
     // console.log(params);
     this.params = params;
@@ -31,18 +39,18 @@ export class ButtontogglecellComponent implements OnInit {
 
     if (this.params.colDef.field == "isActive") {
       if (this.data.isActive == 1) {
-        this.isActive = false;
+        this.isActive = true;
       }
       else {
-        this.isActive = true;
+        this.isActive = false;
       }
     }
     if (this.params.colDef.field == "isBetAllow") {
       if (this.data.isBetAllow == 1) {
-        this.isActive = false;
+        this.isActive = true;
       }
       else {
-        this.isActive = true;
+        this.isActive = false;
       }
     }
     if (this.params.colDef.field == "betStatus") {
@@ -64,18 +72,18 @@ export class ButtontogglecellComponent implements OnInit {
 
     if (this.params.colDef.field == "active") {
       if (this.data.active == 1) {
-        this.isActive = false;
+        this.isActive = true;
       }
       else {
-        this.isActive = true;
+        this.isActive = false;
       }
     }
     if (this.params.colDef.field == "betAllow") {
       if (this.data.betAllow == 1) {
-        this.isActive = false;
+        this.isActive = true;
       }
       else {
-        this.isActive = true;
+        this.isActive = false;
       }
     }
 
@@ -85,7 +93,19 @@ export class ButtontogglecellComponent implements OnInit {
 
   }
 
-  update() {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UserstatusDialog, {
+      width: '250px',
+      data:this.data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      var isAll=result.statusSelected
+      this.update(isAll);
+    });
+  }
+
+  update(isall:any) {
 
     if (this.data.fancyCode) {
       if (this.params.colDef.field == "isActive") {
@@ -107,7 +127,7 @@ export class ButtontogglecellComponent implements OnInit {
     }
     else if (this.data.userId) {
       if (this.params.colDef.field == "accStatus") {
-        this.UpdateUserStatus();
+        this.UpdateUserStatus(isall);
       }
     else if (this.data.marketInfo) {
       if (this.params.colDef.field == "active") {
@@ -120,21 +140,21 @@ export class ButtontogglecellComponent implements OnInit {
     }
 
       if (this.params.colDef.field == "betStatus") {
-        this.UpdateBetStatus();
+        this.UpdateBetStatus(isall);
       }
     }
 
 
   }
 
-  UpdateUserStatus(){
+  UpdateUserStatus(Isall){
     if (this.isActive) {
       this.data.accStatus = 0;
     }
     else {
       this.data.accStatus = 1;
     }
-    this.usermanagement.getUserStatusUpdate(this.data.userId,this.data.accStatus,0).subscribe(data=>{
+    this.usermanagement.getUserStatusUpdate(this.data.userId,this.data.accStatus,Isall).subscribe(data=>{
       if (data.status == "Success") {
         if (this.isActive) {
           this.isActive = false;
@@ -150,14 +170,14 @@ export class ButtontogglecellComponent implements OnInit {
     })
   }
 
-  UpdateBetStatus(){
+  UpdateBetStatus(Isall){
     if (this.isActive) {
       this.data.betStatus = 0;
     }
     else {
       this.data.betStatus = 1;
     }
-    this.usermanagement.getUpdateBetStatus(this.data.userId,this.data.betStatus,0).subscribe(data=>{
+    this.usermanagement.getUpdateBetStatus(this.data.userId,this.data.betStatus,Isall).subscribe(data=>{
       if (data.status == "Success") {
         if (this.isActive) {
           this.isActive = false;
@@ -176,10 +196,10 @@ export class ButtontogglecellComponent implements OnInit {
   UpdateFancyStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.isActive = 1;
+      this.data.isActive = 0;
     }
     else {
-      this.data.isActive = 0;
+      this.data.isActive = 1;
     }
     this.fancyService.UpdateFancyStatus(this.data.fancyCode, this.data.isActive).subscribe(data => {
 
@@ -206,10 +226,10 @@ export class ButtontogglecellComponent implements OnInit {
   UpdateFancyBetStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.isBetAllow = 1;
+      this.data.isBetAllow = 0;
     }
     else {
-      this.data.isBetAllow = 0;
+      this.data.isBetAllow = 1;
     }
     this.fancyService.UpdateFancyBetStatus(this.data.fancyCode, this.data.isBetAllow).subscribe(data => {
 
@@ -236,10 +256,10 @@ export class ButtontogglecellComponent implements OnInit {
   EditBookStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.isActive = 1;
+      this.data.isActive = 0;
     }
     else {
-      this.data.isActive = 0;
+      this.data.isActive = 1;
     }
 
     this.bmService.EditStatus(this.data.bookCode, this.data.isActive).subscribe(data => {
@@ -263,10 +283,10 @@ export class ButtontogglecellComponent implements OnInit {
   EditBookBetStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.isBetAllow = 1;
+      this.data.isBetAllow = 0;
     }
     else {
-      this.data.isBetAllow = 0;
+      this.data.isBetAllow = 1;
     }
     this.bmService.EditBetStatus(this.data.bookCode, this.data.isBetAllow).subscribe(data => {
       if (data.status == "Success") {
@@ -289,10 +309,10 @@ export class ButtontogglecellComponent implements OnInit {
   UpdateMktStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.active = 1;
+      this.data.active = 0;
     }
     else {
-      this.data.active = 0;
+      this.data.active = 1;
     }
 
     this.sportService.UpdateMktStatus(this.data.id, this.data.active).subscribe(data => {
@@ -316,10 +336,10 @@ export class ButtontogglecellComponent implements OnInit {
   UpdateMktBetStatus() {
     this.disabled = true;
     if (this.isActive) {
-      this.data.betAllow = 1;
+      this.data.betAllow = 0;
     }
     else {
-      this.data.betAllow = 0;
+      this.data.betAllow = 1;
     }
     this.sportService.UpdateMktBetStatus(this.data.id, this.data.betAllow).subscribe(data => {
       if (data.status == "Success") {
@@ -341,3 +361,26 @@ export class ButtontogglecellComponent implements OnInit {
 
 
 }
+
+@Component({
+  selector: 'userstatus',
+  templateUrl: '../Dialogbox/userstatusupdate.html',
+})
+export class UserstatusDialog {
+  params: any;
+
+  constructor(
+    public dialogRef: MatDialogRef<UserstatusDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  agInit(params) {
+    // console.log(params);
+    this.params = params;
+    this.data = this.params.data;
+  }
+
+}
+

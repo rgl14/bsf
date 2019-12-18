@@ -29,6 +29,14 @@ button:focus {
   outline: none !important;
 }
 
+.date-icon{
+  position: absolute;
+  right: 25px;
+  color: #495552;
+  margin-top: -30px;
+  margin-right: 20px;
+}
+
 /*Bottom Menu CSS*/
 .bottom-sheet-header {
   padding: 10px !important;

@@ -12,7 +12,7 @@ import { ManageformService } from './manageform.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { CustomcellbuttonsComponent, SetMatchLiveTvDialog } from './customcellbuttons/customcellbuttons.component';
 import { NavigationcellComponent } from './navigationcell/navigationcell.component';
-import { ButtontogglecellComponent } from './buttontogglecell/buttontogglecell.component';
+import { ButtontogglecellComponent,UserstatusDialog } from './buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from './ratesnavigation/ratesnavigation.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -46,6 +46,7 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
     CustomcellbuttonsComponent,
     NavigationcellComponent,
     ButtontogglecellComponent,
+    UserstatusDialog,
     CustomsporttogglecellComponent,
     RatesnavigationComponent,
     CelltextfieldComponent,
@@ -60,6 +61,7 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
     TournamenttogglecellComponent,
     MatchtogglecellComponent,
     MarkettogglecellComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,7 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
     BsDatepickerModule.forRoot(),
     HttpClientModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog],
   providers: [
     ManageformService,
     CookieService,

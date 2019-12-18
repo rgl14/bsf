@@ -51,7 +51,15 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Date<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3"> 
-                                        <input formControlName="matchDate" class="form-control" name="MatchDate" [ngClass]="{ 'is-invalid': submitted && f.matchDate.errors }"  placeholder="" type="text" >
+                                        <input  formControlName="matchDate" type="text" 
+                                            placeholder="Select Date Here..."
+                                            [ngClass]="{ 'is-invalid': submitted && f.matchDate.errors }"
+                                            class="form-control"
+                                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
+                                            bsDatepicker>  
+                                        <div class="date-icon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
                                         <div *ngIf="submitted && f.matchDate.errors" class="invalid-feedback">
                                            <mat-error *ngIf="f.matchDate.errors.required">This field is mandatory.</mat-error>
                                        </div>
