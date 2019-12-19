@@ -34,6 +34,10 @@ export class FancyComponent implements OnInit {
   tournament: any = "";
   match: any = "";
   status: any = "";
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(private fancyService: FancyService, private sportService: SportDataService) {
     this.gridOptions = <GridOptions>{};
@@ -54,15 +58,10 @@ export class FancyComponent implements OnInit {
       { headerName: 'Actions', field: '', sortable: true, width: 250, cellRendererFramework: CustomcellbuttonsComponent },
     ];
 
-    // this.gridOptions.rowData = [
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: '8 over run CP', matchname: 'Singapore v Netherlands', id: '1', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: '8 over run CP', matchname: 'Central Punjab v Khyber Pakhtunkhwa', id: '2', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: '20 over run CP', matchname: 'Singapore v Netherlands', id: '3', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: 'Fall of 1st wkt NED(SIN vs NED)adv	', matchname: 'Singapore v Netherlands', id: '4', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: 'T Visee Boundaries', matchname: 'Singapore v Netherlands', id: '5', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: '15 over run CP', matchname: 'Central Punjab v Khyber Pakhtunkhwa', id: '6', status: 'Open' },
-    //   { type: 'Advance', isbetallow: 1, isactive: 1, commission: 0, fancyname: '10 over run CP', matchname: 'Singapore v Netherlands', id: '7', status: 'Open' }
-    // ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
 
     this.gridOptions.paginationPageSize = 10;
     this.gridOptions.paginationNumberFormatter = function (params) {
@@ -130,6 +129,12 @@ export class FancyComponent implements OnInit {
     })
 
     this.GetFancyList();
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
   }
 
   GetFancyList() {

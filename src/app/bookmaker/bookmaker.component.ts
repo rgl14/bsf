@@ -31,6 +31,10 @@ export class BookmakerComponent implements OnInit {
   ];
 
   status: any = "";
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(private bmService: BookmakingService) {
     this.gridOptions = <GridOptions>{};
@@ -49,13 +53,11 @@ export class BookmakerComponent implements OnInit {
       { headerName: 'Actions', field: '', sortable: true, width: 350, cellRendererFramework: CustomcellbuttonsComponent },
     ];
 
-    // this.gridOptions.rowData = [
-    //   { type:'Book Maker',isbetallow:1,isactive:1,matchname:'Singapore v Netherlands',id: '1',status:'OPEN' },
-    //   { type:'Book Maker',isbetallow:1,isactive:1,matchname:'Central Punjab v Khyber Pakhtunkhwa',id: '2',status:'SUSPENDED' },
-    //   { type:'Even Odd',isbetallow:1,isactive:1,matchname:'Singapore v Netherlands',id: '3',status:'OPEN' },
-    //   { type:'Even Odd',isbetallow:1,isactive:1,matchname:'Central Punjab v Khyber Pakhtunkhwa',id: '6',status:'OPEN' },
-    //   { type:'TO WIN THE TOSS',isbetallow:1,isactive:1,matchname:'Singapore v Netherlands',id: '7',status:'OPEN' }
-    // ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
 
     this.gridOptions.paginationPageSize = 10;
     this.gridOptions.paginationNumberFormatter = function (params) {
@@ -84,6 +86,12 @@ export class BookmakerComponent implements OnInit {
 
   ngOnInit() {
     this.GetBookList();
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
   }
 
   GetBookList() {

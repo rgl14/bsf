@@ -146,6 +146,7 @@ const routes: Routes = [
   { path: 'reportlist', component: ReportslistComponent },
   { path: 'markets', component: MarketsComponent },
   { path: 'addnews', component: AddnewsComponent },
+  { path: 'addnews/:id', component: AddnewsComponent },
   { path: 'sportpnl', component: SportpnlComponent },
   { path: 'tournamentpnl', component: TournamentpnlComponent },
   { path: 'adduser', component: AdduserComponent },

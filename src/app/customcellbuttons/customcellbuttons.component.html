@@ -109,8 +109,11 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/newsticker'">
-        <button [routerLink]="'/addnews'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+        <button [routerLink]="['/addnews',data.id]" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
+        </button>
+        <button  (click)="Deleteticker(data)" mat-raised-button color="warn" title="Delete">
+                <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/rolelist'">

@@ -6,6 +6,7 @@ import { UsermanagementService } from '../services/usermanagement.service';
 import { SportDataService } from '../services/sport-data.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TickerService } from '../services/ticker.service';
 
 @Component({
   selector: 'app-buttontogglecell',
@@ -29,6 +30,7 @@ export class ButtontogglecellComponent implements OnInit {
     private sportService: SportDataService,
     public dialog: MatDialog,
     private router: Router,
+    private newsticker:TickerService
   ) {
     this.currentroute = this.router.url
    }
@@ -144,10 +146,16 @@ export class ButtontogglecellComponent implements OnInit {
         this.UpdateBetStatus(isall);
       }
     }
+    else if (this.data.isPermanent) {
+      if (this.params.colDef.field == "isActive") {
+        this.Updatetickerstatus();
+      }
+    }
 
 
   }
 
+  //usermanagement
   UpdateUserStatus(Isall){
     if (this.isActive) {
       this.data.accStatus = 0;
@@ -156,6 +164,29 @@ export class ButtontogglecellComponent implements OnInit {
       this.data.accStatus = 1;
     }
     this.usermanagement.getUserStatusUpdate(this.data.userId,this.data.accStatus,Isall).subscribe(data=>{
+      if (data.status == "Success") {
+        if (this.isActive) {
+          this.isActive = false;
+        }
+        else {
+          this.isActive = true;
+        }
+        this.notifyService.success(data.result);
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+
+  Updatetickerstatus(){
+    if (this.isActive) {
+      this.data.isActive = 0;
+    }
+    else {
+      this.data.isActive = 1;
+    }
+    this.newsticker.UpdTickerStatus(this.data.id,this.data.isActive).subscribe(data=>{
       if (data.status == "Success") {
         if (this.isActive) {
           this.isActive = false;
@@ -194,6 +225,7 @@ export class ButtontogglecellComponent implements OnInit {
     })
   }
 
+  //fancy Management
   UpdateFancyStatus() {
     this.disabled = true;
     if (this.isActive) {
@@ -254,6 +286,7 @@ export class ButtontogglecellComponent implements OnInit {
     })
   }
 
+  //Bookmaker
   EditBookStatus() {
     this.disabled = true;
     if (this.isActive) {
@@ -307,6 +340,7 @@ export class ButtontogglecellComponent implements OnInit {
     })
   }
 
+  //market status
   UpdateMktStatus() {
     this.disabled = true;
     if (this.isActive) {

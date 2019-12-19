@@ -1,9 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import {GridOptions} from "ag-grid-community";
 import {CustomcellbuttonsComponent} from '../customcellbuttons/customcellbuttons.component';
-import { NavigationcellComponent } from '../navigationcell/navigationcell.component';
 import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
-import { RatesnavigationComponent } from '../ratesnavigation/ratesnavigation.component';
+import { TickerService } from '../services/ticker.service';
 
 @Component({
   selector: 'app-newsticker',
@@ -18,20 +17,31 @@ export class NewstickerComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
-  constructor() { 
+  constructor(private newsticker:TickerService) { 
     this.gridOptions = <GridOptions>{};
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
+    };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Ticker', field: 'tickername', sortable: true, width: 800,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Active', field: 'isactive', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Ticker', field: 'title', sortable: true, width: 800,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Active', field: 'isActive', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Actions', field: '', sortable: true, width: 500,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
+    
 
-    this.gridOptions.rowData = [
-      { isactive:1,tickername:'Welcome To BSF',id: '1' },
-      { isactive:1,tickername:' Welcome To XYZ.com !! Note Sabhi Agent ko inform Kiya Jata Hai Ki Aaj Se [ XYZ.Net ] & [ XYZ.Net ] Jo Live Report Hai Vo Aaj Se Point Me Dhikhengi 1 Point Ki Value 100 Rupees Hogi',id: '2' },
-    ];
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -59,6 +69,20 @@ export class NewstickerComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.gettickerlist();
   }
-
+  gettickerlist(){
+    this.newsticker.GetTickerList().subscribe(resp=>{
+      this.rowData=resp.tickerList;
+    })
+  }
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.newsticker.GetTickerList().subscribe(resp=>{
+      // console.log(resp)
+      this.rowData=resp.tickerList;
+    })
+  }
 }

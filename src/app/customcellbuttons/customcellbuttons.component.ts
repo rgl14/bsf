@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FancyService } from '../services/fancy.service';
 import { NotificationService } from '../shared/notification.service';
 import { BookmakingService } from '../services/bookmaking.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { SportDataService } from '../services/sport-data.service';
 import { UsermanagementService } from '../services/usermanagement.service';
+import { TickerService } from '../services/ticker.service';
 
 @Component({
   selector: 'app-customcellbuttons',
@@ -25,7 +26,8 @@ export class CustomcellbuttonsComponent implements OnInit {
     private notifyService: NotificationService,
     private dialog: MatDialog,
     private sportService: SportDataService,
-    private usermanagement:UsermanagementService
+    private usermanagement:UsermanagementService,
+    private newsticker:TickerService
   ) {
     this.currentroute = this.router.url
   }
@@ -36,7 +38,7 @@ export class CustomcellbuttonsComponent implements OnInit {
     this.data = this.params.data;
   }
   ngOnInit() {
-
+    
   }
   getvalue(userdata:any) {
     console.log(userdata)
@@ -44,6 +46,18 @@ export class CustomcellbuttonsComponent implements OnInit {
       if (data.status == "Success") {
         this.notifyService.success(data.result);
         // this.params.context.componentParent.GetFancyList();
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+
+  Deleteticker(tickerdata:any){
+    this.newsticker.DeleteTicker(tickerdata.id).subscribe(data=>{
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+        this.params.context.componentParent.gettickerlist();
       }
       else {
         this.notifyService.error(data.result);

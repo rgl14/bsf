@@ -4,6 +4,7 @@ import { NotificationService } from '../shared/notification.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { Router } from '@angular/router';
 import { FancyService } from '../services/fancy.service';
+import { BookmakingService } from '../services/bookmaking.service';
 
 @Component({
   selector: 'app-settingfancybookcell',
@@ -19,7 +20,8 @@ export class SettingfancybookcellComponent implements OnInit {
     private notifyService: NotificationService,
     private  usermanagement:UsermanagementService,
     private router: Router,
-    private fancyservice:FancyService
+    private fancyservice:FancyService,
+    private bmService: BookmakingService
     ) { }
 
   ngOnInit() {
@@ -32,19 +34,44 @@ export class SettingfancybookcellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
-      var data={
-        "betDelay":2147483647,
-        "fancyId":2147483647,
-        "maxStake":2147483647,
-        "maxStakePerRate":2147483647,
-        "minStake":2147483647,
-        "rateDiff":2147483647,
-        "rateRange":2147483647
+      // console.log(result)
+      if(result!=undefined){
+        if(result.fancyCode){
+          var fancydata={
+            "betDelay":result.betDelay,
+            "fancyId":result.fancyCode,
+            "maxStake":result.maxStake,
+            "maxStakePerRate":result.maxStakePerRate,
+            "minStake":result.minStake,
+            "rateDiff":result.rateDifference,
+            "rateRange":result.rateRange
+          }
+          this.fancyservice.UpdFancySettings(fancydata).subscribe(resp=>{
+            if (resp.status == "Success") {
+              this.notifyService.success(resp.result);
+            }else{
+              this.notifyService.error(resp.result);
+            }
+          })
+        }else{
+          var bookdata={
+            "bookId":result.bookCode,
+            "maxRate":result.maxRate,
+            "maxStake":result.maxStake,
+            "maxStakePerRate":result.maxStakePerRate,
+            "minRate":result.minRate,
+            "minStake":result.minStake,
+            "rateDifference":result.rateDifference
+          };
+          this.bmService.EditBookSettings(bookdata).subscribe(resp=>{
+            if (resp.status == "Success") {
+              this.notifyService.success(resp.result);
+            }else{
+              this.notifyService.error(resp.result);
+            }
+          })
+        }
       }
-      this.fancyservice.UpdFancySettings(data).subscribe(data=>{
-        
-      })
     });
   }
   agInit(params) {

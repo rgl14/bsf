@@ -37,6 +37,7 @@ import { MarkettogglecellComponent } from './markettogglecell/markettogglecell.c
 import { CKEditorModule } from "ngx-ckeditor";
 import {DatePipe} from '@angular/common';
 import { SettingfancybookcellComponent,FancyBooksettingDialog } from './settingfancybookcell/settingfancybookcell.component';
+import { TickerService } from './services/ticker.service';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { SettingfancybookcellComponent,FancyBooksettingDialog } from './settingf
     CookieService,
     TokenService,
     UsermanagementService,
+    TickerService,
     SharedataService,
     {
       provide: HTTP_INTERCEPTORS,
