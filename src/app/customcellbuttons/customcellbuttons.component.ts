@@ -40,7 +40,7 @@ export class CustomcellbuttonsComponent implements OnInit {
   ngOnInit() {
     
   }
-  getvalue(userdata:any) {
+  updatelimit(userdata:any) {
     console.log(userdata)
     this.usermanagement.UpdateFixLimits(userdata.id,userdata.fixLimit).subscribe(data=>{
       if (data.status == "Success") {

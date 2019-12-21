@@ -109,7 +109,7 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/newsticker'">
-        <button [routerLink]="['/addnews',data.id]" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+        <button [routerLink]="['/addnews',data.id]"  mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
         <button  (click)="Deleteticker(data)" mat-raised-button color="warn" title="Delete">
@@ -147,7 +147,7 @@
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/updatelimit'">
-        <button (click)="getvalue(data)" mat-raised-button color="accent" title="Update">
+        <button (click)="updatelimit(data)" mat-raised-button color="accent" title="Update">
                 Update
         </button>
 </div>

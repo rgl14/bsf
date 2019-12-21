@@ -31,9 +31,9 @@ export class NewstickerComponent implements OnInit {
     };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Ticker', field: 'title', sortable: true, width: 800,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Ticker', field: 'title', sortable: true, width: 500,cellStyle: {'font-weight':'bolder'}},
       {headerName: 'Active', field: 'isActive', sortable: true, width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', sortable: true, width: 500,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: '', sortable: true, width: 800,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     
 

@@ -15,6 +15,7 @@ export class AddnewsComponent implements OnInit {
   submitted=false;
   TickerId: any;
   formdata: any;
+  tickerdata: any;
   constructor(
     private formbuilder:FormBuilder,
     private notification:NotificationService,
@@ -25,6 +26,9 @@ export class AddnewsComponent implements OnInit {
 
   ngOnInit() {
     this.TickerId=this.route.snapshot.paramMap.get('id');
+    this.newsticker.GetTickerList().subscribe(resp=>{
+      this.tickerdata=resp.tickerList;
+    })
     this.addnewsform=this.formbuilder.group({
       ticker:['',Validators.required],
       displaytype:['1'],
