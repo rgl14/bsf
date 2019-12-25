@@ -96,13 +96,13 @@
                                       <div class="Table-Title">
                                           <mat-form-field class="search-form-field" floatLabel="never">
                                               <input matInput  id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
-                                              <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+                                              <button mat-button matSuffix mat-icon-button aria-label="Clear"  >
                                                 <mat-icon>close</mat-icon>
                                               </button>
                                             </mat-form-field>
                                           <mat-form-field class="select-page-size">
                                               <mat-label>Page Size</mat-label>
-                                              <select matNativeControl (change)="onPageSizeChanged()" id="page-size">
+                                              <select matNativeControl (change)="onPageSizeChanged($event)" id="page-size">
                                                   <option value="50">50</option>
                                                   <option value="100">100</option>
                                                   <option value="500">500</option>

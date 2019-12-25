@@ -1,7 +1,7 @@
 <div class="wrapper wrapper-content">
   <div class="row">
     <div class="col-lg-12">
-      <div class="ibox float-e-margins" *ngIf="userType==1">
+      <div class="ibox float-e-margins" *ngIf="userType==='1'">
         <div class="ibox-title">
           <h5>Update Limit For Company</h5>
         </div>
@@ -27,7 +27,7 @@
               </div>
         </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2">
+      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2'">
           <div class="ibox-title">
             <h5>Update Limit For SuperMaster</h5>
           </div>
@@ -53,7 +53,7 @@
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2 || userType==3">
+      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2' || userType==='3'">
           <div class="ibox-title">
             <h5>Update Limit For Master</h5>
           </div>
@@ -79,9 +79,9 @@
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==1 || userType==2 || userType==3 || userType==4">
+      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2' || userType==='3' || userType==='4'">
           <div class="ibox-title">
-            <h5>Update Limit For Super Agent</h5>
+            <h5>Update Limit For Agent</h5>
           </div>
           <div class="ibox-content-table table-responsive">
               <div class="search-div">
@@ -105,7 +105,7 @@
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==2 || userType==3 || userType==4 || userType==5">
+      <!-- <div class="ibox float-e-margins" *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5'">
           <div class="ibox-title">
             <h5>Update Limit For Agent</h5>
           </div>
@@ -130,8 +130,8 @@
                     </ag-grid-angular>
                 </div>
           </div>
-      </div>
-      <div class="ibox float-e-margins" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
+      </div> -->
+      <div class="ibox float-e-margins" *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5'">
           <div class="ibox-title">
             <h5>Update Limit For Client</h5>
           </div>

@@ -67,6 +67,14 @@ ranges: any = {
   onScrollEvent() {
     this.datepicker.hide();
   }
+
+  onFilterTextBoxChanged() {
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+  }
+  onPageSizeChanged(newPageSize:any) {
+    var value = (document.getElementById('page-size') as HTMLInputElement).value;
+    this.gridOptions.api.paginationSetPageSize(Number(value));
+  }
   
   ngOnInit(){
 
