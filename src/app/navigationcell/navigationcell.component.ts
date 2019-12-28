@@ -18,6 +18,7 @@ export class NavigationcellComponent implements OnInit {
   agInit(params: any) {
     // console.log(params);
     this.data = params.data;
+    // console.log(this.data);
     if (this.currentroute == "/fancy") {
       this.automatic = this.data.automatic.toString();
     }

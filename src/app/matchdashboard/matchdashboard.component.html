@@ -6,13 +6,13 @@
                     <h1>Match Dashboard</h1>
                  </div>
                         <div class="button-row ibox-content mob-button">
-                          <button mat-raised-button color="primary" [routerLink]="'/betslips'">Bet Slips</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/sessionbetslips'">Session Bet Slip</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/livereport'">Live Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/companyreport'">Company Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/clientreport'">Client Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/clientcollectionreport'">Collection Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/sessionearningrepport'">Session Earning Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/betslips']">Bet Slips</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/sessionbetslips']">Session Bet Slip</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/livereport']">Live Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/companyreport',matchId]">Company Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/clientreport',matchId]">Client Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/clientcollectionreport',matchId]">Collection Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/sessionearningrepport',matchId]">Session Earning Report</button>
                         </div>
               </div>
            </div>
@@ -39,7 +39,7 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr>
+                              <!-- <tr>
                                  <td>66443</td>  
                                  <td><a [routerLink]="'/marketinfo'">Match Winner_5308</a></td>
                                  <td>Match Winner</td>
@@ -50,7 +50,8 @@
                                  <td><a [routerLink]="'/marketinfo'">10_5308_even_odd</a></td>
                                  <td>Western Australia 10 Over Last Digit Even Odd</td>
                                  <td>2</td>
-                              </tr>
+                              </tr> -->
+                              <tr><td colspan="4" style="text-align: center;">No Rows To Display</td></tr>
                            </tbody>
                         </table>
                      </div>
@@ -77,7 +78,8 @@
                                   </tr>
                                </thead>
                                <tbody>
-                                  <tr>
+                                 <tr><td colspan="3" style="text-align: center;">No Rows To Display</td></tr>
+                                  <!-- <tr>
                                      <td>14652</td>  
                                      <td><a [routerLink]="'/sessioninfo'">50 Overs Lambi,Western Australia</a></td>
                                      <td>298</td>
@@ -86,7 +88,7 @@
                                      <td>14653</td>  
                                      <td><a [routerLink]="'/sessioninfo'">10 Overs,Western Australia</a></td>
                                      <td>41</td>
-                                  </tr>
+                                  </tr> -->
                                </tbody>
                             </table>
                          </div>

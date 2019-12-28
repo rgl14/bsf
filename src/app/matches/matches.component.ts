@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { NavigationcellComponent } from '../navigationcell/navigationcell.component';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-matches',
@@ -15,26 +16,34 @@ export class MatchesComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
-  constructor() { 
+  constructor(private getreports:ReportsService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100, sortable: true,lockPosition:true,suppressNavigable:true},
       {headerName: 'Title', field: 'title', sortable: true, width: 300,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Sport', field: 'sport', width: 100},
-      {headerName: 'Date', field: 'date', sortable: true, width: 200},
-      {headerName: 'Type', field: 'type', width: 150},
-      {headerName: 'Declared', field: 'Declared', width: 200},
-      {headerName: 'Won By', field: 'wonby', width: 200},
-      {headerName: 'Profit / Loss', field: 'pnl', width: 200, sortable: true,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Date', field: 'dateTime', sortable: true, width: 200},
+      // {headerName: 'Type', field: 'type', width: 150},
+      {headerName: 'Declared', field: 'declared', width: 200},
+      {headerName: 'Won By', field: 'wonBy', width: 200},
+      {headerName: 'Profit / Loss', field: 'pNl', width: 200, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
 
-    this.gridOptions.rowData = [
-      {id : '1',date : '01-sep-2019',title : 'Western Australia vs Tasmania',sport : 'Cricket',Declared : 'Yes',pnl : '50000.00',type:'T-20',wonby:'Tasmania'},
-     {id : '2',date : '02-sep-2019',title : 'St Lucia Zouks vs St Kitts and Nevis Patriots',sport : 'Tennis',Declared : 'Yes',pnl : '-40000.00',type:'One-day',wonby:'St Lucia Zouks'},
-     {id : '3',date : '06-sep-2019',title : 'Betis vs Levante',sport : 'Soccer',Declared : 'Yes',pnl : '880000.00',type:'Test',wonby:'Betis'},
-     {id : '4',date : '07-sep-2019',title : 'Bangladesh vs Afghanistan',sport : 'Cricket',Declared : 'No',pnl : '-90000.00',type:'--',wonby:'Afghanistan'},
-    ];
+    function balanceFormatter(params){
+      var twodecimalvalue=parseInt(params.value).toFixed(2);
+      return twodecimalvalue;
+}
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -52,6 +61,15 @@ export class MatchesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.getreports.GetAllMatchPnl().subscribe(resp=>{
+      this.rowData=resp.data;
+    })
   }
 
 }

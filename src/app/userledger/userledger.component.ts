@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
+import { ActivatedRoute } from '@angular/router';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-userledger',
@@ -16,32 +18,54 @@ export class UserledgerComponent implements OnInit {
   paginationSetPageSize:number;
   paginationNumberFormatter:any;
   rowData=[];
-  constructor() {
+  userId: string;
+  userName: string;
+  name: string;
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  constructor(private route:ActivatedRoute,private getreports:ReportsService) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'date', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Collection Name', field: 'entry', sortable: true, width: 500,cellStyle: {color: '#0084e7'}},
-      {headerName: 'Debit', field: 'debit', sortable: true, width: 150,cellStyle: {color: 'red'}},
-      {headerName: 'Credit', field: 'credit', sortable: true, width: 150,cellStyle: {color: 'green'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 180,cellStyle: {color: 'green','font-weight':'bolder'}},
-      {headerName: 'Note', field: 'note', sortable: true, width: 270},
+      {headerName: 'Date/Time', field: 'dateTime', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Collection Name', field: 'collectionName', sortable: true, width: 500,cellStyle: {color: '#0084e7'}},
+      {headerName: 'Debit', field: 'debit', sortable: true, width: 150,cellStyle: valuecssclass,valueFormatter: balanceFormatter,valueGetter: function(params) {if(params.data.debit==null){ return "--" }else{return params.data.debit}}},
+      {headerName: 'Credit', field: 'credit', sortable: true, width: 150,cellStyle: valuecssclass,valueFormatter: balanceFormatter,valueGetter: function(params) {if(params.data.credit==null){ return "--" }else{return params.data.credit}}},
+      {headerName: 'Balance', field: 'balance', sortable: true, width: 180,cellStyle:valuecssclass,valueFormatter: balanceFormatter},
+      {headerName: 'Note', field: 'note', sortable: true, width: 270,valueGetter: function(params) {if(params.data.note==""){ return "--" }else{return params.data.note}}},
     ]; 
-    this.gridOptions.rowData = [
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '12000.00',credit: '--',balance: '160000.00',note:'--' },
-      { date: '04 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '10000.00',balance: '100000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '04 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '10000.00',balance: '100000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '12000.00',credit: '--',balance: '160000.00',note:'--' },
-    ];
+
+    function balanceFormatter(params){
+      if(params.value!='--'){
+        var twodecimalvalue=parseInt(params.value).toFixed(2);
+        return twodecimalvalue;
+      }else{
+        return params.value;
+      }
+    }
+
+    function valuecssclass(params){
+      console.log(params.column.colDef.field)
+      let cellvaue=parseInt(params.value);
+      if(params.column.colDef.field=='debit' || params.column.colDef.field=='credit'){
+        if(cellvaue>=0){
+          return {color: 'green'}
+        }else{
+          return {color: 'red'}
+        }
+      }else{
+        if(cellvaue>=0){
+          return {color: 'green',fontWeight:'bolder'}
+        }else{
+          return {color: 'red',fontWeight:'bolder'}
+        }
+      }
+    }
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
     this.gridOptions.paginationPageSize=50;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
@@ -59,6 +83,17 @@ export class UserledgerComponent implements OnInit {
 
   
   ngOnInit() {
+    this.userId=this.route.snapshot.paramMap.get('userId');
+    this.userName=this.route.snapshot.paramMap.get('userName');
+    this.name=this.route.snapshot.paramMap.get('name');
   }
 
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.getreports.GetLedger(this.userId).subscribe(resp=>{
+      this.rowData=resp.data;
+    })
+  }
 }

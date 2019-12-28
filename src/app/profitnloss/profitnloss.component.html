@@ -9,12 +9,11 @@
                         <h5>Summary</h5>                                
             </div>
             <div class="ibox-content table-responsive">
-
                 <table class="table table-bordered table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                            <th>All Time Total</th> 
-                           <th class="profit">211669.61</th>                            
+                           <th [ngClass]="(allTimeTotal>=0)?'profit':'loss'">{{allTimeTotal | number : '1.2-2'}}</th>                            
                         </tr>
                     </thead>
                     <tbody>                            
@@ -32,66 +31,32 @@
                               <h5>Earning Report</h5>
                           </div>
                   <div class="ibox-content-table table-responsive">
-                                  <div class="search-div">
-                                          <div class="Data-Filters">
-                                                  <form class="form">
-                                                  <div class="form-body">
-                                                  <div class="col-md-12 row">
-                                                  <div class="col-md-3 Data-Filter-padding-up-down">
-                                                  <div class="col-md-8">
-                                                    <mat-radio-button value="1">Date Wise</mat-radio-button>
-                                                  </div>
-                                                  <div class="datewise">
-                                                  <div class="col-md-12">
-                                                  <div class="input-group date">
-                                                  <!-- <input type="text" class="form-control"
-                                                      ngxDaterangepickerMd
-                                                      [(ngModel)]="selected"
-                                                      [showCustomRangeLabel]="true"
-                                                      [alwaysShowCalendars]="true"
-                                                      [ranges]="ranges"
-                                                      [linkedCalendars]="true"
-                                                      [showClearButton]="true"
-                                                      placeholder="Select please..."> -->
-                                                      <input type="text"
-                                                      placeholder="Select please..."
-                                                      class="form-control"
-                                                      [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
-                                                      bsDaterangepicker>
-                                                  </div>
-                                                  
-                                                  </div>
-                                                  </div>
-                                                  </div>
-                                                  <div class="col-md-7 Data-Filter-padding-up-down">
-                                                  <div class="col-md-4">
-                                                    <mat-radio-button value="2">Market Wise</mat-radio-button>
-                                                  </div>
-                                                  <div class="mktwise" style="pointer-events:none;opacity:0.5;">
-                                                  <div class="col-md-12 row">
-                                                  <div class="col-md-4">
-                                                  <select  id="spoOption"   class="form-control"><option value="" class="" selected="selected">--Sport--</option><option label="Soccer" value="object:429">Soccer</option><option label="Tennis" value="object:430">Tennis</option><option label="Kabaddi" value="object:431">Kabaddi</option><option label="Cricket" value="object:432">Cricket</option></select>
-                                                  </div>
-                                                  <div class="col-md-4">
-                                                  <select  id="TourOption" class="form-control"><option value="" class="" selected="selected">--Tournaments--</option></select>
-                                                  </div>
-                                                  <div class="col-md-4">
-                                                  <select  id="MatchOption" class="form-control"><option value="" class="" selected="selected">--Match--</option></select>
-                                                  </div>
-                                                  </div>
-                                                  </div>
-                                                  </div>
-                                                  <div class="col-md-1 Data-Filter-padding-up-down">
-                                                    <button class="create-button" mat-raised-button>
-                                                      Submit
-                                                    </button>
-                                                  </div>
-                                                  </div>
-                                                  </div>
-                                                  </form>
-                                                  </div>
-                                  </div>
-                                  <hr>
+                    <div class="col-md-12 search-div row"  style="padding:15px">
+                      <div class="col-md-4">
+                        <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" 
+                          [settings]="dropdownSettings" 
+                          (onSelect)="onItemSelect($event)" 
+                          (onDeSelect)="OnItemDeSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelectAll)="onDeSelectAll($event)">
+                        </angular2-multiselect>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" [(ngModel)]="bsRangeValue" 
+                              (bsValueChange)="profitandloss($event)"
+                              placeholder="Select Date please..."
+                              class="form-control"
+                              [bsConfig]="{ rangeInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
+                              bsDaterangepicker
+                            >
+                      </div>
+                      <div class="col-md-4">
+                        <button class="create-button" mat-raised-button>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                    
                                   <div class="table-container mat-elevation-z8">
                                       <div class="Table-Title">
                                           <mat-form-field class="search-form-field" floatLabel="never">
@@ -110,14 +75,18 @@
                                               </select>
                                             </mat-form-field>
                                         </div>
-                                    <ag-grid-angular 
-                                      style="width: 100%; height: 350px"
-                                      class="ag-theme-balham"
-                                      [gridOptions]="gridOptions"
-                                      [animateRows]="true"
-                                      [pagination]="true"
-                                      >
-                                    </ag-grid-angular>
+                                        <ag-grid-angular 
+                                        style="width: 100%; height: 450px"
+                                        class="ag-theme-balham"
+                                        [gridOptions]="gridOptions"
+                                        [rowData]="rowData" 
+                                        [overlayLoadingTemplate]="overlayLoadingTemplate"
+                                        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                                        [animateRows]="true"
+                                        [pagination]="true"
+                                        (gridReady)="onGridReady($event)"
+                                        >
+                                        </ag-grid-angular>
                                   </div>
                 </div>
             </div>

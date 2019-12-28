@@ -38,6 +38,7 @@ import { CKEditorModule } from "ngx-ckeditor";
 import {DatePipe} from '@angular/common';
 import { SettingfancybookcellComponent,FancyBooksettingDialog } from './settingfancybookcell/settingfancybookcell.component';
 import { TickerService } from './services/ticker.service';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { TickerService } from './services/ticker.service';
     MatchtogglecellComponent,
     MarkettogglecellComponent,
     SettingfancybookcellComponent,
-    FancyBooksettingDialog
+    FancyBooksettingDialog,
+    
     
   ],
   imports: [
@@ -79,7 +81,8 @@ import { TickerService } from './services/ticker.service';
     AgGridModule.withComponents([]),
     BsDatepickerModule.forRoot(),
     HttpClientModule,
-    CKEditorModule
+    CKEditorModule,
+    AngularMultiSelectModule
   ],
   entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettingfancybookcellComponent,FancyBooksettingDialog],
   providers: [

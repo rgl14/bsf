@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-sessionearningreport',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sessionearningreport.component.css']
 })
 export class SessionearningreportComponent implements OnInit {
+  matchId: any;
+  sessionearning=[];
 
-  constructor() { }
+  constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
 
   ngOnInit() {
+    this.matchId=this.route.snapshot.paramMap.get('matchId');
+    this.getreports.GetSessionEarningReport(this.matchId).subscribe(resp=>{
+      console.log(resp.data);
+      this.sessionearning=resp.data;
+    })
   }
 
 }

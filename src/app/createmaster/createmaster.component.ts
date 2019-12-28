@@ -43,25 +43,50 @@ export class CreatemasterComponent implements OnInit {
         if(this.userId){
           this.getuserdata();
           this.isdisabled=true;
+          this.masterform=this.formbuilder.group({
+            username:[''],
+            firstName:['',Validators.required],
+            fixLimit:['',Validators.required],
+            Mastershare:['',Validators.required],
+            myShare:['',Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
+            fixedfees:['',Validators.required],
+            bookdisplaytype:['1'],
+            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+            // isMComm: false,
+            // isSComm: false,
+          }, {
+            validator: MustMatch('password', 'confirmPassword')
+          })
+        }else{
+          this.masterform=this.formbuilder.group({
+            username:[''],
+            firstName:['',Validators.required],
+            fixLimit:['',Validators.required],
+            Mastershare:['',Validators.required],
+            myShare:['',Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
+            fixedfees:['',Validators.required],
+            bookdisplaytype:['1'],
+            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+            // isMComm: false,
+            // isSComm: false,
+          }, {
+            validator: MustMatch('password', 'confirmPassword')
+          })
         }
       }
     })
     
-    this.masterform=this.formbuilder.group({
-      username:[''],
-      firstName:['',Validators.required],
-      fixLimit:['',Validators.required],
-      Mastershare:['',Validators.required],
-      myShare:['',Validators.required],
-      MComm:['',Validators.required],
-      SComm:['',Validators.required],
-      password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-      confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-      isMComm: false,
-      isSComm: false,
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    })
+    
 
     this.formControlsmysharechanged()
     this.formControlsmaxsharechanged()
@@ -87,16 +112,16 @@ export class CreatemasterComponent implements OnInit {
           // console.log(this.masterform)
           if(this.userId){
               this.edituserdata=this.masterform.value;
-              if(this.edituserdata.isMComm){
-                this.ismatchcomm=1;
-              }else{
-                this.ismatchcomm=0;
-              }
-              if(this.edituserdata.isSComm){
-                this.issessioncomm=1;
-              }else{
-                this.issessioncomm=0;
-              }
+              // if(this.edituserdata.isMComm){
+              //   this.ismatchcomm=1;
+              // }else{
+              //   this.ismatchcomm=0;
+              // }
+              // if(this.edituserdata.isSComm){
+              //   this.issessioncomm=1;
+              // }else{
+              //   this.issessioncomm=0;
+              // }
               var editusersdata={
                 "MComm":this.edituserdata.MComm,
                 "SComm":this.edituserdata.SComm,
@@ -104,9 +129,13 @@ export class CreatemasterComponent implements OnInit {
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
-                "isMComm":this.ismatchcomm,
-                "isSComm":this.issessioncomm,
+                "isMComm":0,
+                "isSComm":0,
                 "myShare":this.edituserdata.myShare,
+                "bookDisplayType":this.edituserdata.bookdisplaytype,
+                "commType":this.edituserdata.fixedfees,
+                "mLossingComm":this.edituserdata.MloseComm,
+                "sLossingComm":this.edituserdata.SloseComm,
                 "userID":this.userId
               }
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
@@ -119,16 +148,16 @@ export class CreatemasterComponent implements OnInit {
               })
           }else{
             this.userdata=this.masterform.value;
-            if(this.userdata.isMComm){
-              this.ismatchcomm=1;
-            }else{
-              this.ismatchcomm=0;
-            }
-            if(this.userdata.isSComm){
-              this.issessioncomm=1;
-            }else{
-              this.issessioncomm=0;
-            }
+            // if(this.userdata.isMComm){
+            //   this.ismatchcomm=1;
+            // }else{
+            //   this.ismatchcomm=0;
+            // }
+            // if(this.userdata.isSComm){
+            //   this.issessioncomm=1;
+            // }else{
+            //   this.issessioncomm=0;
+            // }
             var data={
               "MComm":this.userdata.MComm,
               "SComm":this.userdata.SComm,
@@ -136,9 +165,13 @@ export class CreatemasterComponent implements OnInit {
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
-              "isMComm":this.ismatchcomm,
-              "isSComm":this.issessioncomm,
+              "isMComm":0,
+              "isSComm":0,
               "myShare":this.userdata.myShare,
+              "bookDisplayType":this.userdata.bookdisplaytype,
+              "commType":this.userdata.fixedfees,
+              "mLossingComm":this.userdata.MloseComm,
+              "sLossingComm":this.userdata.SloseComm,
               "password":this.userdata.password,
               "userType":4
             }
@@ -212,16 +245,16 @@ export class CreatemasterComponent implements OnInit {
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{
       console.log(resp.data)
-      if(resp.data.isMComm==1){
-        var mcomm=true;
-      }else{
-        var mcomm=false;
-      }
-      if(resp.data.isSComm==1){
-        var scomm=true;
-      }else{
-        var scomm=false;
-      }
+      // if(resp.data.isMComm==1){
+      //   var mcomm=true;
+      // }else{
+      //   var mcomm=false;
+      // }
+      // if(resp.data.isSComm==1){
+      //   var scomm=true;
+      // }else{
+      //   var scomm=false;
+      // }
       this.maxmastershare=this.accountInfo.minCompanyShare-resp.data.myShare;
       this.masterform.setValue({  
         username:resp.data.userName,
@@ -231,10 +264,14 @@ export class CreatemasterComponent implements OnInit {
         myShare:resp.data.myShare,
         MComm:resp.data.mComm,
         SComm:resp.data.sComm,
+        MloseComm:resp.data.mLossingComm,
+        SloseComm:resp.data.sLossingComm,
+        fixedfees:10,
+        bookdisplaytype:resp.data.bookDisplayType.toString(),
         password:'123456',
         confirmPassword:'123456',
-        isMComm: mcomm,
-        isSComm: scomm,
+        // isMComm: mcomm,
+        // isSComm: scomm,
       });  
     })
   }

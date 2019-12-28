@@ -78,7 +78,7 @@ export class ClientsComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
-    this.usertype=7;
+    this.usertype=6;
     this.usermanagement.getUserlist(this.usertype).subscribe(resp=>{
       this.rowData=resp._data;
     })

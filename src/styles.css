@@ -106,6 +106,14 @@ button:focus {
   float: right;
 }
 
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.mat-radio-top-margin{
+  margin-top: 5px;
+}
+
 /*Notification css*/
 snack-bar-container.success {
   background-color: #5cb55c;

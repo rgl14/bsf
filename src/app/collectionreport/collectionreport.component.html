@@ -25,61 +25,38 @@
                           </tr>
                        </thead>
                        <tbody>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP2 (Dummy 1)</a></td> <!-- Username -->
+                                  <!-- <tr>
+                                     <td><a [routerLink]="'/userdashboard'">SP2 (Dummy 1)</a></td>
                                      <td>13501.88</td> 
                                      <td><button 
                                        class="btn btn-info btn-sm"
                                        title="Clear"
                                        >
                                        Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP4 (Dummy 2)</a></td> <!-- Username -->
-                                     <td>20893.0</td>
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP59 (Dummy monu)</a></td> <!-- Username -->
-                                     <td>1167.99</td>
-                                     <td><button   
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP60 (Demo)</a></td> <!-- Username -->
-                                     <td>103223.5</td>
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP321 (Saurabh)</a></td> <!-- Username -->
-                                     <td>2644681.17</td>
-                                     <td><button  
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
+                                       </button>
+                                    </td> 
+                                  </tr> -->
+                                  <ng-container *ngIf="lenaHai.length==0">
+                                    <tr><td colspan="4" style="text-align:center">No Rows To Display</td></tr>
+                                   </ng-container>
+                                   <ng-container *ngIf="lenaHai.length>0">
+                                    <tr *ngFor="let dena of lenaHai">
+                                       <td><a [routerLink]="['/userdashboard']">SP2 (Dummy 1)</a></td>
+                                       <td>13501.88</td> 
+                                       <td><button 
+                                          class="btn btn-info btn-sm"
+                                          title="Clear"
+                                          >
+                                          Clear
+                                          </button>
+                                       </td> 
+                                    </tr>
+                                   </ng-container>
                        </tbody>
                        <tfoot>
                           <tr>
                           <th>Total</th> <!-- Username -->
-                          <th>4466682.37</th>
+                          <th>0.00</th>
                           <td></td> 
                           </tr>
                        </tfoot>
@@ -115,8 +92,8 @@
                           </tr>
                        </thead>
                        <tbody>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP3 (Dummy)</a></td> <!-- Username -->
+                                  <!-- <tr>
+                                     <td><a [routerLink]="'/userdashboard'">SP3 (Dummy)</a></td>
                                      <td>18372.94</td>
                                      <td><button 
                                        class="btn btn-info btn-sm"
@@ -124,52 +101,28 @@
                                        >
                                        Clear
                                        </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP176 (Dymmy )</a></td> <!-- Username -->
-                                     <td>12935.0</td>
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP379 (Subhash)</a></td> <!-- Username -->
-                                     <td>647514.91</td>
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP897 (Dummy)</a></td> <!-- Username -->
-                                     <td>1775.0</td> 
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP2026 (Demo)</a></td> <!-- Username -->
-                                     <td>6390.0</td> 
-                                     <td><button 
-                                       class="btn btn-info btn-sm"
-                                       title="Clear"
-                                       >
-                                       Clear
-                                       </button></td> 
-                                  </tr>
+                                  </tr> -->
+                                  <ng-container *ngIf="denaHai.length==0">
+                                    <tr><td colspan="4" style="text-align:center">No Rows To Display</td></tr>
+                                   </ng-container>
+                                   <ng-container *ngIf="denaHai.length>0">
+                                    <tr *ngFor="let dena of denaHai">
+                                       <td><a [routerLink]="['/userdashboard']">SP2 (Dummy 1)</a></td>
+                                       <td>13501.88</td> 
+                                       <td><button 
+                                          class="btn btn-info btn-sm"
+                                          title="Clear"
+                                          >
+                                          Clear
+                                          </button>
+                                       </td> 
+                                    </tr>
+                                   </ng-container>
                        </tbody>
                        <tfoot>
                           <tr>
                           <th>Total</th> <!-- Username -->
-                          <th>1079045.65</th> <!-- Total -->
+                          <th>0.00</th> <!-- Total -->
                           <th></th>
                           </tr>
                        </tfoot>
@@ -202,32 +155,21 @@
                           </tr>
                        </thead>
                        <tbody>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP2252 (Dummy)</a></td> <!-- Username -->
-                                     <td>0.0</td> <!-- Total -->
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP2753 (M k )</a></td> <!-- Username -->
-                                     <td>0.0</td> <!-- Total -->
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP2990 (Syjh)</a></td> <!-- Username -->
-                                     <td>0.0</td> <!-- Total -->
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP7081 (Veeru)</a></td> <!-- Username -->
-                                     <td>0.0</td> <!-- Total -->
-                                  </tr>
-                                  <tr>
-                                     <td><a [routerLink]="'/userdashboard'">SP9297 (Nabi)</a></td> <!-- Username -->
-                                     <td>0.0</td> <!-- Total -->
-                                  </tr>
+                                  <ng-container *ngIf="denaHai.length==0">
+                                    <tr><td colspan="2" style="text-align:center">No Rows To Display</td></tr>
+                                   </ng-container>
+                                   <ng-container *ngIf="denaHai.length>0">
+                                    <tr *ngFor="let dena of denaHai">
+                                       <td><a [routerLink]="['/userdashboard']">SP2252 (Dummy)</a></td>
+                                       <td>0.0</td>
+                                    </tr>
+                                   </ng-container>
                                   
                        </tbody>
                        <tfoot>
                           <tr>
                           <th>Total</th>
-                          <th>0.0</th>
+                          <th>0.00</th>
                           </tr>
                        </tfoot>
                     </table>

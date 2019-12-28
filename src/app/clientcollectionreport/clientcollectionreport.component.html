@@ -16,29 +16,24 @@
                              <th>Current Balance</th>
                           </tr>
                        </thead>
-                       <tbody>
+                       <tbody>      
+                          <ng-container *ngIf="denaHai.length==0">
+                           <tr><td colspan="3" style="text-align:center">No Rows To Display</td></tr>
+                          </ng-container>
+                          <ng-container *ngIf="denaHai.length>0">
+                           <tr *ngFor="let dena of denaHai">
+                              <td>18285020</td>
+                              <td>SP3(dummy)</td>
+                              <td>50.0</td> 
+                           </tr>
+                          </ng-container>
                           
-     
-                                   
-                          <tr>
-                             <td>18285020</td>
-                             <td>SP3(dummy)</td>
-                             <td>50.0</td> 
-                          </tr>
-                          
-     
-                                   
-                          <tr>
-                             <td>18284981</td>
-                             <td>SP2024(demo)</td>
-                             <td>50.0</td> 
-                          </tr>
                        </tbody>
                        <tfoot>
                           <tr>
                           <th></th>
                           <th>Total</th> 
-                          <th>785.0</th> 
+                          <th>0.00</th> 
                           </tr>
                        </tfoot>
                     </table>
@@ -64,12 +59,22 @@
                           </tr>
                        </thead>
                        <tbody>
+                        <ng-container *ngIf="lenaHai.length==0">
+                           <tr><td colspan="3" style="text-align:center">No Rows To Display</td></tr>
+                        </ng-container>
+                        <ng-container  *ngIf="lenaHai.length>0">
+                           <tr *ngFor="let lena of lenaHai">
+                              <td>18285020</td>
+                              <td>SP3(dummy)</td>
+                              <td>50.0</td> 
+                           </tr>
+                        </ng-container>
                        </tbody>
                        <tfoot>
                           <tr>
                           <th></th>
                           <th>Total</th> <!-- Username -->
-                          <th>0</th> <!-- Total -->
+                          <th>0.00</th> <!-- Total -->
                           </tr>
                        </tfoot>
                     </table>

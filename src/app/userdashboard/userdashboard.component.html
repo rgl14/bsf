@@ -3,17 +3,17 @@
            <div class="col-lg-12">
               <div class="ibox float-e-margins">
                  <div class="ibox-title">
-                    <h1>User Dashboard</h1>
+                    <h1>{{name}} Dashboard</h1>
                  </div>
                         <div class="button-row ibox-content mob-button">
-                          <button mat-raised-button color="primary" [routerLink]="'/recevcash'">Recieve Cash</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/paycash'">Pay Cash</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/userledger'">Ledger</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/cashledger'">Cash Ledger</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/matchledger'">Match Ledger</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/createagent'">Direct Agents</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/createclient'">Direct Clients</button>
-                          <button mat-raised-button color="primary" [routerLink]="'/coinhistory'">Coin History</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/recevcash',userId,userName,name]">Recieve Cash</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/paycash',userId,userName,name]">Pay Cash</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/userledger',userId,userName,name]">Ledger</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/cashledger',userId,userName,name]">Cash Ledger</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/matchledger']">Match Ledger</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/createagent',userId,userName,name]">Direct Agents</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/createclient',userId,userName,name]">Direct Clients</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/coinhistory',userId,userName,name]">Coin History</button>
                         </div>
               </div>
            </div>
@@ -27,7 +27,7 @@
                      <h5>Coins</h5>
                  </div>
                  <div class="ibox-content">
-                     <h1 class="no-margins loss">-2266.8</h1>
+                     <h1 class="no-margins loss">0.00</h1>
                  </div>
              </div>
          </div>
@@ -37,11 +37,11 @@
                      <h5>Ledger Balance</h5>
                  </div>
                  <div class="ibox-content">
-                     <h1 class="no-margins loss">-2266.8</h1>
+                     <h1 class="no-margins loss" [ngClass]="(ledgerbal>=0)?'text-success':'text-danger'">{{(ledgerbal==null)? 0.00:ledgerbal | number:'1.2-2'}}</h1>
                  </div>
              </div>
          </div>
-         <div class="col-lg-4">
+         <!-- <div class="col-lg-4">
              <div class="ibox float-e-margins">
                  <div class="ibox-title">
                      <h5></h5>
@@ -50,6 +50,6 @@
                      <h1 class="no-margins"></h1>
                  </div>
              </div>
-         </div>
+         </div> -->
          
 </div>
