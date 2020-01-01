@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../shared/notification.service';
+import { UserrolesService } from '../services/userroles.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-adduser',
@@ -10,10 +12,21 @@ import { NotificationService } from '../shared/notification.service';
 export class AdduserComponent implements OnInit {
 
   adduserform:FormGroup;
+  roleslist:[];
   submitted=false;
-  constructor(private formbuilder:FormBuilder,private notification:NotificationService) { }
+  constructor(
+    private formbuilder:FormBuilder,
+    private notification:NotificationService,
+    private userroles:UserrolesService,
+    private router:Router,
+    private route:ActivatedRoute,
+    ) { }
 
   ngOnInit() {
+    this.userroles.GetRolesList().subscribe(resp=>{
+      console.log(resp);
+      this.roleslist=resp.data
+    })
     this.adduserform=this.formbuilder.group({
       admusername:['',Validators.required],
       admfullname:['',Validators.required],
@@ -35,10 +48,10 @@ export class AdduserComponent implements OnInit {
     this.submitted = true;
         // stop here if form is invalid
         if (this.adduserform.invalid) {
-          this.notification.error('Not Submitted');
             return;
+        }else{
+
         }
-      this.notification.success('Submitted successfully');
   }
 
 }

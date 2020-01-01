@@ -117,7 +117,7 @@
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/rolelist'">
-        <button [routerLink]="'/addrole'" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+        <button [routerLink]="['/addrole',data.roleId]" mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
 </div>

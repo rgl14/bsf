@@ -43,7 +43,10 @@
                             <div class="form-group">
                                     <label class="col-sm-2 label-control">Role Name<span class="danger">*</span> :</label>
                                     <div class="col-md-10 col-sm-3">              
-                                           <select formControlName="admrolename"  class="form-control" id="sport" ><option value="" class="" selected="selected">Select Role</option><option label="login" value="object:1833">Login</option><option label="Add Client" value="object:1834">Add Client</option></select>
+                                           <select formControlName="admrolename"  class="form-control" id="sport" >
+                                               <option value="" class="" selected="selected">Select Role</option>
+                                               <option [ngValue]="role" *ngFor="let role of roleslist">{{role}}</option>
+                                            </select>
                                       <div *ngIf="submitted && f.admrolename.errors" class="invalid-feedback">
                                          <mat-error *ngIf="f.admrolename.errors.required">This field is mandatory.</mat-error>
                                      </div>

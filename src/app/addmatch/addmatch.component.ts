@@ -25,7 +25,12 @@ export class AddmatchComponent implements OnInit {
     { key: '5', value: 'INACTIVE' }
   ];
   formdata: any;
-  constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router,private datepipe:DatePipe) { }
+  constructor(
+    private formbuilder:FormBuilder,
+    private notifyService:NotificationService,
+    private SportSettingdata:SportDataService,
+    private router:Router,
+    private datepipe:DatePipe) { }
 
   ngOnInit() {
     this.SportSettingdata.GetSportList().subscribe(resp=>{

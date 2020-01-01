@@ -31,11 +31,11 @@
                                    </div>
                             </div>
                             <div>
-                                    <table class="mainbox" style="border: solid 2px #00407f;width: 100%">
+                                    <table class="mainbox" style="width: 100%">
                                             <tbody>
                                               <tr> </tr>
                                               <tr>
-                                                <td class="subtitle" style="background-color:#00407f;">
+                                                <td class="subtitle">
                                                   Set Permission
                                                 </td>
                                               </tr>
@@ -920,8 +920,9 @@
                             </div>
                         <div class="hr-line-dashed"></div>
                          <div class="form-group col-sm-4 col-sm-offset-2 button-row">
-                                <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
-                                <button mat-raised-button color="primary"  type="submit">Save</button>
+                                <button mat-raised-button color="warn" [routerLink]="['/rolelist']">Cancel</button>
+                                <button mat-raised-button color="primary" *ngIf="!roleId"  type="submit">Save</button>
+                                <button mat-raised-button color="primary" *ngIf="roleId" type="submit">Update Changes</button>
                          </div>
     </form>                        
 </div>

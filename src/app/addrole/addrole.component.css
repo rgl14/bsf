@@ -29,8 +29,10 @@ td, th {
     color: #fff;
     padding: 5px;
     font-size: 16px;
-    border-top: solid 0px #00407f;
-    background-image: linear-gradient(to top left, #0084e7, #00407f);
+    background: #000;
+    border-top: 4px solid #00a826;
+    /* border-top: solid 0px #00407f; */
+    /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
     margin: 10px;
     margin-top: 10px;
     margin-bottom: 10px;

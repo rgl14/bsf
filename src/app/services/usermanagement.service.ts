@@ -24,8 +24,8 @@ export class UsermanagementService {
     return this.cookieService.get('UserType');
   }
 
-  getUserlist(userid): Observable<any> {
-    return this.http.get(`${BASEURL}/Usermanagement/Userlist?type=${userid}`);
+  getUserlist(userid,CREATORID): Observable<any> {
+    return this.http.get(`${BASEURL}/Usermanagement/Userlist?type=${userid}&Creatorid=${CREATORID}`);
   }
 
   GetNextUsername(usertype): Observable<any> {

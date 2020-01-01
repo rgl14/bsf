@@ -30,6 +30,8 @@ export class ProfitnlossComponent implements OnInit {
   allTimeTotal: any;
   myDateValue:Date;
   datepicker: Date;
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
 
   constructor(private getreports:ReportsService) {
     this.maxDate.setDate(this.maxDate.getDate() + 1);
@@ -48,6 +50,12 @@ export class ProfitnlossComponent implements OnInit {
       var twodecimalvalue=parseInt(params.value).toFixed(2);
       return twodecimalvalue;
     }
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
 
     this.gridOptions.paginationPageSize=50;
     this.gridOptions.paginationNumberFormatter = function(params) {

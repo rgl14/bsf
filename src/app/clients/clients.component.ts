@@ -4,6 +4,7 @@ import { NavigationcellComponent } from '../navigationcell/navigationcell.compon
 import { CustomcellbuttonsComponent } from '../customcellbuttons/customcellbuttons.component';
 import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
 import { UsermanagementService } from '../services/usermanagement.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -23,8 +24,9 @@ export class ClientsComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
   usertype: number;
+  creatorId: string;
 
-  constructor(private usermanagement:UsermanagementService) { 
+  constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
@@ -72,6 +74,7 @@ export class ClientsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.creatorId=this.route.snapshot.paramMap.get('userId');
   }
 
   onGridReady(params:any) {
@@ -79,7 +82,10 @@ export class ClientsComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
     this.usertype=6;
-    this.usermanagement.getUserlist(this.usertype).subscribe(resp=>{
+    if(this.creatorId==undefined){
+      this.creatorId='0';
+    }
+    this.usermanagement.getUserlist(this.usertype,this.creatorId).subscribe(resp=>{
       this.rowData=resp._data;
     })
   }
