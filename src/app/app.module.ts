@@ -10,7 +10,7 @@ import { MaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManageformService } from './manageform.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { CustomcellbuttonsComponent, SetMatchLiveTvDialog } from './customcellbuttons/customcellbuttons.component';
+import { CustomcellbuttonsComponent, SetMatchLiveTvDialog,SettleFancyDialog } from './customcellbuttons/customcellbuttons.component';
 import { NavigationcellComponent } from './navigationcell/navigationcell.component';
 import { ButtontogglecellComponent,UserstatusDialog } from './buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from './ratesnavigation/ratesnavigation.component';
@@ -39,6 +39,11 @@ import {DatePipe} from '@angular/common';
 import { SettingfancybookcellComponent,FancyBooksettingDialog } from './settingfancybookcell/settingfancybookcell.component';
 import { TickerService } from './services/ticker.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { AnalysisFormatService } from './services/analysis-format.service';
+import { AnalysisSignalrService } from './services/analysis-signalr.service';
+import { FancySignalrService } from './services/fancy-signalr.service';
+import { MarketSignalrService } from './services/market-signalr.service';
+import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
 
 
 @NgModule({
@@ -63,11 +68,13 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     PackageSettingsComponent,
     CreatePackageComponent,
     SetMatchLiveTvDialog,
+    SettleFancyDialog,
     TournamenttogglecellComponent,
     MatchtogglecellComponent,
     MarkettogglecellComponent,
     SettingfancybookcellComponent,
     FancyBooksettingDialog,
+    CellcurrentlimittextfeildComponent,
     
     
   ],
@@ -84,7 +91,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     CKEditorModule,
     AngularMultiSelectModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettingfancybookcellComponent,FancyBooksettingDialog],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog],
   providers: [
     ManageformService,
     DatePipe,
@@ -93,6 +100,10 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     UsermanagementService,
     TickerService,
     SharedataService,
+    AnalysisFormatService,
+    AnalysisSignalrService,
+    FancySignalrService,
+    MarketSignalrService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -5,6 +5,7 @@ import { CelltextfieldComponent } from '../celltextfield/celltextfield.component
 import { CelldisabledtextfieldComponent } from '../celldisabledtextfield/celldisabledtextfield.component';
 import { CelldisabledusedlimitComponent } from '../celldisabledusedlimit/celldisabledusedlimit.component';
 import { UsermanagementService } from '../services/usermanagement.service';
+import { CellcurrentlimittextfeildComponent } from '../cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
 
 @Component({
   selector: 'app-updatelimit',
@@ -15,6 +16,7 @@ export class UpdatelimitComponent implements OnInit {
 
   gridOptions: GridOptions;
   columnDefs:any
+  ClientcolumnDefs:any
   paginationPageSize:any;
   paginationSetPageSize;
   paginationNumberFormatter:any;
@@ -39,6 +41,16 @@ export class UpdatelimitComponent implements OnInit {
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
+    ]; 
+    this.ClientcolumnDefs = [
+      {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Client Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Current Limit', field: 'currentLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
       {headerName: 'Used Limit', field: 'usedLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
       {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
@@ -96,7 +108,6 @@ export class UpdatelimitComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
-    
   }
 
 }

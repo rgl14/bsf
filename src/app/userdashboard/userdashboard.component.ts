@@ -13,7 +13,10 @@ export class UserdashboardComponent implements OnInit {
   name: any;
   ledgerbal: any;
 
-  constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private getreports:ReportsService
+    ) { }
   
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');

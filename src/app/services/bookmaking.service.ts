@@ -39,4 +39,8 @@ export class BookmakingService {
   UpdateBook(data): Observable<any> {
     return this.http.post(`${BASEURL}/BookMaking/UpdateBook`, data);
   }
+  SettleBook(bookdata): Observable<any> {
+    return this.http.post(`${BASEURL}/BookMaking/SettleBook?bookid=${bookdata.BOOKID}&mtid=${bookdata.MTID}&winner=${bookdata.WINNER}&type=${bookdata.TYPE}`,{});
+  }
+
 }

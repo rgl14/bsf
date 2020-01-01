@@ -24,6 +24,8 @@ export class CreateadminComponent implements OnInit {
   accountInfo: any;
   totalremaininglimit: number=0;
   maxcompanyshare: number;
+  usertype: number;
+  iscommissionedit: boolean;
   // constructor(private service: ManageformService,public notification:NotificationService) { }
   constructor(
     private usermanagement:UsermanagementService,
@@ -41,7 +43,13 @@ export class CreateadminComponent implements OnInit {
     
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
-        console.log(data)
+        if(data.userType!=1){
+          this.iscommissionedit=true;
+        }else{
+          this.iscommissionedit=false;
+        }
+        // console.log(data);
+        // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -52,10 +60,10 @@ export class CreateadminComponent implements OnInit {
             fixLimit:['',Validators.required],
             CompanyShare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -66,16 +74,20 @@ export class CreateadminComponent implements OnInit {
             validator: MustMatch('password', 'confirmPassword')
           })
         }else{
+          this.usertype=2;
+          this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
+            this.Companyform.controls['username'].setValue(resp.userName);
+          })
           this.Companyform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
             CompanyShare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -85,6 +97,10 @@ export class CreateadminComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          this.Companyform.controls['MComm'].setValue(data.matchComm);
+          this.Companyform.controls['SComm'].setValue(data.sessionComm);
+          this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
+          this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
         }
       }
     })

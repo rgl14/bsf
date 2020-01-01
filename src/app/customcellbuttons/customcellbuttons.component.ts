@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { SportDataService } from '../services/sport-data.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { TickerService } from '../services/ticker.service';
+import { LimitsService } from '../services/limits.service';
 
 @Component({
   selector: 'app-customcellbuttons',
@@ -27,7 +28,8 @@ export class CustomcellbuttonsComponent implements OnInit {
     private dialog: MatDialog,
     private sportService: SportDataService,
     private usermanagement:UsermanagementService,
-    private newsticker:TickerService
+    private newsticker:TickerService,
+    private limits:LimitsService
   ) {
     this.currentroute = this.router.url
   }
@@ -41,8 +43,20 @@ export class CustomcellbuttonsComponent implements OnInit {
     
   }
   updatelimit(userdata:any) {
-    console.log(userdata)
+    // console.log(userdata)
     this.usermanagement.UpdateFixLimits(userdata.id,userdata.fixLimit).subscribe(data=>{
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+        // this.params.context.componentParent.GetFancyList();
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+  updatelimitcl(userdata:any) {
+    // console.log(userdata)
+    this.limits.UpdateFixLimitsCl(userdata.id,userdata.fixLimit,userdata.currentLimit).subscribe(data=>{
       if (data.status == "Success") {
         this.notifyService.success(data.result);
         // this.params.context.componentParent.GetFancyList();
@@ -113,6 +127,22 @@ export class CustomcellbuttonsComponent implements OnInit {
       }
     });
   }
+
+  openSettleDialog(): void {
+    const dialogRef = this.dialog.open(SettleFancyDialog, {
+      width: '500px',
+      data: this.data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      // console.log(result)
+      if (result) {
+        this.SettleFancy(result);
+      }
+    });
+  }
+
   SaveLiveTvbyMatch(result) {
     const bfmtid = result.matchBfId;
     const no = result.id;
@@ -134,6 +164,23 @@ export class CustomcellbuttonsComponent implements OnInit {
       }
     })
   }
+  SettleFancy(result){
+    // console.log(this.Settle,result);
+    let fancydata={
+      MID:result.matchId,
+      FID:result.fancyCode,
+      S:result.note,
+    }
+    this.fancyService.SettleFancy(fancydata).subscribe(data => {
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+        this.params.context.componentParent.GetFancyList();
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
 
 
 }
@@ -147,6 +194,24 @@ export class SetMatchLiveTvDialog {
 
   constructor(
     public dialogRef: MatDialogRef<SetMatchLiveTvDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    // console.log(data);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'settle-fancy-dialog',
+  templateUrl: 'settle-fancy-dialog.html',
+})
+export class SettleFancyDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<SettleFancyDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     // console.log(data);
   }

@@ -33,6 +33,7 @@
               </select>
             </div>
           </div>
+          <mat-checkbox [(ngModel)]="checked" (change)="GetFancyList()">Settled</mat-checkbox>
           <div class="search-div">
             <mat-form-field class="search-form-field" floatLabel="never">
               <input matInput id="filter-text-box" placeholder="Search" autocomplete="off"
@@ -61,4 +62,3 @@
     </div>
   </div>
 </div>
-<p>fancy works!</p>

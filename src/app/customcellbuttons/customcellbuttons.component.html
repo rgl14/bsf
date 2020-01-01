@@ -64,7 +64,7 @@
                 title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
-        <button *ngIf="data.betStatus!='SETTLED'" (click)="getvalue(data)" mat-raised-button color="accent"
+        <button *ngIf="data.betStatus!='SETTLED'" (click)="openSettleDialog(data)" mat-raised-button color="accent"
                 title="Settle">
                 Settle
         </button>
@@ -147,7 +147,10 @@
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/updatelimit'">
-        <button (click)="updatelimit(data)" mat-raised-button color="accent" title="Update">
+        <button (click)="updatelimit(data)" *ngIf="!data.currentLimit" mat-raised-button color="accent" title="Update">
+                Update
+        </button>
+        <button (click)="updatelimitcl(data)" *ngIf="data.currentLimit" mat-raised-button color="accent" title="Update">
                 Update
         </button>
 </div>

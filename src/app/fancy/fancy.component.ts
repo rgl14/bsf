@@ -38,6 +38,7 @@ export class FancyComponent implements OnInit {
   overlayNoRowsTemplate: string;
   gridApi: any;
   gridColumnApi: any;
+  checked: boolean=false;
 
   constructor(private fancyService: FancyService, private sportService: SportDataService) {
     this.gridOptions = <GridOptions>{};
@@ -142,7 +143,7 @@ export class FancyComponent implements OnInit {
     let tourid = this.tournament.betfairId;
     let matchid = this.match.id;
     let status = this.status.value;
-    let isettled = 0;
+    
 
     if (!this.sport) {
       sportid = 0;
@@ -156,9 +157,11 @@ export class FancyComponent implements OnInit {
     if (!this.status) {
       status = "";
     }
-    // if (!this.status) {
-    //   isettled = 0;
-    // }
+    if (this.checked) {
+      var isettled = 1;
+    }else{
+      var isettled = 0;
+    }
 
     this.fancyService.GetFancyList(sportid, tourid, matchid, status, isettled).subscribe(data => {
       console.log(data);

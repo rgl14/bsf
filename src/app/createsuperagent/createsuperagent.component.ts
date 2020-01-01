@@ -24,6 +24,8 @@ export class CreatesuperagentComponent implements OnInit {
   ismatchcomm: any;
   issessioncomm: any;
   userdata: any;
+  usertype: number;
+  iscommissionedit: boolean;
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -39,7 +41,13 @@ export class CreatesuperagentComponent implements OnInit {
     
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
+        if(data.userType!=1){
+            this.iscommissionedit=true;
+        }else{
+            this.iscommissionedit=false;
+        }
         console.log(data)
+        console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -50,10 +58,10 @@ export class CreatesuperagentComponent implements OnInit {
             fixLimit:['',Validators.required],
             Superagentshare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -64,16 +72,20 @@ export class CreatesuperagentComponent implements OnInit {
             validator: MustMatch('password', 'confirmPassword')
           })
         }else{
+          this.usertype=5;
+          this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
+            this.superagentform.controls['username'].setValue(resp.userName);
+          })
           this.superagentform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
             Superagentshare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -83,6 +95,10 @@ export class CreatesuperagentComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          this.superagentform.controls['MComm'].setValue(data.matchComm);
+          this.superagentform.controls['SComm'].setValue(data.sessionComm);
+          this.superagentform.controls['MloseComm'].setValue(data.mLossingComm);
+          this.superagentform.controls['SloseComm'].setValue(data.sLossingComm);
         }
       }
     })

@@ -28,6 +28,10 @@ export class UsermanagementService {
     return this.http.get(`${BASEURL}/Usermanagement/Userlist?type=${userid}`);
   }
 
+  GetNextUsername(usertype): Observable<any> {
+    return this.http.get(`${BASEURL}/Usermanagement/GetNextUsername?type=${usertype}`);
+  }
+
   getUserStatusUpdate(userId, status, isall): Observable<any> {
     return this.http.post(
       `${BASEURL}/Usermanagement/UpdateUserStatus?userid=${userId}&status=${status}&isall=${isall}`,

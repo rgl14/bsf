@@ -23,6 +23,8 @@ export class CreatesuperComponent implements OnInit {
   ismatchcomm: number;
   issessioncomm: number;
   userdata: any;
+  usertype: number;
+  iscommissionedit: boolean;
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -38,6 +40,11 @@ export class CreatesuperComponent implements OnInit {
     
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
+        if(data.userType!=1){
+            this.iscommissionedit=true;
+        }else{
+            this.iscommissionedit=false;
+        }
         console.log(data)
         this.accountInfo=data;
         if(this.userId){
@@ -49,10 +56,10 @@ export class CreatesuperComponent implements OnInit {
             fixLimit:['',Validators.required],
             Supershare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -63,16 +70,20 @@ export class CreatesuperComponent implements OnInit {
             validator: MustMatch('password', 'confirmPassword')
           })
         }else{
+          this.usertype=3;
+          this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
+            this.supermasterform.controls['username'].setValue(resp.userName);
+          })
           this.supermasterform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
             Supershare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -82,6 +93,10 @@ export class CreatesuperComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          this.supermasterform.controls['MComm'].setValue(data.matchComm);
+          this.supermasterform.controls['SComm'].setValue(data.sessionComm);
+          this.supermasterform.controls['MloseComm'].setValue(data.mLossingComm);
+          this.supermasterform.controls['SloseComm'].setValue(data.sLossingComm);
         }
       }
     })

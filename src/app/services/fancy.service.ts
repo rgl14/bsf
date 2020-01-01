@@ -44,4 +44,7 @@ export class FancyService {
   UpdFancySettings(data): Observable<any> {
     return this.http.post(`${BASEURL}/Fancy/UpdFancySettings`, data);
   }
+  SettleFancy(data): Observable<any> {
+    return this.http.post(`${BASEURL}/Fancy/SettleFancy?mid=${data.MID}&fid=${data.FID}&s=${data.S}`,{});
+  }
 }

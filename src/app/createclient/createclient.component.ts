@@ -24,6 +24,8 @@ export class CreateclientComponent implements OnInit {
   userdata: any;
   ismatchcomm: any;
   issessioncomm: any;
+  usertype: number;
+  iscommissionedit: boolean;
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -39,7 +41,13 @@ export class CreateclientComponent implements OnInit {
     
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
+        if(data.userType!=1){
+            this.iscommissionedit=true;
+        }else{
+            this.iscommissionedit=false;
+        }
         console.log(data)
+        console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -50,10 +58,10 @@ export class CreateclientComponent implements OnInit {
             fixLimit:['',Validators.required],
             Clientshare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -64,16 +72,20 @@ export class CreateclientComponent implements OnInit {
             validator: MustMatch('password', 'confirmPassword')
           })
         }else{
+          this.usertype=6;
+          this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
+            this.clientform.controls['username'].setValue(resp.userName);
+          })
           this.clientform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
             Clientshare:['',Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
+            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -83,6 +95,10 @@ export class CreateclientComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          this.clientform.controls['MComm'].setValue(data.matchComm);
+          this.clientform.controls['SComm'].setValue(data.sessionComm);
+          this.clientform.controls['MloseComm'].setValue(data.mLossingComm);
+          this.clientform.controls['SloseComm'].setValue(data.sLossingComm);
         }
       }
     })
