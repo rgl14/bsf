@@ -25,7 +25,7 @@ export class MatchesComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100, sortable: true,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Title', field: 'title', sortable: true, width: 300,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Title', field: 'title', sortable: true, width: 500,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Sport', field: 'sport', width: 100},
       {headerName: 'Date', field: 'dateTime', sortable: true, width: 200},
       // {headerName: 'Type', field: 'type', width: 150},

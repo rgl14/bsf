@@ -13,7 +13,7 @@
                           <button mat-raised-button color="primary" [routerLink]="['/matchledger']">Match Ledger</button>
                           <button mat-raised-button color="primary" *ngIf="userType==2" [routerLink]="['/supermaster',userId]">Direct Super Masters</button>
                           <button mat-raised-button color="primary" *ngIf="userType==2 || userType==3" [routerLink]="['/master',userId]">Direct Masters</button>
-                          <button mat-raised-button color="primary" *ngIf="userType==2 || userType==3 || userType==4" [routerLink]="['/agent',userId]">Direct Agents</button>
+                          <button mat-raised-button color="primary" *ngIf="userType==2 || userType==3 || userType==4" [routerLink]="['/superagent',userId]">Direct Agents</button>
                           <button mat-raised-button color="primary" *ngIf="userType==2 || userType==3 || userType==4 || userType==5" [routerLink]="['/clients',userId]">Direct Clients</button>
                           <button mat-raised-button color="primary" [routerLink]="['/coinhistory',userId,userName,name]">Coin History</button>
                         </div>

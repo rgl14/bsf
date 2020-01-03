@@ -73,6 +73,7 @@ export class SuperagentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.creatorId=this.route.snapshot.paramMap.get('userId');
   }
 
   onGridReady(params:any) {

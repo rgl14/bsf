@@ -44,6 +44,7 @@ import { AnalysisSignalrService } from './services/analysis-signalr.service';
 import { FancySignalrService } from './services/fancy-signalr.service';
 import { MarketSignalrService } from './services/market-signalr.service';
 import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
+import { RemoveSpacePipe } from './Directives/removespacepipe';
 
 
 @NgModule({
@@ -75,7 +76,7 @@ import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/
     SettingfancybookcellComponent,
     FancyBooksettingDialog,
     CellcurrentlimittextfeildComponent,
-    
+    RemoveSpacePipe
     
   ],
   imports: [

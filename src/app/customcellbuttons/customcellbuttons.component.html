@@ -17,6 +17,15 @@
                 <i class="fa fa-key"></i>
         </button>
 </div>
+<div class="Action-buttons" *ngIf="currentroute=='/supermaster/'+userId">
+        <button [routerLink]="['/createsuper',data.userId]"  mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+        <button [routerLink]="['/managepassword',data.userId]"  mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
+        </button>
+</div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/master'">
         <button [routerLink]="['/createmaster',data.userId]"  mat-raised-button color="Accent" title="Edit">
@@ -27,8 +36,26 @@
                 <i class="fa fa-key"></i>
         </button>
 </div>
+<div class="Action-buttons" *ngIf="currentroute=='/master/'+userId">
+        <button [routerLink]="['/createmaster',data.userId]"  mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+        <button [routerLink]="['/managepassword',data.userId]"  mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
+        </button>
+</div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/agent'">
+        <button [routerLink]="['/createagent',data.userId]" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+        <button [routerLink]="['/managepassword',data.userId]"  mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
+        </button>
+</div>
+<div class="Action-buttons" *ngIf="currentroute=='/agent/'+userId">
         <button [routerLink]="['/createagent',data.userId]" mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>
@@ -48,8 +75,27 @@
                 <i class="fa fa-key"></i>
         </button>
 </div>
+<div class="Action-buttons" *ngIf="currentroute=='/superagent/'+userId">
+        <button [routerLink]="['/createsuperagent',data.userId]"  mat-raised-button color="Accent"
+                title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+        <button [routerLink]="['/managepassword',data.userId]"  mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
+        </button>
+</div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/clients'">
+        <button [routerLink]="['/createclient',data.userId]" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
+                <i class="fa fa-pencil"></i>
+        </button>
+        <button [routerLink]="['/managepassword',data.userId]"  mat-raised-button color="warn"
+                title="Change Password">
+                <i class="fa fa-key"></i>
+        </button>
+</div>
+<div class="Action-buttons" *ngIf="currentroute=='/clients/'+userId">
         <button [routerLink]="['/createclient',data.userId]" (click)="getvalue(data)" mat-raised-button color="Accent" title="Edit">
                 <i class="fa fa-pencil"></i>
         </button>

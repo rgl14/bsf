@@ -5,6 +5,7 @@ import { NotificationService } from '../shared/notification.service';
 import { TokenService } from '../services/token.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SharedataService } from '../services/sharedata.service';
+import { AnalysisSignalrService } from '../services/analysis-signalr.service';
 
 @Component({
   selector: 'app-main',
@@ -20,12 +21,16 @@ export class MainComponent implements OnInit {
     private tokenService: TokenService,
     private notifyService: NotificationService,
     private sharedata :SharedataService,
-    private usermanagement:UsermanagementService
+    private usermanagement:UsermanagementService,
+    private analysisservice:AnalysisSignalrService
   ) { }
 
   ngOnInit() {
     this.usermanagement.getAccountInfo().subscribe(resp=>{
+      console.log(resp.data)
       this.sharedata.shareAccountInfo(resp.data);
+      let address="http://173.249.43.228:11334";
+      this.analysisservice.connectAnalysis(address,resp.data.userId)
     })
 
     this.userType=this.tokenService.getUserType();

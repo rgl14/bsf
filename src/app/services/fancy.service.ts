@@ -29,6 +29,9 @@ export class FancyService {
   GetFancyTypes(): Observable<any> {
     return this.http.get(`${BASEURL}/Fancy/GetFancyTypes`);
   }
+  GetAnalysisFancyBook(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Fancy/GetAnalysisFancyBook?id=${ID}`);
+  }
   SetFancyCloseBulk(IDS): Observable<any> {
     return this.http.post(`${BASEURL}/Fancy/SetFancyCloseBulk?ids=${IDS}`, {});
   }

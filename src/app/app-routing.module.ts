@@ -137,7 +137,7 @@ const routes: Routes = [
   { path: 'matchdashboard/:matchId', component: MatchdashboardComponent },
   { path: 'betslips', component: BetslipsComponent },
   { path: 'sessionbetslips', component: SessionbetslipsComponent },
-  { path: 'livereport', component: LivereportComponent },
+  { path: 'livereport/:sportBfId/:bfId/:id', component: LivereportComponent },
   { path: 'companyreport/:matchId', component: CompanyreportComponent },
   { path: 'match_settlement', component: MatchsettlementComponent },
   { path: 'clientreport/:matchId', component: ClientreportComponent },

@@ -1,49 +1,26 @@
-<ul class="marquee">
-        <marquee>
-            <li>!! Welcome To bsf777.com !!  Note  Sabhi Agent ko inform Kiya Jata Hai Ki Aaj Se [ BSF777.Net ] &amp; [ BSF999.Net ] Jo Live Report Hai Vo Aaj Se Point Me Dhikhengi 1 Point Ki Value 100 Rupees Hogi</li>
-        </marquee>
-      </ul>
+
       <div id="render-live-report10">
-     <!-- <style type="text/css">
-        @media (max-width: 768px){
-        .header-top-spacing .row {
-        margin: 15px 15px !important;
-        }
-        }
-        p.match-time-dtl-date.live-report-match-time,
-        p.match-time-dtl-mounth.live-report-match-month,
-        p.match-time-dtl-mounth.live-report-match-date{
-        margin: 0;
-        }
-        .in-play-row-left.live-report-in-play-row-left{
-        height: 80px;
-        }
-        .align-left{
-          text-align: left;
-        }
-     </style> -->
      <div class="wrapper wrapper-content">
         <div class="row">
            <div class="col-lg-12">
               <div class="ibox float-e-margins">
                  <div class="row">
-                    <div class="ldg-tbl-col col-lg-9 col-xs-8 col-md-9 col-sm-8 score-event-box match-status-table" style="padding-left: 5px;padding-right: 3px !important;">
+                    <div class="ldg-tbl-col col-lg-9 col-xs-8 col-md-9 col-sm-8 score-event-box match-status-table" style="padding-left: 0px;padding-right: 3px !important;">
                        <p class="inplay-show-tbl-td match-status-text" style="background-color: #3A61A2;text-align: center; font-size:15px;" id="score_table_5308">
-                          Tasmania	 210/10 (44.4 Ovs)<br>
+                          <!-- Tasmania	 210/10 (44.4 Ovs)<br>
                           Western Australia	 312/10 (50.0 Ovs)	<br>
-                          Western Australia won by 102 runs
+                          Western Australia won by 102 runs -->
                        </p>
                     </div>
                     <div class="ldg-tbl-col col-lg-3 col-xs-4 col-md-3 col-sm-4 current-event-box bet_status_box" style="padding-right: 5px;padding-left: 3px !important;">
                        <div class="inplay-show-place-bet" style="background-color: #3A61A2;color:#fff;" id="event_table_5308"></div>
                     </div>
                  </div>
-                 <!--              MATCH WINNER MARKET CODE START            -->
                  <div class="row scroll-form table-responsive">
-                       <table class="table table-bordered ">
+                       <table class="table table-bordered" *ngFor="let market of AllMarkets;trackBy:identify;">
                           <thead>
                                    <tr>
-                                      <th colspan="4" class="bet-place-tbl-th align-left" style="background-color:#6E8FC9;">Market : Match Winner</th>
+                                      <th colspan="4" class="bet-place-tbl-th align-left" style="background-color:#6E8FC9;">Market : {{market.name}}</th>
                                    </tr>
                                    <tr>
                                       <th class="bet-place-tbl-th" style="background-color: #49494A;">RUNNER</th>
@@ -53,28 +30,16 @@
                                    </tr>
                           </thead>
                           <tbody>
-                                <tr>
-                                   <td data-runner-sid="Western Australia  _5308" data-column="runner_name" class="bet-place-tbl-td" style="text-align:left;">Western Australia  </td>
-                                   <td data-runner-sid="Western Australia  _5308" data-column="back" class="MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer " odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="LAGAI" id="Match Winner_5308_back_Western Australia  _5308"></td>
-                                   <td data-runner-sid="Western Australia  _5308" data-column="lay" class="MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer " odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="KHAI" id="Match Winner_5308_lay_Western Australia  _5308"></td>
-                                   <td data-runner-sid="Western Australia  _5308" data-column="position" class="bet-place-tbl-td  bet-val-cent" data-position="0.0">
-                                      0.0
-                                   </td>
-                                </tr>
-                                <tr>
-                                   <td data-runner-sid="Tasmania_5308" data-column="runner_name" class="bet-place-tbl-td" style="text-align:left;">Tasmania</td>
-                                   <td data-runner-sid="Tasmania_5308" data-column="back" class="MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer " odd-val="1.01" market-id="66443" runner-id="55670" match-id="5308" data-id="LAGAI" id="Match Winner_5308_back_Tasmania_5308"></td>
-                                   <td data-runner-sid="Tasmania_5308" data-column="lay" class="MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer " odd-val="1.01" market-id="66443" runner-id="55670" match-id="5308" data-id="KHAI" id="Match Winner_5308_lay_Tasmania_5308"></td>
-                                   <td data-runner-sid="Tasmania_5308" data-column="position" class="bet-place-tbl-td  bet-val-cent" data-position="0.0">
-                                      0.0
-                                   </td>
+                                <tr id="selection_{{runner.runnerName | removeSpace}}" *ngFor="let runner of market.runnerData;trackBy:identify;let index=index">
+                                   <td  data-column="runner_name" class="bet-place-tbl-td" style="text-align:left;">{{runner.runnerName}}</td>
+                                   <td  data-column="back" class="MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer back-1" odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="LAGAI" id="runner-{{index}}-back1">{{runner.back1}}</td>
+                                   <td  data-column="lay" class="MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer lay-1" odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="KHAI" id="runner-{{index}}-lay1">{{runner.lay1}}</td>
+                                   <td  data-column="position" class="bet-place-tbl-td  bet-val-cent" data-position="0.0">{{runner.book}}</td>
                                 </tr>
                           </tbody>
                        </table>
                  </div>
-                 <!--              MATCH WINNER MARKET CODE END            -->
-                 <!---          START UNDECLARED SESSIONS TABLE            -->
-                       <div class="row session-resp-tbl table-responsive">
+                       <div class="row session-resp-tbl table-responsive" *ngIf="fancyList.length!=0">
                           <table class="table table-bordered">
                              <thead>
                                 <tr><th colspan="10" class="bet-place-tbl-th market_type_row session-th-strip align-left">PENDING SESSIONS</th>
@@ -90,94 +55,53 @@
                                 </tr>
                              </thead>
                              <tbody>
-                                   <tr>
-                                      <td data-column="session_title" class="bet-place-tbl-td" style="text-align:left;">50 Overs Lambi,Western Australia</td>
-                                      <td data-column="no_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer close-status" data-id="NO" match-id="5308" session-run-id="553201" session-id="14652" id="14652_no"></td>
-                                      <td data-column="no_rate" id="14652_no_rate" class="no_rate bet-place-tbl-td bet-val-cent close-status">
-                                         
-                                      </td>
-                                      <td data-column="yes_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer close-status" data-id="YES" match-id="5308" session-run-id="553201" session-id="14652" id="14652_yes">
-                                      </td>
-                                      <td data-column="yes_rate" class="yes_rate bet-place-tbl-td bet-val-cent close-status" id="14652_yes_rate">
-                                         
-                                      </td>
-                                      <td class="bet-place-tbl-td bet-val-cent" id="session_no_runns_14652">
-                                          0
-                                      </td>
-                                      <td class="bet-place-tbl-td bet-val-cent" id="session_yes_runns_14652">
-                                         0
-                                      </td>
-                                      <td class="bet-place-tbl-td">
-                                         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">POSITION</button> -->
-                                         <a class="btn btn-info" data-method="get" data-remote="true" href="/agent/matches/5308/session_all_over_position_model?session_id=14652">POSITION</a>
-                                      </td>
-                                   </tr>
-                                   <tr>
-                                      <td data-column="session_title" class="bet-place-tbl-td" style="text-align:left;">10 Overs,Western Australia</td>
-                                      <td data-column="no_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer close-status" data-id="NO" match-id="5308" session-run-id="" session-id="14653" id="0_no"></td>
-                                      <td data-column="no_rate" id="0_no_rate" class="no_rate bet-place-tbl-td bet-val-cent close-status">
-                                         
-                                      </td>
-                                      <td data-column="yes_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer close-status" data-id="YES" match-id="5308" session-run-id="" session-id="14653" id="0_yes">
-                                      </td>
-                                      <td data-column="yes_rate" class="yes_rate bet-place-tbl-td bet-val-cent close-status" id="0_yes_rate">
-                                         
-                                      </td>
-                                      <td class="bet-place-tbl-td bet-val-cent" id="session_no_runns_14653">
-                                          0
-                                      </td>
-                                      <td class="bet-place-tbl-td bet-val-cent" id="session_yes_runns_14653">
-                                         0
-                                      </td>
-                                      <td class="bet-place-tbl-td">
-                                         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">POSITION</button> -->
-                                         <a class="btn btn-info" data-method="get" data-remote="true" href="/agent/matches/5308/session_all_over_position_model?session_id=14653">POSITION</a>
-                                      </td>
-                                   </tr>
+                                <ng-container *ngFor="let fancy of fancyList;trackBy:trackByfancyId;">
+                                 <tr>
+                                    <td data-column="session_title" class="bet-place-tbl-td" style="text-align:left;">{{fancy.name}}</td>
+                                    <td data-column="no_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer close-status" data-id="NO" match-id="5308" session-run-id="553201" session-id="14652" id="14652_no">{{fancy.noScore}}</td>
+                                    <td data-column="no_rate" id="14652_no_rate" class="no_rate bet-place-tbl-td bet-val-cent close-status">{{fancy.noRate}}</td>
+                                    <td data-column="yes_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer close-status" data-id="YES" match-id="5308" session-run-id="553201" session-id="14652" id="14652_yes">{{fancy.yesScore}}</td>
+                                    <td data-column="yes_rate" class="yes_rate bet-place-tbl-td bet-val-cent close-status" id="14652_yes_rate">{{fancy.yesRate}}</td>
+                                    <td class="bet-place-tbl-td bet-val-cent" id="session_no_runns_14652">
+                                        0
+                                    </td>
+                                    <td class="bet-place-tbl-td bet-val-cent" id="session_yes_runns_14652">
+                                       0
+                                    </td>
+                                    <td class="bet-place-tbl-td">
+                                       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">POSITION</button> -->
+                                       <a class="btn btn-info" data-method="get" data-remote="true" data-toggle="modal" data-target="#exampleModalLong" style="color: #fff!important;" (click)="getAnalysisfancyBook(fancy.id,fancy.name)">POSITION</a>
+                                    </td>
+                                 </tr>
+                                </ng-container>
+                                   
+                                   
                              </tbody>
                           </table>
                        </div>
-                 <!---          END UNDECLARED SESSIONS TABLE            -->
-     
-                 <!--             PENDING MATCH EVEN ODD MARKET CODE START            -->
-                 <!--             PENDING MATCH EVEN ODD MARKET CODE END            -->
-     
-                 <!-- Pending ending digit market start -->
-                 <!-- pending ending digit market end  -->
-     
-                 <!---          START DECLARED SESSIONS TABLE            -->
-                 <!---          END DECLARED SESSIONS TABLE            -->
-     
-                 <!--             DECLARED MATCH EVEN ODD MARKET CODE START     2       -->
-                 <!--             DECLARED MATCH EVEN ODD MARKET CODE END      2      -->
-     
-                 <!-- declared ending digit market start -->
-                 <!-- declared ending digit market end  -->
-     
               </div>
            </div>
         </div>
      
-        <!-- REMAING MATCHES LIST -->
-        <div class="row" style="margin: 0 !important;">
+        <!-- <div class="row" style="margin: 0 !important;">
            <div class="match-index-row header-top-spacing">
               <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>
            </div>
         </div>
-        <!-- REMAING MATCHES LIST END -->
         <div class="wrapper wrapper-content">
            <div class="row">
               <div class="col-lg-12">
               </div>
            </div>
-        </div>
+        </div> -->
      </div>
      </div>
-     <div id="dynamic_modal"><div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="display: none;">
+     <div id="dynamic_modal">
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="display: none;">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <h5 class="modal-title" >{{fancyname}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
@@ -191,6 +115,18 @@
                 </tr>
               </thead>
               <tbody>
+                 <ng-container *ngIf="fancybook.length!=0">
+                  <tr *ngFor="let fbook of fancybook">
+                     <td></td>
+                     <td></td>
+                  </tr>
+                 </ng-container>
+                 <ng-container *ngIf="fancybook.length==0">
+                  <tr>
+                     <td colspan="2" style="text-align: center;"><b>No Book Available...</b></td>
+                  </tr>
+                 </ng-container>
+                 
               </tbody>
             </table>
                 </div>
@@ -199,4 +135,6 @@
                 </div>
               </div>
             </div>
-          </div></div>
+          </div>
+         </div>
+          

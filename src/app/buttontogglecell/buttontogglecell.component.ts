@@ -5,7 +5,7 @@ import { BookmakingService } from '../services/bookmaking.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SportDataService } from '../services/sport-data.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TickerService } from '../services/ticker.service';
 
 @Component({
@@ -21,6 +21,7 @@ export class ButtontogglecellComponent implements OnInit {
   params: any;
   isAll: any;
   currentroute: any;
+  userId: string;
 
   constructor(
     private fancyService: FancyService,
@@ -30,14 +31,17 @@ export class ButtontogglecellComponent implements OnInit {
     private sportService: SportDataService,
     public dialog: MatDialog,
     private router: Router,
-    private newsticker:TickerService
+    private newsticker:TickerService,
+    private route:ActivatedRoute,
   ) {
-    this.currentroute = this.router.url
+    this.currentroute = this.router.url;
+    
    }
   agInit(params) {
     // console.log(params);
     this.params = params;
     this.data = this.params.data;
+    // console.log(this.data);
 
     if (this.params.colDef.field == "isActive") {
       if (this.data.isActive == 1) {
@@ -92,7 +96,7 @@ export class ButtontogglecellComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.userId=this.route.snapshot.paramMap.get('userId');
   }
 
   openDialog(): void {

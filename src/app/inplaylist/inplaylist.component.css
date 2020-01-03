@@ -1,0 +1,211 @@
+.table {
+    font-size: 12px!important;
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif!important;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.lotus-title {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 5px;
+    padding: 5px;
+    background: #404040;
+    width: 100%;
+    color: #fff;
+    border-top: 4px solid #00a826;
+}
+.pause_btn {
+    position: absolute;
+    left: 5px;
+    z-index: 1;
+}
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 767px){
+    .sport_row{
+        margin-bottom: 5px;
+        padding-bottom: 10px;
+    }
+}
+.sport_row {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    /* min-height: 50px; */
+    min-height: 19px!important;
+    margin-top: 0!important;
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px solid #e9e9e9;
+}
+.sport_name {
+    display: inline-block;
+    /* width: 30%; */
+    vertical-align: top;
+    /* margin-left: 22px; */
+    line-height: 26px!important;
+}
+.sport_name {
+    display: inline-block;
+    width: 30%;
+    line-height: 40px;
+    vertical-align: top;
+}
+@media (max-width: 767px){
+    .sport_name {
+        text-align: left;
+    }
+}
+@media screen and (max-width: 767px){
+    .sport_name[_ngcontent-vat-c13] {
+        width: 100%;
+        /* text-align: center; */
+        position: relative;
+        margin-left: 0;
+        padding-left: 20px;
+    }
+}
+
+.sport_name a {
+    font-weight: 700;
+    font-size: 12px;
+    color: #404040;
+}
+.match_status {
+    display: inline-block;
+    width: 10%;
+    line-height: 26px;
+    vertical-align: top;
+}
+@media (max-width: 767px){
+    .match_status {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .match_status {
+        padding-right: 10px;
+        /* width: 100%; */
+        text-align: center;
+        /* padding-left: 0; */
+        line-height: inherit;
+    }
+}
+@media (max-width: 767px){
+    .match_status span {
+        text-align: left!important;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .match_status span {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.inplay_txt {
+    color: green;
+}
+.match_time {
+    display: inline-block;
+    text-align: right;
+    width: 14%;
+    vertical-align: text-bottom;
+}
+.match_time {
+    line-height: 20px!important;
+}
+@media (max-width: 767px){
+    .match_time {
+        width: 49%;
+        text-align: right;
+    }
+}
+
+
+@media screen and (max-width: 767px){
+    .match_time {
+        display: inline-block;
+        /* text-align: center; */
+        /* width: 100%; */
+        vertical-align: text-bottom;
+    }
+}
+@media screen and (max-width: 767px){
+    .match_odds_front {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 767px){
+    .match_odds_front {
+        width: 100%;
+    }
+}
+
+.match_odds_front {
+    display: inline-block;
+    text-align: right;
+    width: 43%;
+    float: right;
+}
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    width: 15%;
+}
+
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    color: #000;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    /* min-height: 40px; */
+    vertical-align: text-bottom;
+}
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    min-height: 20px!important;
+    /* padding: 3px; */
+    border-radius: 3px;
+}
+.back-cell, .lay-cell {
+    padding: 0!important;
+}
+.back-cell {
+    background-color: #7cc4f7;
+}
+
+
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    width: 15%;
+}
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    color: #000;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    /* min-height: 40px; */
+    vertical-align: text-bottom;
+}
+.match_odds_front span.back-cell, .match_odds_front span.lay-cell {
+    min-height: 20px!important;
+    /* padding: 3px; */
+    border-radius: 3px;
+}
+.back-cell, .lay-cell {
+    padding: 0!important;
+}
+.lay-cell {
+    background-color: #fca4b7!important;
+}

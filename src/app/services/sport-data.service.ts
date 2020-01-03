@@ -112,4 +112,7 @@ export class SportDataService {
   SaveLiveTvbyMatch(BFMTID, NO, IP, P, HDMI): Observable<any> {
     return this.http.post(`${BASEURL}/LiveTv/SaveLiveTvbyMatch?bfmtid=${BFMTID}&no=${NO}&ip=${IP}&p=${P}&hdmi=${HDMI}`, {})
   }
+  HubAddress(BFID): Observable<any> {
+    return this.http.get(`${BASEURL}/SportsData/HubAddress?bfid=${BFID}`);
+  }
 }

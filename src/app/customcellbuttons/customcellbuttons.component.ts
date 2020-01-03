@@ -19,6 +19,7 @@ export class CustomcellbuttonsComponent implements OnInit {
   currentroute: string;
   params: any;
   disabled: boolean = false;
+  userId: string;
 
   constructor(
     private router: Router,
@@ -29,7 +30,8 @@ export class CustomcellbuttonsComponent implements OnInit {
     private sportService: SportDataService,
     private usermanagement:UsermanagementService,
     private newsticker:TickerService,
-    private limits:LimitsService
+    private limits:LimitsService,
+    private route:ActivatedRoute
   ) {
     this.currentroute = this.router.url
   }
@@ -40,7 +42,7 @@ export class CustomcellbuttonsComponent implements OnInit {
     this.data = this.params.data;
   }
   ngOnInit() {
-    
+    this.userId=this.route.snapshot.paramMap.get('userId');
   }
   updatelimit(userdata:any) {
     // console.log(userdata)
