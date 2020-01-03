@@ -80,13 +80,13 @@ export class LivereportComponent implements OnInit,OnDestroy {
         }
         console.log(this.AllMarkets);
 
-        if(this.bookData.runner1name!=null){
-          this.AllMarkets[0].runnerData[this.bookData.runner1name]["book"]=this.bookData.runner1Book;
-          this.AllMarkets[0].runnerData[this.bookData.runner2name]["book"]=this.bookData.runner2Book;
-          if(this.bookData.runner3name!=null){
-            this.AllMarkets[0].runnerData[this.bookData.runner3name]["book"]=this.bookData.runner3Book;
-          }
-        }
+        // if(this.bookData.runner1name!=null){
+        //   this.AllMarkets[0].runnerData[this.bookData.runner1name]["book"]=this.bookData.runner1Book;
+        //   this.AllMarkets[0].runnerData[this.bookData.runner2name]["book"]=this.bookData.runner2Book;
+        //   if(this.bookData.runner3name!=null){
+        //     this.AllMarkets[0].runnerData[this.bookData.runner3name]["book"]=this.bookData.runner3Book;
+        //   }
+        // }
         this.EventMarketId=this.Event.mktList[0].bfId;
         if(count==1){
           this.getHubaddress();
