@@ -78,15 +78,27 @@ export class LivereportComponent implements OnInit,OnDestroy {
           this.AllMarkets=this.Event.mktList;
           console.log(this.AllMarkets);
         }
-        console.log(this.AllMarkets);
+        console.log(this.AllMarkets[0].runnerData[0]["book"]);
 
-        // if(this.bookData.runner1name!=null){
+        if(this.bookData.runner1name!=null){
+        _.forEach(this.AllMarkets[0].runnerData,(item,index) => {
+          if(this.AllMarkets[0].runnerData[index].runnerName==this.bookData.runner1name){
+            this.AllMarkets[0].runnerData[index]["book"]=this.bookData.runner1Book;
+          }
+          if(this.AllMarkets[0].runnerData[index].runnerName==this.bookData.runner2name){
+            this.AllMarkets[0].runnerData[index]["book"]=this.bookData.runner2Book;
+          }
+          if(this.AllMarkets[0].runnerData[index].runnerName==this.bookData.runner3name){
+            this.AllMarkets[0].runnerData[index]["book"]=this.bookData.runner3Book;
+          }
+        });
+          
         //   this.AllMarkets[0].runnerData[this.bookData.runner1name]["book"]=this.bookData.runner1Book;
         //   this.AllMarkets[0].runnerData[this.bookData.runner2name]["book"]=this.bookData.runner2Book;
         //   if(this.bookData.runner3name!=null){
         //     this.AllMarkets[0].runnerData[this.bookData.runner3name]["book"]=this.bookData.runner3Book;
         //   }
-        // }
+        }
         this.EventMarketId=this.Event.mktList[0].bfId;
         if(count==1){
           this.getHubaddress();
@@ -121,6 +133,15 @@ export class LivereportComponent implements OnInit,OnDestroy {
                 this.AllMarkets[marketIndex].runnerData[index] = runner;
                 this.AllMarkets[marketIndex].runnerData[index]["runnerName"] =runner.runner;
                 this.AllMarkets[marketIndex].runnerData[index]["status"] =runner.runnerStatus;
+                if(this.AllMarkets[marketIndex].runnerData[index].runnerName==this.bookData.runner1name){
+                  this.AllMarkets[marketIndex].runnerData[index]["book"]=this.bookData.runner1Book;
+                }
+                if(this.AllMarkets[marketIndex].runnerData[index].runnerName==this.bookData.runner2name){
+                  this.AllMarkets[marketIndex].runnerData[index]["book"]=this.bookData.runner2Book;
+                }
+                if(this.AllMarkets[marketIndex].runnerData[index].runnerName==this.bookData.runner3name){
+                  this.AllMarkets[marketIndex].runnerData[index]["book"]=this.bookData.runner3Book;
+                }
                   if ((item.back1 != runner.back1 ||item.backSize1 != runner.backSize1)) {
                     $( "#selection_"+ txt + " .back-1").addClass("spark");
                     const back1 = $("#selection_"+ txt + " .back-1");

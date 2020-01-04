@@ -45,6 +45,8 @@ import { FancySignalrService } from './services/fancy-signalr.service';
 import { MarketSignalrService } from './services/market-signalr.service';
 import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
 import { RemoveSpacePipe } from './Directives/removespacepipe';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { MarketanalysisComponent } from './marketanalysis/marketanalysis.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { RemoveSpacePipe } from './Directives/removespacepipe';
     SettingfancybookcellComponent,
     FancyBooksettingDialog,
     CellcurrentlimittextfeildComponent,
-    RemoveSpacePipe
+    RemoveSpacePipe,
+    ChangepasswordComponent,
+    MarketanalysisComponent
     
   ],
   imports: [

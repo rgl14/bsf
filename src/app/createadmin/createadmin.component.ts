@@ -218,10 +218,10 @@ export class CreateadminComponent implements OnInit {
     this.Companyform.get('myShare').valueChanges.subscribe(
       (mode: number) => {
           
-          if(mode > this.accountInfo.minCompanyShare){
-            this.Companyform.controls['myShare'].setValue(this.accountInfo.minCompanyShare);
+          if(mode > this.accountInfo.maxMyShare){
+            this.Companyform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }else{
-            let myshare = this.accountInfo.minCompanyShare-mode;
+            let myshare = this.accountInfo.maxMyShare-mode;
             this.accountInfo.CompanyShare=myshare;
           }
     });

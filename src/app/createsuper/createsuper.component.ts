@@ -211,10 +211,10 @@ export class CreatesuperComponent implements OnInit {
     this.supermasterform.get('myShare').valueChanges.subscribe(
       (mode: number) => {
           
-          if(mode > this.accountInfo.minCompanyShare){
-            this.supermasterform.controls['myShare'].setValue(this.accountInfo.minCompanyShare);
+          if(mode > this.accountInfo.maxMyShare){
+            this.supermasterform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }else{
-            let myshare = this.accountInfo.minCompanyShare-mode;
+            let myshare = this.accountInfo.maxMyShare-mode;
             this.accountInfo.CompanyShare=myshare;
           }
     });

@@ -7,6 +7,8 @@
     /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
     background: #434343;
     color: #fff;
+    position: fixed;
+    z-index: 1;
   }
   nav .select {
     color:red !important;

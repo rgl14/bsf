@@ -34,7 +34,7 @@
                                    <td  data-column="runner_name" class="bet-place-tbl-td" style="text-align:left;">{{runner.runnerName}}</td>
                                    <td  data-column="back" class="MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer back-1" odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="LAGAI" id="runner-{{index}}-back1">{{runner.back1}}</td>
                                    <td  data-column="lay" class="MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer lay-1" odd-val="1.01" market-id="66443" runner-id="55669" match-id="5308" data-id="KHAI" id="runner-{{index}}-lay1">{{runner.lay1}}</td>
-                                   <td  data-column="position" class="bet-place-tbl-td  bet-val-cent" data-position="0.0">{{runner.book}}</td>
+                                   <td  data-column="position" class="bet-place-tbl-td  bet-val-cent" [ngClass]="(runner.book>=0)?'profit':'loss'" data-position="0.0">{{runner.book | number:'1.2-2'}}</td>
                                 </tr>
                           </tbody>
                        </table>
@@ -49,8 +49,8 @@
                                    <th class="bet-place-tbl-th" style="background-color: #49494A;">RATE</th>
                                    <th class="bet-odds-type bet-place-tbl-th">Yes</th>
                                    <th class="bet-place-tbl-th" style="background-color: #49494A;">RATE</th>
-                                   <th class="bet-odds-type bet-place-tbl-th">Position NO</th>
-                                   <th class="bet-odds-type bet-place-tbl-th">Position Yes</th>
+                                   <!-- <th class="bet-odds-type bet-place-tbl-th">Position NO</th>
+                                   <th class="bet-odds-type bet-place-tbl-th">Position Yes</th> -->
                                    <th class="bet-place-tbl-th" style="background-color: #49494A;">Action</th>
                                 </tr>
                              </thead>
@@ -62,12 +62,12 @@
                                     <td data-column="no_rate" id="14652_no_rate" class="no_rate bet-place-tbl-td bet-val-cent close-status">{{fancy.noRate}}</td>
                                     <td data-column="yes_runs" class="SessionTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer close-status" data-id="YES" match-id="5308" session-run-id="553201" session-id="14652" id="14652_yes">{{fancy.yesScore}}</td>
                                     <td data-column="yes_rate" class="yes_rate bet-place-tbl-td bet-val-cent close-status" id="14652_yes_rate">{{fancy.yesRate}}</td>
-                                    <td class="bet-place-tbl-td bet-val-cent" id="session_no_runns_14652">
+                                    <!-- <td class="bet-place-tbl-td bet-val-cent" id="session_no_runns_14652">
                                         0
                                     </td>
                                     <td class="bet-place-tbl-td bet-val-cent" id="session_yes_runns_14652">
                                        0
-                                    </td>
+                                    </td> -->
                                     <td class="bet-place-tbl-td">
                                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">POSITION</button> -->
                                        <a class="btn btn-info" data-method="get" data-remote="true" data-toggle="modal" data-target="#exampleModalLong" style="color: #fff!important;" (click)="getAnalysisfancyBook(fancy.id,fancy.name)">POSITION</a>
@@ -82,6 +82,46 @@
               </div>
            </div>
         </div>
+        <div class="">
+         <div class="row">
+            <div class="col-md-4 col-xs-8">
+               <form>
+                  <input type="text" placeholder="Search here..." data-ng-model="searchpnl" class="form-control"   style="height: 30px;">
+               </form>
+            </div>
+         </div>
+         <div class="ibox float-e-margins" data-ng-style="SessionPNldata.length>6?{'overflow-y': 'auto','-webkit-overflow-scrolling':'touch', 'height': '170px'}:''">
+            <div class="table-responsive">
+               <table  class="table tblpad table-striped table-bordered table-hover">
+                     <thead>
+                        <tr>
+                           <th>Market Name</th>
+                           <th>Result</th>
+                           <th>Profit & Loss</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr >
+                           <td title="'Market name'" class="tbltd" style="text-align: left;"><b>10 Over Runs</b></td>
+                           <td title="'Result'"  class="Cursor-pointer tbltd"><b>110</b></td>
+                           <td title="'P | L'"  class="Cursor-pointer tbltd"><b>20000.00</b></td>
+                           </tr>
+                           <!-- <tr >
+                              <td colspan="3">No Data Found...</td>
+                           </tr> -->
+                     </tbody>
+                     <tfoot>
+                        <tr>
+                           <th>Declared Market Total</th>
+                           <th></th>
+                           <th>2000.00</th>
+                        </tr>
+                     </tfoot>
+                     
+               </table>
+            </div>
+         </div>
+      </div>
      
         <!-- <div class="row" style="margin: 0 !important;">
            <div class="match-index-row header-top-spacing">
