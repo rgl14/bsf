@@ -19,7 +19,7 @@
   </button>
   <button (click)="Logout()" class="toolbar-avatar" mat-mini-fab color="warn" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
       <mat-icon>logout</mat-icon>
-    </button>
+  </button>
   <!-- <mat-menu #menu="matMenu">
   <button mat-menu-item>
     <mat-icon>dialpad</mat-icon>
@@ -99,7 +99,7 @@
           <i matListIcon class="fa fa-cogs"></i>
           <h3 matLine>Match Setting</h3>
         </mat-list-item> -->
-        <mat-list-item [routerLink]="'/managepassword'">
+        <mat-list-item [routerLink]="'/changepassword'">
           <i matListIcon class="fa fa-lock"></i>
           <h3 matLine>Change Password</h3>
         </mat-list-item>
@@ -174,12 +174,12 @@
 </mat-sidenav-container> -->
 <!-- <app-header></app-header> -->
 <!-- <app-markets></app-markets> -->
-<app-sidebar></app-sidebar>
-<mat-card style="padding: 60px 0px 0px !important;">
+<mat-card class="ticker">
   <marquee class="marq">
-    <div>!! Welcome To NewAdmin !!</div>
+    <div *ngFor="let ticker of tickerList">{{ticker.title}}</div>
   </marquee>
 </mat-card>
+<app-sidebar></app-sidebar>
 <router-outlet></router-outlet>
 <nav class="Bottomnav">
   <ul style="display: inline-flex">

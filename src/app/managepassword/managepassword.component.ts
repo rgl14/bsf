@@ -12,10 +12,12 @@ import { SharedataService } from '../services/sharedata.service';
   styleUrls: ['./managepassword.component.css']
 })
 export class ManagepasswordComponent implements OnInit {
-  changepasswordform:FormGroup;
+  managepassword:FormGroup;
   submitted:boolean=false;
   userId: string;
   accountInfo: any;
+  userName: string;
+  name: string;
   constructor
   (
     private usermanagement:UsermanagementService,
@@ -27,12 +29,12 @@ export class ManagepasswordComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-    this.changepasswordform=this.formbuilder.group({
+    this.name=this.route.snapshot.paramMap.get('name');
+    this.userName=this.route.snapshot.paramMap.get('userName');
+    this.managepassword=this.formbuilder.group({
       // oldpassword:['',Validators.required],
       newpassword:['',Validators.required],
-      confirmpassword:['',Validators.required],
-    }, {
-      validator: MustMatch('newpassword', 'confirmpassword')
+      yourpassword:['',Validators.required],
     })
 
     this.sharedata.AccountInfoSource.subscribe(data=>{
@@ -43,19 +45,19 @@ export class ManagepasswordComponent implements OnInit {
 
   }
 
-  get f() { return this.changepasswordform.controls; }
+  get f() { return this.managepassword.controls; }
 
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.changepasswordform.invalid) {  
+    if (this.managepassword.invalid) {  
       this.notification.error('Please Enter values');
       return;
     }else{
-      var changepassworddata=this.changepasswordform.value;
+      var changepassworddata=this.managepassword.value;
       console.log(changepassworddata)
       var data={
-        "changebyPwd":this.accountInfo.userName,
+        "changebyPwd":changepassworddata.yourpassword,
         "context":"web",
         "newPwd":changepassworddata.newpassword,
         "userId":this.userId
@@ -64,7 +66,7 @@ export class ManagepasswordComponent implements OnInit {
       this.usermanagement.getResetPwd(data).subscribe(resp=>{
         if(resp.status=='Success'){
           this.notification.success(resp.result);
-          this.changepasswordform.reset();
+          this.managepassword.reset();
         }else{
           this.notification.error(resp.result);
         }

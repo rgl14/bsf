@@ -4,12 +4,12 @@
         <li><a [routerLink]="'/home'"><i class="fa fa fa-users"></i> Manage Clients</a>
             <div class="sub-menu-1">
                     <ul>
-                            <li *ngIf="userType==='1'"><a [routerLink]="'/admin'" ><i class="fa fa fa-users"></i> Company</a></li>
-                            <li *ngIf="userType==='1' || userType==='2'"><a [routerLink]="'/supermaster'"><i class="fa fa fa-users"></i> Super Master</a></li>
-                            <li *ngIf="userType==='1' || userType==='2' || userType==='3'"><a [routerLink]="'/master'"><i class="fa fa fa-users"></i> Master</a></li>
-                            <li *ngIf="userType==='1' || userType==='2' || userType==='3' || userType==='4'"><a [routerLink]="'/superagent'"><i class="fa fa fa-users"></i>Agent</a></li>
-                            <!-- <li *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5'"><a [routerLink]="'/agent'"><i class="fa fa fa-users"></i> Agent</a></li> -->
-                            <li *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5'"><a [routerLink]="'/clients'"><i class="fa fa fa-users"></i> Manage Clients</a></li>
+                            <li *ngIf="userType===1"><a [routerLink]="'/admin'" ><i class="fa fa fa-users"></i> Company</a></li>
+                            <li *ngIf="userType===1 || userType===2"><a [routerLink]="'/supermaster'"><i class="fa fa fa-users"></i> Super Master</a></li>
+                            <li *ngIf="userType===1 || userType===2 || userType===3"><a [routerLink]="'/master'"><i class="fa fa fa-users"></i> Master</a></li>
+                            <li *ngIf="userType===1 || userType===2 || userType===3 || userType===4"><a [routerLink]="'/superagent'"><i class="fa fa fa-users"></i> Agent</a></li>
+                            <!-- <li *ngIf="userType===2 || userType===3 || userType===4 || userType===5"><a [routerLink]="'/agent'"><i class="fa fa fa-users"></i> Agent</a></li> -->
+                            <li *ngIf="userType===2 || userType===3 || userType===4 || userType===5"><a [routerLink]="'/clients'"><i class="fa fa fa-users"></i> Manage Clients</a></li>
                             <li><a [routerLink]="'/updatelimit'"><i class="fa fa fa-users"></i> Update Limit</a></li>
                     </ul>    
             </div>
@@ -41,7 +41,7 @@
                     </ul>    
             </div>
         </li>
-        <li *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5' || userType==='6'"><a [routerLink]="'/managepassword'"><i class="fa fa-lock"></i> Manage Password</a></li>
+        <li *ngIf="userType===2 || userType===3 || userType===4 || userType===5 || userType===6"><a [routerLink]="'/changepassword'"><i class="fa fa-lock"></i> Change Password</a></li>
         <li><a [routerLink]="'/home'"><i class="fa fa-book"></i> Manage Ledgers</a>
             <div class="sub-menu-1">
                     <ul>

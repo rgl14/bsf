@@ -2,13 +2,22 @@
   @media screen and (min-width: 600px) {
     .Bottomnav {display: none;}
     .footer{display: block;}
+    
   }
+  
   .bg-header{
     /* background-image: linear-gradient(to top left, #0084e7, #00407f); */
     background: #434343;
     color: #fff;
     position: fixed;
     z-index: 1;
+  }
+  .mat-card{
+    padding: 65px 0px 0px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .mat-card{padding: 60px 0px 0px;}
   }
   nav .select {
     color:red !important;

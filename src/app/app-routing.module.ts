@@ -77,6 +77,8 @@ import { MarketCtlgComponent } from './market-ctlg/market-ctlg.component';
 import { PackageSettingsComponent } from './package-settings/package-settings.component';
 import { CreatePackageComponent } from './create-package/create-package.component';
 import { RulesComponent } from './rules/rules.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { MarketanalysisComponent } from './marketanalysis/marketanalysis.component';
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -123,7 +125,7 @@ const routes: Routes = [
   { path: 'createclient', component: CreateclientComponent },
   { path: 'createclient/:userId', component: CreateclientComponent },
   { path: 'managepassword', component: ManagepasswordComponent },
-  { path: 'managepassword/:userId', component: ManagepasswordComponent },
+  { path: 'managepassword/:userId/:name/:userName', component: ManagepasswordComponent },
   { path: 'collectionreport', component: CollectionreportComponent },
   { path: 'myledger', component: MyledgersComponent },
   { path: 'profitnloss', component: ProfitnlossComponent },
@@ -175,6 +177,8 @@ const routes: Routes = [
   { path: 'create_pckg', component: CreatePackageComponent },
   { path: 'edit_pckg/:packageId', component: CreatePackageComponent },
   { path: 'rules', component: RulesComponent },
+  { path: 'changepassword', component: ChangepasswordComponent },
+  { path: 'analysismarket', component: MarketanalysisComponent },
 ];
 
 @NgModule({
@@ -256,5 +260,7 @@ export const componentRouting = [
   BmrateComponent,
   UpdatelimitComponent,
   MarketCtlgComponent,
-  RulesComponent
+  RulesComponent,
+  ChangepasswordComponent,
+  MarketanalysisComponent
 ]

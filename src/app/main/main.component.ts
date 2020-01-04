@@ -6,6 +6,7 @@ import { TokenService } from '../services/token.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SharedataService } from '../services/sharedata.service';
 import { AnalysisSignalrService } from '../services/analysis-signalr.service';
+import { TickerService } from '../services/ticker.service';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +15,7 @@ import { AnalysisSignalrService } from '../services/analysis-signalr.service';
 })
 export class MainComponent implements OnInit {
   userType: any;
+  tickerList: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -22,15 +24,20 @@ export class MainComponent implements OnInit {
     private notifyService: NotificationService,
     private sharedata :SharedataService,
     private usermanagement:UsermanagementService,
-    private analysisservice:AnalysisSignalrService
+    private analysisservice:AnalysisSignalrService,
+    private ticker:TickerService,
   ) { }
 
   ngOnInit() {
     this.usermanagement.getAccountInfo().subscribe(resp=>{
-      console.log(resp.data)
+      // console.log(resp.data);
       this.sharedata.shareAccountInfo(resp.data);
       let address="http://173.249.43.228:11334";
       this.analysisservice.connectAnalysis(address,resp.data.userId)
+    })
+    this.ticker.GetTickerList().subscribe(resp=>{
+      // console.log(resp)
+      this.tickerList=resp.tickerList;
     })
 
     this.userType=this.tokenService.getUserType();
@@ -51,10 +58,6 @@ export class MainComponent implements OnInit {
       }
       else {
         this.notifyService.error(data.result);
-      }
-    }, err => {
-      if (err.status === 401) {
-        this.tokenService.removeToken();
       }
     })
   }
