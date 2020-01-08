@@ -111,6 +111,17 @@ export class UsermanagementService {
     return this.http.get(`${BASEURL}/Usermanagement/GetCommNLimits`);
   }
 
+  GetBettingStatus(): Observable<any> {
+    return this.http.get(`${BASEURL}/Settings/GetBettingStatus`);
+  }
+
+  UpdateBettingStatus(FLAG): Observable<any> {
+    return this.http.post(
+      `${BASEURL}/Settings/UpdateBettingStatus?flag=${FLAG}`,
+      {}
+    );
+  }
+
   UpdateFixLimits(USERID, LIMIT): Observable<any> {
     return this.http.post(
       `${BASEURL}/Limits/UpdateFixLimits?userid=${USERID}&limit=${LIMIT}`,

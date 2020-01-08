@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-sessionbetslips',
-  templateUrl: './sessionbetslips.component.html',
-  styleUrls: ['./sessionbetslips.component.css']
+  selector: 'app-marketreport',
+  templateUrl: './marketreport.component.html',
+  styleUrls: ['./marketreport.component.css']
 })
-export class SessionbetslipsComponent implements OnInit {
+export class MarketreportComponent implements OnInit {
   title: string;
 
   constructor(private route:ActivatedRoute) { }

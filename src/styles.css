@@ -37,6 +37,52 @@ button:focus {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 767px){
+  .back_lay_color td:nth-child(2), .back_lay_color td:nth-child(3), .back_lay_color td:nth-child(6), .back_lay_color td:nth-child(7), .mobile_heading th:nth-child(2), .mobile_heading th:nth-child(3), .mobile_heading th:nth-child(6), .mobile_heading th:nth-child(7), .session_content td:nth-child(2), .session_content td:nth-child(3), .session_content td:nth-child(6), .session_content td:nth-child(7) {
+    display: none;
+  }
+  /* .mobile_heading th:first-child, .session_content td:first-child {
+      width: 60%;
+      float: left;
+  }
+  .session_content td:first-child {
+    width: 60%;
+    float: left;
+  } */
+  .session_content td p {
+      position: inherit;
+      right: 0;
+      text-align: center;
+      width: 100%;
+  }
+  
+}
+/* 
+@media only screen and (max-width: 1024px){
+  .mobile_heading th {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 1170px){
+  .mobile_heading th {
+    width: 140px;
+  }
+} */
+
+
+@media (max-width: 992px){
+.session_content td p {
+    padding-top: 0!important;
+}
+.session_content td p {
+  width: 26%;
+  display: inline-block;
+}
+}
+
+
+
 /*Bottom Menu CSS*/
 .bottom-sheet-header {
   padding: 10px !important;

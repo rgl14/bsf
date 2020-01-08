@@ -74,3 +74,12 @@
     position: absolute;
     right: 0;
 }
+
+.button-play{
+  background-color: #9ed408;
+  margin-right: 10px;
+}
+.button-pause{
+  background-color: #e92d2d;
+  margin-right: 10px;
+}

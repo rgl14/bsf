@@ -39,20 +39,20 @@
                                      <div *ngIf="submitted && f.myShare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.myShare.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint"><b>Note:</b>Max Super Master Share + My Share should be set below or equal to <b>{{accountInfo.maxMyShare}}</b></mat-hint>
+                                     <mat-hint class="hint"><b>Note:</b> Max Company Share + My Share + Agent Share should be set equal to <b>{{accountInfo.maxMyShare}}</b></mat-hint>
                                   </div>
                          </div>
     
                          <div class="hr-line-dashed"></div>
     
                           <div class="form-group">
-                                   <label class="col-sm-2 control-label">Max Super Master Share</label>
+                                   <label class="col-sm-2 control-label">Max Agent Share</label>
                                    <div class="col-sm-10">              
                                      <input  formControlName="Supershare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Supershare.errors }"  max="100" min="0" name="maximum_share" placeholder="Super Master Share"  type="number" >
                                      <div *ngIf="submitted && f.Supershare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.Supershare.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note:</b>Max Super Master Share + My Share should be set below or equal to <b>{{accountInfo.minCompanyShare}}</b></mat-hint>
+                                     <!-- <mat-hint class="hint" ><b>Note:</b>Max Super Master Share + My Share should be set below or equal to <b>{{accountInfo.minCompanyShare}}</b></mat-hint> -->
                                   </div>
                          </div>
     

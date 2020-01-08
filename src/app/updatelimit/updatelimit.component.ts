@@ -93,21 +93,20 @@ export class UpdatelimitComponent implements OnInit {
   ngOnInit() {
     this.userType=this.usermanagement.getUserType();
     this.usermanagement.GetCommNLimits().subscribe(resp=>{
-      console.log(resp) 
-      this.adminList=resp.adminList
-      this.superMasterList=resp.superMasterList
-      this.masterList=resp.masterList
-      this.agentList=resp.agentList
-      this.summaryData=resp.summaryData
-      console.log(this.summaryData)
-      this.userList=resp.userList
+      // console.log(resp) 
+      this.adminList=resp.adminList;
+      this.superMasterList=resp.superMasterList;
+      this.masterList=resp.masterList;
+      this.agentList=resp.agentList;
+      this.summaryData=resp.summaryData;
+      this.userList=resp.userList;
     })
   }
 
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.gridApi.showLoadingOverlay();
+    // this.gridApi.showLoadingOverlay();
   }
 
 }

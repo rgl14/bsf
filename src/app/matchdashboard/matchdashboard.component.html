@@ -3,16 +3,17 @@
            <div class="col-lg-12">
               <div class="ibox float-e-margins">
                  <div class="ibox-title">
-                    <h1>Match Dashboard</h1>
+                    <h1>Match Dashboard - {{title}}</h1>
                  </div>
                         <div class="button-row ibox-content mob-button">
-                          <button mat-raised-button color="primary" [routerLink]="['/betslips']">Bet Slips</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/sessionbetslips']">Session Bet Slip</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/betslips',matchId,title]">Odds Bet Slips</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/sessionbetslips',matchId,title]">Fancy Bet Slip</button>
                           <button mat-raised-button color="primary" [routerLink]="['/livereport']">Live Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/companyreport',matchId]">Company Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/clientreport',matchId]">Client Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/clientcollectionreport',matchId]">Collection Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/sessionearningrepport',matchId]">Session Earning Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/marketreport',matchId,title]">Market Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/companyreport',matchId,title]">Company Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/clientreport',matchId,title]">Client Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/clientcollectionreport',matchId,title]">Collection Report</button>
+                          <button mat-raised-button color="primary" [routerLink]="['/sessionearningrepport',matchId,title]">Session Earning Report</button>
                         </div>
               </div>
            </div>

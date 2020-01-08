@@ -58,7 +58,7 @@ export class AnalysisSignalrService {
 
     this.analysisProxy.on("BroadcastSubscribedData", (analysis) => {
       // console.log(analysis);
-      analysis = this.AFService.analysisFormat(analysis);
+      analysis = this.AFService.analysisFormat(analysis,userId);
       this.currentAnalysis.next(analysis);
     });
   }

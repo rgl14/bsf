@@ -85,15 +85,18 @@
         <div class="">
          <div class="row">
             <div class="col-md-4 col-xs-8">
-               <form>
+               <!-- <form>
                   <input type="text" placeholder="Search here..." data-ng-model="searchpnl" class="form-control"   style="height: 30px;">
-               </form>
+               </form> -->
             </div>
          </div>
          <div class="ibox float-e-margins" data-ng-style="SessionPNldata.length>6?{'overflow-y': 'auto','-webkit-overflow-scrolling':'touch', 'height': '170px'}:''">
             <div class="table-responsive">
                <table  class="table tblpad table-striped table-bordered table-hover">
                      <thead>
+                        <tr>
+                           <th colspan="4" class="bet-place-tbl-th align-left" style="background-color:#6E8FC9;">Settled Markets</th>
+                        </tr>
                         <tr>
                            <th>Market Name</th>
                            <th>Result</th>
@@ -105,16 +108,25 @@
                            <td title="'Market name'" class="tbltd" style="text-align: left;"><b>10 Over Runs</b></td>
                            <td title="'Result'"  class="Cursor-pointer tbltd"><b>110</b></td>
                            <td title="'P | L'"  class="Cursor-pointer tbltd"><b>20000.00</b></td>
-                           </tr>
+                        </tr>
+                        <tr >
+                           <td title="'Market name'" class="tbltd" style="text-align: left;"><b>15 Over Runs</b></td>
+                           <td title="'Result'"  class="Cursor-pointer tbltd"><b>145</b></td>
+                           <td title="'P | L'"  class="Cursor-pointer tbltd"><b>20000.00</b></td>
+                        </tr>
+                        <tr >
+                           <td title="'Market name'" class="tbltd" style="text-align: left;"><b>20 Over Runs</b></td>
+                           <td title="'Result'"  class="Cursor-pointer tbltd"><b>160</b></td>
+                           <td title="'P | L'"  class="Cursor-pointer tbltd"><b>20000.00</b></td>
+                        </tr>
                            <!-- <tr >
                               <td colspan="3">No Data Found...</td>
                            </tr> -->
                      </tbody>
                      <tfoot>
                         <tr>
-                           <th>Declared Market Total</th>
-                           <th></th>
-                           <th>2000.00</th>
+                           <th colspan="2" style="text-align: right;">Declared Market Total</th>
+                           <th>60000.00</th>
                         </tr>
                      </tfoot>
                      

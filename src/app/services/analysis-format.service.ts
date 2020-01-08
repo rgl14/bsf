@@ -8,7 +8,7 @@ export class AnalysisFormatService {
 
   constructor() { }
 
-  analysisFormat(analysisData) {
+  analysisFormat(analysisData,userId) {
     var sportDataFormat = {};
     _.forEach(analysisData, (item, index) => {
       var eventListFormat = {};
@@ -16,17 +16,23 @@ export class AnalysisFormatService {
         item2['sportBfId'] = item.bfId;
         item2['sportName'] = item.name;
         item2['sportId'] = item.id;
-        if (item2._admReport[1].moBetdata || item2._admReport[1].fancyBetdata || item2._admReport[1].bmBookData) {
-          item2['isBets'] = true;
-        }
-        else {
+        if(item2._admReport[userId]!=undefined){
+          if (item2._admReport[userId].moBetdata || item2._admReport[userId].fancyBetdata || item2._admReport[userId].bmBookData) {
+            item2['isBets'] = true;
+          }
+          else {
+            item2['isBets'] = false;
+          }
+          var matchDateTime = item2.eventDate.split('-')[2].split(' ')[0];
+          var currentDateTime = item2._admReport[userId].currentTime.split('-')[2].split(' ')[0];
+          var day = parseInt(matchDateTime) - parseInt(currentDateTime);
+        }else {
           item2['isBets'] = false;
         }
+        
         item2['upcomming'] = 0;
 
-        var matchDateTime = item2.eventDate.split('-')[2].split(' ')[0];
-        var currentDateTime = item2._admReport[1].currentTime.split('-')[2].split(' ')[0];
-        var day = parseInt(matchDateTime) - parseInt(currentDateTime);
+        
         // console.log(day)
 
         if (item2.isInplay == 0 && day == 0) {

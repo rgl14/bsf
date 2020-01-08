@@ -107,8 +107,8 @@ export class CreateclientComponent implements OnInit {
     this.formControlsmysharechanged()
     this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
-    this.formControlmcommchanged()
-    this.formControlscommchanged()
+    // this.formControlmcommchanged()
+    // this.formControlscommchanged()
   }
   onClear() {
     this.submitted = false;
@@ -140,7 +140,7 @@ export class CreateclientComponent implements OnInit {
               var editusersdata={
                 "MComm":this.edituserdata.MComm,
                 "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.Supershare,
+                "agentShare":this.edituserdata.Clientshare,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -176,7 +176,7 @@ export class CreateclientComponent implements OnInit {
             var data={
               "MComm":this.userdata.MComm,
               "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.Supershare,
+              "agentShare":this.userdata.Clientshare,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -240,22 +240,22 @@ export class CreateclientComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.clientform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.matchComm){
-            this.clientform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-    });
-  }
-  formControlscommchanged(){
-    this.clientform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.sessionComm){
-            this.clientform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-          }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.clientform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.clientform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //   });
+  // }
+  // formControlscommchanged(){
+  //   this.clientform.get('SComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.sessionComm){
+  //           this.clientform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+  //         }
+  //   });
+  // }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{

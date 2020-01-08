@@ -90,8 +90,8 @@ export class CreateagentComponent implements OnInit {
     this.formControlsmysharechanged()
     this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
-    this.formControlmcommchanged()
-    this.formControlscommchanged()
+    // this.formControlmcommchanged()
+    // this.formControlscommchanged()
   }
   onClear() {
     this.submitted = false;
@@ -123,7 +123,7 @@ export class CreateagentComponent implements OnInit {
               var editusersdata={
                 "MComm":this.edituserdata.MComm,
                 "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.Supershare,
+                "agentShare":this.edituserdata.Agentshare,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -159,7 +159,7 @@ export class CreateagentComponent implements OnInit {
             var data={
               "MComm":this.userdata.MComm,
               "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.Supershare,
+              "agentShare":this.userdata.Agentshare,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -223,22 +223,22 @@ export class CreateagentComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.agentform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.matchComm){
-            this.agentform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-    });
-  }
-  formControlscommchanged(){
-    this.agentform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.sessionComm){
-            this.agentform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-          }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.agentform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.agentform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //   });
+  // }
+  // formControlscommchanged(){
+  //   this.agentform.get('SComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.sessionComm){
+  //           this.agentform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+  //         }
+  //   });
+  // }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{

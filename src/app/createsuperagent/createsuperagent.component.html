@@ -3,7 +3,7 @@
          <div class="col-lg-12">
              <div class="ibox float-e-margins">
                  <div class="ibox-title">
-                     <h5>New Super Agent</h5>
+                     <h5>New Agent</h5>
                  </div>
                  
                  <div class="ibox-content-form table-responsive">
@@ -39,101 +39,101 @@
                                      <div *ngIf="submitted && f.myShare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.myShare.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint"><b>Note:</b>Max Super Agent Share + My Share should be set below or equal to <b>{{accountInfo.maxMyShare}}</b></mat-hint>
+                                     <mat-hint class="hint"><b>Note:</b> Max Company Share + My Share + Agent Share should be set equal to <b>{{accountInfo.maxMyShare}}</b></mat-hint>
                                   </div>
                          </div>
     
                          <div class="hr-line-dashed"></div>
     
                           <div class="form-group">
-                                   <label class="col-sm-2 control-label">Max Super Agent Share</label>
+                                   <label class="col-sm-2 control-label">Max Agent Share</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="Superagentshare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Superagentshare.errors }"  max="100" min="0" name="maximum_share" placeholder="Super Agent Share"  type="number" value="0.0">
+                                     <input  formControlName="Superagentshare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Superagentshare.errors }"  max="100" min="0" name="maximum_share" placeholder="Agent Share"  type="number" value="0.0">
                                      <div *ngIf="submitted && f.Superagentshare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.Superagentshare.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note:</b>Max Super Agent Share + My Share should be set below or equal to <b>{{accountInfo.minCompanyShare}}</b></mat-hint>
+                                     <!-- <mat-hint class="hint" ><b>Note:</b>Max Agent Share + My Share should be set below or equal to <b>{{accountInfo.minCompanyShare}}</b></mat-hint> -->
                                   </div>
                          </div>
     
                          <div class="hr-line-dashed"></div>
     
                           <div class="form-group">
-                                   <label class="col-sm-2 control-label">Super Agent Fix Limit</label>
+                                   <label class="col-sm-2 control-label">Agent Fix Limit</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="fixLimit" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fixLimit.errors }"  min="0" name="fix_limit" placeholder="Super Agent Fix Limit"  type="number"  >
+                                     <input  formControlName="fixLimit" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fixLimit.errors }"  min="0" name="fix_limit" placeholder="Agent Fix Limit"  type="number"  >
                                      <div *ngIf="submitted && f.fixLimit.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.fixLimit.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note</b> : Super Agent Fix Limit set below or equal to <b>{{accountInfo.remainingLimit-totalremaininglimit | number : '1.2'}}</b></mat-hint>
+                                     <mat-hint class="hint" ><b>Note</b> : Agent Fix Limit set below or equal to <b>{{accountInfo.remainingLimit-totalremaininglimit | number : '1.2'}}</b></mat-hint>
                                   </div>
                          </div>
 
                          <div class="hr-line-dashed"></div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Super Agent Fixed Fees</label>
+                            <label class="col-sm-2 control-label">Agent Fixed Fees</label>
                             <div class="col-sm-10">
                               <input formControlName="fixedfees" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.fixedfees.errors }" max="100" min="0"
-                                name="match_commission" placeholder="Super Agent Match Commission" type="number">
+                                name="match_commission" placeholder="Agent Match Commission" type="number">
                               <div *ngIf="submitted && f.fixedfees.errors" class="invalid-feedback">
                                 <mat-error *ngIf="f.fixedfees.errors.required">This field is mandatory.</mat-error>
                               </div>
-                              <!-- <mat-hint class="hint"><b>Note</b> : Super Agent Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
+                              <!-- <mat-hint class="hint"><b>Note</b> : Agent Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
                               </mat-hint> -->
                             </div>
                           </div>
     
                          <div class="hr-line-dashed"></div>
                           <div class="form-group">
-                                   <label class="col-sm-2 control-label">Super Agent Match Commission</label>
+                                   <label class="col-sm-2 control-label">Agent Match Commission</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="MComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.MComm.errors }"  max="100" min="0" name="match_commission" placeholder="Super Agent Match Commission"  type="number" >
+                                     <input  formControlName="MComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.MComm.errors }"  max="100" min="0" name="match_commission" placeholder="Agent Match Commission"  type="number" >
                                      <div *ngIf="submitted && f.MComm.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.MComm.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note</b> : Super Agent Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b></mat-hint>
+                                     <mat-hint class="hint" ><b>Note</b> : Agent Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b></mat-hint>
                                   </div>
                          </div>
     
                          <div class="hr-line-dashed"></div>
                           <div class="form-group">
-                                   <label class="col-sm-2 control-label">Super Agent Session Commission</label>
+                                   <label class="col-sm-2 control-label">Agent Session Commission</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="SComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SComm.errors }"  max="100" min="0" name="session_commission" placeholder="Super Agent Session Commission" type="number" > 
+                                     <input  formControlName="SComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SComm.errors }"  max="100" min="0" name="session_commission" placeholder="Agent Session Commission" type="number" > 
                                      <div *ngIf="submitted && f.SComm.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.SComm.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note</b> : Super Agent Session Commission set below or equal to <b>{{accountInfo.sessionComm}}</b></mat-hint>
+                                     <mat-hint class="hint" ><b>Note</b> : Agent Session Commission set below or equal to <b>{{accountInfo.sessionComm}}</b></mat-hint>
                                   </div>    
                          </div>  
 
                          <div class="hr-line-dashed"></div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Super Agent Match Losing Commission</label>
+                            <label class="col-sm-2 control-label">Agent Match Losing Commission</label>
                             <div class="col-sm-10">
                               <input formControlName="MloseComm" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.MloseComm.errors }" max="100" min="0"
-                                name="session_commission" placeholder="Super Agent Match Losing Commission" type="number" >
+                                name="session_commission" placeholder="Agent Match Losing Commission" type="number" >
                               <div *ngIf="submitted && f.MloseComm.errors" class="invalid-feedback">
                                 <mat-error *ngIf="f.MloseComm.errors.required">This field is mandatory.</mat-error>
                               </div>
-                              <mat-hint class="hint"><b>Note</b> : Super Agent Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
+                              <mat-hint class="hint"><b>Note</b> : Agent Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
                               </mat-hint>
                             </div>
                           </div>
 
                           <div class="hr-line-dashed"></div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Super Agent Session Losing Commission</label>
+                            <label class="col-sm-2 control-label">Agent Session Losing Commission</label>
                             <div class="col-sm-10">
                               <input formControlName="SloseComm" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.SloseComm.errors }" max="100" min="0"
-                                name="session_commission" placeholder="Super Agent Session Losing Commission" type="number" >
+                                name="session_commission" placeholder="Agent Session Losing Commission" type="number" >
                               <div *ngIf="submitted && f.SloseComm.errors" class="invalid-feedback">
                                 <mat-error *ngIf="f.SloseComm.errors.required">This field is mandatory.</mat-error>
                               </div>
-                              <mat-hint class="hint"><b>Note</b> : Super Agent Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
+                              <mat-hint class="hint"><b>Note</b> : Agent Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
                               </mat-hint>
                             </div>
                           </div>

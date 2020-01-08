@@ -163,7 +163,7 @@
             <h5>Summary</h5>
           </div>
           <div class="ibox-content-table table-responsive">
-              <table class="table table-bordered">
+              <table class="table table-bordered" *ngIf="summaryData">
                   <thead>
                       <tr>
                           <th>Fix Limit</th>
@@ -177,12 +177,12 @@
                   </thead>
                   <tbody>
                       <tr>
-                          <td>{{summaryData?.fixLimit | number : '1.2-2'}}</td>     
-                          <td>{{summaryData?.limitDistributedBelow | number : '1.2-2'}}</td>     
-                          <td>{{summaryData?.limitWithClients | number : '1.2-2'}}</td>     
-                          <td>{{summaryData?.LedgerExposure | number : '1.2-2'}}</td>     
-                          <td>{{summaryData?.currentLimit | number : '1.2-2'}}</td>     
-                          <td>{{summaryData?.remainingLimit | number : '1.2-2'}}</td>     
+                          <td [ngClass]="(summaryData.fixLimit>=0)?'profit':'loss'">{{summaryData?.fixLimit | number : '1.2-2'}}</td>     
+                          <td [ngClass]="(summaryData.limitDistributedBelow>=0)?'profit':'loss'">{{summaryData?.limitDistributedBelow | number : '1.2-2'}}</td>     
+                          <td [ngClass]="(summaryData.limitWithClients>=0)?'profit':'loss'">{{summaryData?.limitWithClients | number : '1.2-2'}}</td>     
+                          <td [ngClass]="(summaryData.LedgerExposure>=0)?'profit':'loss'">{{summaryData?.LedgerExposure | number : '1.2-2'}}</td>     
+                          <td [ngClass]="(summaryData.currentLimit>=0)?'profit':'loss'">{{summaryData?.currentLimit | number : '1.2-2'}}</td>     
+                          <td style="font-weight: bolder;" [ngClass]="(summaryData.remainingLimit>=0)?'profit':'loss'">{{summaryData?.remainingLimit | number : '1.2-2'}}</td>     
                       </tr>
                 </tbody>
             </table>

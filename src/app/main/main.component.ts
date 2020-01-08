@@ -16,6 +16,7 @@ import { TickerService } from '../services/ticker.service';
 export class MainComponent implements OnInit {
   userType: any;
   tickerList: any;
+  betingstatus: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -39,6 +40,10 @@ export class MainComponent implements OnInit {
       // console.log(resp)
       this.tickerList=resp.tickerList;
     })
+    this.usermanagement.GetBettingStatus().subscribe(resp=>{
+      console.log(resp)
+      this.betingstatus=resp.status;
+    })
 
     this.userType=this.tokenService.getUserType();
   }
@@ -57,6 +62,16 @@ export class MainComponent implements OnInit {
         window.location.reload();
       }
       else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+
+  upadateBettingstatus(status){
+    this.usermanagement.UpdateBettingStatus(status).subscribe(data=>{
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+      }else{
         this.notifyService.error(data.result);
       }
     })

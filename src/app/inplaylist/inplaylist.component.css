@@ -4,7 +4,7 @@
 }
 .table {
     width: 100%;
-    max-width: 100%;
+    min-width: 100%;
     margin-bottom: 20px;
 }
 .lotus-title {
@@ -31,7 +31,7 @@ h2 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .sport_row{
         margin-bottom: 5px;
         padding-bottom: 10px;
@@ -61,12 +61,12 @@ h2 {
     line-height: 40px;
     vertical-align: top;
 }
-@media (max-width: 767px){
+@media screen and (min-width: 767px){
     .sport_name {
         text-align: left;
     }
 }
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .sport_name[_ngcontent-vat-c13] {
         width: 100%;
         /* text-align: center; */
@@ -87,13 +87,13 @@ h2 {
     line-height: 26px;
     vertical-align: top;
 }
-@media (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_status {
         width: 49%;
     }
 }
 
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_status {
         padding-right: 10px;
         /* width: 100%; */
@@ -102,13 +102,13 @@ h2 {
         line-height: inherit;
     }
 }
-@media (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_status span {
         text-align: left!important;
     }
 }
 
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_status span {
         width: 100%;
         text-align: center;
@@ -127,7 +127,7 @@ h2 {
 .match_time {
     line-height: 20px!important;
 }
-@media (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_time {
         width: 49%;
         text-align: right;
@@ -135,7 +135,7 @@ h2 {
 }
 
 
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_time {
         display: inline-block;
         /* text-align: center; */
@@ -143,12 +143,12 @@ h2 {
         vertical-align: text-bottom;
     }
 }
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_odds_front {
         text-align: center;
     }
 }
-@media screen and (max-width: 767px){
+@media screen and (min-width: 767px){
     .match_odds_front {
         width: 100%;
     }

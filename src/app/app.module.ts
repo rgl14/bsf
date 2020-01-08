@@ -45,6 +45,7 @@ import { FancySignalrService } from './services/fancy-signalr.service';
 import { MarketSignalrService } from './services/market-signalr.service';
 import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
 import { RemoveSpacePipe } from './Directives/removespacepipe';
+import { UseranalysisComponent } from './useranalysis/useranalysis.component';
 
 
 
@@ -78,6 +79,7 @@ import { RemoveSpacePipe } from './Directives/removespacepipe';
     FancyBooksettingDialog,
     CellcurrentlimittextfeildComponent,
     RemoveSpacePipe,
+    UseranalysisComponent,
     
   ],
   imports: [

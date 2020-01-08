@@ -106,8 +106,8 @@ export class CreatesuperComponent implements OnInit {
     this.formControlsmysharechanged()
     this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
-    this.formControlmcommchanged()
-    this.formControlscommchanged()
+    // this.formControlmcommchanged()
+    // this.formControlscommchanged()
   }
   onClear() {
     // this.submitted = false;
@@ -239,22 +239,22 @@ export class CreatesuperComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.supermasterform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.matchComm){
-            this.supermasterform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-    });
-  }
-  formControlscommchanged(){
-    this.supermasterform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.sessionComm){
-            this.supermasterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-          }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.supermasterform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.supermasterform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //   });
+  // }
+  // formControlscommchanged(){
+  //   this.supermasterform.get('SComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.sessionComm){
+  //           this.supermasterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+  //         }
+  //   });
+  // }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{

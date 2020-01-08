@@ -14,26 +14,20 @@
     (click)="openBottomSheet()"
   >
 </button> -->
+  <button  class="button-play" (click)="upadateBettingstatus(1)" mat-mini-fab *ngIf="userType==1 && betingstatus==0">
+    <i class="fa fa-play"></i>
+  </button>
+  <button  class="button-pause" (click)="upadateBettingstatus(0)" mat-mini-fab *ngIf="userType==1 && betingstatus==1">
+    <i class="fa fa-pause"></i>
+  </button>
   <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary" *ngIf="userType==1">
     <mat-icon>more_vert</mat-icon>
   </button>
   <button (click)="Logout()" class="toolbar-avatar" mat-mini-fab color="warn" *ngIf="userType==2 || userType==3 || userType==4 || userType==5 || userType==6">
       <mat-icon>logout</mat-icon>
   </button>
-  <!-- <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>dialpad</mat-icon>
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>voicemail</mat-icon>
-    <span>Check voice mail</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_off</mat-icon>
-    <span>Disable alerts</span>
-  </button>
-</mat-menu> -->
+  
+  <!-- class="fa fa-play" -->
   <mat-menu #menu="matMenu">
     <!-- <i matListIcon class="fa fa-thumbs-up"></i>
     <i matListIcon class="fa fa-thumbs-up"></i>

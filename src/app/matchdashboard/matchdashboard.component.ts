@@ -11,11 +11,13 @@ export class MatchdashboardComponent implements OnInit {
   matchId: string;
   matchMarkets: any;
   sessionMarkets: any;
+  title: string;
 
   constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
 
   ngOnInit() {
     this.matchId=this.route.snapshot.paramMap.get('matchId');
+    this.title=this.route.snapshot.paramMap.get('title');
     this.getreports.GetMatchDashboard(this.matchId).subscribe(resp=>{
       console.log(resp);
       this.matchMarkets=resp.matchMarkets;

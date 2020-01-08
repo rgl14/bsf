@@ -110,8 +110,8 @@ export class CreateadminComponent implements OnInit {
     this.formControlsmysharechanged()
     this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
-    this.formControlmcommchanged()
-    this.formControlscommchanged()
+    // this.formControlmcommchanged()
+    // this.formControlscommchanged()
   }
 
   onClear() {
@@ -133,6 +133,7 @@ export class CreateadminComponent implements OnInit {
           // console.log(this.Companyform)
           if(this.userId){
               this.edituserdata=this.Companyform.value;
+              console.log(this.Companyform.value)
               // if(this.edituserdata.isMComm){
               //   this.ismatchcomm=1;
               // }else{
@@ -146,7 +147,7 @@ export class CreateadminComponent implements OnInit {
               var editusersdata={
                 "MComm":this.edituserdata.MComm,
                 "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.agentShare,
+                "agentShare":this.edituserdata.CompanyShare,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -182,7 +183,7 @@ export class CreateadminComponent implements OnInit {
             var data={
               "MComm":this.userdata.MComm,
               "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.agentShare,
+              "agentShare":this.userdata.CompanyShare,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -246,22 +247,22 @@ export class CreateadminComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.Companyform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.matchComm){
-            this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-    });
-  }
-  formControlscommchanged(){
-    this.Companyform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.sessionComm){
-            this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-          }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.Companyform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //   });
+  // }
+  // formControlscommchanged(){
+  //   this.Companyform.get('SComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.sessionComm){
+  //           this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+  //         }
+  //   });
+  // }
 
 
   getuserdata(){

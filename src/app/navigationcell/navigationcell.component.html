@@ -1,5 +1,5 @@
 <a [routerLink]="['/userdashboard',data.userType,data.userId,data.userName,data.name]" *ngIf="data.userName!=undefined">{{data.userName}}</a>
-<a [routerLink]="['/matchdashboard',data.matchId]" *ngIf="data.title!=undefined">{{data.title}}</a>
+<a [routerLink]="['/matchdashboard',data.matchId,data.title]" *ngIf="data.title!=undefined">{{data.title}}</a>
 <!-- <div class="col-md-12 row" style="padding: 0" *ngIf="currentroute=='/fancy'">
     <div class="col-md-6 auto" style="padding: 0">
     <input type="radio" value="Auto" data-ng-model="rbtfancy" id="first-117973" data-ng-click="UpdateFRateMode(fancy.fancyCode,1);" class="ng-pristine ng-untouched ng-valid ng-not-empty" name="auto0">

@@ -79,6 +79,7 @@ import { CreatePackageComponent } from './create-package/create-package.componen
 import { RulesComponent } from './rules/rules.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { MarketanalysisComponent } from './marketanalysis/marketanalysis.component';
+import { MarketreportComponent } from './marketreport/marketreport.component';
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -136,15 +137,16 @@ const routes: Routes = [
   { path: 'cashledger/:userId/:userName/:name', component: CashledgerComponent },
   { path: 'coinhistory/:userId/:userName/:name', component: CoinhistoryComponent },
   { path: 'matchledger', component: MatchledgerComponent },
-  { path: 'matchdashboard/:matchId', component: MatchdashboardComponent },
-  { path: 'betslips', component: BetslipsComponent },
-  { path: 'sessionbetslips', component: SessionbetslipsComponent },
+  { path: 'matchdashboard/:matchId/:title', component: MatchdashboardComponent },
+  { path: 'betslips/:matchId/:title', component: BetslipsComponent },
+  { path: 'sessionbetslips/:matchId/:title', component: SessionbetslipsComponent },
+  { path: 'analysismarket/:sportBfId/:bfId/:id', component: MarketanalysisComponent },
   { path: 'livereport/:sportBfId/:bfId/:id', component: LivereportComponent },
-  { path: 'companyreport/:matchId', component: CompanyreportComponent },
+  { path: 'companyreport/:matchId/:title', component: CompanyreportComponent },
   { path: 'match_settlement', component: MatchsettlementComponent },
-  { path: 'clientreport/:matchId', component: ClientreportComponent },
-  { path: 'clientcollectionreport/:matchId', component: ClientcollectionreportComponent },
-  { path: 'sessionearningrepport/:matchId', component: SessionearningreportComponent },
+  { path: 'clientreport/:matchId/:title', component: ClientreportComponent },
+  { path: 'clientcollectionreport/:matchId/:title', component: ClientcollectionreportComponent },
+  { path: 'sessionearningrepport/:matchId/:title', component: SessionearningreportComponent },
   { path: 'marketinfo', component: MarketinfoComponent },
   { path: 'sessioninfo', component: SessioninfoComponent },
   { path: 'agentlist', component: AgentlistComponent },
@@ -178,7 +180,7 @@ const routes: Routes = [
   { path: 'edit_pckg/:packageId', component: CreatePackageComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'changepassword', component: ChangepasswordComponent },
-  { path: 'analysismarket', component: MarketanalysisComponent },
+  { path: 'marketreport/:matchId/:title', component: MarketreportComponent },
 ];
 
 @NgModule({
@@ -262,5 +264,6 @@ export const componentRouting = [
   MarketCtlgComponent,
   RulesComponent,
   ChangepasswordComponent,
-  MarketanalysisComponent
+  MarketanalysisComponent,
+  MarketreportComponent
 ]

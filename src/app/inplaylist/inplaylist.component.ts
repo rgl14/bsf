@@ -16,7 +16,6 @@ export class InplaylistComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.analysissubscribe=this.analysisservice.analysisSource.subscribe(resp=>{
       if(resp!=null){
-        
         this.inplayData=this.anlysisformat.inplayWise(resp,'1')
         // console.log(this.inplayData)
       }
