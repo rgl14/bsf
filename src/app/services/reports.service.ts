@@ -9,6 +9,10 @@ export class ReportsService {
 
   constructor(private http: HttpClient) { }
 
+  AnalysisReport(): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/AnalysisReport`);
+  }
+
   GetAllMatchPnl(): Observable<any> {
     return this.http.get(`${BASEURL}/Reports/GetAllMatchPnl`);
   }

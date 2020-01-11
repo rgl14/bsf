@@ -46,7 +46,7 @@ export class CreateagentComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Agentshare:['',Validators.required],
+            Agentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:['',Validators.required],
             SComm:['',Validators.required],
@@ -66,7 +66,7 @@ export class CreateagentComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Agentshare:['',Validators.required],
+            Agentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:['',Validators.required],
             SComm:['',Validators.required],
@@ -88,7 +88,7 @@ export class CreateagentComponent implements OnInit {
     
 
     this.formControlsmysharechanged()
-    this.formControlsmaxsharechanged()
+    // this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
     // this.formControlmcommchanged()
     // this.formControlscommchanged()
@@ -121,9 +121,9 @@ export class CreateagentComponent implements OnInit {
               //   this.issessioncomm=0;
               // }
               var editusersdata={
-                "MComm":this.edituserdata.MComm,
-                "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.Agentshare,
+                "MComm":this.agentform.get("MComm").value,
+                "SComm":this.agentform.get("SComm").value,
+                "agentShare":this.agentform.get("Agentshare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -132,8 +132,8 @@ export class CreateagentComponent implements OnInit {
                 "myShare":this.edituserdata.myShare,
                 "bookDisplayType":this.edituserdata.bookdisplaytype,
                 "commType":this.edituserdata.fixedfees,
-                "mLossingComm":this.edituserdata.MloseComm,
-                "sLossingComm":this.edituserdata.SloseComm,
+                "mLossingComm":this.agentform.get("MloseComm").value,
+                "sLossingComm":this.agentform.get("SloseComm").value,
                 "userID":this.userId
               }
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
@@ -157,9 +157,9 @@ export class CreateagentComponent implements OnInit {
               this.issessioncomm=0;
             }
             var data={
-              "MComm":this.userdata.MComm,
-              "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.Agentshare,
+              "MComm":this.agentform.get("MComm").value,
+              "SComm":this.agentform.get("SComm").value,
+              "agentShare":this.agentform.get("Agentshare").value,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -169,8 +169,8 @@ export class CreateagentComponent implements OnInit {
               "password":this.userdata.password,
               "bookDisplayType":this.userdata.bookdisplaytype,
               "commType":this.userdata.fixedfees,
-              "mLossingComm":this.userdata.MloseComm,
-              "sLossingComm":this.userdata.SloseComm,
+              "mLossingComm":this.agentform.get("MloseComm").value,
+              "sLossingComm":this.agentform.get("SloseComm").value,
               "userType":6
             }
             // console.log(data,"userdata")
@@ -199,21 +199,21 @@ export class CreateagentComponent implements OnInit {
             this.agentform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }else{
             let myshare = this.accountInfo.maxMyShare-mode;
-            this.accountInfo.CompanyShare=myshare;
+            this.agentform.controls['Agentshare'].setValue(myshare);
           }
     });
   }
-  formControlsmaxsharechanged(){
-    this.agentform.get('Agentshare').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.CompanyShare){
-            this.agentform.controls['Agentshare'].setValue(this.accountInfo.CompanyShare)
-          }else{
-            let maxshare = this.accountInfo.minCompanyShare-mode;
+  // formControlsmaxsharechanged(){
+  //   this.agentform.get('Agentshare').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.CompanyShare){
+  //           this.agentform.controls['Agentshare'].setValue(this.accountInfo.CompanyShare)
+  //         }else{
+  //           let maxshare = this.accountInfo.minCompanyShare-mode;
 
-          }
-    });
-  }
+  //         }
+  //   });
+  // }
   formControlfixlimitChanged() {
     this.agentform.get('fixLimit').valueChanges.subscribe(
         (mode: number) => {

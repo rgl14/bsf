@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy ,Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnalysisSignalrService } from '../services/analysis-signalr.service';
 import { SportDataService } from '../services/sport-data.service';
 import { FancySignalrService } from '../services/fancy-signalr.service';
 import { MarketSignalrService } from '../services/market-signalr.service';
 import { FancyService } from '../services/fancy.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import _ from "lodash";
 import { Subscription } from 'rxjs';
 import { UsermanagementService } from '../services/usermanagement.service';
@@ -56,6 +57,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
   fancybetArray=[];
   constructor(
     private usermanagement:UsermanagementService,
+    public dialog: MatDialog,
     private route:ActivatedRoute,
     private analysisservice:AnalysisSignalrService,
     private sportdataservice:SportDataService,
@@ -100,7 +102,8 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
             this.MObetdata=this.admReport.moBetdata;
           }
           if(this.admReport.fancyBetdata!=null ){
-            this.fancyBetdata=this.fancybetformat(this.admReport.fancyBetdata);
+            // this.fancyBetdata=this.fancybetformat(this.admReport.fancyBetdata);
+            this.fancybetformat(this.admReport.fancyBetdata)
           }
           if(this.admReport.bmBetdata!=null ){
             this.bmBetdata=this.admReport.bmBetdata;
@@ -125,12 +128,6 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
               this.AllMarkets[0].runnerData[index]["book"]=this.bookData.runner3Book;
             }
           });
-            
-          //   this.AllMarkets[0].runnerData[this.bookData.runner1name]["book"]=this.bookData.runner1Book;
-          //   this.AllMarkets[0].runnerData[this.bookData.runner2name]["book"]=this.bookData.runner2Book;
-          //   if(this.bookData.runner3name!=null){
-          //     this.AllMarkets[0].runnerData[this.bookData.runner3name]["book"]=this.bookData.runner3Book;
-          //   }
           }
           this.EventMarketId=this.Event.mktList[0].bfId;
           if(count==1){
@@ -230,17 +227,19 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
     }
     fancybetformat(fancybetdata){
       this.fancybetArray=[];
+      // console.log(fancybetdata)
       _.forEach(fancybetdata, (item, index) => {
         this.fancybetArray.push(item)
+      // console.log(item)
       })
-      return this.fancybetArray;
+      console.log(this.fancybetArray)
+      // return this.fancybetArray;
     }
     removeChangeClass(changeClass) {
       setTimeout(() => {
         changeClass.removeClass("spark");
       }, 300);
     }
-
     ToggleAccordian(state) {
       if (state == '1') {
         this.MatchTvHide = !this.MatchTvHide;
@@ -266,29 +265,91 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         this.bmBetHide = !this.bmBetHide;
       }
     }
+    
+
+    openDeleteBetDialog(bet): void {
+      console.log(bet)
+      const dialogRef = this.dialog.open(RejectBetdialog, {
+        width: '250px',
+        data:bet,
+      });
   
-    getAnalysisfancyBook(id,name){
-      this.fancyname=name;
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result)
+      });
+    }
+    openfancybookDialog(fancy): void {
+      console.log(fancy);
+      this.fancyservice.GetAnalysisFancyBook(fancy.id).subscribe(resp=>{
+        this.fancybook=resp.data;
+        const dialogRef = this.dialog.open(FancyBookDialog, {
+          width: '250px',
+          data:{
+            betdata:fancy,
+            book:this.fancybook
+          }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(result)
+        });
+      })
+      
+    }
+
+    getAnalysisfancyBook(id){
       this.fancyservice.GetAnalysisFancyBook(id).subscribe(resp=>{
         this.fancybook=resp.data;
       })
     }
   
     trackByfancyId(index,item){
-      // console.log(item.id)
       //do what ever logic you need to come up with the unique identifier of your item in loop, I will just return the object id.
       return item.id;
      }
+
      trackByFn(index,item){
       return item.id;
      }
      ngOnDestroy(){
-      this.analysisdata.unsubscribe();
-      this.marketservice.UnsuscribeMarkets(this.AllMarkets);
-      this.Fancysignalrdata.unsubscribe();
-      this.fancysignalrservice.UnsuscribeFancy(this.matchid);
-      this.isMarketSignalr=false;
-      this.isFancySignalr=false;
+       if(this.Event!=undefined){
+        this.analysisdata.unsubscribe();
+        this.marketservice.UnsuscribeMarkets(this.AllMarkets);
+        this.Fancysignalrdata.unsubscribe();
+        this.fancysignalrservice.UnsuscribeFancy(this.matchid);
+        this.isMarketSignalr=false;
+        this.isFancySignalr=false;
+       }
     }
 
+    
+}
+
+@Component({
+  selector: 'fancybookdialog',
+  templateUrl: 'fancybook-dialog.html',
+})
+export class FancyBookDialog {
+  params: any;
+  constructor(
+    public dialogRef: MatDialogRef<FancyBookDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'rejectbetdialog',
+  templateUrl: 'Reject-bet-dialog.html',
+})
+export class RejectBetdialog {
+  params: any;
+  constructor(
+    public dialogRef: MatDialogRef<RejectBetdialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

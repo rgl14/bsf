@@ -185,7 +185,7 @@
                                   </span>
                                   <b [ngClass]="{'text-danger':fancy.book<0,'text-success':fancy.book>0}">{{fancy.book}}</b>
                                   <p class="position_btn"><button class="btn btn-xs btn-danger"
-                                      (click)="openDialog(fancy)">Book</button>
+                                      (click)="openfancybookDialog(fancy)">Book</button>
                                   </p>
                                 </td>
                                 <td></td>
@@ -286,7 +286,7 @@
                               <td class="mark-back">{{(bet.odds-1)*bet.stake | number:'2.2-2'}}</td>
                               <td class="mark-back redtext">{{bet.date}}</td>
                               <td class="mark-back">{{bet.id}}</td>
-                              <td class="mark-back"><i class="fas fa-trash" aria-hidden="true" style="color:red;"
+                              <td class="mark-back"><i class="fa fa-trash" aria-hidden="true" style="color:red;"
                                   (click)="openDeleteBetDialog(bet)"></i>
                               </td>
                               <td class="mark-back" title="{{bet.sourceInfo}}">{{bet.sourceInfo.split('IP: ')[1]}}</td>

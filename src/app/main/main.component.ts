@@ -40,11 +40,8 @@ export class MainComponent implements OnInit {
       // console.log(resp)
       this.tickerList=resp.tickerList;
     })
-    this.usermanagement.GetBettingStatus().subscribe(resp=>{
-      console.log(resp)
-      this.betingstatus=resp.status;
-    })
-
+   
+    this.getBetStatus();
     this.userType=this.tokenService.getUserType();
   }
 
@@ -71,12 +68,18 @@ export class MainComponent implements OnInit {
     this.usermanagement.UpdateBettingStatus(status).subscribe(data=>{
       if (data.status == "Success") {
         this.notifyService.success(data.result);
+        this.getBetStatus();
       }else{
         this.notifyService.error(data.result);
       }
     })
   }
 
+  getBetStatus(){
+    this.usermanagement.GetBettingStatus().subscribe(resp=>{
+      this.betingstatus=resp.status;
+    })
+  }
 }
 
 

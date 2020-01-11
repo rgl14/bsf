@@ -54,7 +54,7 @@ export class CreatesuperComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Supershare:['',Validators.required],
+            Supershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
@@ -78,7 +78,7 @@ export class CreatesuperComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Supershare:['',Validators.required],
+            Supershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
@@ -104,7 +104,7 @@ export class CreatesuperComponent implements OnInit {
     
 
     this.formControlsmysharechanged()
-    this.formControlsmaxsharechanged()
+    // this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
     // this.formControlmcommchanged()
     // this.formControlscommchanged()
@@ -137,9 +137,9 @@ export class CreatesuperComponent implements OnInit {
               //   this.issessioncomm=0;
               // }
               var editusersdata={
-                "MComm":this.edituserdata.MComm,
-                "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.Supershare,
+                "MComm":this.supermasterform.get("MComm").value,
+                "SComm":this.supermasterform.get("SComm").value,
+                "agentShare":this.supermasterform.get("Supershare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -148,8 +148,8 @@ export class CreatesuperComponent implements OnInit {
                 "myShare":this.edituserdata.myShare,
                 "bookDisplayType":this.edituserdata.bookdisplaytype,
                 "commType":this.edituserdata.fixedfees,
-                "mLossingComm":this.edituserdata.MloseComm,
-                "sLossingComm":this.edituserdata.SloseComm,
+                "mLossingComm":this.supermasterform.get("MloseComm").value,
+                "sLossingComm":this.supermasterform.get("SloseComm").value,
                 "userID":this.userId
               }
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
@@ -173,9 +173,9 @@ export class CreatesuperComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.userdata.MComm,
-              "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.Supershare,
+              "MComm":this.supermasterform.get("MComm").value,
+              "SComm":this.supermasterform.get("SComm").value,
+              "agentShare":this.supermasterform.get("Supershare").value,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -185,8 +185,8 @@ export class CreatesuperComponent implements OnInit {
               "password":this.userdata.password,
               "bookDisplayType":this.userdata.bookdisplaytype,
               "commType":this.userdata.fixedfees,
-              "mLossingComm":this.userdata.MloseComm,
-              "sLossingComm":this.userdata.SloseComm,
+              "mLossingComm":this.supermasterform.get("MloseComm").value,
+              "sLossingComm":this.supermasterform.get("SloseComm").value,
               "userType":3
             }
             // console.log(data,"userdata")
@@ -215,21 +215,21 @@ export class CreatesuperComponent implements OnInit {
             this.supermasterform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }else{
             let myshare = this.accountInfo.maxMyShare-mode;
-            this.accountInfo.CompanyShare=myshare;
+            this.supermasterform.controls['Supershare'].setValue(myshare);
           }
     });
   }
-  formControlsmaxsharechanged(){
-    this.supermasterform.get('Supershare').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.CompanyShare){
-            this.supermasterform.controls['Supershare'].setValue(this.accountInfo.CompanyShare)
-          }else{
-            let maxshare = this.accountInfo.minCompanyShare-mode;
+  // formControlsmaxsharechanged(){
+  //   this.supermasterform.get('Supershare').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.CompanyShare){
+  //           this.supermasterform.controls['Supershare'].setValue(this.accountInfo.CompanyShare)
+  //         }else{
+  //           let maxshare = this.accountInfo.minCompanyShare-mode;
 
-          }
-    });
-  }
+  //         }
+  //   });
+  // }
   formControlfixlimitChanged() {
     this.supermasterform.get('fixLimit').valueChanges.subscribe(
         (mode: number) => {

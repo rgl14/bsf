@@ -80,6 +80,7 @@ import { RulesComponent } from './rules/rules.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { MarketanalysisComponent } from './marketanalysis/marketanalysis.component';
 import { MarketreportComponent } from './marketreport/marketreport.component';
+import { UseranalysisComponent } from './useranalysis/useranalysis.component';
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -181,6 +182,7 @@ const routes: Routes = [
   { path: 'rules', component: RulesComponent },
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'marketreport/:matchId/:title', component: MarketreportComponent },
+  { path: 'userAnalysis', component: UseranalysisComponent },
 ];
 
 @NgModule({
@@ -265,5 +267,6 @@ export const componentRouting = [
   RulesComponent,
   ChangepasswordComponent,
   MarketanalysisComponent,
-  MarketreportComponent
+  MarketreportComponent,
+  UseranalysisComponent
 ]

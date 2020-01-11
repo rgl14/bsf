@@ -56,7 +56,7 @@ export class CreatesuperagentComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Superagentshare:['',Validators.required],
+            Superagentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
@@ -80,7 +80,7 @@ export class CreatesuperagentComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Superagentshare:['',Validators.required],
+            Superagentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
             SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
@@ -104,7 +104,7 @@ export class CreatesuperagentComponent implements OnInit {
     })
 
     this.formControlsmysharechanged()
-    this.formControlsmaxsharechanged()
+    // this.formControlsmaxsharechanged()
     this.formControlfixlimitChanged()
     // this.formControlmcommchanged()
     // this.formControlscommchanged()
@@ -137,9 +137,9 @@ export class CreatesuperagentComponent implements OnInit {
               //   this.issessioncomm=0;
               // }
               var editusersdata={
-                "MComm":this.edituserdata.MComm,
-                "SComm":this.edituserdata.SComm,
-                "agentShare":this.edituserdata.Superagentshare,
+                "MComm":this.superagentform.get("MComm").value,
+                "SComm":this.superagentform.get("SComm").value,
+                "agentShare":this.superagentform.get("Superagentshare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -148,8 +148,8 @@ export class CreatesuperagentComponent implements OnInit {
                 "myShare":this.edituserdata.myShare,
                 "bookDisplayType":this.edituserdata.bookdisplaytype,
                 "commType":this.edituserdata.fixedfees,
-                "mLossingComm":this.edituserdata.MloseComm,
-                "sLossingComm":this.edituserdata.SloseComm,
+                "mLossingComm":this.superagentform.get("MloseComm").value,
+                "sLossingComm":this.superagentform.get("SloseComm").value,
                 "userID":this.userId
               }
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
@@ -173,9 +173,9 @@ export class CreatesuperagentComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.userdata.MComm,
-              "SComm":this.userdata.SComm,
-              "agentShare":this.userdata.Superagentshare,
+              "MComm":this.superagentform.get("MComm").value,
+              "SComm":this.superagentform.get("SComm").value,
+              "agentShare":this.superagentform.get("Superagentshare").value,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -185,8 +185,8 @@ export class CreatesuperagentComponent implements OnInit {
               "password":this.userdata.password,
               "bookDisplayType":this.userdata.bookdisplaytype,
               "commType":this.userdata.fixedfees,
-              "mLossingComm":this.userdata.MloseComm,
-              "sLossingComm":this.userdata.SloseComm,
+              "mLossingComm":this.superagentform.get("MloseComm").value,
+              "sLossingComm":this.superagentform.get("SloseComm").value,
               "userType":5
             }
             // console.log(data,"userdata")
@@ -215,21 +215,21 @@ export class CreatesuperagentComponent implements OnInit {
             this.superagentform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }else{
             let myshare = this.accountInfo.maxMyShare-mode;
-            this.accountInfo.CompanyShare=myshare;
+            this.superagentform.controls['Superagentshare'].setValue(myshare);
           }
     });
   }
-  formControlsmaxsharechanged(){
-    this.superagentform.get('Superagentshare').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.CompanyShare){
-            this.superagentform.controls['Superagentshare'].setValue(this.accountInfo.CompanyShare)
-          }else{
-            let maxshare = this.accountInfo.minCompanyShare-mode;
+  // formControlsmaxsharechanged(){
+  //   this.superagentform.get('Superagentshare').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.CompanyShare){
+  //           this.superagentform.controls['Superagentshare'].setValue(this.accountInfo.CompanyShare)
+  //         }else{
+  //           let maxshare = this.accountInfo.minCompanyShare-mode;
 
-          }
-    });
-  }
+  //         }
+  //   });
+  // }
   formControlfixlimitChanged() {
     this.superagentform.get('fixLimit').valueChanges.subscribe(
         (mode: number) => {
