@@ -90,7 +90,7 @@
                </form> -->
             </div>
          </div>
-         <div class="ibox float-e-margins" data-ng-style="SessionPNldata.length>6?{'overflow-y': 'auto','-webkit-overflow-scrolling':'touch', 'height': '170px'}:''">
+         <!-- <div class="ibox float-e-margins" data-ng-style="SessionPNldata.length>6?{'overflow-y': 'auto','-webkit-overflow-scrolling':'touch', 'height': '170px'}:''">
             <div class="table-responsive">
                <table  class="table tblpad table-striped table-bordered table-hover">
                      <thead>
@@ -119,9 +119,9 @@
                            <td title="'Result'"  class="Cursor-pointer tbltd"><b>160</b></td>
                            <td title="'P | L'"  class="Cursor-pointer tbltd"><b>20000.00</b></td>
                         </tr>
-                           <!-- <tr >
+                           <tr >
                               <td colspan="3">No Data Found...</td>
-                           </tr> -->
+                           </tr>
                      </tbody>
                      <tfoot>
                         <tr>
@@ -132,7 +132,7 @@
                      
                </table>
             </div>
-         </div>
+         </div> -->
       </div>
      
         <!-- <div class="row" style="margin: 0 !important;">
@@ -169,8 +169,8 @@
               <tbody>
                  <ng-container *ngIf="fancybook.length!=0">
                   <tr *ngFor="let fbook of fancybook">
-                     <td></td>
-                     <td></td>
+                     <td>{{fbook.Key}}</td>
+                     <td>{{fbook.Value}}</td>
                   </tr>
                  </ng-container>
                  <ng-container *ngIf="fancybook.length==0">

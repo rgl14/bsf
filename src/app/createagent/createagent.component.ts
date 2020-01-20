@@ -37,7 +37,7 @@ export class CreateagentComponent implements OnInit {
 
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
-        console.log(data)
+        // console.log(data)
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -82,16 +82,16 @@ export class CreateagentComponent implements OnInit {
             validator: MustMatch('password', 'confirmPassword')
           })
         }
+        this.formControlsmysharechanged();
+        // this.formControlsmaxsharechanged();
+        this.formControlfixlimitChanged();
+        this.formControlmcommchanged();
+        this.formControlscommchanged();
+        this.formControlmLossingCommchanged();
+        this.formControlsLossingCommCommchanged();
       }
     })
     
-    
-
-    this.formControlsmysharechanged()
-    // this.formControlsmaxsharechanged()
-    this.formControlfixlimitChanged()
-    // this.formControlmcommchanged()
-    // this.formControlscommchanged()
   }
   onClear() {
     this.submitted = false;
@@ -223,22 +223,38 @@ export class CreateagentComponent implements OnInit {
             }
     });
   }
-  // formControlmcommchanged(){
-  //   this.agentform.get('MComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.matchComm){
-  //           this.agentform.controls['MComm'].setValue(this.accountInfo.matchComm)
-  //         }
-  //   });
-  // }
-  // formControlscommchanged(){
-  //   this.agentform.get('SComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.sessionComm){
-  //           this.agentform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-  //         }
-  //   });
-  // }
+  formControlmcommchanged(){
+    this.agentform.get('MComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.matchComm){
+            this.agentform.controls['MComm'].setValue(this.accountInfo.matchComm)
+          }
+    });
+  }
+  formControlscommchanged(){
+    this.agentform.get('SComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sessionComm){
+            this.agentform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+          }
+    });
+  }
+  formControlmLossingCommchanged(){
+    this.agentform.get('MloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.mLossingComm){
+            this.agentform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
+          }
+    });
+  }
+  formControlsLossingCommCommchanged(){
+    this.agentform.get('SloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sLossingComm){
+            this.agentform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
+          }
+    });
+  }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{

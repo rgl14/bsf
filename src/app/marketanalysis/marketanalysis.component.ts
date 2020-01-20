@@ -89,7 +89,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
           count++;
           this.analysiseventdata=resp;
           this.Event=this.analysiseventdata[this.sportBfId].eventList[this.matchBfId];
-          console.log(this.Event)
+          console.log(this.Event);
           this.Eventname=this.Event.name;
           this.EventDate=this.Event.eventDate;
           this.isInplay=this.Event.isInplay;
@@ -102,8 +102,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
             this.MObetdata=this.admReport.moBetdata;
           }
           if(this.admReport.fancyBetdata!=null ){
-            // this.fancyBetdata=this.fancybetformat(this.admReport.fancyBetdata);
-            this.fancybetformat(this.admReport.fancyBetdata)
+            this.fancyBetdata=this.fancybetformat(this.admReport.fancyBetdata);
           }
           if(this.admReport.bmBetdata!=null ){
             this.bmBetdata=this.admReport.bmBetdata;
@@ -227,13 +226,13 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
     }
     fancybetformat(fancybetdata){
       this.fancybetArray=[];
-      // console.log(fancybetdata)
       _.forEach(fancybetdata, (item, index) => {
-        this.fancybetArray.push(item)
-      // console.log(item)
+        _.forEach(item, (item1, index) => {
+          this.fancybetArray.push(item1);
+        })
       })
-      console.log(this.fancybetArray)
-      // return this.fancybetArray;
+      // console.log(this.fancybetArray)
+      return this.fancybetArray;
     }
     removeChangeClass(changeClass) {
       setTimeout(() => {

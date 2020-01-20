@@ -10,7 +10,7 @@ import { MaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManageformService } from './manageform.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { CustomcellbuttonsComponent, SetMatchLiveTvDialog,SettleFancyDialog } from './customcellbuttons/customcellbuttons.component';
+import { CustomcellbuttonsComponent, SetMatchLiveTvDialog,SettleFancyDialog,RejectBetdialogcell } from './customcellbuttons/customcellbuttons.component';
 import { NavigationcellComponent } from './navigationcell/navigationcell.component';
 import { ButtontogglecellComponent,UserstatusDialog } from './buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from './ratesnavigation/ratesnavigation.component';
@@ -45,6 +45,8 @@ import { MarketSignalrService } from './services/market-signalr.service';
 import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/cellcurrentlimittextfeild.component';
 import { RemoveSpacePipe } from './Directives/removespacepipe';
 import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysis.component';
+import { SpecialCharacterDirective } from './Directives/Special-character';
+
 
 
 
@@ -71,6 +73,7 @@ import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysi
     CreatePackageComponent,
     SetMatchLiveTvDialog,
     SettleFancyDialog,
+    RejectBetdialogcell,
     TournamenttogglecellComponent,
     MatchtogglecellComponent,
     MarkettogglecellComponent,
@@ -79,7 +82,8 @@ import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysi
     CellcurrentlimittextfeildComponent,
     RemoveSpacePipe,
     FancyBookDialog,
-    RejectBetdialog
+    RejectBetdialog,
+    SpecialCharacterDirective
     
   ],
   imports: [
@@ -95,7 +99,7 @@ import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysi
     CKEditorModule,
     AngularMultiSelectModule
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog,FancyBookDialog,RejectBetdialog],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog,FancyBookDialog,RejectBetdialog,RejectBetdialogcell],
   providers: [
     ManageformService,
     DatePipe,

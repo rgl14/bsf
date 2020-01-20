@@ -128,12 +128,12 @@
               <div class="col-sm-10">
                 <input formControlName="CompanyShare" class="form-control" 
                   [ngClass]="{ 'is-invalid': submitted && f.CompanyShare.errors }" max="100" min="0" name="maximum_share"
-                  placeholder="Company Share" type="number">
+                  placeholder="Agent Share" type="number">
                 <div *ngIf="submitted && f.CompanyShare.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.CompanyShare.errors.required">This field is mandatory.</mat-error>
                 </div>
                 <!-- <mat-hint class="hint">
-                  <b>Note:</b>Max Company Share + My Share should be set below or equal to
+                  <b>Note:</b>Max Agent Share + My Share should be set below or equal to
                   <b>{{accountInfo.minCompanyShare}}</b></mat-hint> -->
               </div>
             </div>
@@ -141,89 +141,89 @@
             <div class="hr-line-dashed"></div>
 
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Fix Limit</label>
+              <label class="col-sm-2 control-label">Agent Fix Limit</label>
               <div class="col-sm-10">
                 <input formControlName="fixLimit" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.fixLimit.errors }" min="0" name="fix_limit"
-                  placeholder="Company Fix Limit" type="number" value="0.0">
+                  placeholder="Agent Fix Limit" type="number" value="0.0">
                 <div *ngIf="submitted && f.fixLimit.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.fixLimit.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <mat-hint class="hint"><b>Note</b> : Company Fix Limit set below or equal to <b>{{accountInfo.remainingLimit-totalremaininglimit | number : '1.2'}}</b></mat-hint>
+                <mat-hint class="hint"><b>Note</b> : Agent Fix Limit set below or equal to <b>{{accountInfo.remainingLimit-totalremaininglimit | number : '1.2'}}</b></mat-hint>
               </div>
             </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Fixed Fees</label>
+              <label class="col-sm-2 control-label">Agent Fixed Fees</label>
               <div class="col-sm-10">
                 <input formControlName="fixedfees" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.fixedfees.errors }" max="100" min="0"
-                  name="match_commission" placeholder="Company Match Commission" type="number">
+                  name="match_commission" placeholder="Agent Match Commission" type="number">
                 <div *ngIf="submitted && f.fixedfees.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.fixedfees.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <!-- <mat-hint class="hint"><b>Note</b> : Company Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
+                <!-- <mat-hint class="hint"><b>Note</b> : Agent Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
                 </mat-hint> -->
               </div>
             </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Match Commission</label>
+              <label class="col-sm-2 control-label">Agent Match Commission</label>
               <div class="col-sm-10">
                 <input formControlName="MComm" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.MComm.errors }" max="100" min="0"
-                  name="match_commission" placeholder="Company Match Commission" type="number">
+                  name="match_commission" placeholder="Agent Match Commission" type="number">
                 <div *ngIf="submitted && f.MComm.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.MComm.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <mat-hint class="hint"><b>Note</b> : Company Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b>
+                <mat-hint class="hint"><b>Note</b> : Agent Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b>
                 </mat-hint>
               </div>
             </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Session Commission</label>
+              <label class="col-sm-2 control-label">Agent Transaction Commission</label>
               <div class="col-sm-10">
                 <input formControlName="SComm" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.SComm.errors }" max="100" min="0"
-                  name="session_commission" placeholder="Company Session Commission" type="number" >
+                  name="session_commission" placeholder="Agent Transaction Commission" type="number" >
                 <div *ngIf="submitted && f.SComm.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.SComm.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <mat-hint class="hint"><b>Note</b> : Company Session Commission set below or equal to <b>{{accountInfo.sessionComm}}</b>
+                <mat-hint class="hint"><b>Note</b> : Agent Transaction Commission set below or equal to <b>{{accountInfo.sessionComm}}</b>
                 </mat-hint>
               </div>
             </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Match Losing Commission</label>
+              <label class="col-sm-2 control-label">Agent Match Losing Commission</label>
               <div class="col-sm-10">
                 <input formControlName="MloseComm" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.MloseComm.errors }" max="100" min="0"
-                  name="session_commission" placeholder="Company Match Losing Commission" type="number" >
+                  name="session_commission" placeholder="Agent Match Losing Commission" type="number" >
                 <div *ngIf="submitted && f.MloseComm.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.MloseComm.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <mat-hint class="hint"><b>Note</b> : Company Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
+                <mat-hint class="hint"><b>Note</b> : Agent Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
                 </mat-hint>
               </div>
             </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Company Session Losing Commission</label>
+              <label class="col-sm-2 control-label">Agent Session Losing Commission</label>
               <div class="col-sm-10">
                 <input formControlName="SloseComm" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.SloseComm.errors }" max="100" min="0"
-                  name="session_commission" placeholder="Company Session Losing Commission" type="number" >
+                  name="session_commission" placeholder="Agent Session Losing Commission" type="number" >
                 <div *ngIf="submitted && f.SloseComm.errors" class="invalid-feedback">
                   <mat-error *ngIf="f.SloseComm.errors.required">This field is mandatory.</mat-error>
                 </div>
-                <mat-hint class="hint"><b>Note</b> : Company Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
+                <mat-hint class="hint"><b>Note</b> : Agent Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
                 </mat-hint>
               </div>
             </div>

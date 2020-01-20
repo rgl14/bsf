@@ -1,0 +1,21 @@
+
+.runner {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .row {
+    margin-bottom: 16px;
+  }
+  
+  .row div:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .mat-raised-button {
+      width: 100%;
+  }
+
+  .form-check label {
+      margin-left: 4px;
+  }

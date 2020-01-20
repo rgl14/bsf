@@ -47,7 +47,7 @@ export class CreateclientComponent implements OnInit {
             this.iscommissionedit=false;
         }
         console.log(data)
-        console.log(this.iscommissionedit);
+        // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -56,12 +56,11 @@ export class CreateclientComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Clientshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -80,12 +79,11 @@ export class CreateclientComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            Clientshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -95,20 +93,21 @@ export class CreateclientComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
-          this.clientform.controls['MComm'].setValue(data.matchComm);
-          this.clientform.controls['SComm'].setValue(data.sessionComm);
-          this.clientform.controls['MloseComm'].setValue(data.mLossingComm);
-          this.clientform.controls['SloseComm'].setValue(data.sLossingComm);
+          // this.clientform.controls['MComm'].setValue(data.matchComm);
+          // this.clientform.controls['SComm'].setValue(data.sessionComm);
+          // this.clientform.controls['MloseComm'].setValue(data.mLossingComm);
+          // this.clientform.controls['SloseComm'].setValue(data.sLossingComm);
         }
+        this.formControlsmysharechanged();
+        // this.formControlsmaxsharechanged();
+        this.formControlfixlimitChanged();
+        this.formControlmcommchanged();
+        this.formControlscommchanged();
+        this.formControlmLossingCommchanged();
+        this.formControlsLossingCommCommchanged();
       }
     })
     
-
-    this.formControlsmysharechanged()
-    // this.formControlsmaxsharechanged()
-    this.formControlfixlimitChanged()
-    // this.formControlmcommchanged()
-    // this.formControlscommchanged()
   }
   onClear() {
     this.submitted = false;
@@ -140,7 +139,7 @@ export class CreateclientComponent implements OnInit {
               var editusersdata={
                 "MComm":this.clientform.get("MComm").value,
                 "SComm":this.clientform.get("SComm").value,
-                "agentShare":this.clientform.get("Clientshare").value,
+                "agentShare":0,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
                 "fixLimit":this.edituserdata.fixLimit,
@@ -176,7 +175,7 @@ export class CreateclientComponent implements OnInit {
             var data={
               "MComm":this.clientform.get("MComm").value,
               "SComm":this.clientform.get("SComm").value,
-              "agentShare":this.clientform.get("Clientshare").value,
+              "agentShare":0,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
@@ -212,26 +211,11 @@ export class CreateclientComponent implements OnInit {
     this.clientform.get('myShare').valueChanges.subscribe(
       (mode: number) => {
           
-          if(mode > this.accountInfo.minCompanyShare){
-            this.clientform.controls['myShare'].setValue(this.accountInfo.minCompanyShare);
-          }else{
-            let myshare = this.accountInfo.minCompanyShare-mode;
-            this.clientform.controls['Clientshare'].setValue(myshare)
-
+          if(mode > this.accountInfo.maxMyShare){
+            this.clientform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
           }
     });
   }
-  // formControlsmaxsharechanged(){
-  //   this.clientform.get('Clientshare').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.CompanyShare){
-  //           this.clientform.controls['Clientshare'].setValue(this.accountInfo.CompanyShare)
-  //         }else{
-  //           let maxshare = this.accountInfo.minCompanyShare-mode;
-
-  //         }
-  //   });
-  // }
   formControlfixlimitChanged() {
     this.clientform.get('fixLimit').valueChanges.subscribe(
         (mode: number) => {
@@ -241,22 +225,38 @@ export class CreateclientComponent implements OnInit {
             }
     });
   }
-  // formControlmcommchanged(){
-  //   this.clientform.get('MComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.matchComm){
-  //           this.clientform.controls['MComm'].setValue(this.accountInfo.matchComm)
-  //         }
-  //   });
-  // }
-  // formControlscommchanged(){
-  //   this.clientform.get('SComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.sessionComm){
-  //           this.clientform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-  //         }
-  //   });
-  // }
+  formControlmcommchanged(){
+    this.clientform.get('MComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.matchComm){
+            this.clientform.controls['MComm'].setValue(this.accountInfo.matchComm)
+          }
+    });
+  }
+  formControlscommchanged(){
+    this.clientform.get('SComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sessionComm){
+            this.clientform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+          }
+    });
+  }
+  formControlmLossingCommchanged(){
+    this.clientform.get('MloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.mLossingComm){
+            this.clientform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
+          }
+    });
+  }
+  formControlsLossingCommCommchanged(){
+    this.clientform.get('SloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sLossingComm){
+            this.clientform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
+          }
+    });
+  }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{
@@ -276,7 +276,6 @@ export class CreateclientComponent implements OnInit {
         username:resp.data.userName,
         firstName:resp.data.name,
         fixLimit:resp.data.fixLimit,
-        Clientshare:this.maxsupershare,
         myShare:resp.data.myShare,
         MComm:resp.data.mComm,
         SComm:resp.data.sComm,

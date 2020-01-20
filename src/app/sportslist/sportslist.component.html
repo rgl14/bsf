@@ -21,9 +21,13 @@
            </div> -->
            <div class="ibox-content-list table-responsive" >
                   <mat-nav-list>
+                      <mat-list-item [routerLink]="'/AllMatch'">
+                        <i matListIcon class="fa fa-soccer-ball-o"></i>
+                          <h3 matLine>All Matches</h3>
+                      </mat-list-item>
                       <mat-list-item [routerLink]="'/matches'">
                         <i matListIcon class="fa fa-soccer-ball-o"></i>
-                          <h3 matLine>Matches</h3>
+                          <h3 matLine>Declared Matches</h3>
                       </mat-list-item>
                       <mat-divider></mat-divider>
                       <mat-list-item [routerLink]="'/tournament'">

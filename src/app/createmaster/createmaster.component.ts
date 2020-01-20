@@ -45,8 +45,8 @@ export class CreatemasterComponent implements OnInit {
         }else{
             this.iscommissionedit=false;
         }
-        console.log(data)
-        console.log(this.iscommissionedit);
+        // console.log(data)
+        // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -57,10 +57,10 @@ export class CreatemasterComponent implements OnInit {
             fixLimit:['',Validators.required],
             Mastershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -81,10 +81,10 @@ export class CreatemasterComponent implements OnInit {
             fixLimit:['',Validators.required],
             Mastershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -94,22 +94,21 @@ export class CreatemasterComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
-          this.masterform.controls['MComm'].setValue(data.matchComm);
-          this.masterform.controls['SComm'].setValue(data.sessionComm);
-          this.masterform.controls['MloseComm'].setValue(data.mLossingComm);
-          this.masterform.controls['SloseComm'].setValue(data.sLossingComm);
+          // this.masterform.controls['MComm'].setValue(data.matchComm);
+          // this.masterform.controls['SComm'].setValue(data.sessionComm);
+          // this.masterform.controls['MloseComm'].setValue(data.mLossingComm);
+          // this.masterform.controls['SloseComm'].setValue(data.sLossingComm);
         }
+        this.formControlsmysharechanged();
+        // this.formControlsmaxsharechanged()
+        this.formControlfixlimitChanged();
+        this.formControlmcommchanged();
+        this.formControlscommchanged();
+        this.formControlmLossingCommchanged();
+        this.formControlsLossingCommCommchanged();
       }
     })
     
-    
-
-    this.formControlsmysharechanged()
-    // this.formControlsmaxsharechanged()
-    this.formControlfixlimitChanged()
-    // this.formControlmcommchanged()
-    // this.formControlscommchanged()
-
   }
   onClear() {
     this.submitted = false;
@@ -242,22 +241,38 @@ export class CreatemasterComponent implements OnInit {
             }
     });
   }
-  // formControlmcommchanged(){
-  //   this.masterform.get('MComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.matchComm){
-  //           this.masterform.controls['MComm'].setValue(this.accountInfo.matchComm)
-  //         }
-  //   });
-  // }
-  // formControlscommchanged(){
-  //   this.masterform.get('SComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.sessionComm){
-  //           this.masterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-  //         }
-  //   });
-  // }
+  formControlmcommchanged(){
+    this.masterform.get('MComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.matchComm){
+            this.masterform.controls['MComm'].setValue(this.accountInfo.matchComm)
+          }
+    });
+  }
+  formControlscommchanged(){
+    this.masterform.get('SComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sessionComm){
+            this.masterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+          }
+    });
+  }
+  formControlmLossingCommchanged(){
+    this.masterform.get('MloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.mLossingComm){
+            this.masterform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
+          }
+    });
+  }
+  formControlsLossingCommCommchanged(){
+    this.masterform.get('SloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sLossingComm){
+            this.masterform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
+          }
+    });
+  }
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{

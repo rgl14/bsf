@@ -81,6 +81,8 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { MarketanalysisComponent } from './marketanalysis/marketanalysis.component';
 import { MarketreportComponent } from './marketreport/marketreport.component';
 import { UseranalysisComponent } from './useranalysis/useranalysis.component';
+import { ScoreInputComponent } from './score-input/score-input.component';
+import { InplaymatchesComponent } from './inplaymatches/inplaymatches.component';
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -139,8 +141,9 @@ const routes: Routes = [
   { path: 'coinhistory/:userId/:userName/:name', component: CoinhistoryComponent },
   { path: 'matchledger', component: MatchledgerComponent },
   { path: 'matchdashboard/:matchId/:title', component: MatchdashboardComponent },
-  { path: 'betslips/:matchId/:title', component: BetslipsComponent },
-  { path: 'sessionbetslips/:matchId/:title', component: SessionbetslipsComponent },
+  { path: 'matchdashboard/:sportBfId/:bfId/:matchId/:title', component: MatchdashboardComponent },
+  { path: 'betslips/:sportBfId/:bfId/:title', component: BetslipsComponent },
+  { path: 'sessionbetslips/:sportBfId/:bfId/:title', component: SessionbetslipsComponent },
   { path: 'analysismarket/:sportBfId/:bfId/:id', component: MarketanalysisComponent },
   { path: 'livereport/:sportBfId/:bfId/:id', component: LivereportComponent },
   { path: 'companyreport/:matchId/:title', component: CompanyreportComponent },
@@ -183,6 +186,8 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'marketreport/:matchId/:title', component: MarketreportComponent },
   { path: 'userAnalysis', component: UseranalysisComponent },
+  { path: 'ScoreInput', component: ScoreInputComponent },
+  { path: 'AllMatch', component: InplaymatchesComponent },
 ];
 
 @NgModule({
@@ -268,5 +273,7 @@ export const componentRouting = [
   ChangepasswordComponent,
   MarketanalysisComponent,
   MarketreportComponent,
-  UseranalysisComponent
+  UseranalysisComponent,
+  ScoreInputComponent,
+  InplaymatchesComponent
 ]

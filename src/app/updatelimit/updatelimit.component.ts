@@ -37,7 +37,7 @@ export class UpdatelimitComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Client Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Agent Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
@@ -82,12 +82,12 @@ export class UpdatelimitComponent implements OnInit {
   }
 
   onFilterTextBoxChanged() {
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-company') as HTMLInputElement).value);
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-supermaster') as HTMLInputElement).value);
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-master') as HTMLInputElement).value);
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-superagent') as HTMLInputElement).value);
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-agent') as HTMLInputElement).value);
-    this.gridOptions.api.setQuickFilter((document.getElementById('filter-client') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter_company') as HTMLInputElement).value);
+    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-supermaster') as HTMLInputElement).value);
+    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-master') as HTMLInputElement).value);
+    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-superagent') as HTMLInputElement).value);
+    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-agent') as HTMLInputElement).value);
+    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-client') as HTMLInputElement).value);
   }
 
   ngOnInit() {

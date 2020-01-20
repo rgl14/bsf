@@ -20,6 +20,9 @@ export class CustomcellbuttonsComponent implements OnInit {
   params: any;
   disabled: boolean = false;
   userId: string;
+  sportBfId: string;
+  matchBfId: string;
+  title: string;
 
   constructor(
     private router: Router,
@@ -43,6 +46,11 @@ export class CustomcellbuttonsComponent implements OnInit {
   }
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
+    this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
+    this.matchBfId=this.route.snapshot.paramMap.get('bfId');
+    this.title=this.route.snapshot.paramMap.get('title');
+    console.log(this.currentroute.split('/'));
+    console.log('/betslips/'+this.sportBfId+'/'+this.matchBfId+'/'+this.title)
   }
   updatelimit(userdata:any) {
     // console.log(userdata)
@@ -184,6 +192,18 @@ export class CustomcellbuttonsComponent implements OnInit {
     })
   }
 
+  openDeleteBetDialog(bet): void {
+    console.log(bet)
+    const dialogRef = this.dialog.open(RejectBetdialogcell, {
+      width: '250px',
+      data:bet,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+    });
+  }
+
 
 }
 
@@ -222,4 +242,19 @@ export class SettleFancyDialog {
     this.dialogRef.close();
   }
 
+}
+
+@Component({
+  selector: 'rejectbetdialog',
+  templateUrl: '../marketanalysis/Reject-bet-dialog.html',
+})
+export class RejectBetdialogcell {
+  params: any;
+  constructor(
+    public dialogRef: MatDialogRef<RejectBetdialogcell>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

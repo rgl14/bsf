@@ -55,6 +55,23 @@ button:focus {
       text-align: center;
       width: 100%;
   }
+  .ball-msg-box {
+    background: #fff;
+    opacity: .9;
+    text-align: center;
+    width: 42%;
+    position: absolute;
+    top: 1px;
+    color: #000;
+    padding: 5px 0;
+    right: 0px;
+    height: 38px;
+}
+
+.mobile_heading th:first-child {
+    border-left: 1px solid #ddd;
+    width: 59%;
+}
   
 }
 /* 
@@ -159,7 +176,21 @@ button:focus {
 .mat-radio-top-margin{
   margin-top: 5px;
 }
-
+@media (max-width: 599px){
+  .mat-tab-label {
+    width: 50% !important;
+  }
+}
+.mat-tab-label-active {
+  color: #9aca08;
+  opacity: 1.5 !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background: #9aca08;
+}
+.mat-ink-bar {
+  height: 3px !important;
+}
 /*Notification css*/
 snack-bar-container.success {
   background-color: #5cb55c;

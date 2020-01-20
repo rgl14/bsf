@@ -93,6 +93,17 @@ export class AnalysisFormatService {
     return sportDataFormat;
   }
 
+  highlightdatawiseFormat(analysisData){
+    let highlightdata=[]
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        highlightdata.push(item2)
+      })
+    })
+    // console.log(highlightdata.reverse());
+    return highlightdata;
+  }
+
   eventsWise(eventsList) {
     let eventsListData = [];
 

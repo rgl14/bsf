@@ -60,10 +60,10 @@ export class CreateadminComponent implements OnInit {
             fixLimit:['',Validators.required],
             CompanyShare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -84,10 +84,10 @@ export class CreateadminComponent implements OnInit {
             fixLimit:['',Validators.required],
             CompanyShare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            MloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
-            SloseComm:[{value: '', disabled: this.iscommissionedit},Validators.required],
+            MComm:['',Validators.required],
+            SComm:['',Validators.required],
+            MloseComm:['',Validators.required],
+            SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
@@ -102,16 +102,16 @@ export class CreateadminComponent implements OnInit {
           this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
           this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
         }
+        this.formControlsmysharechanged()
+        // this.formControlsmaxsharechanged()
+        this.formControlfixlimitChanged()
+        this.formControlmcommchanged();
+        this.formControlscommchanged();
+        this.formControlmLossingCommchanged();
+        this.formControlsLossingCommCommchanged();
       }
     })
 
-    
-
-    this.formControlsmysharechanged()
-    // this.formControlsmaxsharechanged()
-    this.formControlfixlimitChanged()
-    // this.formControlmcommchanged()
-    // this.formControlscommchanged()
   }
 
   onClear() {
@@ -247,22 +247,38 @@ export class CreateadminComponent implements OnInit {
             }
     });
   }
-  // formControlmcommchanged(){
-  //   this.Companyform.get('MComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.matchComm){
-  //           this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
-  //         }
-  //   });
-  // }
-  // formControlscommchanged(){
-  //   this.Companyform.get('SComm').valueChanges.subscribe(
-  //     (mode: number) => {
-  //         if(mode > this.accountInfo.sessionComm){
-  //           this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
-  //         }
-  //   });
-  // }
+  formControlmcommchanged(){
+    this.Companyform.get('MComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.matchComm){
+            this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
+          }
+    });
+  }
+  formControlscommchanged(){
+    this.Companyform.get('SComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sessionComm){
+            this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
+          }
+    });
+  }
+  formControlmLossingCommchanged(){
+    this.Companyform.get('MloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.mLossingComm){
+            this.Companyform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
+          }
+    });
+  }
+  formControlsLossingCommCommchanged(){
+    this.Companyform.get('SloseComm').valueChanges.subscribe(
+      (mode: number) => {
+          if(mode > this.accountInfo.sLossingComm){
+            this.Companyform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
+          }
+    });
+  }
 
 
   getuserdata(){
