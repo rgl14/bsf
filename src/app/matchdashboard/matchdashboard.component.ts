@@ -14,6 +14,7 @@ export class MatchdashboardComponent implements OnInit {
   title: string;
   sprtID: string;
   mtbfID: string;
+  MktId: string;
 
   constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
 
@@ -22,9 +23,12 @@ export class MatchdashboardComponent implements OnInit {
     this.mtbfID=this.route.snapshot.paramMap.get('bfId');
     this.matchId=this.route.snapshot.paramMap.get('matchId');
     this.title=this.route.snapshot.paramMap.get('title');
-    console.log(this.sprtID,this.mtbfID,this.title)
+    this.MktId=this.route.snapshot.paramMap.get('id');
+    console.log(this.sprtID,this.mtbfID,this.title);
+    console.log(this.matchId,this.MktId,this.title);
+
     this.getreports.GetMatchDashboard(this.matchId).subscribe(resp=>{
-      console.log(resp);
+      // console.log(resp);
       this.matchMarkets=resp.matchMarkets;
       this.sessionMarkets=resp.sessionMarkets;
     })

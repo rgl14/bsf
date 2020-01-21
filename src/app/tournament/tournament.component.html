@@ -5,7 +5,9 @@
         <h5>Upcoming Events</h5>
       </div>
       <div class="ibox-content table-responsive">
-        
+        <div class="loading-overlay" style="display: none;" id="loading">
+          <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
         <mat-accordion>
           <mat-expansion-panel *ngFor="let sport of marketCtlgData">
             <mat-expansion-panel-header>

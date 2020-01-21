@@ -20,7 +20,9 @@ export class TournamentComponent implements OnInit {
   }
 
   getMarketCtlg() {
+    $("#loading").css("display", "flex");
     this.sportService.GetMarketCtlg().subscribe(data => {
+      $("#loading").css("display", "none");
       this.marketCtlgData = data.data;
       console.log(this.marketCtlgData);
     })

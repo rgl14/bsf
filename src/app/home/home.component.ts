@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.sharedata.AccountInfoSource.subscribe(resp=>{
-      this.userinfo=resp;
+      if(resp!=null){
+        this.userinfo=resp;
+      }
     })
   }
 

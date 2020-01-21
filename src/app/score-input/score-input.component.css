@@ -1,21 +1,29 @@
 
 .runner {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .row {
-    margin-bottom: 16px;
-  }
-  
-  .row div:not(:last-child) {
-    margin-bottom: 8px;
-  }
+  font-weight: bold;
+  font-size: 18px;
+}
 
-  .mat-raised-button {
-      width: 100%;
-  }
+.row div:not(:last-child) {
+  margin-bottom: 8px;
+}
 
-  .form-check label {
-      margin-left: 4px;
-  }
+.mat-raised-button {
+    width: 100%;
+}
+
+.form-check label {
+    margin-left: 4px;
+}
+
+.btn-run {
+  margin-right: 3px;
+}
+
+.shortcut {
+  text-align: center;
+  min-width: 38px;
+}
+button.col  {
+  margin-right: 3px;
+}

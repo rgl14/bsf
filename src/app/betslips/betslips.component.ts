@@ -26,12 +26,14 @@ export class BetslipsComponent implements OnInit,OnDestroy {
   userId: any;
   admReport: any;
   bookData: any;
-  MObetdata=[];
   rowData=[];
+  matchId: string;
+  MktId: string;
 
   constructor(private route:ActivatedRoute,private usermanagement:UsermanagementService,private analysisservice:AnalysisSignalrService,) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
+      {headerName: 'Action', field: '', sortable: true, width: 75,cellRendererFramework:CustomcellbuttonsComponent,cellStyle: {cursor:'pointer','text-align':'center'}},
       // {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
       {headerName: 'Runner', field: 'runnerName', sortable: true, width: 200,cellStyle: {color: '#414141','font-weight':'bolder'}},
       {headerName: 'Bet type', field: 'backLay', sortable: true, width: 150},
@@ -41,8 +43,7 @@ export class BetslipsComponent implements OnInit,OnDestroy {
       {headerName: 'P | L', field: 'MComm', sortable: true, width: 100,valueFormatter: profitlossFormatter,cellStyle: {color: '#414141','font-weight':'bolder'}},
       {headerName: 'Time', field: 'date', sortable: true, width: 150,cellStyle: {color: 'red','font-weight':'bolder'}},
       {headerName: 'ID', field: 'id', sortable: true, width: 100},
-      {headerName: 'Action', field: '', sortable: true, width: 100,cellRendererFramework:CustomcellbuttonsComponent},
-      {headerName: 'IP', field: 'sourceInfo', sortable: true, width: 100},
+      {headerName: 'IP', field: 'sourceInfo', sortable: true, width: 125,valueFormatter: IpFormatter},
       {headerName: 'Master', field: 'masterUsername', sortable: true, width: 100},
       {headerName: 'Dealer', field: 'agentUsername', sortable: true, width: 100},
     ]; 
@@ -61,11 +62,16 @@ export class BetslipsComponent implements OnInit,OnDestroy {
       var twodecimalvalue=parseFloat(params.value).toFixed(2);
       return twodecimalvalue;
     }
+    function IpFormatter(params){
+      var ipvalues=params.value.split(",");
+      // console.log(ipvalues);
+      return ipvalues[5]
+    }
     
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Bets To Display</span>";
     // all rows assigned CSS class 'my-green-class'
     this.gridOptions.rowClass = 'my-green-class';
     this.gridOptions.getRowClass = function(params:any) {
@@ -94,11 +100,15 @@ export class BetslipsComponent implements OnInit,OnDestroy {
     this.title=this.route.snapshot.paramMap.get('title');
     this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
     this.matchBfId=this.route.snapshot.paramMap.get('bfId');
-    this.usermanagement.getAccountInfo().subscribe(resp=>{
-      // console.log(resp.data);
-      this.userId=resp.data.userId;
-      this.ConnectAnalysisdata(this.userId);
-    })
+    this.matchId=this.route.snapshot.paramMap.get('matchId');
+    this.MktId=this.route.snapshot.paramMap.get('id');
+    console.log(this.title,this.sportBfId,this.matchBfId);
+    console.log(this.title,this.matchId,this.MktId);
+      this.usermanagement.getAccountInfo().subscribe(resp=>{
+        // console.log(resp.data);
+        this.userId=resp.data.userId;
+        this.ConnectAnalysisdata(this.userId);
+      })
   }
   ConnectAnalysisdata(userId){
     this.analysisdata=this.analysisservice.analysisSource.subscribe(resp=>{
@@ -110,12 +120,16 @@ export class BetslipsComponent implements OnInit,OnDestroy {
           this.bookData=this.admReport.bookData;
           if(this.admReport.moBetdata!=null ){
             this.rowData=this.admReport.moBetdata;
+          }else{
+            this.rowData=[];
           }
       }
     })
   }
   ngOnDestroy(){
-    this.analysisdata.unsubscribe();
+    if(this.analysisdata!=undefined){
+      this.analysisdata.unsubscribe();
+    }
   }
 
 }

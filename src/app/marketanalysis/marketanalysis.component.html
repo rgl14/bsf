@@ -2,7 +2,7 @@
     <div class="tile_count" *ngIf="Event">
       <div class="col-md-12 col-sm-12 col-xs-12" id="UpCommingData" style="display: none;"></div>
       <div class="row">
-        <div class="col-md-7" id="MatchOddInfo">
+        <div class="col-md-12" id="MatchOddInfo">
           <div class="matchBoxMain">
             <div class="modal-dialog-staff">
     
@@ -217,7 +217,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5 matchBox">
+        <!-- <div class="col-md-5 matchBox">
           <div class="overlay_mobile in"></div>
           <div class="betSlipBox">
     
@@ -251,7 +251,6 @@
                         <div class="form-title">
                           <span><a>Match Bets (<span>{{MObetdata.length}}</span>)</a></span>
                           <input type="text" name="searchId" [(ngModel)]="searchMO" style="color:#000">
-                          <!-- <button class="btn btn-primary btn-xs">Search</button> -->
                           <button class="btn btn-primary btn-xs" (click)="reset()">Reset</button>
                           <h3 class="MatchBetHide" (click)="ToggleAccordian('2')"><i class="MatchTvHideDown"
                               [ngClass]="{'down':MatchBetHide,'up':!MatchBetHide}"></i></h3>
@@ -312,7 +311,6 @@
                         <div class=" form-title">
                           <span><a>Fancy Bets (<span>{{fancyBetdata.length}}</span>)</a></span>
                           <input type="text" name="searchId" [(ngModel)]="searchFancy" style="color:#000">
-                          <!-- <button class="btn btn-primary btn-xs">Search</button> -->
                           <button class="btn btn-primary btn-xs" (click)="reset()">Reset</button>
                           <h3 class="MatchBetHide" (click)="ToggleAccordian('3')"><i class="MatchTvHideDown"
                               [ngClass]="{'down':fancyBetHide,'up':!fancyBetHide}"></i></h3>
@@ -349,8 +347,6 @@
                                   (click)="openDeleteBetDialog(bet)"></i>
                               </td>
                               <td class="mark-back" title="{{bet.sourceInfo}}">{{bet.sourceInfo.split('IP: ')[1]}}</td>
-                              <!-- <td class="mark-back">{{bet.masterUsername}}</td>
-                              <td class="mark-back">{{bet.agentUsername}}</td> -->
                             </tr>
                           </tbody>
                         </table>
@@ -371,7 +367,7 @@
                         <div class=" form-title">
                           <span><a>Book Making Bets (<span>{{bmBetdata.length}}</span>)</a></span>
                           <input type="text" name="searchId" [(ngModel)]="searchBm" style="color:#000">
-                          <!-- <button class="btn btn-primary btn-xs">Search</button> -->
+                          <button class="btn btn-primary btn-xs">Search</button>
                           <button class="btn btn-primary btn-xs" (click)="reset()">Reset</button>
                           <h3 class="MatchBetHide" (click)="ToggleAccordian('4')"><i class="MatchTvHideDown"
                               [ngClass]="{'down':bmBetHide,'up':!bmBetHide}"></i></h3>
@@ -423,7 +419,7 @@
             </div>
     
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

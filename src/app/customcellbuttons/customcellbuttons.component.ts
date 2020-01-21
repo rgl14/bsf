@@ -8,6 +8,7 @@ import { SportDataService } from '../services/sport-data.service';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { TickerService } from '../services/ticker.service';
 import { LimitsService } from '../services/limits.service';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-customcellbuttons',
@@ -34,7 +35,8 @@ export class CustomcellbuttonsComponent implements OnInit {
     private usermanagement:UsermanagementService,
     private newsticker:TickerService,
     private limits:LimitsService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private report:ReportsService
   ) {
     this.currentroute = this.router.url
   }
@@ -49,8 +51,6 @@ export class CustomcellbuttonsComponent implements OnInit {
     this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
     this.matchBfId=this.route.snapshot.paramMap.get('bfId');
     this.title=this.route.snapshot.paramMap.get('title');
-    console.log(this.currentroute.split('/'));
-    console.log('/betslips/'+this.sportBfId+'/'+this.matchBfId+'/'+this.title)
   }
   updatelimit(userdata:any) {
     // console.log(userdata)
@@ -193,14 +193,24 @@ export class CustomcellbuttonsComponent implements OnInit {
   }
 
   openDeleteBetDialog(bet): void {
-    console.log(bet)
+    // console.log(bet)
     const dialogRef = this.dialog.open(RejectBetdialogcell, {
       width: '250px',
       data:bet,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
+      // console.log(result)
+      if(result!=undefined){
+        this.report.RejectBets(result.id,result.adminUsername).subscribe(data=>{
+          if (data.status == "Success") {
+            this.notifyService.success(data.result);
+          }
+          else {
+            this.notifyService.error(data.result);
+          }
+        })
+      }
     });
   }
 
@@ -246,7 +256,7 @@ export class SettleFancyDialog {
 
 @Component({
   selector: 'rejectbetdialog',
-  templateUrl: '../marketanalysis/Reject-bet-dialog.html',
+  templateUrl: 'Reject-bet-dialog-cell.html',
 })
 export class RejectBetdialogcell {
   params: any;

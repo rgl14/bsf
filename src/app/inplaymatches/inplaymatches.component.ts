@@ -72,9 +72,8 @@ export class InplaymatchesComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.analysissubscribe=this.analysisservice.analysisSource.subscribe(resp=>{
       if(resp!=null){
-        // console.log(resp)
         this.Allmatchdata=this.anlysisformat.highlightdatawiseFormat(resp);
-        console.log(this.Allmatchdata);
+        // console.log(this.Allmatchdata);
         this.rowData=this.Allmatchdata;
       }
     })

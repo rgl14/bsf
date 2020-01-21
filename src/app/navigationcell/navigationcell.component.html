@@ -1,5 +1,5 @@
 <a [routerLink]="['/userdashboard',data.userType,data.userId,data.userName,data.name]" *ngIf="data.userName!=undefined">{{data.userName}}</a>
-<a [routerLink]="['/matchdashboard',data.matchId,data.title]" *ngIf="data.title!=undefined">{{data.title}}</a>
+<a [routerLink]="['/matchdashboard',data.matchId,data.id,data.title]" *ngIf="data.title!=undefined">{{data.title}}</a>
 <a [routerLink]="['/matchdashboard',data?.sportBfId,data?.bfId,data?.id,data.name]" *ngIf="data.sportBfId!=undefined">{{data.name}}</a>
 <!-- <div class="col-md-12 row" style="padding: 0" *ngIf="currentroute=='/fancy'">
     <div class="col-md-6 auto" style="padding: 0">

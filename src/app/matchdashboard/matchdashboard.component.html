@@ -6,19 +6,20 @@
                     <h1>Match Dashboard - {{title}}</h1>
                  </div>
                         <div class="button-row ibox-content mob-button">
-                          <button mat-raised-button color="primary" [routerLink]="['/betslips',sprtID,mtbfID,title]">Odds Bet Slips</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/sessionbetslips',sprtID,mtbfID,title]">Fancy Bet Slip</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/livereport',sprtID,mtbfID,title]">Live Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/marketreport',sprtID,mtbfID,title]">Market Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/companyreport',matchId,title]">Company Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/clientreport',matchId,title]">Client Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/clientcollectionreport',matchId,title]">Collection Report</button>
-                          <button mat-raised-button color="primary" [routerLink]="['/sessionearningrepport',matchId,title]">Session Earning Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/betslips',sprtID,mtbfID,title]">Odds Bet Slips</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/betslips',matchId,MktId,title]">Odds Bet Slips</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/sessionbetslips',sprtID,mtbfID,title]">Fancy Bet Slip</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/sessionbetslips',matchId,MktId,title]">Fancy Bet Slip</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/livereport',sprtID,mtbfID,title]">Live Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/marketreport',sprtID,mtbfID,title]">Market Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/companyreport',matchId,MktId,title]">Company Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/clientreport',matchId,MktId,title]">Client Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/clientcollectionreport',matchId,title]">Collection Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/sessionearningrepport',matchId,title]">Session Earning Report</button>
                         </div>
               </div>
            </div>
         </div>
-     
      </div>
      <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">

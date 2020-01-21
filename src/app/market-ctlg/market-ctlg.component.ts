@@ -27,24 +27,22 @@ export class MarketCtlgComponent implements OnInit {
   getMktSettingsPckgList() {
     this.sportService.GetMktSettingsPckgList().subscribe(data => {
       this.MktSettingsPckgList = data.data;
-    }, err => {
-      console.log(err);
     })
   }
 
   getMarketCtlg() {
+    $("#loading").css("display", "flex");
     this.sportService.GetMarketCtlg().subscribe(data => {
       this.marketCtlgData = data.data;
-      console.log(this.marketCtlgData);
+      $("#loading").css("display", "none");
+      // console.log(this.marketCtlgData);
 
-    }, err => {
-      console.log(err);
     })
   }
 
   ImportMarket(sportName, sportId, tournamentName, tournamentId, matchName, matchId, matchDate, marketName, marketId) {
     console.log(this.selectedPkg);
-
+    $("#loading").css("display", "flex");
     if (!this.selectedPkg) {
       this.notifyService.error('Please select one package in the package list!')
       return false;
@@ -72,6 +70,7 @@ export class MarketCtlgComponent implements OnInit {
 
 
       if (data.hubAddress && data.description.status == "Success") {
+        $("#loading").css("display", "none");
         this.ISService.connectMarket(data.hubAddress, marketIds);
 
         this.ISService.IMSource.subscribe(runner => {
@@ -85,19 +84,18 @@ export class MarketCtlgComponent implements OnInit {
         })
       }
       else {
+        $("#loading").css("display", "none");
         this.notifyService.error(data.description.result)
       }
 
-    }, err => {
-      console.log(err);
     })
   }
 
   FetchRunnersData(marketId) {
+    $("#loading").css("display", "flex");
     this.sportService.FetchRunnersData(marketId).subscribe(data => {
+      $("#loading").css("display", "none");
       console.log(data)
-    }, err => {
-      console.log(err)
     })
   }
 }

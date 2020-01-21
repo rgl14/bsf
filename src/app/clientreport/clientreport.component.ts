@@ -10,13 +10,15 @@ import { ReportsService } from '../services/reports.service';
 export class ClientreportComponent implements OnInit {
   title: string;
   matchId: string;
+  MktId: string;
 
   constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
 
   ngOnInit() {
     this.title=this.route.snapshot.paramMap.get('title');
     this.matchId=this.route.snapshot.paramMap.get('matchId');
-    this.getreports.GetClientMatchReport(this.matchId,'').subscribe(resp=>{
+    this.MktId=this.route.snapshot.paramMap.get('id');
+    this.getreports.GetClientMatchReport(this.matchId,this.MktId).subscribe(resp=>{
       console.log(resp);
     })
   }
