@@ -54,7 +54,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Market Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="MKTname" class="form-control" name="mktname" [ngClass]="{ 'is-invalid': submitted && f.MKTname.errors }"  placeholder="" type="text" >
+                                  <input formControlName="MKTname" specialIsAlphaNumeric class="form-control" name="mktname" [ngClass]="{ 'is-invalid': submitted && f.MKTname.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTname.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTname.errors.required">This field is mandatory.</mat-error>
@@ -77,7 +77,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                        <input formControlName="MKTbfid" class="form-control" name="mktbfid" [ngClass]="{ 'is-invalid': submitted && f.MKTbfid.errors }"  placeholder="" type="text" >
+                                        <input formControlName="MKTbfid" specialIsAlphaNumeric class="form-control" name="mktbfid" [ngClass]="{ 'is-invalid': submitted && f.MKTbfid.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTbfid.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTbfid.errors.required">This field is mandatory.</mat-error>
@@ -87,7 +87,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Market Rate<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="MKTrate" class="form-control" name="mktrate" [ngClass]="{ 'is-invalid': submitted && f.MKTrate.errors }"  placeholder="" type="text" >
+                                  <input formControlName="MKTrate" specialIsAlphaNumeric class="form-control" name="mktrate" [ngClass]="{ 'is-invalid': submitted && f.MKTrate.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTrate.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTrate.errors.required">This field is mandatory.</mat-error>
@@ -97,7 +97,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Runner 1<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="MKTrunner1" class="form-control" name="runner1" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner1.errors }"  placeholder="" type="text" >
+                                  <input formControlName="MKTrunner1" specialIsAlphaNumeric class="form-control" name="runner1" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner1.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTrunner1.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTrunner1.errors.required">This field is mandatory.</mat-error>
@@ -107,7 +107,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Runner 2<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="MKTrunner2" class="form-control" name="runner2" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner2.errors }"  placeholder="" type="text" >
+                                  <input formControlName="MKTrunner2" specialIsAlphaNumeric class="form-control" name="runner2" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner2.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTrunner2.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTrunner2.errors.required">This field is mandatory.</mat-error>
@@ -117,7 +117,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Runner 3 :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="MKTrunner3" class="form-control" name="runner3" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner3.errors }"  placeholder="" type="text" >
+                                  <input formControlName="MKTrunner3" specialIsAlphaNumeric class="form-control" name="runner3" [ngClass]="{ 'is-invalid': submitted && f.MKTrunner3.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.MKTrunner3.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.MKTrunner3.errors.required">This field is mandatory.</mat-error>
@@ -144,7 +144,7 @@
                         </div>
                     <div class="hr-line-dashed"></div>
                     <div class="button-row" style="text-align: center">
-                        <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
+                        <button mat-raised-button color="warn" [routerLink]="['/marketlist']">Cancel</button>
                         <button mat-raised-button color="primary"  type="submit">Save</button>
                     </div>
 </form>                        

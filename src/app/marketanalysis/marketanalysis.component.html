@@ -1,4 +1,29 @@
 <div class="card">
+  <div class="ipe-LiveAlertsControlContainer" *ngIf="Event">
+    <div id="LiveMatchAlertHeader" class="ip-LiveAlertsHeader InPlayNotificationsHeader ">
+        <div class="ip-LiveAlertsHeaderButtons InPlayMyBetsButtonContainer ip-LiveAlertsHeaderButtons_NoMediaToggleBorder ">
+            <div class="ip-LiveAlertsHeaderButtons_Left ">
+                <div class="ipe-EventViewMarketTabs ">
+                    <div class="ipe-EventViewTabLink ipe-EventViewTabLink-selected " *ngIf="Event.isInplay==1">Inplay</div>
+                    <div class="ipe-EventViewTabLink ">{{Event.name}}</div>
+                    <span class="ipe-EventViewMarketTabs_Slider ipe-EventViewMarketTabs_Slider-Animate " *ngIf="Event.isInplay==1" style="left: 10px; width: 35px; transform-origin: left center;"></span>
+                </div>
+            <div class="ip-LiveAlertsHeaderButtons_Right ">
+                <div class="ipe-MediaToggle ">
+                    <div class="ipe-MediaToggle_Video "><mat-icon style="color: #fff;cursor:pointer" (click)="openTv()" aria-hidden="true">live_tv</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PlaceHolderLiveMatchAlertsMenu" class="ip-LiveAlertsMenu "></div>
+</div>
+<div id="streamingBox" class="tv-fix" style="display: none;">
+  <div class="tv-wrap">
+     <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 220px;"></iframe>
+  </div>
+</div>
+</div>
     <div class="tile_count" *ngIf="Event">
       <div class="col-md-12 col-sm-12 col-xs-12" id="UpCommingData" style="display: none;"></div>
       <div class="row">
@@ -6,21 +31,21 @@
           <div class="matchBoxMain">
             <div class="modal-dialog-staff">
     
-              <div class="modal-header mod-header">
+              <!-- <div class="modal-header mod-header">
                 <div class="block_box">
                   <span>
                     <span ><i aria-hidden="true"></i></span>
                     {{Event.name}}
                   </span>
-                  <!-- <div id="liveCommentary"></div> -->
-                  <!-- <div class="block_box_btn">
+                  <div id="liveCommentary"></div>
+                  <div class="block_box_btn">
                     <button class="btn btn-primary btn-xs">Bets</button>
                     <button class="btn btn-primary btn-xs">X</button>
                     <button class="btn btn-primary btn-xs yellow1"><span>Refresh</span></button>
-                  </div> -->
+                  </div>
                 </div>
-              </div>
-              <div class="score_area"><span class="matchScore" id="matchScore_29086930"> </span> </div>
+              </div> -->
+              <div class="score_area"><span class="matchScore" id="matchScore"> </span> </div>
               <div class="modal-body">
                 <div class="matchClosedBox_1153815307" style="display:none">
                   <div class="fullrow fullrownew">
@@ -41,18 +66,12 @@
                 <div class="matchOpenBox_" *ngFor="let mkt of AllMarkets;trackBy:trackByFn">
                   <div class="fullrow fullrownew">
                     <div class="pre-text">
-                      <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span>
-                      <br>
-                      {{mkt.name}}
-                      <div id="playIconDiv" style="width: 130px;float: right;">
-                        <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
-                        <img style="display:block;" src="assets/img/pause.ico" height="20px" alt="pause_icon">
-                      </div>
+                      <!-- <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span> -->
+                      <!-- <br> -->
+                      <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
+                      <img style="display:inline;" src="assets/img/pause.ico" height="20px" alt="pause_icon">
+                      {{mkt.name}} [{{Event.eventDate}}]
                     </div>
-                    <div style="width:25%" class="matchTime">
-                      {{Event.eventDate}}
-                    </div>
-                    <div style="width:25%;text-align: left;" class="matchTime">00</div>
                   </div>
                   <div class="fullrow MatchIndentB" style="position:relative;">
                     <table class="table table-striped  bulk_actions">
@@ -70,7 +89,7 @@
                           <td>
                             <p class="runner_text">{{runner.runnerName}} </p>
                             <span class="runner_amount"
-                              [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>0}"><b>{{runner.book}}</b></span>
+                              [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>=0}"><b>{{runner.book | number:'1.2-2'}}</b></span>
                           </td>
                           <td class="hidden-xs">
                             <span>{{runner.back3}}</span>
@@ -107,17 +126,11 @@
                   <div class="fullrow fullrownew">
                     <div class="pre-text">
                       <!-- <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span> -->
-                      <br>
-                      {{book.name}}
-                      <div id="playIconDiv" style="width: 130px;float: right;">
-                        <img style="display:none;" src="assets/images/play_icon.png" alt="play_icon">
-                        <img style="display:block;" src="assets/images/pause_icon.png" alt="pause_icon">
-                      </div>
+                      <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
+                      <img style="display:inline;" src="assets/img/pause.ico" height="20px" alt="pause_icon">
+                       {{book.name}}
                     </div>
-                    <div style="width:25%" class="matchTime">
-                    </div>
-                    <div style="width:25%;text-align: left;" class="matchTime"></div>
-                  </div>
+                    
                   <div class="fullrow MatchIndentB" style="position:relative;">
                     <table class="table table-striped  bulk_actions">
                       <tbody>
@@ -130,11 +143,11 @@
                           <th> </th>
                           <th> </th>
                         </tr>
-                        <tr class="back_lay_color" *ngFor="let runner of book.runnerData;trackBy:trackByName">
+                        <tr class="back_lay_color BmBook" *ngFor="let runner of book.runnerData;trackBy:trackByName">
                           <td>
                             <p class="runner_text">{{runner.name}} </p>
                             <span class="runner_amount"
-                              [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>0}"><b>{{runner.book}}</b></span>
+                              [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>=0}"><b>{{runner.book | number:'1.2-2'}}</b></span>
                           </td>
                           <td></td>
                           <td></td>
@@ -180,10 +193,10 @@
                               <tr class="session_content">
                                 <td>
                                   <span>
-                                    <img src="assets/img/pause.ico" alt="pause_icon" height="20px" style="margin-right: 5px;">
+                                    <img src="assets/img/pause.ico" alt="pause_icon" height="20px" *ngIf="userId==1" style="margin-right: 5px;">
                                     {{fancy.name}}
                                   </span>
-                                  <b [ngClass]="{'text-danger':fancy.book<0,'text-success':fancy.book>0}">{{fancy.book}}</b>
+                                  <b [ngClass]="{'text-danger':fancy.book<0,'text-success':fancy.book>=0}">{{fancy.book | number:'1.2-2'}}</b>
                                   <p class="position_btn"><button class="btn btn-xs btn-danger"
                                       (click)="openfancybookDialog(fancy)">Book</button>
                                   </p>
@@ -422,4 +435,5 @@
         </div> -->
       </div>
     </div>
+  </div>
   </div>

@@ -23,7 +23,7 @@
                          <div class="form-group">
                                    <label class="col-sm-2 control-label">Full Name</label>
                                    <div class="col-sm-10">              
-                                     <input formControlName="firstName" class="form-control" name="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"  placeholder="Full Name" type="text" >
+                                     <input formControlName="firstName" specialIsAlphaNumeric class="form-control" name="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"  placeholder="Full Name" type="text" >
                                      
                                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.firstName.errors.required">This field is mandatory.</mat-error>
@@ -35,7 +35,7 @@
                           <div class="form-group">
                                    <label class="col-sm-2 control-label">My Share</label>
                                    <div class="col-sm-10">              
-                                     <input formControlName="myShare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.myShare.errors }"  max="100" min="0" name="share" placeholder="My Share"  type="number" >
+                                     <input formControlName="myShare" specialIsAlphaNumeric class="form-control" [ngClass]="{ 'is-invalid': submitted && f.myShare.errors }"  max="100" min="0" name="share" placeholder="My Share"  type="number" >
                                      <div *ngIf="submitted && f.myShare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.myShare.errors.required">This field is mandatory.</mat-error>
                                     </div>
@@ -48,7 +48,7 @@
                           <div class="form-group">
                                    <label class="col-sm-2 control-label">Max Agent Share</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="Supershare" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Supershare.errors }"  max="100" min="0" name="maximum_share" placeholder="Agent Share"  type="number" >
+                                     <input  formControlName="Supershare" specialIsAlphaNumeric class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Supershare.errors }"  max="100" min="0" name="maximum_share" placeholder="Agent Share"  type="number" >
                                      <div *ngIf="submitted && f.Supershare.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.Supershare.errors.required">This field is mandatory.</mat-error>
                                     </div>
@@ -61,7 +61,7 @@
                           <div class="form-group">
                                    <label class="col-sm-2 control-label">Agent Fix Limit</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="fixLimit" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fixLimit.errors }"  min="0" name="fix_limit" placeholder="Agent Fix Limit"  type="number"  >
+                                     <input  formControlName="fixLimit" specialIsAlphaNumeric class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fixLimit.errors }"  min="0" name="fix_limit" placeholder="Agent Fix Limit"  type="number"  >
                                      <div *ngIf="submitted && f.fixLimit.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.fixLimit.errors.required">This field is mandatory.</mat-error>
                                     </div>
@@ -71,9 +71,9 @@
 
                          <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                              <label class="col-sm-2 control-label">Agent Fixed Fees</label>
+                              <label class="col-sm-2 control-label">Agent Match Fixed Fees</label>
                               <div class="col-sm-10">
-                                <input formControlName="fixedfees" class="form-control"
+                                <input formControlName="fixedfees" specialIsAlphaNumeric class="form-control"
                                   [ngClass]="{ 'is-invalid': submitted && f.fixedfees.errors }" max="100" min="0"
                                   name="match_commission" placeholder="Agent Match Commission" type="number">
                                 <div *ngIf="submitted && f.fixedfees.errors" class="invalid-feedback">
@@ -88,11 +88,11 @@
                           <div class="form-group">
                                    <label class="col-sm-2 control-label">Agent Match Commission</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="MComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.MComm.errors }"  max="100" min="0" name="match_commission" placeholder="Agent Match Commission"  type="number" >
+                                     <input  formControlName="MComm" specialIsAlphaNumeric class="form-control" [ngClass]="{ 'is-invalid': submitted && f.MComm.errors }"  max="100" min="0" name="match_commission" placeholder="Agent Match Commission"  type="number" >
                                      <div *ngIf="submitted && f.MComm.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.MComm.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note</b> : Agent Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b></mat-hint>
+                                     <mat-hint class="hint" *ngIf="iscommissionedit"><b>Note</b> : Agent Match Commission set below or equal to <b>{{accountInfo.matchComm}}</b></mat-hint>
                                   </div>
                          </div>
     
@@ -100,11 +100,11 @@
                           <div class="form-group">
                                    <label class="col-sm-2 control-label">Agent Transaction Commission</label>
                                    <div class="col-sm-10">              
-                                     <input  formControlName="SComm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SComm.errors }"  max="100" min="0" name="session_commission" placeholder="Agent Transaction Commission" type="number" > 
+                                     <input  formControlName="SComm" specialIsAlphaNumeric class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SComm.errors }"  max="100" min="0" name="session_commission" placeholder="Agent Transaction Commission" type="number" > 
                                      <div *ngIf="submitted && f.SComm.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.SComm.errors.required">This field is mandatory.</mat-error>
                                     </div>
-                                     <mat-hint class="hint" ><b>Note</b> : Agent Transaction Commission set below or equal to <b>{{accountInfo.sessionComm}}</b></mat-hint>
+                                     <mat-hint class="hint" *ngIf="iscommissionedit"><b>Note</b> : Agent Transaction Commission set below or equal to <b>{{accountInfo.sessionComm}}</b></mat-hint>
                                   </div>    
                          </div>  
 
@@ -112,13 +112,13 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label">Agent Match Losing Commission</label>
                             <div class="col-sm-10">
-                              <input formControlName="MloseComm" class="form-control"
+                              <input formControlName="MloseComm" specialIsAlphaNumeric class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.MloseComm.errors }" max="100" min="0"
                                 name="session_commission" placeholder="Agent Match Losing Commission" type="number" >
                               <div *ngIf="submitted && f.MloseComm.errors" class="invalid-feedback">
                                 <mat-error *ngIf="f.MloseComm.errors.required">This field is mandatory.</mat-error>
                               </div>
-                              <mat-hint class="hint"><b>Note</b> : Agent Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
+                              <mat-hint class="hint" *ngIf="iscommissionedit"><b>Note</b> : Agent Match Losing Commission set below or equal to <b>{{accountInfo.mLossingComm}}</b>
                               </mat-hint>
                             </div>
                           </div>
@@ -127,13 +127,13 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label">Agent Session Losing Commission</label>
                             <div class="col-sm-10">
-                              <input formControlName="SloseComm" class="form-control"
+                              <input formControlName="SloseComm" specialIsAlphaNumeric class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.SloseComm.errors }" max="100" min="0"
                                 name="session_commission" placeholder="Agent Session Losing Commission" type="number" >
                               <div *ngIf="submitted && f.SloseComm.errors" class="invalid-feedback">
                                 <mat-error *ngIf="f.SloseComm.errors.required">This field is mandatory.</mat-error>
                               </div>
-                              <mat-hint class="hint"><b>Note</b> : Agent Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
+                              <mat-hint class="hint" *ngIf="iscommissionedit"><b>Note</b> : Agent Session Losing Commission set below or equal to <b>{{accountInfo.sLossingComm}}</b>
                               </mat-hint>
                             </div>
                           </div>
@@ -144,7 +144,7 @@
                          <div class="form-group">
                                    <label class="col-sm-2 control-label">Password</label>
                                    <div class="col-sm-10">         
-                                    <input  formControlName="password" autocomplete="on" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name ="password"  placeholder="Password"  type="password" >
+                                    <input  formControlName="password" specialIsAlphaNumeric autocomplete="on" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name ="password"  placeholder="Password"  type="password" >
                                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.password.errors.required">This field is mandatory.</mat-error>
                                         <mat-error *ngIf="f.password.errors.minlength">Password must be at least 6 characters</mat-error>
@@ -158,7 +158,7 @@
                            <div class="form-group">
                                   <label class="col-sm-2 control-label">Confirm Password</label>
                                   <div class="col-sm-10">                 
-                                    <input  formControlName="confirmPassword" autocomplete="on" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"  name="confirmpassword" placeholder="Confirm Password"  type="password" >
+                                    <input  formControlName="confirmPassword"  specialIsAlphaNumeric autocomplete="on" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"  name="confirmpassword" placeholder="Confirm Password"  type="password" >
                                     <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.confirmPassword.errors.required">This field is mandatory.</mat-error>
                                         <mat-error *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</mat-error>

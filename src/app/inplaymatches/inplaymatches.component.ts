@@ -51,10 +51,10 @@ export class InplaymatchesComponent implements OnInit,OnDestroy {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    "<span style=\"padding: 10px; border: 2px solid #404040; background: #434343;\">No Rows To Display</span>";
 
 
-    this.gridOptions.paginationPageSize=10;
+    this.gridOptions.paginationPageSize=100;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };

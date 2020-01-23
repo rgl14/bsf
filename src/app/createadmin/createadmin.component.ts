@@ -48,7 +48,7 @@ export class CreateadminComponent implements OnInit {
         }else{
           this.iscommissionedit=false;
         }
-        // console.log(data);
+        console.log(data);
         // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
@@ -97,10 +97,10 @@ export class CreateadminComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
-          this.Companyform.controls['MComm'].setValue(data.matchComm);
-          this.Companyform.controls['SComm'].setValue(data.sessionComm);
-          this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
-          this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
+          // this.Companyform.controls['MComm'].setValue(data.matchComm);
+          // this.Companyform.controls['SComm'].setValue(data.sessionComm);
+          // this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
+          // this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
         }
         this.formControlsmysharechanged()
         // this.formControlsmaxsharechanged()
@@ -250,33 +250,57 @@ export class CreateadminComponent implements OnInit {
   formControlmcommchanged(){
     this.Companyform.get('MComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.matchComm){
             this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
           }
+        }else{
+          if(mode > 100){
+            this.Companyform.controls['MComm'].setValue(100)
+          }
+        }
     });
   }
   formControlscommchanged(){
     this.Companyform.get('SComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.sessionComm){
             this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
           }
+        }else{
+          if(mode > 100){
+            this.Companyform.controls['SComm'].setValue(100)
+          }
+        }
     });
   }
   formControlmLossingCommchanged(){
     this.Companyform.get('MloseComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.mLossingComm){
             this.Companyform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
           }
+        }else{
+          if(mode > 100){
+            this.Companyform.controls['MloseComm'].setValue(100)
+          }
+        }
     });
   }
   formControlsLossingCommCommchanged(){
     this.Companyform.get('SloseComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.sLossingComm){
             this.Companyform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
           }
+        }else{
+          if(mode > 100){
+            this.Companyform.controls['SloseComm'].setValue(100)
+          }
+        }
     });
   }
 

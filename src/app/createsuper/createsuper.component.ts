@@ -242,33 +242,57 @@ export class CreatesuperComponent implements OnInit {
   formControlmcommchanged(){
     this.supermasterform.get('MComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.matchComm){
             this.supermasterform.controls['MComm'].setValue(this.accountInfo.matchComm)
           }
+        }else{
+          if(mode > 100){
+            this.supermasterform.controls['MComm'].setValue(100)
+          }
+        }
     });
   }
   formControlscommchanged(){
     this.supermasterform.get('SComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.sessionComm){
             this.supermasterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
           }
+        }else{
+          if(mode > 100){
+            this.supermasterform.controls['SComm'].setValue(100)
+          }
+        }
     });
   }
   formControlmLossingCommchanged(){
     this.supermasterform.get('MloseComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.mLossingComm){
             this.supermasterform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
           }
+        }else{
+          if(mode > 100){
+            this.supermasterform.controls['MloseComm'].setValue(100)
+          }
+        }
     });
   }
   formControlsLossingCommCommchanged(){
     this.supermasterform.get('SloseComm').valueChanges.subscribe(
       (mode: number) => {
+        if(this.iscommissionedit){
           if(mode > this.accountInfo.sLossingComm){
             this.supermasterform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)
           }
+        }else{
+          if(mode > 100){
+            this.supermasterform.controls['SloseComm'].setValue(100)
+          }
+        }
     });
   }
 

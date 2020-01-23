@@ -17,7 +17,7 @@ export class TournamenttogglecellComponent implements OnInit {
   ngOnInit() {
   }
   agInit(params) {
-    console.log(params);
+    // console.log(params);
     this.params = params;
     this.data = this.params.data;
     if (this.params.colDef.field == "isActive") {

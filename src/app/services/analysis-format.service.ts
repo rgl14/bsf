@@ -101,7 +101,7 @@ export class AnalysisFormatService {
       })
     })
     // console.log(highlightdata.reverse());
-    return highlightdata;
+    return highlightdata.reverse();
   }
 
   eventsWise(eventsList) {

@@ -55,6 +55,9 @@ h2 {
     display: block;
     flex: 1;
 }
+.label{
+    cursor: pointer;
+}
 .date-info{
     font-size: 12px;
     margin:0px;

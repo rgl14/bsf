@@ -55,6 +55,8 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
   liveUrlSafe: any;
   eventfancybook:any;
   fancybetArray=[];
+  TvWidth: number;
+  showtv: boolean;
   constructor(
     private usermanagement:UsermanagementService,
     public dialog: MatDialog,
@@ -68,6 +70,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
     ) { }
 
     ngOnInit() {
+      this.TvWidth = window.innerWidth;
       this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
       this.matchBfId=this.route.snapshot.paramMap.get('bfId');
       this.matchid=this.route.snapshot.paramMap.get('id');
@@ -89,7 +92,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
           count++;
           this.analysiseventdata=resp;
           this.Event=this.analysiseventdata[this.sportBfId].eventList[this.matchBfId];
-          console.log(this.Event);
+          // console.log(this.Event);
           this.Eventname=this.Event.name;
           this.EventDate=this.Event.eventDate;
           this.isInplay=this.Event.isInplay;
@@ -98,6 +101,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
           this.eventfancybook=this.admReport.fancyBook;
           this.bookData=this.admReport.bookData;
           this.bmBookData=this.admReport.bmBookData;
+          // console.log(this.bmBookData)
           if(this.admReport.moBetdata!=null ){
             this.MObetdata=this.admReport.moBetdata;
           }
@@ -219,6 +223,21 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
               }
             })
             this.BookRates=fancy.bookRates;
+            // console.log(this.BookRates);
+            _.forEach(this.BookRates, (item, index) => {
+              if(item.name=="BOOK MAKING"){
+                _.forEach(item.runnerData, (item1, index) => {
+                  if(this.bmBookData.runner1name!=null){
+                    if(item1.name==this.bmBookData.runner1name){
+                      item1["book"]=this.bmBookData.runner1Book;
+                    }
+                    if(item1.name==this.bmBookData.runner2name){
+                      item1["book"]=this.bmBookData.runner2Book;
+                    }
+                  }
+                })
+              }
+            })
             this.curTime=fancy.curTime;
           }
         })
@@ -264,6 +283,29 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         this.bmBetHide = !this.bmBetHide;
       }
     }
+    openTv() {
+      if (this.showtv == false) {
+        this.showtv = true;
+        if (this.tvConfig != null && this.tvConfig.channelIp != null) {
+          $("#streamingBox").fadeIn();
+          this.liveUrl = "https://shivexch.com/tv_api/live_tv/index.html?token=3af0f960-daba-47ea-acc2-a04b7ecf44bf&mtid=" + this.matchBfId;
+          this.liveUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.liveUrl);
+        } else {
+          $("#streamingBox").fadeIn();
+          this.liveUrl = "https://videoplayer.betfair.com/GetPlayer.do?tr=1&eID=" + this.matchBfId + "&width=450&height=290&allowPopup=true&contentType=viz&statsToggle=hide&contentOnly=true"
+          this.liveUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.liveUrl);
+        }
+  
+        let blogUrl: any = `${this.liveUrl}&mtid=${this.matchBfId}`;
+        $("#iframeTv").attr("src", blogUrl);
+      } else {
+        this.showtv = false;
+        this.closeTv();
+      }
+    }
+    closeTv() {
+      $("#streamingBox").fadeOut();
+    }
     
 
     openDeleteBetDialog(bet): void {
@@ -308,6 +350,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
 
      trackByFn(index,item){
       return item.id;
+     }
+     trackByName(index,item){
+      return item.name;
      }
      ngOnDestroy(){
        if(this.Event!=undefined){

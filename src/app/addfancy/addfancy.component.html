@@ -74,7 +74,7 @@
                                     <label class="col-md-2 label-control">Fancy Name <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="text" formControlName="betName" class="form-control"
+                                        <input type="text" specialIsAlphaNumeric formControlName="betName" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.betName.invalid && f.betName.touched}">
                                         <div *ngIf="f.betName.invalid && f.betName.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.
@@ -86,7 +86,7 @@
                                     <label class="col-md-2 label-control">Min Stake <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="minStake" class="form-control"
+                                        <input type="number" formControlName="minStake" specialIsAlphaNumeric class="form-control"
                                             [ngClass]="{ 'is-invalid': f.minStake.invalid && f.minStake.touched}">
                                         <div *ngIf="f.minStake.invalid && f.minStake.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.
@@ -96,7 +96,7 @@
                                     <label class="col-md-2 label-control">Max Stake <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxStake" class="form-control"
+                                        <input type="number" formControlName="maxStake" specialIsAlphaNumeric class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxStake.invalid && f.maxStake.touched}">
                                         <div *ngIf="f.maxStake.invalid && f.maxStake.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.
@@ -108,7 +108,7 @@
                                     <label class="col-md-2 label-control">Max Profit <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxProfit" class="form-control"
+                                        <input type="number" formControlName="maxProfit" specialIsAlphaNumeric class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxProfit.invalid && f.maxProfit.touched}">
                                         <div *ngIf="f.maxProfit.invalid && f.maxProfit.touched"
                                             class="invalid-feedback">
@@ -118,7 +118,7 @@
                                     </div>
                                     <label class="col-md-2 label-control">Max Loss <span class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxLoss" class="form-control"
+                                        <input type="number" formControlName="maxLoss" specialIsAlphaNumeric class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxLoss.invalid && f.maxLoss.touched}">
                                         <div *ngIf="f.maxLoss.invalid && f.maxLoss.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.
@@ -145,7 +145,7 @@
                                 <label class="col-md-2 label-control">Fancy Bet delay<span
                                         class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="betDelay" class="form-control"
+                                    <input type="number" formControlName="betDelay" specialIsAlphaNumeric class="form-control"
                                         [ngClass]="{ 'is-invalid': f.betDelay.invalid && f.betDelay.touched}">
                                     <div *ngIf="f.betDelay.invalid && f.betDelay.touched" class="invalid-feedback">
                                         <mat-error>This field is mandatory.
@@ -157,7 +157,7 @@
                                 <label class="col-md-2 label-control">Rate Difference<span
                                         class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="rateDifference" class="form-control"
+                                    <input type="number" formControlName="rateDifference" specialIsAlphaNumeric class="form-control"
                                         [ngClass]="{ 'is-invalid': f.rateDifference.invalid && f.rateDifference.touched}">
                                     <div *ngIf="f.rateDifference.invalid && f.rateDifference.touched"
                                         class="invalid-feedback">
@@ -169,7 +169,7 @@
                             <div class="form-group row">
                                 <label class="col-md-2 label-control">Rate Range<span class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="rateRange" class="form-control"
+                                    <input type="number" formControlName="rateRange" specialIsAlphaNumeric class="form-control"
                                         [ngClass]="{ 'is-invalid': f.rateRange.invalid && f.rateRange.touched}">
                                     <div *ngIf="f.rateRange.invalid && f.rateRange.touched" class="invalid-feedback">
                                         <mat-error>This field is mandatory.
@@ -181,7 +181,7 @@
                                 <label class="col-md-2 label-control">Max Stake Per Rate<span
                                         class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="maxStakePerRate" class="form-control"
+                                    <input type="number" formControlName="maxStakePerRate" specialIsAlphaNumeric class="form-control"
                                         [ngClass]="{ 'is-invalid': f.maxStakePerRate.invalid && f.maxStakePerRate.touched}">
                                     <div *ngIf="f.maxStakePerRate.invalid && f.maxStakePerRate.touched"
                                         class="invalid-feedback">
@@ -193,7 +193,7 @@
                             <div class="form-group row">
                                 <label class="col-md-2 label-control">position<span class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="position" class="form-control"
+                                    <input type="number" formControlName="position" specialIsAlphaNumeric class="form-control"
                                         [ngClass]="{ 'is-invalid': f.position.invalid && f.position.touched}">
                                     <div *ngIf="f.position.invalid && f.position.touched" class="invalid-feedback">
                                         <mat-error>This field is mandatory.
@@ -211,7 +211,7 @@
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group col-sm-4 col-sm-offset-2 button-row">
-                            <button mat-raised-button color="warn" type="reset" (click)="onClear()">Cancel</button>
+                            <button mat-raised-button color="warn" type="reset" [routerLink]="['/markets_ctlg']">Cancel</button>
                             <button mat-raised-button color="primary" type="submit" [disabled]="fancyForm.invalid">Save</button>
                         </div>
                     </form>

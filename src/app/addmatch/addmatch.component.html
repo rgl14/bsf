@@ -41,7 +41,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="matchname" class="form-control" name="Matchname" [ngClass]="{ 'is-invalid': submitted && f.matchname.errors }"  placeholder="" type="text" >
+                                  <input formControlName="matchname" specialIsAlphaNumeric class="form-control" name="Matchname" [ngClass]="{ 'is-invalid': submitted && f.matchname.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.matchname.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.matchname.errors.required">This field is mandatory.</mat-error>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Date<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3"> 
-                                        <input  formControlName="matchDate" type="text" 
+                                        <input  formControlName="matchDate" specialIsAlphaNumeric type="text" 
                                             placeholder="Select Date Here..."
                                             [ngClass]="{ 'is-invalid': submitted && f.matchDate.errors }"
                                             class="form-control"
@@ -70,7 +70,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                        <input formControlName="matchbfid" class="form-control" name="Matchbfid" [ngClass]="{ 'is-invalid': submitted && f.matchbfid.errors }"  placeholder="" type="text" >
+                                        <input formControlName="matchbfid" specialIsAlphaNumeric class="form-control" name="Matchbfid" [ngClass]="{ 'is-invalid': submitted && f.matchbfid.errors }"  placeholder="" type="text" >
                                   <div *ngIf="submitted && f.matchbfid.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.matchbfid.errors.required">This field is mandatory.</mat-error>
                                  </div>
@@ -103,7 +103,7 @@
                             </div>
                     <div class="hr-line-dashed"></div>
                     <div class="button-row" style="text-align: center">
-                        <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
+                        <button mat-raised-button color="warn" [routerLink]="['/matchlist']">Cancel</button>
                         <button mat-raised-button color="primary"  type="submit">Save</button>
                     </div>
                 </form>                        

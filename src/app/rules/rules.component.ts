@@ -21,6 +21,7 @@ export class RulesComponent implements OnInit {
     height: 250
   };
   ngOnInit() {
+    this.getRules();
   }
 
   getRules() {
@@ -29,8 +30,8 @@ export class RulesComponent implements OnInit {
         if (data.description.status == "Success") {
           console.log(data);
           this.setContent(data.data);
-          //   this.rules = data.data.rules;
-          //   this.terms = data.data.termsNconditions;
+            this.rules = data.data.rules;
+            this.terms = data.data.termsNconditions;
         }
       },
     );

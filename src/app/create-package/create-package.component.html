@@ -14,7 +14,7 @@
                 <div class="form-group row">
                   <label class="col-md-3 label-control">Package Name</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" formControlName="name" 
+                    <input type="text" specialIsAlphaNumeric class="form-control" formControlName="name" 
                       [ngClass]="{ 'is-invalid': f.name.invalid && f.name.touched}" />
                     <div *ngIf="f.name.invalid && f.name.touched" class="invalid-feedback">
                       <mat-error>This field is mandatory.</mat-error>

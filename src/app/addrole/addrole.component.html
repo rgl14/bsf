@@ -13,7 +13,7 @@
                             <div class="form-group">
                                     <label class="col-sm-2 label-control">Role Name<span class="danger">*</span> :</label>
                                     <div class="col-md-10 col-sm-3">              
-                                      <input formControlName="rolename" class="form-control" name="rolename" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }"  placeholder="" type="text" >
+                                      <input formControlName="rolename" specialIsAlphaNumeric class="form-control" name="rolename" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }"  placeholder="" type="text" >
                                       
                                       <div *ngIf="submitted && f.rolename.errors" class="invalid-feedback">
                                          <mat-error *ngIf="f.rolename.errors.required">This field is mandatory.</mat-error>
@@ -23,7 +23,7 @@
                             <div class="form-group">
                                     <label class="col-sm-2 label-control">Role Description<span class="danger">*</span> :</label>
                                     <div class="col-md-10 col-sm-3">              
-                                            <textarea formControlName="roledesc" name="note" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }"></textarea>
+                                            <textarea formControlName="roledesc" specialIsAlphaNumeric name="note" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }"></textarea>
                                       
                                       <div *ngIf="submitted && f.roledesc.errors" class="invalid-feedback">
                                          <mat-error *ngIf="f.roledesc.errors.required">This field is mandatory.</mat-error>

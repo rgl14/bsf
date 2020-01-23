@@ -161,10 +161,10 @@ snack-bar-container.notification simple-snack-bar {
 }
 .mat-line {
   font-weight: 600 !important;
-  color: cadetblue;
+  color: #434343;
 }
 .mat-list-icon {
-  color: cadetblue;
+  color: #434343;
 }
 /*Data Table Css*/
 .username {

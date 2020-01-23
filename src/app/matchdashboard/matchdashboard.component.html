@@ -10,7 +10,7 @@
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/betslips',matchId,MktId,title]">Odds Bet Slips</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/sessionbetslips',sprtID,mtbfID,title]">Fancy Bet Slip</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/sessionbetslips',matchId,MktId,title]">Fancy Bet Slip</button>
-                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/livereport',sprtID,mtbfID,title]">Live Report</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/analysismarket',sprtID,mtbfID,matchId]">Live Report</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/marketreport',sprtID,mtbfID,title]">Market Report</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/companyreport',matchId,MktId,title]">Company Report</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/clientreport',matchId,MktId,title]">Client Report</button>
