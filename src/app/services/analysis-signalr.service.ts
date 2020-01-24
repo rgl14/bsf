@@ -24,7 +24,7 @@ export class AnalysisSignalrService {
   }
 
   connectAnalysis(analysisHubAddress, userId) {
-    console.log(analysisHubAddress, userId);
+    // console.log(analysisHubAddress, userId);
     this.analysisHubAddress = analysisHubAddress;
 
     // if(this.analysisHubConn==null){

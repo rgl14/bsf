@@ -27,11 +27,16 @@ export class AdminComponent implements OnInit {
 
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
+    };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
       {headerName: 'Username', field: 'userName', sortable: true, width: 200,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Name', field: 'name', sortable: true, width: 150},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 150},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 150,valueFormatter: balanceFormatter},
       {headerName: 'My share (%)', field: 'myShare', sortable: true, width: 100},
       {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, width: 100},
       {headerName: 'M-Comm  (%)', field: 'MComm', sortable: true, width: 100},
@@ -41,7 +46,10 @@ export class AdminComponent implements OnInit {
       {headerName: 'Actions', field: '', width: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
-    
+    function balanceFormatter(params){
+      var twodecimalvalue=parseInt(params.value).toFixed(2);
+      return twodecimalvalue;
+    }
 
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
@@ -80,6 +88,10 @@ export class AdminComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
+    this.GetuserList();
+  }
+
+  GetuserList(){
     this.usertype=2;
     if(this.creatorId==undefined){
       this.creatorId='0';

@@ -14,16 +14,13 @@ export class AppComponent {
   isLoggedIn: boolean = false;
 
   constructor(private router: Router, private tokenService: TokenService) {
-    this.currentroute = this.router.url
-
-    console.log(this.tokenService.getToken());
+    this.currentroute = this.router.url;
     if (this.tokenService.getToken()) {
       this.isLoggedIn = true;
     }
   }
 
   checkLoggedIn(value: boolean) {
-    console.log(value);
     this.isLoggedIn = value;
   }
 

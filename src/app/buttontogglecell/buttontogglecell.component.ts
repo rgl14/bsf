@@ -106,9 +106,13 @@ export class ButtontogglecellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      var isAll=result.statusSelected
-      console.log(result)
-      this.update(isAll);
+      console.log(result);
+      if(result==undefined){
+        this.params.context.componentParent.GetuserList();
+      }else{
+        var isAll=result.statusSelected
+        this.update(isAll);  
+      }
     });
   }
 
@@ -175,6 +179,7 @@ export class ButtontogglecellComponent implements OnInit {
         else {
           this.isActive = true;
         }
+        this.params.context.componentParent.GetuserList();
         this.notifyService.success(data.result);
       }
       else {
@@ -221,6 +226,7 @@ export class ButtontogglecellComponent implements OnInit {
         else {
           this.isActive = true;
         }
+        this.params.context.componentParent.GetuserList();
         this.notifyService.success(data.result);
       }
       else {

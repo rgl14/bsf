@@ -41,8 +41,9 @@ export class AnalysisFormatService {
         if (item2.isInplay == 0 && day == 1) {
           item2['upcomming'] = day;
         }
-        var MatchBookdata=item2._admReport[userId].bookData
-
+        if(item2._admReport[userId]!=undefined){
+          var MatchBookdata=item2._admReport[userId].bookData;
+        }
         _.forEach(item2.mktList, (item3, index3) => {
           if (item3.name == "Match Odds") {
             let latestIndex = 0;
@@ -53,19 +54,31 @@ export class AnalysisFormatService {
                 item2['runnerName1'] = item4.runnerName;
                 item2['runner1Back'] = item4.back1;
                 item2['runner1Lay'] = item4.lay1;
-                item2['runner1Book']=MatchBookdata.runner1Book
+                if(MatchBookdata==undefined){
+                  item2['runner1Book']=0
+                }else{
+                  item2['runner1Book']=MatchBookdata.runner1Book
+                }
               }
               if (latestIndex == 1) {
                 item2['runnerName2'] = item4.runnerName;
                 item2['runner2Back'] = item4.back1;
                 item2['runner2Lay'] = item4.lay1;
-                item2['runner2Book']=MatchBookdata.runner2Book
+                if(MatchBookdata==undefined){
+                  item2['runner2Book']=0;
+                }else{
+                  item2['runner2Book']=MatchBookdata.runner2Book;
+                }
               }
               if (latestIndex == 2) {
                 item2['runnerName3'] = item4.runnerName;
                 item2['runner3Back'] = item4.back1;
                 item2['runner3Lay'] = item4.lay1;
-                item2['runner3Book']=MatchBookdata.runner3Book
+                if(MatchBookdata==undefined){
+                  item2['runner3Book']=0;
+                }else{
+                  item2['runner3Book']=MatchBookdata.runner3Book;
+                }
               }
               latestIndex++;
             });

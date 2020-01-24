@@ -14,7 +14,7 @@ export class UseranalysisComponent implements OnInit {
   ngOnInit() {
     this.reports.AnalysisReport().subscribe(resp=>{
       if(resp!=null){
-        console.log(resp)
+        // console.log(resp)
         this.analysisreport=resp.data;
       }
       
