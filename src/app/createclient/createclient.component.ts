@@ -26,6 +26,7 @@ export class CreateclientComponent implements OnInit {
   issessioncomm: any;
   usertype: number;
   iscommissionedit: boolean;
+  MaxmyShare: any;
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -46,7 +47,8 @@ export class CreateclientComponent implements OnInit {
         }else{
             this.iscommissionedit=false;
         }
-        console.log(data)
+        console.log(data);
+        this.MaxmyShare=data.maxMyShare;
         // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
@@ -56,7 +58,7 @@ export class CreateclientComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            myShare:['',Validators.required],
+            // myShare:['',Validators.required],
             MComm:['',Validators.required],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
@@ -79,7 +81,7 @@ export class CreateclientComponent implements OnInit {
             username:[''],
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
-            myShare:['',Validators.required],
+            // myShare:['',Validators.required],
             MComm:['',Validators.required],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
@@ -98,7 +100,7 @@ export class CreateclientComponent implements OnInit {
           // this.clientform.controls['MloseComm'].setValue(data.mLossingComm);
           // this.clientform.controls['SloseComm'].setValue(data.sLossingComm);
         }
-        this.formControlsmysharechanged();
+        // this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
         this.formControlfixlimitChanged();
         this.formControlmcommchanged();
@@ -145,7 +147,7 @@ export class CreateclientComponent implements OnInit {
                 "fixLimit":this.edituserdata.fixLimit,
                 "isMComm":0,
                 "isSComm":0,
-                "myShare":this.edituserdata.myShare,
+                "myShare":this.MaxmyShare,
                 "bookDisplayType":this.edituserdata.bookdisplaytype,
                 "commType":this.edituserdata.fixedfees,
                 "mLossingComm":this.clientform.get("MloseComm").value,
@@ -181,7 +183,7 @@ export class CreateclientComponent implements OnInit {
               "fixLimit":this.userdata.fixLimit,
               "isMComm":0,
               "isSComm":0,
-              "myShare":this.userdata.myShare,
+              "myShare":this.MaxmyShare,
               "password":this.userdata.password,
               "bookDisplayType":this.userdata.bookdisplaytype,
               "commType":this.userdata.fixedfees,
@@ -207,15 +209,15 @@ export class CreateclientComponent implements OnInit {
     // }
   }
 
-  formControlsmysharechanged(){
-    this.clientform.get('myShare').valueChanges.subscribe(
-      (mode: number) => {
+  // formControlsmysharechanged(){
+  //   this.clientform.get('myShare').valueChanges.subscribe(
+  //     (mode: number) => {
           
-          if(mode > this.accountInfo.maxMyShare){
-            this.clientform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
-          }
-    });
-  }
+  //         if(mode > this.accountInfo.maxMyShare){
+  //           this.clientform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
+  //         }
+  //   });
+  // }
   formControlfixlimitChanged() {
     this.clientform.get('fixLimit').valueChanges.subscribe(
         (mode: number) => {
@@ -272,11 +274,12 @@ export class CreateclientComponent implements OnInit {
       //   var scomm=false;
       // }
       this.maxsupershare=this.accountInfo.minCompanyShare-resp.data.myShare;
+      this.MaxmyShare=resp.data.myShare
       this.clientform.setValue({  
         username:resp.data.userName,
         firstName:resp.data.name,
         fixLimit:resp.data.fixLimit,
-        myShare:resp.data.myShare,
+        // myShare:resp.data.myShare,
         MComm:resp.data.mComm,
         SComm:resp.data.sComm,
         MloseComm:resp.data.mLossingComm,
