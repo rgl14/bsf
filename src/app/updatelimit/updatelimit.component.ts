@@ -32,6 +32,7 @@ export class UpdatelimitComponent implements OnInit {
   summaryData: any;
   userList: any;
   userType: string;
+  updatelimitresp: any;
 
   constructor(private usermanagement:UsermanagementService) { 
     this.gridOptions = <GridOptions>{};
@@ -60,7 +61,7 @@ export class UpdatelimitComponent implements OnInit {
     this.overlayNoRowsTemplate =
     "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
 
-    this.gridOptions.paginationPageSize=10;
+    // this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
@@ -83,17 +84,18 @@ export class UpdatelimitComponent implements OnInit {
 
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter_company') as HTMLInputElement).value);
-    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-supermaster') as HTMLInputElement).value);
-    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-master') as HTMLInputElement).value);
-    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-superagent') as HTMLInputElement).value);
-    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-agent') as HTMLInputElement).value);
-    // this.gridOptions.api.setQuickFilter((document.getElementById('filter-client') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-supermaster') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-master') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-superagent') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-agent') as HTMLInputElement).value);
+    this.gridOptions.api.setQuickFilter((document.getElementById('filter-client') as HTMLInputElement).value);
   }
 
   ngOnInit() {
     this.userType=this.usermanagement.getUserType();
     this.usermanagement.GetCommNLimits().subscribe(resp=>{
       // console.log(resp) 
+      this.updatelimitresp=resp;
       this.adminList=resp.adminList;
       this.superMasterList=resp.superMasterList;
       this.masterList=resp.masterList;

@@ -1,18 +1,16 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { NavigationcellComponent } from '../navigationcell/navigationcell.component';
-import { CustomcellbuttonsComponent } from '../customcellbuttons/customcellbuttons.component';
 import { ButtontogglecellComponent } from '../buttontogglecell/buttontogglecell.component';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-superagent',
-  templateUrl: './superagent.component.html',
-  styleUrls: ['./superagent.component.css']
+  selector: 'app-blockedclients',
+  templateUrl: './blockedclients.component.html',
+  styleUrls: ['./blockedclients.component.css']
 })
-export class SuperagentComponent implements OnInit {
-
+export class BlockedclientsComponent implements OnInit {
   gridOptions: GridOptions;
   columnDefs:any
   paginationPageSize:any;
@@ -23,9 +21,6 @@ export class SuperagentComponent implements OnInit {
   overlayNoRowsTemplate: string;
   gridApi: any;
   gridColumnApi: any;
-  usertype: number;
-  creatorId: any;
-
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions = {
@@ -35,23 +30,13 @@ export class SuperagentComponent implements OnInit {
     };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true, width: 200,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Name', field: 'name', sortable: true, width: 150},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 150,valueFormatter: balanceFormatter},
-      {headerName: 'My share (%)', field: 'myShare', sortable: true, width: 100},
-      {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, width: 100},
-      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, width: 100},
-      {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, width: 100},
-      {headerName: 'Status', field: 'accStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Bet Allow', field: 'betStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', width: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Username', field: 'userName', sortable: true, width: 300,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Name', field: 'name', sortable: true, width: 200},
+      {headerName: 'M-Comm  (%)', field: 'matchComm', sortable: true, width: 150},
+      {headerName: 'S-Comm  (%)', field: 'sessionComm', sortable: true, width: 150},
+      {headerName: 'Status', field: 'accStatus', width: 600,cellRendererFramework:ButtontogglecellComponent},
     ]; 
-
-    function balanceFormatter(params){
-      var twodecimalvalue=parseInt(params.value).toFixed(2);
-      return twodecimalvalue;
-    }
-
+    
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
@@ -83,7 +68,6 @@ export class SuperagentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.creatorId=this.route.snapshot.paramMap.get('userId');
   }
 
   onGridReady(params:any) {
@@ -94,12 +78,9 @@ export class SuperagentComponent implements OnInit {
   }
 
   GetuserList(){
-    this.usertype=5;
-    if(this.creatorId==undefined){
-      this.creatorId='0';
-    }
-    this.usermanagement.getUserlist(this.usertype,this.creatorId).subscribe(resp=>{
-      this.rowData=resp._data;
+    this.usermanagement.getBlockedClient().subscribe(resp=>{
+      this.rowData=resp.data;
+      // console.log(resp.data)
     })
   }
 

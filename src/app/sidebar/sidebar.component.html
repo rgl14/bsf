@@ -11,6 +11,7 @@
                             <!-- <li *ngIf="userType===2 || userType===3 || userType===4 || userType===5"><a [routerLink]="'/agent'"><i class="fa fa fa-users"></i> Agent</a></li> -->
                             <li *ngIf="userType===3 || userType===4 || userType===5"><a [routerLink]="'/clients'"><i class="fa fa fa-users"></i> Manage Clients</a></li>
                             <li><a [routerLink]="'/updatelimit'"><i class="fa fa fa-users"></i> Update Limit</a></li>
+                            <li><a [routerLink]="'/blockedclient'"><i class="fa fa fa-users"></i> Blocked Clients</a></li>
                     </ul>    
             </div>
         </li>
@@ -29,7 +30,7 @@
                     <li><a [routerLink]="'/AllMatch'"><i class="fa fa-soccer-ball-o"></i> All Matches</a></li>
                     <li><a [routerLink]="'/inplaylist'"><i class="fa fa-soccer-ball-o"></i> Inplay</a></li>
                     <li><a [routerLink]="'/matches'"><i class="fa fa-soccer-ball-o"></i> Declared Matches</a></li>
-                    <li><a [routerLink]="'/tournament'"><i class="fa fa-soccer-ball-o"></i> Upcoming</a></li> 
+                    <!-- <li><a [routerLink]="'/tournament'"><i class="fa fa-soccer-ball-o"></i> Upcoming</a></li>  -->
                 </ul>
             </div>
         </li>

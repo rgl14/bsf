@@ -83,6 +83,8 @@ import { MarketreportComponent } from './marketreport/marketreport.component';
 import { UseranalysisComponent } from './useranalysis/useranalysis.component';
 import { ScoreInputComponent } from './score-input/score-input.component';
 import { InplaymatchesComponent } from './inplaymatches/inplaymatches.component';
+import { BlockedclientsComponent } from './blockedclients/blockedclients.component';
+
 
 const routes: Routes = [
   // {path:'',component:LoginComponent},
@@ -190,6 +192,7 @@ const routes: Routes = [
   { path: 'userAnalysis', component: UseranalysisComponent },
   { path: 'ScoreInput', component: ScoreInputComponent },
   { path: 'AllMatch', component: InplaymatchesComponent },
+  { path: 'blockedclient', component: BlockedclientsComponent },
 ];
 
 @NgModule({
@@ -277,5 +280,6 @@ export const componentRouting = [
   MarketreportComponent,
   UseranalysisComponent,
   ScoreInputComponent,
-  InplaymatchesComponent
+  InplaymatchesComponent,
+  BlockedclientsComponent
 ]

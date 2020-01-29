@@ -57,13 +57,13 @@ export class CreateclientComponent implements OnInit {
           this.clientform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
+            fixLimit:[''],
             // myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            MComm:[''],
+            SComm:[''],
+            MloseComm:[''],
+            SloseComm:[''],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -82,11 +82,11 @@ export class CreateclientComponent implements OnInit {
             firstName:['',Validators.required],
             fixLimit:['',Validators.required],
             // myShare:['',Validators.required],
-            MComm:['',Validators.required],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            MComm:[''],
+            SComm:[''],
+            MloseComm:[''],
+            SloseComm:[''],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -95,10 +95,13 @@ export class CreateclientComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
-          // this.clientform.controls['MComm'].setValue(data.matchComm);
-          // this.clientform.controls['SComm'].setValue(data.sessionComm);
-          // this.clientform.controls['MloseComm'].setValue(data.mLossingComm);
-          // this.clientform.controls['SloseComm'].setValue(data.sLossingComm);
+          this.clientform.controls['fixLimit'].setValue(0);
+          this.clientform.controls['MComm'].setValue(0);
+          this.clientform.controls['SComm'].setValue(0);
+          this.clientform.controls['MloseComm'].setValue(0);
+          this.clientform.controls['SloseComm'].setValue(0);
+          this.clientform.controls['fixedfees'].setValue(0);
+
         }
         // this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
@@ -149,7 +152,7 @@ export class CreateclientComponent implements OnInit {
                 "isSComm":0,
                 "myShare":this.MaxmyShare,
                 "bookDisplayType":this.edituserdata.bookdisplaytype,
-                "commType":this.edituserdata.fixedfees,
+                "commType":1,
                 "mLossingComm":this.clientform.get("MloseComm").value,
                 "sLossingComm":this.clientform.get("SloseComm").value,
                 "userID":this.userId
@@ -186,7 +189,7 @@ export class CreateclientComponent implements OnInit {
               "myShare":this.MaxmyShare,
               "password":this.userdata.password,
               "bookDisplayType":this.userdata.bookdisplaytype,
-              "commType":this.userdata.fixedfees,
+              "commType":1,
               "mLossingComm":this.clientform.get("MloseComm").value,
               "sLossingComm":this.clientform.get("SloseComm").value,
               "userType":6

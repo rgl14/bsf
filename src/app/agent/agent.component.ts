@@ -40,7 +40,7 @@ export class AgentComponent implements OnInit {
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 150,valueFormatter: balanceFormatter},
       {headerName: 'My share (%)', field: 'myShare', sortable: true, width: 100},
       {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, width: 100},
-      {headerName: 'M-Comm  (%)', field: 'MComm', sortable: true, width: 100},
+      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, width: 100},
       {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, width: 100},
       {headerName: 'Status', field: 'accStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},

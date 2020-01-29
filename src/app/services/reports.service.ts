@@ -73,4 +73,12 @@ export class ReportsService {
     return this.http.get(`${BASEURL}/Reports/GetSessionEarningReport?mtid=${MTID}`);
   }
 
+  GetSportsPnl(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/GetSportsPnl?id=${ID}`);
+  }
+
+  GetTournamentPnl(ID,SID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/GetTournamentPnl?id=${ID}&sid=${SID}`);
+  }
+
 }

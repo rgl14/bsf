@@ -1,7 +1,7 @@
 <div class="wrapper wrapper-content">
   <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox float-e-margins" *ngIf="userType==='1'">
+    <div class="col-lg-12" *ngIf="updatelimitresp">
+      <div class="ibox float-e-margins" *ngIf="userType==='1' && adminList.length!=0">
         <div class="ibox-title">
           <h5>Update Limit For Company</h5>
         </div>
@@ -20,14 +20,13 @@
                   [overlayLoadingTemplate]="overlayLoadingTemplate"
                   [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                   [animateRows]="true"
-                  [pagination]="true"
                   (gridReady)="onGridReady($event)"
                   >
                   </ag-grid-angular>
               </div>
         </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2'">
+      <div class="ibox float-e-margins" *ngIf="(userType==='1' || userType==='2') && superMasterList.length!=0">
           <div class="ibox-title">
             <h5>Update Limit For SuperMaster</h5>
           </div>
@@ -46,14 +45,12 @@
                     [overlayLoadingTemplate]="overlayLoadingTemplate"
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     [animateRows]="true"
-                    [pagination]="true"
-                    
-                      >
+                    >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2' || userType==='3'">
+      <div class="ibox float-e-margins" *ngIf="(userType==='1' || userType==='2' || userType==='3') && masterList.length!=0">
           <div class="ibox-title">
             <h5>Update Limit For Master</h5>
           </div>
@@ -72,14 +69,12 @@
                     [overlayLoadingTemplate]="overlayLoadingTemplate"
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     [animateRows]="true"
-                    [pagination]="true"
-                    
                     >
                     </ag-grid-angular>
                 </div>
           </div>
       </div>
-      <div class="ibox float-e-margins" *ngIf="userType==='1' || userType==='2' || userType==='3' || userType==='4'">
+      <div class="ibox float-e-margins" *ngIf="(userType==='1' || userType==='2' || userType==='3' || userType==='4') && agentList.length!=0">
           <div class="ibox-title">
             <h5>Update Limit For Agent</h5>
           </div>
@@ -98,8 +93,6 @@
                     [overlayLoadingTemplate]="overlayLoadingTemplate"
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     [animateRows]="true"
-                    [pagination]="true"
-                    
                     >
                     </ag-grid-angular>
                 </div>
@@ -131,7 +124,7 @@
                 </div>
           </div>
       </div> -->
-      <div class="ibox float-e-margins" *ngIf="userType==='2' || userType==='3' || userType==='4' || userType==='5'">
+      <div class="ibox float-e-margins" *ngIf="(userType==='2' || userType==='3' || userType==='4' || userType==='5') && userList.length!=0">
           <div class="ibox-title">
             <h5>Update Limit For Client</h5>
           </div>
@@ -151,8 +144,6 @@
                     [overlayLoadingTemplate]="overlayLoadingTemplate"
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     [animateRows]="true"
-                    [pagination]="true"
-                    
                     >
                     </ag-grid-angular>
                 </div>

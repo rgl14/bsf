@@ -8,7 +8,7 @@
         <div class="ibox-content-table table-responsive">
             <div class="search-div">
                 
-                <div class="Data-Filters">
+                <!-- <div class="Data-Filters">
                     <form class="form">
                     <div class="form-body">
                     <div class="col-md-12 row">
@@ -19,15 +19,6 @@
                     <div class="datewise">
                     <div class="col-md-12">
                     <div class="input-group date">
-                    <!-- <input type="text" class="form-control"
-                        ngxDaterangepickerMd
-                        [(ngModel)]="selected"
-                        [showCustomRangeLabel]="true"
-                        [alwaysShowCalendars]="true"
-                        [ranges]="ranges"
-                        [linkedCalendars]="true"
-                        [showClearButton]="true"
-                        placeholder="Select please..."> -->
                         <input type="text"
                         placeholder="Select please..."
                         class="form-control"
@@ -64,17 +55,17 @@
                     </div>
                     </div>
                     </form>
-                    </div>
+                    </div> -->
                 
             </div>
-            <hr>
+            <!-- <hr> -->
             <div class="table-container mat-elevation-z8" style="width:100%; height: 100%">
                 <div class="Table-Title">
                     <mat-form-field class="search-form-field" floatLabel="never">
                         <input matInput  id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
-                        <button mat-button matSuffix mat-icon-button aria-label="Clear"  >
+                        <!-- <button mat-button matSuffix mat-icon-button aria-label="Clear"  >
                           <mat-icon>close</mat-icon>
-                        </button>
+                        </button> -->
                       </mat-form-field>
                     <mat-form-field class="select-page-size">
                         <mat-label>Page Size</mat-label>
@@ -86,13 +77,17 @@
                         </select>
                       </mat-form-field>
                   </div>
-                <ag-grid-angular 
-                style="width: 100%; height: 350px"
-                class="ag-theme-balham"
-                [gridOptions]="gridOptions"
-                [animateRows]="true"
-                [pagination]="true"
-                >
+                  <ag-grid-angular 
+                  style="width: 100%; height: 450px"
+                  class="ag-theme-balham"
+                  [gridOptions]="gridOptions"
+                  [rowData]="rowData" 
+                  [overlayLoadingTemplate]="overlayLoadingTemplate"
+                  [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                  [animateRows]="true"
+                  [pagination]="true"
+                  (gridReady)="onGridReady($event)"
+                  >
                 </ag-grid-angular>
               </div>
       </div>

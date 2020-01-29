@@ -83,7 +83,7 @@ import { SpecialCharacterDirective } from './Directives/Special-character';
     RemoveSpacePipe,
     FancyBookDialog,
     RejectBetdialog,
-    SpecialCharacterDirective
+    SpecialCharacterDirective,
     
   ],
   imports: [
