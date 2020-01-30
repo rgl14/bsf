@@ -40,7 +40,9 @@ export class CreateadminComponent implements OnInit {
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
 
-    
+    this.usermanagement.getAccountInfo().subscribe(data=>{
+      console.log(data)
+    })
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
         if(data.userType!=1){
