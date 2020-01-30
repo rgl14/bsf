@@ -58,11 +58,11 @@ export class CreatesuperagentComponent implements OnInit {
             fixLimit:['',Validators.required],
             Superagentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -82,11 +82,11 @@ export class CreatesuperagentComponent implements OnInit {
             fixLimit:['',Validators.required],
             Superagentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -164,6 +164,17 @@ export class CreatesuperagentComponent implements OnInit {
               })
           }else{
             this.userdata=this.superagentform.value;
+            if(this.userdata.MComm==""){
+              var matchComm=this.accountInfo.matchComm;
+            }else{
+              var matchComm=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==""){
+              this.userdata.fixedfees=1;
+            }
+            if(this.userdata.bookdisplaytype==""){
+              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+            }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
             // }else{
@@ -175,7 +186,7 @@ export class CreatesuperagentComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.superagentform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.superagentform.get("SComm").value,
               "agentShare":this.superagentform.get("Superagentshare").value,
               "context":"web",

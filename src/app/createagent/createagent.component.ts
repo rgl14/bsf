@@ -23,6 +23,7 @@ export class CreateagentComponent implements OnInit {
   ismatchcomm: number;
   issessioncomm: number;
   userdata: any;
+  iscommissionedit: boolean;
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -37,6 +38,11 @@ export class CreateagentComponent implements OnInit {
 
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
+        if(data.userType!=1){
+          this.iscommissionedit=true;
+        }else{
+            this.iscommissionedit=false;
+        }
         // console.log(data)
         this.accountInfo=data;
         if(this.userId){
@@ -48,11 +54,11 @@ export class CreateagentComponent implements OnInit {
             fixLimit:['',Validators.required],
             Agentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -68,11 +74,11 @@ export class CreateagentComponent implements OnInit {
             fixLimit:['',Validators.required],
             Agentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -146,18 +152,29 @@ export class CreateagentComponent implements OnInit {
               })
           }else{
             this.userdata=this.agentform.value;
-            if(this.userdata.isMComm){
-              this.ismatchcomm=1;
+            if(this.userdata.MComm==""){
+              var matchComm=this.accountInfo.matchComm;
             }else{
-              this.ismatchcomm=0;
+              var matchComm=this.userdata.MComm;
             }
-            if(this.userdata.isSComm){
-              this.issessioncomm=1;
-            }else{
-              this.issessioncomm=0;
+            if(this.userdata.fixedfees==""){
+              this.userdata.fixedfees=1;
             }
+            if(this.userdata.bookdisplaytype==""){
+              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+            }
+            // if(this.userdata.isMComm){
+            //   this.ismatchcomm=1;
+            // }else{
+            //   this.ismatchcomm=0;
+            // }
+            // if(this.userdata.isSComm){
+            //   this.issessioncomm=1;
+            // }else{
+            //   this.issessioncomm=0;
+            // }
             var data={
-              "MComm":this.agentform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.agentform.get("SComm").value,
               "agentShare":this.agentform.get("Agentshare").value,
               "context":"web",

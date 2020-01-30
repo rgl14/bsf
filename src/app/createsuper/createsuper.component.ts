@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NotificationService } from '../shared/notification.service';
 import { MustMatch } from '../shared/must-match.validator';
 import { UsermanagementService } from '../services/usermanagement.service';
@@ -45,7 +45,7 @@ export class CreatesuperComponent implements OnInit {
         }else{
             this.iscommissionedit=false;
         }
-        // console.log(data)
+        console.log(data)
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
@@ -56,11 +56,11 @@ export class CreatesuperComponent implements OnInit {
             fixLimit:['',Validators.required],
             Supershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -73,6 +73,23 @@ export class CreatesuperComponent implements OnInit {
           this.usertype=3;
           this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
             this.supermasterform.controls['username'].setValue(resp.userName);
+            // this.supermasterform.setValue({  
+            //   username:resp.userName,
+            //   firstName:'',
+            //   fixLimit:'',
+            //   Supershare:'',
+            //   myShare:'',
+            //   MComm:0,
+            //   SComm:0,
+            //   MloseComm:'',
+            //   SloseComm:'',
+            //   fixedfees:'',
+            //   bookdisplaytype:'1',
+            //   password:'',
+            //   confirmPassword:'',
+            //   // isMComm: mcomm,
+            //   // isSComm: scomm,
+            // });  
           })
           this.supermasterform=this.formbuilder.group({
             username:[''],
@@ -80,11 +97,11 @@ export class CreatesuperComponent implements OnInit {
             fixLimit:['',Validators.required],
             Supershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -93,6 +110,7 @@ export class CreatesuperComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          
           // this.supermasterform.controls['MComm'].setValue(data.matchComm);
           // this.supermasterform.controls['SComm'].setValue(data.sessionComm);
           // this.supermasterform.controls['MloseComm'].setValue(data.mLossingComm);
@@ -101,7 +119,7 @@ export class CreatesuperComponent implements OnInit {
         this.formControlsmysharechanged()
         // this.formControlsmaxsharechanged()
         this.formControlfixlimitChanged()
-        this.formControlmcommchanged()
+        // this.formControlmcommchanged()
         this.formControlscommchanged()
         this.formControlmLossingCommchanged();
         this.formControlsLossingCommCommchanged();
@@ -126,6 +144,7 @@ export class CreatesuperComponent implements OnInit {
           // console.log(this.supermasterform)
           if(this.userId){
               this.edituserdata=this.supermasterform.value;
+              // console.log(this.edituserdata)
               // if(this.edituserdata.isMComm){
               //   this.ismatchcomm=1;
               // }else{
@@ -152,6 +171,7 @@ export class CreatesuperComponent implements OnInit {
                 "sLossingComm":this.supermasterform.get("SloseComm").value,
                 "userID":this.userId
               }
+              // console.log(editusersdata,"EDITuserdata")
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
                 if (resp.status == "Success") {
                   this.notification.success(resp.result);
@@ -162,6 +182,18 @@ export class CreatesuperComponent implements OnInit {
               })
           }else{
             this.userdata=this.supermasterform.value;
+            // console.log(this.userdata)
+            if(this.userdata.MComm==""){
+              var matchComm=this.accountInfo.matchComm;
+            }else{
+              var matchComm=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==""){
+              this.userdata.fixedfees=1;
+            }
+            if(this.userdata.bookdisplaytype==""){
+              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+            }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
             // }else{
@@ -173,7 +205,7 @@ export class CreatesuperComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.supermasterform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.supermasterform.get("SComm").value,
               "agentShare":this.supermasterform.get("Supershare").value,
               "context":"web",
@@ -239,20 +271,20 @@ export class CreatesuperComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.supermasterform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-        if(this.iscommissionedit){
-          if(mode > this.accountInfo.matchComm){
-            this.supermasterform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-        }else{
-          if(mode > 100){
-            this.supermasterform.controls['MComm'].setValue(100)
-          }
-        }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.supermasterform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //       if(this.iscommissionedit){
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.supermasterform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //       }else{
+  //         if(mode > 100){
+  //           this.supermasterform.controls['MComm'].setValue(100)
+  //         }
+  //       }
+  //   });
+  // }
   formControlscommchanged(){
     this.supermasterform.get('SComm').valueChanges.subscribe(
       (mode: number) => {
@@ -298,7 +330,7 @@ export class CreatesuperComponent implements OnInit {
 
   getuserdata(){
     this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{
-      console.log(resp.data)
+      // console.log(resp.data)
       // if(resp.data.isMComm==1){
       //   var mcomm=true;
       // }else{

@@ -167,6 +167,17 @@ export class CreateclientComponent implements OnInit {
               })
           }else{
             this.userdata=this.clientform.value;
+            if(this.userdata.MComm==""){
+              var matchComm=this.accountInfo.matchComm;
+            }else{
+              var matchComm=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==""){
+              this.userdata.fixedfees=1;
+            }
+            if(this.userdata.bookdisplaytype==""){
+              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+            }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
             // }else{
@@ -178,7 +189,7 @@ export class CreateclientComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.clientform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.clientform.get("SComm").value,
               "agentShare":0,
               "context":"web",

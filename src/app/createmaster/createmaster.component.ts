@@ -37,8 +37,10 @@ export class CreatemasterComponent implements OnInit {
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
 
-    
-    this.sharedata.AccountInfoSource.subscribe(data=>{
+    // this.usermanagement.getAccountInfo().subscribe(data=>{
+    //   console.log(data)
+    // })
+    this.usermanagement.getAccountInfo().subscribe(data=>{
       if(data!=null){
         if(data.userType!=1){
             this.iscommissionedit=true;
@@ -57,11 +59,11 @@ export class CreatemasterComponent implements OnInit {
             fixLimit:['',Validators.required],
             Mastershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -81,11 +83,11 @@ export class CreatemasterComponent implements OnInit {
             fixLimit:['',Validators.required],
             Mastershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
-            MComm:['',Validators.required],
+            MComm:[''],
             SComm:['',Validators.required],
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
+            fixedfees:[''],
             bookdisplaytype:['1'],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
@@ -102,7 +104,7 @@ export class CreatemasterComponent implements OnInit {
         this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged()
         this.formControlfixlimitChanged();
-        this.formControlmcommchanged();
+        // this.formControlmcommchanged();
         this.formControlscommchanged();
         this.formControlmLossingCommchanged();
         this.formControlsLossingCommCommchanged();
@@ -163,6 +165,17 @@ export class CreatemasterComponent implements OnInit {
               })
           }else{
             this.userdata=this.masterform.value;
+            if(this.userdata.MComm==""){
+              var matchComm=this.accountInfo.matchComm;
+            }else{
+              var matchComm=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==""){
+              this.userdata.fixedfees=1;
+            }
+            if(this.userdata.bookdisplaytype==""){
+              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+            }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
             // }else{
@@ -174,7 +187,7 @@ export class CreatemasterComponent implements OnInit {
             //   this.issessioncomm=0;
             // }
             var data={
-              "MComm":this.masterform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.masterform.get("SComm").value,
               "agentShare":this.masterform.get("Mastershare").value,
               "context":"web",
@@ -241,14 +254,14 @@ export class CreatemasterComponent implements OnInit {
             }
     });
   }
-  formControlmcommchanged(){
-    this.masterform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
-          if(mode > this.accountInfo.matchComm){
-            this.masterform.controls['MComm'].setValue(this.accountInfo.matchComm)
-          }
-    });
-  }
+  // formControlmcommchanged(){
+  //   this.masterform.get('MComm').valueChanges.subscribe(
+  //     (mode: number) => {
+  //         if(mode > this.accountInfo.matchComm){
+  //           this.masterform.controls['MComm'].setValue(this.accountInfo.matchComm)
+  //         }
+  //   });
+  // }
   formControlscommchanged(){
     this.masterform.get('SComm').valueChanges.subscribe(
       (mode: number) => {

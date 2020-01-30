@@ -110,11 +110,48 @@ export class AnalysisFormatService {
     let highlightdata=[]
     _.forEach(analysisData, (item, index) => {
       _.forEach(item.eventList, (item2, index2) => {
-        highlightdata.push(item2)
+        if(item2.isInplay==1 && item2.sportBfId=="4"){
+          highlightdata.push(item2)
+        }
+      })
+    })
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        if(item2.isInplay!=1 && item2.sportBfId=="4"){
+          highlightdata.push(item2)
+        }
+      })
+    })
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        if(item2.isInplay==1 && item2.sportBfId=="2"){
+          highlightdata.push(item2)
+        }
+      })
+    })
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        if(item2.isInplay!=1 && item2.sportBfId=="2"){
+          highlightdata.push(item2)
+        }
+      })
+    })
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        if(item2.isInplay==1 && item2.sportBfId=="1"){
+          highlightdata.push(item2)
+        }
+      })
+    })
+    _.forEach(analysisData, (item, index) => {
+      _.forEach(item.eventList, (item2, index2) => {
+        if(item2.isInplay!=1 && item2.sportBfId=="1"){
+          highlightdata.push(item2)
+        }
       })
     })
     // console.log(highlightdata.reverse());
-    return highlightdata.reverse();
+    return highlightdata;
   }
 
   eventsWise(eventsList) {
