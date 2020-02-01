@@ -36,9 +36,10 @@ export class CreatesuperComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-
+    this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
-      console.log(data)
+      this.accountInfo=data.data;
+      this.supermasterform.controls['bookdisplaytype'].setValue(this.accountInfo.bookDisplayType.toString());
     })
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
@@ -47,8 +48,7 @@ export class CreatesuperComponent implements OnInit {
         }else{
             this.iscommissionedit=false;
         }
-        console.log(data)
-        this.accountInfo=data;
+        // console.log(data)
         if(this.userId){
           this.getuserdata();
           this.isdisabled=true;
@@ -63,7 +63,7 @@ export class CreatesuperComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -104,7 +104,7 @@ export class CreatesuperComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -194,7 +194,9 @@ export class CreatesuperComponent implements OnInit {
               this.userdata.fixedfees=1;
             }
             if(this.userdata.bookdisplaytype==""){
-              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+              var bookdisplay=this.accountInfo.bookDisplayType;
+            }else{
+              var bookdisplay=this.userdata.bookdisplaytype;
             }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
@@ -217,13 +219,13 @@ export class CreatesuperComponent implements OnInit {
               "isSComm":0,
               "myShare":this.userdata.myShare,
               "password":this.userdata.password,
-              "bookDisplayType":this.userdata.bookdisplaytype,
+              "bookDisplayType":bookdisplay,
               "commType":this.userdata.fixedfees,
               "mLossingComm":this.supermasterform.get("MloseComm").value,
               "sLossingComm":this.supermasterform.get("SloseComm").value,
               "userType":3
             }
-            // console.log(data,"userdata")
+            console.log(data,"userdata")
             this.usermanagement.getCreatUser(data).subscribe(resp=>{
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
@@ -243,7 +245,7 @@ export class CreatesuperComponent implements OnInit {
 
   formControlsmysharechanged(){
     this.supermasterform.get('myShare').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
           
           if(mode > this.accountInfo.maxMyShare){
             this.supermasterform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
@@ -266,7 +268,7 @@ export class CreatesuperComponent implements OnInit {
   // }
   formControlfixlimitChanged() {
     this.supermasterform.get('fixLimit').valueChanges.subscribe(
-        (mode: number) => {
+        (mode: any) => {
           this.totalremaininglimit=mode;
             if(mode > this.accountInfo.remainingLimit){
               this.supermasterform.controls['fixLimit'].setValue(this.accountInfo.remainingLimit)
@@ -289,7 +291,7 @@ export class CreatesuperComponent implements OnInit {
   // }
   formControlscommchanged(){
     this.supermasterform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.sessionComm){
             this.supermasterform.controls['SComm'].setValue(this.accountInfo.sessionComm)
@@ -303,7 +305,7 @@ export class CreatesuperComponent implements OnInit {
   }
   formControlmLossingCommchanged(){
     this.supermasterform.get('MloseComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.mLossingComm){
             this.supermasterform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
@@ -317,7 +319,7 @@ export class CreatesuperComponent implements OnInit {
   }
   formControlsLossingCommCommchanged(){
     this.supermasterform.get('SloseComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.sLossingComm){
             this.supermasterform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)

@@ -28,7 +28,9 @@ body {
 button:focus {
   outline: none !important;
 }
-
+/* .ag-center-cols-container{
+  width:unset!important;
+} */
 .date-icon{
   position: absolute;
   right: 25px;

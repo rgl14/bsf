@@ -36,9 +36,10 @@ export class CreatemasterComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-
+    this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
-      console.log(data)
+      this.accountInfo=data.data;
+      this.masterform.controls['bookdisplaytype'].setValue(this.accountInfo.bookDisplayType.toString());
     })
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
@@ -49,7 +50,7 @@ export class CreatemasterComponent implements OnInit {
         }
         // console.log(data)
         // console.log(this.iscommissionedit);
-        this.accountInfo=data;
+        
         if(this.userId){
           this.getuserdata();
           this.isdisabled=true;
@@ -64,7 +65,7 @@ export class CreatemasterComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -88,7 +89,7 @@ export class CreatemasterComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -174,7 +175,9 @@ export class CreatemasterComponent implements OnInit {
               this.userdata.fixedfees=1;
             }
             if(this.userdata.bookdisplaytype==""){
-              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+              var bookdisplay=this.accountInfo.bookDisplayType;
+            }else{
+              var bookdisplay=this.userdata.bookdisplaytype;
             }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
@@ -196,7 +199,7 @@ export class CreatemasterComponent implements OnInit {
               "isMComm":0,
               "isSComm":0,
               "myShare":this.userdata.myShare,
-              "bookDisplayType":this.userdata.bookdisplaytype,
+              "bookDisplayType":bookdisplay,
               "commType":this.userdata.fixedfees,
               "mLossingComm":this.masterform.get("MloseComm").value,
               "sLossingComm":this.masterform.get("SloseComm").value,

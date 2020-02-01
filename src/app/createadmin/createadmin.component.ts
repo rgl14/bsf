@@ -39,9 +39,10 @@ export class CreateadminComponent implements OnInit {
   // confirmhide = true;
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-
+    this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
-      console.log(data)
+      this.accountInfo=data.data;
+      this.Companyform.controls['bookdisplaytype'].setValue(this.accountInfo.bookDisplayType.toString());
     })
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
@@ -50,7 +51,7 @@ export class CreateadminComponent implements OnInit {
         }else{
           this.iscommissionedit=false;
         }
-        console.log(data);
+        // console.log(data);
         // console.log(this.iscommissionedit);
         this.accountInfo=data;
         if(this.userId){
@@ -67,7 +68,7 @@ export class CreateadminComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -91,7 +92,7 @@ export class CreateadminComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:['',Validators.required],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -219,7 +220,7 @@ export class CreateadminComponent implements OnInit {
   
   formControlsmysharechanged(){
     this.Companyform.get('myShare').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
           
           if(mode > this.accountInfo.maxMyShare){
             this.Companyform.controls['myShare'].setValue(this.accountInfo.maxMyShare);
@@ -242,7 +243,7 @@ export class CreateadminComponent implements OnInit {
   // }
   formControlfixlimitChanged() {
     this.Companyform.get('fixLimit').valueChanges.subscribe(
-        (mode: number) => {
+        (mode: any) => {
           this.totalremaininglimit=mode;
             if(mode > this.accountInfo.remainingLimit){
               this.Companyform.controls['fixLimit'].setValue(this.accountInfo.remainingLimit)
@@ -251,7 +252,7 @@ export class CreateadminComponent implements OnInit {
   }
   formControlmcommchanged(){
     this.Companyform.get('MComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.matchComm){
             this.Companyform.controls['MComm'].setValue(this.accountInfo.matchComm)
@@ -265,7 +266,7 @@ export class CreateadminComponent implements OnInit {
   }
   formControlscommchanged(){
     this.Companyform.get('SComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.sessionComm){
             this.Companyform.controls['SComm'].setValue(this.accountInfo.sessionComm)
@@ -279,7 +280,7 @@ export class CreateadminComponent implements OnInit {
   }
   formControlmLossingCommchanged(){
     this.Companyform.get('MloseComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.mLossingComm){
             this.Companyform.controls['MloseComm'].setValue(this.accountInfo.mLossingComm)
@@ -293,7 +294,7 @@ export class CreateadminComponent implements OnInit {
   }
   formControlsLossingCommCommchanged(){
     this.Companyform.get('SloseComm').valueChanges.subscribe(
-      (mode: number) => {
+      (mode: any) => {
         if(this.iscommissionedit){
           if(mode > this.accountInfo.sLossingComm){
             this.Companyform.controls['SloseComm'].setValue(this.accountInfo.sLossingComm)

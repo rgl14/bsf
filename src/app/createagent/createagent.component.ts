@@ -35,8 +35,10 @@ export class CreateagentComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
+    this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
-      console.log(data)
+      this.accountInfo=data.data;
+      this.agentform.controls['bookdisplaytype'].setValue(this.accountInfo.bookDisplayType.toString());
     })
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
@@ -61,7 +63,7 @@ export class CreateagentComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -81,7 +83,7 @@ export class CreateagentComponent implements OnInit {
             MloseComm:['',Validators.required],
             SloseComm:['',Validators.required],
             fixedfees:[''],
-            bookdisplaytype:['1'],
+            bookdisplaytype:[''],
             password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
             confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
             // isMComm: false,
@@ -163,7 +165,9 @@ export class CreateagentComponent implements OnInit {
               this.userdata.fixedfees=1;
             }
             if(this.userdata.bookdisplaytype==""){
-              this.userdata.bookdisplaytype=this.accountInfo.bookDisplayType;
+              var bookdisplay=this.accountInfo.bookDisplayType;
+            }else{
+              var bookdisplay=this.userdata.bookdisplaytype;
             }
             // if(this.userdata.isMComm){
             //   this.ismatchcomm=1;
@@ -186,7 +190,7 @@ export class CreateagentComponent implements OnInit {
               "isSComm":0,
               "myShare":this.userdata.myShare,
               "password":this.userdata.password,
-              "bookDisplayType":this.userdata.bookdisplaytype,
+              "bookDisplayType":bookdisplay,
               "commType":this.userdata.fixedfees,
               "mLossingComm":this.agentform.get("MloseComm").value,
               "sLossingComm":this.agentform.get("SloseComm").value,
