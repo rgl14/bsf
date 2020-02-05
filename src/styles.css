@@ -53,6 +53,24 @@ button:focus {
   stroke: #414141 !important;
 }
 
+/* Toggle color */
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #80808042;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #00a826;
+}
+/* Dark button */
+.btn-dark {
+  background-color: #000;
+  color: #8b8b8b;
+}
+
+/* Ag grid cell center items */
+.ag-theme-balham .ag-cell {
+  display: inline-flex;
+  align-items: center;
+}
 /*Bottom Menu CSS*/
 .bottom-sheet-header {
   padding: 10px !important;
@@ -102,8 +120,12 @@ button:focus {
 .mat-bottom-sheet-container {
   padding: 0 !important;
 }
+.Action-buttons {
+  display: flex;
+  align-items: center;
+}
 .Action-buttons button {
-  margin: 2px 5px 0px 0px;
+  margin-right: 4px;
 }
 .mat-icon-button {
   padding: 0;
