@@ -41,20 +41,55 @@
                           (onDeSelectAll)="onDeSelectAll($event)">
                         </angular2-multiselect>
                       </div>
-                      <div class="col-md-4">
-                        <input type="text" [(ngModel)]="bsRangeValue" 
-                              (bsValueChange)="profitandloss($event)"
-                              placeholder="Select Date please..."
-                              class="form-control"
-                              [bsConfig]="{ rangeInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
-                              bsDaterangepicker
-                            >
+                      <div class="col-md-4 mt-3 mt-md-0">
+                        <input type="text"
+                          placeholder="From"
+                          class="form-control"
+                          bsDatepicker
+                          [(ngModel)]="selectfromdate"
+                          (bsValueChange)="fromDateChange($event)"
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', isAnimated: true }">
+                          
+                          <div class="mx-auto">
+                            <timepicker 
+                              hoursPlaceholder="HH"
+                              minutesPlaceholder="MM"
+                              secondsPlaceholder="SS" 
+                              showSeconds="true" 
+                              [showMeridian]="false"
+                              [(ngModel)]="selectfromtime"
+                              (ngModelChange)="fromTimeChange($event)"></timepicker>
+                          </div>
                       </div>
-                      <div class="col-md-4">
-                        <button class="create-button" mat-raised-button>
-                          Submit
-                        </button>
+ 
+                      <div class="col-md-4 mt-3 mt-md-0">
+                        <input type="text"
+                          placeholder="To"
+                          class="form-control"
+                          bsDatepicker
+                          [(ngModel)]="selecttodate"
+                          (bsValueChange)="toDateChange($event)"
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', isAnimated: true }">
+                          
+                        <div class="mx-auto">
+                          <timepicker 
+                          hoursPlaceholder="HH"
+                            minutesPlaceholder="MM"
+                            secondsPlaceholder="SS" 
+                            showSeconds="true"
+                            [showMeridian]="false"
+                            [(ngModel)]="selecttotime"
+                            (ngModelChange)="toTimeChange($event)"></timepicker>
+                        </div>
                       </div>
+                    </div>
+                    <div class="col-md-12 row">
+                      <div class="col-md-2 offset-8 offset-md-11">
+                        <button class="btn btn-dark" (click)="profitandloss()">Submit</button>
+                      </div>
+                    </div>
+                    <div class="col-md-12 search-div row" style="margin-bottom: 15px;">
+                      
                     </div>
                     
                                   <div class="table-container mat-elevation-z8">

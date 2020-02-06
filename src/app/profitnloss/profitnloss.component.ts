@@ -19,8 +19,10 @@ export class ProfitnlossComponent implements OnInit {
   date: Date;
   fromdate: string;
   todate: string;
-  selectfromdate: string;
+  selectfromdate: any;
   selecttodate: any;
+  selectfromtime: any;
+  selecttotime: any;
   dropdownList=[];
   selectedItems=[];
   dropdownSettings: { };
@@ -61,6 +63,12 @@ export class ProfitnlossComponent implements OnInit {
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
+
+    
+    this.selectfromdate = new Date(new Date().setDate(new Date().getDate() - 1));
+    this.selecttodate = new Date();
+    this.selectfromtime = new Date(new Date().setHours(9, 59, 0, 0));
+    this.selecttotime = new Date(new Date().setHours(11,59,0,0));
   }
 
   onPageSizeChanged(newPageSize:any) {
@@ -110,26 +118,48 @@ this.dropdownSettings = {
   }
 
   profitandloss(value){
-    console.log(value)
-    this.selectfromdate=this.convertfrom(value[0]);
-    this.selecttodate=this.convertto(value[1]);
+    // console.log(value)
+    // this.selectfromdate=this.convertfrom(value[0]);
+    // this.selecttodate=this.convertto(value[1]);
     console.log(this.selectfromdate,this.selecttodate);
      let pnldates={
-       "fromdate":this.selectfromdate,
-       "todate":this.selecttodate
+       "fromdate":this.getFromDateAndTime(),
+       "todate":this.getToDateAndTime()
      }
      this.getreports.GetProfitLoss('',pnldates).subscribe(resp =>{
        this.rowData=resp.data;
      })
   }
 
+  fromDateChange(date) {
+    console.log(date);
+  }
+  toDateChange(date) {
+    console.log(date);
+  }
+
+  fromTimeChange(time) {
+    console.log(time);
+  }
+
+  toTimeChange(time) {
+    console.log(time);
+  }
+
+  getFromDateAndTime() {
+    return `${this.selectfromdate.getFullYear()}-${this.selectfromdate.getMonth() + 1}-${this.selectfromdate.getDate()} ${this.selectfromtime.getHours()}:${this.selectfromtime.getMinutes()}:${this.selectfromtime.getSeconds()}`;
+  }
+  getToDateAndTime() {
+    return `${this.selecttodate.getFullYear()}-${this.selecttodate.getMonth() + 1}-${this.selecttodate.getDate()} ${this.selecttotime.getHours()}:${this.selecttotime.getMinutes()}:${this.selecttotime.getSeconds()}`;
+  }
+
   convertfrom(str) {
     var date = new Date(str);
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 00:00:00"
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
   convertto(str) {
     var date = new Date(str);
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 23:59:00"
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 
   

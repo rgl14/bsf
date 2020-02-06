@@ -46,6 +46,7 @@ import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/
 import { RemoveSpacePipe } from './Directives/removespacepipe';
 import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysis.component';
 import { SpecialCharacterDirective } from './Directives/Special-character';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 
 
@@ -84,7 +85,6 @@ import { SpecialCharacterDirective } from './Directives/Special-character';
     FancyBookDialog,
     RejectBetdialog,
     SpecialCharacterDirective,
-    
   ],
   imports: [
     BrowserModule,
@@ -97,7 +97,8 @@ import { SpecialCharacterDirective } from './Directives/Special-character';
     BsDatepickerModule.forRoot(),
     HttpClientModule,
     CKEditorModule,
-    AngularMultiSelectModule
+    AngularMultiSelectModule,
+    TimepickerModule.forRoot()
   ],
   entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog,FancyBookDialog,RejectBetdialog,RejectBetdialogcell],
   providers: [
