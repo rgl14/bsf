@@ -48,7 +48,7 @@
                           bsDatepicker
                           [(ngModel)]="selectfromdate"
                           (bsValueChange)="fromDateChange($event)"
-                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', isAnimated: true }">
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default', isAnimated: true }">
                           
                           <div class="mx-auto">
                             <timepicker 
@@ -69,7 +69,7 @@
                           bsDatepicker
                           [(ngModel)]="selecttodate"
                           (bsValueChange)="toDateChange($event)"
-                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', isAnimated: true }">
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',containerClass: 'theme-default', isAnimated: true }">
                           
                         <div class="mx-auto">
                           <timepicker 
