@@ -117,7 +117,7 @@ this.dropdownSettings = {
       })
   }
 
-  profitandloss(value){
+  profitandloss(){
     // console.log(value)
     // this.selectfromdate=this.convertfrom(value[0]);
     // this.selecttodate=this.convertto(value[1]);
