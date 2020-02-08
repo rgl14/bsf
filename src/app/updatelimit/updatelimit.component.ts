@@ -37,23 +37,23 @@ export class UpdatelimitComponent implements OnInit {
   constructor(private usermanagement:UsermanagementService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Agent Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
-      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
-      {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'Actions', field: '', sortable: true, minWidth: 200,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     this.ClientcolumnDefs = [
-      {headerName: 'ID', field: 'id', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Client Name', field: 'clientName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Match Commission', field: 'matchComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
-      {headerName: 'Current Limit', field: 'currentLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
-      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
-      {headerName: 'Actions', field: '', sortable: true, width: 350,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Current Limit', field: 'currentLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'Actions', field: '', sortable: true, minWidth: 200,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     this.overlayLoadingTemplate =
@@ -80,6 +80,10 @@ export class UpdatelimitComponent implements OnInit {
   onPageSizeChanged(newPageSize:any) {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridOptions.api.paginationSetPageSize(Number(value));
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   onFilterTextBoxChanged() {

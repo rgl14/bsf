@@ -63,8 +63,8 @@ export class AddbookComponent implements OnInit {
       maxRate: ['', Validators.required],
       minRate: ['', Validators.required],
       rateDifference: ['', Validators.required],
-      runner1: ['', Validators.required],
-      runner2: ['', Validators.required],
+      // runner1: [''],
+      // runner2: [''],
       sport: ['', Validators.required],
       tournament: ['', Validators.required],
       match: ['', Validators.required]
@@ -85,8 +85,8 @@ export class AddbookComponent implements OnInit {
       this.bookForm.controls["minRate"].setValue(this.bookInfo.minRate);
       this.bookForm.controls["maxRate"].setValue(this.bookInfo.maxRate);
       this.bookForm.controls["rateDifference"].setValue(this.bookInfo.rateDifference);
-      this.bookForm.controls["runner1"].setValue(data.runnerdata[0].name);
-      this.bookForm.controls["runner2"].setValue(data.runnerdata[1].name);
+      // this.bookForm.controls["runner1"].setValue(data.runnerdata[0].name);
+      // this.bookForm.controls["runner2"].setValue(data.runnerdata[1].name);
 
 
       if (this.bookId) {
@@ -221,7 +221,7 @@ export class AddbookComponent implements OnInit {
       "minRate": this.bookForm.value.minRate,
       "minStake": this.bookForm.value.minStake,
       "rateDifference": this.bookForm.value.rateDifference,
-      "runner": [this.bookForm.value.runner1, this.bookForm.value.runner2],
+      "runner": ["",""],
       "sportId": this.bookForm.value.sport.betfairId,
       "sportName": this.bookForm.value.sport.sportName,
       "tourId": this.bookForm.value.tournament.betfairId,
@@ -238,6 +238,9 @@ export class AddbookComponent implements OnInit {
         this.bookForm.controls["sport"].setValue("");
         this.bookForm.controls["tournament"].setValue("");
         this.bookForm.controls["match"].setValue("");
+        setTimeout(() => {
+          this.router.navigateByUrl('/bookmaker')
+        }, 2000)
       }
       else {
         this.notifyService.error(data.result);

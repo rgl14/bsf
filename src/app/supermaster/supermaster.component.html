@@ -29,6 +29,7 @@
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     [animateRows]="true"
                     [pagination]="true"
+                    (gridSizeChanged)="onGridSizeChanged($event)"
                     (gridReady)="onGridReady($event)"
                     >
                   </ag-grid-angular>

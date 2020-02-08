@@ -15,7 +15,7 @@
             Create Company
           </button>
         </div>
-        <div class="table-container mat-elevation-z8">
+        <div id="grid-wrapper"  class="table-container mat-elevation-z8">
             <ag-grid-angular 
               style="width: 100%; height: 450px"
               class="ag-theme-balham"
@@ -25,6 +25,7 @@
               [overlayNoRowsTemplate]="overlayNoRowsTemplate"
               [animateRows]="true"
               [pagination]="true"
+              (gridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"
               >
             </ag-grid-angular>

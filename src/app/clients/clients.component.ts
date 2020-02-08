@@ -34,17 +34,17 @@ export class ClientsComponent implements OnInit {
       }
     };
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true, width: 200,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Name', field: 'name', sortable: true, width: 150},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, width: 150,valueFormatter: balanceFormatter},
-      {headerName: 'My share (%)', field: 'myShare', sortable: true, width: 100},
-      {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, width: 100},
-      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, width: 100},
-      {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, width: 100},
-      {headerName: 'Status', field: 'accStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Bet Allow', field: 'betStatus', width: 100,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', width: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'ID', field: 'userId', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Name', field: 'name', sortable: true, minWidth: 100},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,valueFormatter: balanceFormatter},
+      {headerName: 'My share (%)', field: 'myShare', sortable: true, minWidth: 75},
+      {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, minWidth: 75},
+      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, minWidth: 75},
+      {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, minWidth: 75},
+      {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Actions', field: '', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     function balanceFormatter(params){
@@ -82,6 +82,9 @@ export class ClientsComponent implements OnInit {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }
 
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
+  }
 
   ngOnInit() {
     this.creatorId=this.route.snapshot.paramMap.get('userId');

@@ -234,6 +234,9 @@ export class AddfancyComponent implements OnInit {
         this.fancyForm.controls["sport"].setValue("");
         this.fancyForm.controls["tournament"].setValue("");
         this.fancyForm.controls["match"].setValue("");
+        setTimeout(() => {
+          this.router.navigateByUrl('/fancy')
+        }, 2000)
       }
       else {
         this.notifyService.error(data.result);

@@ -29,12 +29,12 @@ export class BlockedclientsComponent implements OnInit {
       }
     };
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true, width: 300,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Name', field: 'name', sortable: true, width: 200},
-      {headerName: 'M-Comm  (%)', field: 'matchComm', sortable: true, width: 150},
-      {headerName: 'S-Comm  (%)', field: 'sessionComm', sortable: true, width: 150},
-      {headerName: 'Status', field: 'accStatus', width: 600,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'ID', field: 'userId', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Name', field: 'name', sortable: true, minWidth: 100},
+      {headerName: 'M-Comm  (%)', field: 'matchComm', sortable: true, minWidth: 75},
+      {headerName: 'S-Comm  (%)', field: 'sessionComm', sortable: true, minWidth: 75},
+      {headerName: 'Status', field: 'accStatus', minWidth: 100,cellRendererFramework:ButtontogglecellComponent},
     ]; 
     
     this.overlayLoadingTemplate =
@@ -61,6 +61,10 @@ export class BlockedclientsComponent implements OnInit {
   onPageSizeChanged(newPageSize:any) {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridOptions.api.paginationSetPageSize(Number(value));
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   onFilterTextBoxChanged() {
