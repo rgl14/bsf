@@ -41,7 +41,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Match Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="matchname" specialIsAlphaNumeric class="form-control" name="Matchname" [ngClass]="{ 'is-invalid': submitted && f.matchname.errors }"  placeholder="" type="text" >
+                                  <input formControlName="matchname"  class="form-control" name="Matchname" [ngClass]="{ 'is-invalid': submitted && f.matchname.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.matchname.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.matchname.errors.required">This field is mandatory.</mat-error>

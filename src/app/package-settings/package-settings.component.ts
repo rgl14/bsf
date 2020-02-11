@@ -16,6 +16,10 @@ export class PackageSettingsComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter: any;
   rowData = [];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(private sportService: SportDataService) {
     this.gridOptions = <GridOptions>{};
@@ -24,6 +28,11 @@ export class PackageSettingsComponent implements OnInit {
       { headerName: 'Package Name', field: 'label', sortable: true, width: 600 },
       { headerName: 'Edit', field: '', sortable: true, width: 600, cellRendererFramework: CustomcellbuttonsComponent, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
     ];
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
     this.gridOptions.paginationPageSize = 10;
     this.gridOptions.paginationNumberFormatter = function (params) {
@@ -52,6 +61,12 @@ export class PackageSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.GetMktSettingsPckgList();
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
   }
 
   GetMktSettingsPckgList() {

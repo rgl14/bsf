@@ -16,6 +16,10 @@ export class UserlistComponent implements OnInit {
   paginationSetPageSize;
   paginationNumberFormatter:any;
   rowData=[];
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor() { 
     this.gridOptions = <GridOptions>{};
@@ -32,6 +36,11 @@ export class UserlistComponent implements OnInit {
       { isactive:1,username:'TTT01',fullname:'Test 01',rolename:'Add Fancy',id: '1' },
       { isactive:1,username:'TTT02',fullname:'Test 02',rolename:'Add Clients',id: '2' },
     ];
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {
@@ -59,6 +68,12 @@ export class UserlistComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
   }
 
 }

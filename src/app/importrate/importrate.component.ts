@@ -28,6 +28,10 @@ export class ImportrateComponent implements OnInit {
   match: any = "";
   marketList = [];
   market: any = "";
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(private sportService: SportDataService) {
     this.gridOptions = <GridOptions>{};
@@ -46,6 +50,11 @@ export class ImportrateComponent implements OnInit {
       { headerName: 'Live', field: 'live', sortable: true, width: 100 },
       { headerName: 'Actions', field: '', sortable: true, width: 250, cellRendererFramework: CustomcellbuttonsComponent },
     ];
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
     this.gridOptions.paginationPageSize = 10;
     this.gridOptions.paginationNumberFormatter = function (params) {
@@ -75,6 +84,12 @@ export class ImportrateComponent implements OnInit {
   ngOnInit() {
     this.GetSportList();
     this.GetImportRateList();
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
   }
 
 

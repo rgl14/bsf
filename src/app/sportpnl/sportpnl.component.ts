@@ -24,13 +24,16 @@ export class SportpnlComponent implements OnInit {
   constructor(private getreports:ReportsService,private sharedata:SharedataService) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'date', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Entry', field: 'entry', sortable: true, width: 500,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Debit', field: 'debit', sortable: true, width: 150,cellStyle: {color: 'red'}},
-      {headerName: 'Credit', field: 'credit', sortable: true, width: 150,cellStyle: {color: 'green'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 180,cellStyle: {color: 'green','font-weight':'bolder'}},
-      {headerName: 'Note', field: 'note', sortable: true, width: 270},
+      {headerName: 'Sport Name', field: 'sportName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},lockPosition:true,suppressNavigable:true},
+      {headerName: 'Profit & Loss', field: 'pNl', sortable: true, minWidth: 75,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Note', field: '', sortable: true, minWidth: 75},
     ]; 
+
+    function balanceFormatter(params){
+      var twodecimalvalue=parseFloat(params.value).toFixed(2);
+      return twodecimalvalue;
+    }
+
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
@@ -45,6 +48,10 @@ export class SportpnlComponent implements OnInit {
   onPageSizeChanged(newPageSize:any) {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridOptions.api.paginationSetPageSize(Number(value));
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   onFilterTextBoxChanged() {

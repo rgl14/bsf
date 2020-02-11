@@ -35,7 +35,7 @@ export class AgentComponent implements OnInit {
     };
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'userId', minWidth: 50,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,sort: "desc",cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Name', field: 'name', sortable: true, minWidth: 100},
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,valueFormatter: balanceFormatter},
       {headerName: 'My share (%)', field: 'myShare', sortable: true, minWidth: 75},
@@ -55,7 +55,7 @@ export class AgentComponent implements OnInit {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
     this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {

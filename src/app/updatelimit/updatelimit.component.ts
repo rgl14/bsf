@@ -38,28 +38,28 @@ export class UpdatelimitComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
       {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
-      {headerName: 'Actions', field: '', sortable: true, minWidth: 200,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: '', sortable: true, minWidth: 100,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     this.ClientcolumnDefs = [
       {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
       {headerName: 'Current Limit', field: 'currentLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
       {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
-      {headerName: 'Actions', field: '', sortable: true, minWidth: 200,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: '', sortable: true, minWidth: 100,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
     // this.gridOptions.paginationPageSize=10;
     this.gridOptions.paginationNumberFormatter = function(params) {

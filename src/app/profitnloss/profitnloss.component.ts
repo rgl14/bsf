@@ -56,7 +56,7 @@ export class ProfitnlossComponent implements OnInit {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
 
 
     this.gridOptions.paginationPageSize=50;
@@ -165,7 +165,7 @@ this.dropdownSettings = {
   
     
     onItemSelect(item:any){
-        console.log(this.selectedItems);
+        // console.log(this.selectedItems);
         console.log(this.bsRangeValue)
         this.selectfromdate=this.convertfrom(this.bsRangeValue[0]);
         this.selecttodate=this.convertto(this.bsRangeValue[1]);
@@ -179,7 +179,17 @@ this.dropdownSettings = {
         })
     }
     OnItemDeSelect(item:any){
-        console.log(this.selectedItems);
+        // console.log(this.selectedItems);
+        this.selectfromdate=this.convertfrom(this.bsRangeValue[0]);
+        this.selecttodate=this.convertto(this.bsRangeValue[1]);
+        console.log(this.selectfromdate,this.selecttodate);
+        let pnldates={
+          "fromdate":this.selectfromdate,
+          "todate":this.selecttodate
+        }
+        this.getreports.GetProfitLoss(this.selectedItems[0].id,pnldates).subscribe(resp =>{
+          this.rowData=resp.data;
+        })
     }
     onSelectAll(items: any){
         console.log(items);
