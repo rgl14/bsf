@@ -29,7 +29,7 @@ export class BlockedclientsComponent implements OnInit {
       }
     };
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'userId', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'ID', field: 'userId',sort: "desc", minWidth: 50,lockPosition:true,suppressNavigable:true},
       {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Name', field: 'name', sortable: true, minWidth: 100},
       {headerName: 'M-Comm  (%)', field: 'matchComm', sortable: true, minWidth: 75},

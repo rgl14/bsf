@@ -60,13 +60,14 @@ export class PackageSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.GetMktSettingsPckgList();
+    
   }
 
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
+    this.GetMktSettingsPckgList();
   }
 
   GetMktSettingsPckgList() {

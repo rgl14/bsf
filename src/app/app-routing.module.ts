@@ -84,6 +84,8 @@ import { UseranalysisComponent } from './useranalysis/useranalysis.component';
 import { ScoreInputComponent } from './score-input/score-input.component';
 import { InplaymatchesComponent } from './inplaymatches/inplaymatches.component';
 import { BlockedclientsComponent } from './blockedclients/blockedclients.component';
+import { DeclaredbetslipComponent } from './declaredbetslip/declaredbetslip.component';
+import { DeclaredfancybetslipComponent } from './declaredfancybetslip/declaredfancybetslip.component';
 
 
 const routes: Routes = [
@@ -145,9 +147,9 @@ const routes: Routes = [
   { path: 'matchdashboard/:matchId/:id/:title', component: MatchdashboardComponent },
   { path: 'matchdashboard/:sportBfId/:bfId/:matchId/:title', component: MatchdashboardComponent },
   { path: 'betslips/:sportBfId/:bfId/:title', component: BetslipsComponent },
-  { path: 'betslips/:matchId/:id/:title', component: BetslipsComponent },
+  { path: 'declaredbetslips/:matchId/:id/:title', component: DeclaredbetslipComponent },
   { path: 'sessionbetslips/:sportBfId/:bfId/:title', component: SessionbetslipsComponent },
-  { path: 'sessionbetslips/:matchId/:id/:title', component: SessionbetslipsComponent },
+  { path: 'declaredsessionbetslips/:matchId/:id/:title', component: DeclaredfancybetslipComponent },
   { path: 'analysismarket/:sportBfId/:bfId/:id', component: MarketanalysisComponent },
   { path: 'livereport/:sportBfId/:bfId/:id', component: LivereportComponent },
   { path: 'companyreport/:matchId/:id/:title', component: CompanyreportComponent },
@@ -281,5 +283,7 @@ export const componentRouting = [
   UseranalysisComponent,
   ScoreInputComponent,
   InplaymatchesComponent,
-  BlockedclientsComponent
+  BlockedclientsComponent,
+  DeclaredbetslipComponent,
+  DeclaredfancybetslipComponent
 ]

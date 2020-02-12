@@ -34,19 +34,24 @@ export class ProfitnlossComponent implements OnInit {
   datepicker: Date;
   overlayLoadingTemplate: string;
   overlayNoRowsTemplate: string;
+  matchEarnings: any;
+  selectedTotal: any;
+  totalEarnings: any;
+  defaultColDef: { sortable: boolean; };
 
   constructor(private getreports:ReportsService) {
     this.maxDate.setDate(this.maxDate.getDate() + 1);
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'dateTime', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Date/Time', field: 'dateTime',sort: "desc", sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
       {headerName: 'Match Id', field: 'matchId', sortable: true, width: 150,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Match Title', field: 'matchTitle', sortable: true, width: 450,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
       {headerName: 'Match Earnings', field: 'matchEarning', sortable: true, width: 200,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
       {headerName: 'Commission Earnings', field: 'commEarning', sortable: true, width: 200,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
       {headerName: 'Total Earnings', field: 'totalEarning', sortable: true, width: 250,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
     ]; 
+    
 
     function balanceFormatter(params){
       var twodecimalvalue=parseInt(params.value).toFixed(2);
@@ -68,7 +73,7 @@ export class ProfitnlossComponent implements OnInit {
     this.selectfromdate = new Date(new Date().setDate(new Date().getDate() - 1));
     this.selecttodate = new Date();
     this.selectfromtime = new Date(new Date().setHours(9, 59, 0, 0));
-    this.selecttotime = new Date(new Date().setHours(11,59,0,0));
+    this.selecttotime = new Date(new Date().setHours(9,59,0,0));
   }
 
   onPageSizeChanged(newPageSize:any) {
@@ -105,8 +110,8 @@ this.dropdownSettings = {
         var date = new Date();
         var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
         this.date = last
-        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 00:00:00";
-        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 23:59:00";
+        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 09:59:00";
+        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 09:59:00";
         let pnldates={
           "fromdate":this.fromdate,
           "todate":this.todate
@@ -114,6 +119,9 @@ this.dropdownSettings = {
       this.getreports.GetProfitLoss('',pnldates).subscribe(resp=>{
         this.rowData=resp.data;
         this.allTimeTotal=resp.allTimeTotal;
+        this.matchEarnings=resp.matchEarnings;
+        this.selectedTotal=resp.selectedTotal;
+        this.totalEarnings=resp.totalEarnings;
       })
   }
 

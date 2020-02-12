@@ -37,7 +37,7 @@ export class UpdatelimitComponent implements OnInit {
   constructor(private usermanagement:UsermanagementService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true},
       {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
@@ -46,7 +46,7 @@ export class UpdatelimitComponent implements OnInit {
       {headerName: 'Actions', field: '', sortable: true, minWidth: 100,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     this.ClientcolumnDefs = [
-      {headerName: 'ID', field: 'id', minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true},
       {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
       {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
       {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},

@@ -17,7 +17,38 @@
                         </tr>
                     </thead>
                     <tbody>                            
-              </tbody></table>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+                         <th>Match Earnings</th> 
+                         <th [ngClass]="(matchEarnings>=0)?'profit':'loss'">{{matchEarnings | number : '1.2-2'}}</th>                            
+                      </tr>
+                  </thead>
+                  <tbody>                            
+                  </tbody>
+              </table>
+              <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                       <th>Selected Total</th> 
+                       <th [ngClass]="(selectedTotal>=0)?'profit':'loss'">{{selectedTotal | number : '1.2-2'}}</th>                            
+                    </tr>
+                </thead>
+                <tbody>                            
+                </tbody>
+              </table>
+            <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                     <th>Total Earnings</th> 
+                     <th [ngClass]="(totalEarnings>=0)?'profit':'loss'">{{totalEarnings | number : '1.2-2'}}</th>                            
+                  </tr>
+              </thead>
+              <tbody>                            
+              </tbody>
+            </table>
             </div>
             </div>
             </div>  
@@ -96,9 +127,7 @@
                                       <div class="Table-Title">
                                           <mat-form-field class="search-form-field" floatLabel="never">
                                               <input matInput  id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
-                                              <button mat-button matSuffix mat-icon-button aria-label="Clear"  >
-                                                <mat-icon>close</mat-icon>
-                                              </button>
+                                              
                                             </mat-form-field>
                                           <mat-form-field class="select-page-size">
                                               <mat-label>Page Size</mat-label>
@@ -119,6 +148,7 @@
                                         [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                                         [animateRows]="true"
                                         [pagination]="true"
+                                        [defaultColDef]="defaultColDef"
                                         (gridReady)="onGridReady($event)"
                                         >
                                         </ag-grid-angular>

@@ -26,11 +26,15 @@ export class AddmarketComponent implements OnInit {
     { key: '5', value: 'INACTIVE' }
   ];
   formdata: any;
+  MktSettingsPckgList:[];
   constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router) { }
 
   ngOnInit() {
     this.SportSettingdata.GetSportList().subscribe(resp=>{
       this.sportsList=resp.tickerList;
+    })
+    this.SportSettingdata.GetMktSettingsPckgList().subscribe(data => {
+      this.MktSettingsPckgList = data.data;
     })
 
     this.addmarketform=this.formbuilder.group({
@@ -38,6 +42,7 @@ export class AddmarketComponent implements OnInit {
       tournament:['',Validators.required],
       match:['',Validators.required],
       MKTname:['',Validators.required],
+      matchsetting:['',Validators.required],
       status:['',Validators.required],
       MKTbfid:['',Validators.required],
       MKTrate:['',Validators.required],
@@ -92,6 +97,7 @@ export class AddmarketComponent implements OnInit {
             "matchName":this.formdata.match.matchName,
             "mktName":this.formdata.MKTname,
             "runners":[this.formdata.MKTrunner1,this.formdata.MKTrunner2,this.formdata.MKTrunner3],
+            "settingPckg":this.formdata.matchsetting.id,
             "sportName":this.formdata.sport.sportName,
             "tournamentName":this.formdata.tournament.tournamentName
           };

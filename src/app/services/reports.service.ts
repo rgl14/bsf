@@ -81,4 +81,12 @@ export class ReportsService {
     return this.http.get(`${BASEURL}/Reports/GetTournamentPnl?id=${ID}&sid=${SID}`);
   }
 
+  GetOddsBetSlip(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/GetOddsBetSlip?mtid=${ID}`);
+  }
+
+  GetFancyBetSlip(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/GetFancyBetSlip?mtid=${ID}`);
+  }
+
 }

@@ -14,10 +14,10 @@
     (click)="openBottomSheet()"
   >
 </button> -->
-  <button  class="button-play" title="Betting Off" (click)="upadateBettingstatus(1)" mat-mini-fab *ngIf="userType==1 && betingstatus==0">
+  <button  class="button-play" title="Betting Off" (click)="upadateBettingstatus(0)" mat-mini-fab *ngIf="userType==1 && betingstatus==1">
     <i class="fa fa-play"></i>
   </button>
-  <button  class="button-pause" title="Betting On" (click)="upadateBettingstatus(0)" mat-mini-fab *ngIf="userType==1 && betingstatus==1">
+  <button  class="button-pause" title="Betting On" (click)="upadateBettingstatus(1)" mat-mini-fab *ngIf="userType==1 && betingstatus==0">
     <i class="fa fa-pause"></i>
   </button>
   <button [matMenuTriggerFor]="menu" class="toolbar-avatar" mat-mini-fab color="primary" *ngIf="userType==1">

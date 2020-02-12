@@ -25,7 +25,7 @@ export class SportpnlComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
       {headerName: 'Sport Name', field: 'sportName', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},lockPosition:true,suppressNavigable:true},
-      {headerName: 'Profit & Loss', field: 'pNl', sortable: true, minWidth: 75,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Profit & Loss', field: 'pNl', sortable: true, minWidth: 75,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
       {headerName: 'Note', field: '', sortable: true, minWidth: 75},
     ]; 
 

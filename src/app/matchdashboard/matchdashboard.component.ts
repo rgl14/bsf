@@ -24,8 +24,6 @@ export class MatchdashboardComponent implements OnInit {
     this.matchId=this.route.snapshot.paramMap.get('matchId');
     this.title=this.route.snapshot.paramMap.get('title');
     this.MktId=this.route.snapshot.paramMap.get('id');
-    console.log(this.sprtID,this.mtbfID,this.title);
-    console.log(this.matchId,this.MktId,this.title);
 
     this.getreports.GetMatchDashboard(this.matchId).subscribe(resp=>{
       // console.log(resp);

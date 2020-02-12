@@ -71,7 +71,7 @@ export class BetslipsComponent implements OnInit,OnDestroy {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Bets To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
     // all rows assigned CSS class 'my-green-class'
     this.gridOptions.rowClass = 'my-green-class';
     this.gridOptions.getRowClass = function(params:any) {
@@ -100,10 +100,6 @@ export class BetslipsComponent implements OnInit,OnDestroy {
     this.title=this.route.snapshot.paramMap.get('title');
     this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
     this.matchBfId=this.route.snapshot.paramMap.get('bfId');
-    this.matchId=this.route.snapshot.paramMap.get('matchId');
-    this.MktId=this.route.snapshot.paramMap.get('id');
-    console.log(this.title,this.sportBfId,this.matchBfId);
-    console.log(this.title,this.matchId,this.MktId);
       this.usermanagement.getAccountInfo().subscribe(resp=>{
         // console.log(resp.data);
         this.userId=resp.data.userId;

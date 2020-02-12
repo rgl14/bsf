@@ -69,7 +69,7 @@ export class SessionbetslipsComponent implements OnInit,OnDestroy {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Bets To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
     // all rows assigned CSS class 'my-green-class'
     this.gridOptions.rowClass = 'my-green-class';
     this.gridOptions.getRowClass = function(params:any) {

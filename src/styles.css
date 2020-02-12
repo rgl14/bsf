@@ -205,6 +205,18 @@ snack-bar-container.notification simple-snack-bar {
   color: #5cb55c;
   font-weight: 600;
 }
+.Back{
+  color: #72bbef !important;
+}
+.Lay{
+  color:#faa9ba !important;
+}
+.Yes{
+  color: #72bbef !important;
+}
+.No{
+  color:#faa9ba !important;
+}
 mat-footer-row mat-footer-cell {
   justify-content: center;
   font-style: italic;
