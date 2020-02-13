@@ -55,7 +55,7 @@ export class CreateagentComponent implements OnInit {
           this.agentform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
+            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
             Agentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[''],
@@ -91,10 +91,10 @@ export class CreateagentComponent implements OnInit {
           }, {
             validator: MustMatch('password', 'confirmPassword')
           })
+          this.formControlfixlimitChanged()
         }
         this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
-        this.formControlfixlimitChanged();
         this.formControlmcommchanged();
         this.formControlscommchanged();
         this.formControlmLossingCommchanged();
@@ -136,7 +136,7 @@ export class CreateagentComponent implements OnInit {
                 "agentShare":this.agentform.get("Agentshare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
-                "fixLimit":this.edituserdata.fixLimit,
+                "fixLimit":this.agentform.get("fixLimit").value,
                 "isMComm":0,
                 "isSComm":0,
                 "myShare":this.edituserdata.myShare,

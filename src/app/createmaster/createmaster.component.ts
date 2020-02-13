@@ -57,7 +57,7 @@ export class CreatemasterComponent implements OnInit {
           this.masterform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
+            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
             Mastershare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[''],
@@ -101,10 +101,10 @@ export class CreatemasterComponent implements OnInit {
           // this.masterform.controls['SComm'].setValue(data.sessionComm);
           // this.masterform.controls['MloseComm'].setValue(data.mLossingComm);
           // this.masterform.controls['SloseComm'].setValue(data.sLossingComm);
+          this.formControlfixlimitChanged()
         }
         this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged()
-        this.formControlfixlimitChanged();
         // this.formControlmcommchanged();
         this.formControlscommchanged();
         this.formControlmLossingCommchanged();
@@ -146,7 +146,7 @@ export class CreatemasterComponent implements OnInit {
                 "agentShare":this.masterform.get("Mastershare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
-                "fixLimit":this.edituserdata.fixLimit,
+                "fixLimit":this.masterform.get("fixLimit").value,
                 "isMComm":0,
                 "isSComm":0,
                 "myShare":this.edituserdata.myShare,

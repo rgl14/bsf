@@ -85,7 +85,7 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/clients'">
-        <button [routerLink]="['/createclient',data.userId]" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="['/createclient',data.userId]"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
         <button [routerLink]="['/managepassword',data.userId,data.name,data.userName]"  mat-raised-button
@@ -94,7 +94,7 @@
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/clients/'+userId">
-        <button [routerLink]="['/createclient',data.userId]" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="['/createclient',data.userId]"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
         <button [routerLink]="['/managepassword',data.userId,data.name,data.userName]"  mat-raised-button
@@ -104,7 +104,7 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/fancy'">
-        <button [routerLink]="['/editfancy',data.fancyCode]" (click)="getvalue(data)" mat-raised-button colo title="Edit" class="btn-dark">
+        <button [routerLink]="['/editfancy',data.fancyCode]"  mat-raised-button colo title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
         <button *ngIf="data.betStatus!='SETTLED'" (click)="openSettleDialog(data)" mat-raised-button class="btn-dark"
@@ -165,27 +165,27 @@
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/userlist'">
-        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="'/adduser'"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/sportlist'">
-        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="'/adduser'"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/tournamentlist'">
-        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="'/adduser'"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/matchlist'">
-        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="'/adduser'"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
 </div>
 <div class="Action-buttons" *ngIf="currentroute=='/marketlist'">
-        <button [routerLink]="'/adduser'" (click)="getvalue(data)" mat-raised-button title="Edit" class="btn-dark">
+        <button [routerLink]="'/adduser'"  mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
         </button>
 </div>
@@ -197,6 +197,6 @@
                 Update
         </button>
 </div>
-<!-- <div class="Action-buttons" *ngIf="(currentroute.split('/')[3])==matchBfId">
+<div class="Action-buttons" *ngIf="matchBfId!=null">
         <i class="fa fa-trash" aria-hidden="true" style="color:red;" (click)="openDeleteBetDialog(data)"></i>
-</div> -->
+</div>

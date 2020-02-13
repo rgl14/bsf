@@ -107,7 +107,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 label-control">Min Rate <span class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="minRate" specialIsAlphaNumeric class="form-control"
+                                        <input type="number" formControlName="minRate"   class="form-control"
                                             [ngClass]="{ 'is-invalid': f.minRate.invalid && f.minRate.touched}">
                                         <div *ngIf="f.minRate.invalid && f.minRate.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.
@@ -116,7 +116,7 @@
                                     </div>
                                     <label class="col-md-2 label-control">Max Rate <span class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxRate" specialIsAlphaNumeric class="form-control"
+                                        <input type="number" formControlName="maxRate"   class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxRate.invalid && f.maxRate.touched}">
                                         <div *ngIf="f.maxRate.invalid && f.maxRate.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.

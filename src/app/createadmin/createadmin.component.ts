@@ -60,7 +60,7 @@ export class CreateadminComponent implements OnInit {
           this.Companyform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
+            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
             CompanyShare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[''],
@@ -104,8 +104,9 @@ export class CreateadminComponent implements OnInit {
           // this.Companyform.controls['SComm'].setValue(data.sessionComm);
           // this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
           // this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
+          this.formControlsmysharechanged()
+
         }
-        this.formControlsmysharechanged()
         // this.formControlsmaxsharechanged()
         this.formControlfixlimitChanged()
         this.formControlmcommchanged();
@@ -153,7 +154,7 @@ export class CreateadminComponent implements OnInit {
                 "agentShare":this.Companyform.get("CompanyShare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
-                "fixLimit":this.edituserdata.fixLimit,
+                "fixLimit":this.Companyform.get("fixLimit").value,
                 "isMComm":0,
                 "isSComm":0,
                 "myShare":this.edituserdata.myShare,

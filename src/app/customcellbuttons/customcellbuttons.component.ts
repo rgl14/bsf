@@ -38,7 +38,7 @@ export class CustomcellbuttonsComponent implements OnInit {
     private route:ActivatedRoute,
     private report:ReportsService
   ) {
-    this.currentroute = this.router.url
+    this.currentroute = this.router.url;
   }
 
   agInit(params) {

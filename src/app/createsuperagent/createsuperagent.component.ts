@@ -58,7 +58,7 @@ export class CreatesuperagentComponent implements OnInit {
           this.superagentform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
+            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
             Superagentshare:[{value: '', disabled: true},Validators.required],
             myShare:['',Validators.required],
             MComm:[''],
@@ -102,10 +102,10 @@ export class CreatesuperagentComponent implements OnInit {
           // this.superagentform.controls['SComm'].setValue(data.sessionComm);
           // this.superagentform.controls['MloseComm'].setValue(data.mLossingComm);
           // this.superagentform.controls['SloseComm'].setValue(data.sLossingComm);
+          this.formControlfixlimitChanged()
         }
         this.formControlsmysharechanged()
         // this.formControlsmaxsharechanged()
-        this.formControlfixlimitChanged()
         this.formControlmcommchanged()
         this.formControlscommchanged()
         this.formControlmLossingCommchanged();
@@ -147,7 +147,7 @@ export class CreatesuperagentComponent implements OnInit {
                 "agentShare":this.superagentform.get("Superagentshare").value,
                 "context":"web",
                 "firstName":this.edituserdata.firstName,
-                "fixLimit":this.edituserdata.fixLimit,
+                "fixLimit":this.superagentform.get("fixLimit").value,
                 "isMComm":0,
                 "isSComm":0,
                 "myShare":this.edituserdata.myShare,

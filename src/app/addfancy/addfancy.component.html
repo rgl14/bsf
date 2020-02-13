@@ -74,7 +74,7 @@
                                     <label class="col-md-2 label-control">Fancy Name <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="text" specialIsAlphaNumeric formControlName="betName" class="form-control"
+                                        <input type="text"  formControlName="betName" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.betName.invalid && f.betName.touched}">
                                         <div *ngIf="f.betName.invalid && f.betName.touched" class="invalid-feedback">
                                             <mat-error>This field is mandatory.

@@ -105,11 +105,10 @@ export class CreateclientComponent implements OnInit {
           this.clientform.controls['MloseComm'].setValue(0);
           this.clientform.controls['SloseComm'].setValue(0);
           this.clientform.controls['fixedfees'].setValue(0);
-
+          this.formControlfixlimitChanged()
         }
         // this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
-        this.formControlfixlimitChanged();
         this.formControlmcommchanged();
         this.formControlscommchanged();
         this.formControlmLossingCommchanged();
