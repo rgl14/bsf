@@ -31,11 +31,11 @@ export class MatchesComponent implements OnInit {
       // {headerName: 'Type', field: 'type', width: 150},
       {headerName: 'Declared', field: 'declared', width: 200},
       {headerName: 'Won By', field: 'wonBy', width: 200},
-      {headerName: 'Profit / Loss', field: 'pNl', width: 200, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Profit / Loss', field: 'pNl', width: 200, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
     ]; 
 
     function balanceFormatter(params){
-      var twodecimalvalue=parseInt(params.value).toFixed(2);
+      var twodecimalvalue=parseFloat(params.value).toFixed(2);
       return twodecimalvalue;
 }
 

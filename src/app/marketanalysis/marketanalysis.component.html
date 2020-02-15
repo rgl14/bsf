@@ -30,21 +30,6 @@
         <div class="col-md-12" id="MatchOddInfo">
           <div class="matchBoxMain">
             <div class="modal-dialog-staff">
-    
-              <!-- <div class="modal-header mod-header">
-                <div class="block_box">
-                  <span>
-                    <span ><i aria-hidden="true"></i></span>
-                    {{Event.name}}
-                  </span>
-                  <div id="liveCommentary"></div>
-                  <div class="block_box_btn">
-                    <button class="btn btn-primary btn-xs">Bets</button>
-                    <button class="btn btn-primary btn-xs">X</button>
-                    <button class="btn btn-primary btn-xs yellow1"><span>Refresh</span></button>
-                  </div>
-                </div>
-              </div> -->
               <div class="score_area"><span class="matchScore" id="matchScore"> </span> </div>
               <div class="modal-body">
                 <div class="matchClosedBox_1153815307" style="display:none">
@@ -63,67 +48,69 @@
                     </div>
                   </div>
                 </div>
-                <div class="matchOpenBox_" *ngFor="let mkt of AllMarkets;trackBy:trackByFn">
-                  <div class="fullrow fullrownew">
-                    <div class="pre-text">
-                      <!-- <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span> -->
-                      <!-- <br> -->
-                      <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
-                      <img style="display:inline;" src="assets/img/pause.ico" height="20px" alt="pause_icon">
-                      {{mkt.name}} [{{Event.eventDate}}]
+                <ng-container *ngIf="Flag=='1'">
+                  <div class="matchOpenBox_" *ngFor="let mkt of AllMarkets;trackBy:trackByFn">
+                    <div class="fullrow fullrownew">
+                      <div class="pre-text">
+                        <!-- <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span> -->
+                        <!-- <br> -->
+                        <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
+                        <img style="display:inline;" src="assets/img/pause.ico" height="20px" alt="pause_icon">
+                        {{mkt.name}} [{{Event.eventDate}}]
+                      </div>
+                    </div>
+                    <div class="fullrow MatchIndentB" style="position:relative;">
+                      <table class="table table-striped  bulk_actions">
+                        <tbody>
+                          <tr class="headings mobile_heading">
+                            <th class="fix_heading color_red">Min stake:1000<br>Max stake:100000</th>
+                            <th> </th>
+                            <th> </th>
+                            <th class="back_heading_color">BACK </th>
+                            <th class="lay_heading_color">LAY </th>
+                            <th> </th>
+                            <th> </th>
+                          </tr>
+                          <tr class="back_lay_color" *ngFor="let runner of mkt.runnerData;trackBy:trackByFn">
+                            <td>
+                              <p class="runner_text">{{runner.runnerName}} </p>
+                              <span class="runner_amount"
+                                [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>=0}"><b>{{runner.book | number:'1.2-2'}}</b></span>
+                            </td>
+                            <td class="hidden-xs">
+                              <span>{{runner.back3}}</span>
+                              <span>{{runner.backSize3}}</span>
+                            </td>
+                            <td class="hidden-xs">
+                              <span>{{runner.back2}}</span>
+                              <span>{{runner.backSize2}}</span>
+                            </td>
+                            <td class="mark-back">
+                              <span>{{runner.back1}}</span>
+                              <span>{{runner.backSize1}}</span>
+                            </td>
+                            <!--- availableToLay -->
+                            <td class="mark-lay">
+                              <span>{{runner.lay1}}</span>
+                              <span>{{runner.laySize1}}</span>
+                            </td>
+                            <td class="hidden-xs">
+                              <span>{{runner.lay2}}</span>
+                              <span>{{runner.laySize2}}</span>
+                            </td>
+                            <td class="hidden-xs">
+                              <span>{{runner.lay3}}</span>
+                              <span>{{runner.laySize3}}</span>
+                            </td>
+                          </tr>
+      
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                  <div class="fullrow MatchIndentB" style="position:relative;">
-                    <table class="table table-striped  bulk_actions">
-                      <tbody>
-                        <tr class="headings mobile_heading">
-                          <th class="fix_heading color_red">Min stake:1000<br>Max stake:100000</th>
-                          <th> </th>
-                          <th> </th>
-                          <th class="back_heading_color">BACK </th>
-                          <th class="lay_heading_color">LAY </th>
-                          <th> </th>
-                          <th> </th>
-                        </tr>
-                        <tr class="back_lay_color" *ngFor="let runner of mkt.runnerData;trackBy:trackByFn">
-                          <td>
-                            <p class="runner_text">{{runner.runnerName}} </p>
-                            <span class="runner_amount"
-                              [ngClass]="{'text-danger':runner.book<0,'text-success':runner.book>=0}"><b>{{runner.book | number:'1.2-2'}}</b></span>
-                          </td>
-                          <td class="hidden-xs">
-                            <span>{{runner.back3}}</span>
-                            <span>{{runner.backSize3}}</span>
-                          </td>
-                          <td class="hidden-xs">
-                            <span>{{runner.back2}}</span>
-                            <span>{{runner.backSize2}}</span>
-                          </td>
-                          <td class="mark-back">
-                            <span>{{runner.back1}}</span>
-                            <span>{{runner.backSize1}}</span>
-                          </td>
-                          <!--- availableToLay -->
-                          <td class="mark-lay">
-                            <span>{{runner.lay1}}</span>
-                            <span>{{runner.laySize1}}</span>
-                          </td>
-                          <td class="hidden-xs">
-                            <span>{{runner.lay2}}</span>
-                            <span>{{runner.laySize2}}</span>
-                          </td>
-                          <td class="hidden-xs">
-                            <span>{{runner.lay3}}</span>
-                            <span>{{runner.laySize3}}</span>
-                          </td>
-                        </tr>
-    
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="matchOpenBox_" *ngFor="let book of BookRates;trackBy:trackByFn">
-                  <div class="fullrow fullrownew">
+                </ng-container>
+                <ng-container *ngIf="Flag=='0'">
+                  <div class="fullrow fullrownew"*ngFor="let book of BookRates;trackBy:trackByFn">
                     <div class="pre-text">
                       <!-- <span class="inplay_txt" *ngIf="Event.isInplay==1"> In-play </span> -->
                       <img style="display:none;" src="assets/img/play.ico" height="20px" alt="play_icon">
@@ -168,6 +155,7 @@
                     </table>
                   </div>
                 </div>
+                </ng-container>
                 <div class="fullrow margin_bottom fancybox" *ngIf="fancyData.length!=0">
                   <table class="table table-striped  bulk_actions margin_null">
                     <tbody>
@@ -224,12 +212,10 @@
                       </li>
                     </ul>
                   </div>
-    
                 </div>
               </div>
             </div>
           </div>
-        </div>
         <!-- <div class="col-md-5 matchBox">
           <div class="overlay_mobile in"></div>
           <div class="betSlipBox">

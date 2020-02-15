@@ -150,7 +150,7 @@ const routes: Routes = [
   { path: 'declaredbetslips/:matchId/:id/:title', component: DeclaredbetslipComponent },
   { path: 'sessionbetslips/:sportBfId/:bfId/:title', component: SessionbetslipsComponent },
   { path: 'declaredsessionbetslips/:matchId/:id/:title', component: DeclaredfancybetslipComponent },
-  { path: 'analysismarket/:sportBfId/:bfId/:id', component: MarketanalysisComponent },
+  { path: 'analysismarket/:sportBfId/:bfId/:id/:flag', component: MarketanalysisComponent },
   { path: 'livereport/:sportBfId/:bfId/:id', component: LivereportComponent },
   { path: 'companyreport/:matchId/:id/:title', component: CompanyreportComponent },
   { path: 'match_settlement', component: MatchsettlementComponent },

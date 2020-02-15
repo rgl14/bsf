@@ -11,7 +11,7 @@
           <mat-form-field class="search-form-field" floatLabel="never">
             <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
           </mat-form-field>
-          <button class="create-button" mat-raised-button [routerLink]="'/createadmin'">
+          <button class="create-button" *ngIf="creatorId==='0'" mat-raised-button [routerLink]="'/createadmin'">
             Create Company
           </button>
         </div>

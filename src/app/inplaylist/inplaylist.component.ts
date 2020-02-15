@@ -29,7 +29,7 @@ export class InplaylistComponent implements OnInit,OnDestroy {
       if(resp!=null){
         // console.log(resp.data)
         this.bookfarmatted=this.Bookmaker.FormatBM(resp.data);
-        console.log(this.bookfarmatted)
+        // console.log(this.bookfarmatted)
       }
     })
   }

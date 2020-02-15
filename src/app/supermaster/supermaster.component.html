@@ -17,7 +17,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input matInput id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()">
                 </mat-form-field>
-                <button class="create-button" mat-raised-button [routerLink]="'/createsuper'">Create Supermaster</button>
+                <button class="create-button" mat-raised-button *ngIf="creatorId==='0'" [routerLink]="'/createsuper'">Create Supermaster</button>
               </div>
               <div class="table-container mat-elevation-z8">
                   <ag-grid-angular 

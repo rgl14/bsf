@@ -54,7 +54,7 @@ export class ProfitnlossComponent implements OnInit {
     
 
     function balanceFormatter(params){
-      var twodecimalvalue=parseInt(params.value).toFixed(2);
+      var twodecimalvalue=parseFloat(params.value).toFixed(2);
       return twodecimalvalue;
     }
 

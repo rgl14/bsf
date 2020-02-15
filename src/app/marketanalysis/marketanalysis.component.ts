@@ -57,6 +57,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
   fancybetArray=[];
   TvWidth: number;
   showtv: boolean;
+  Flag: string;
   constructor(
     private usermanagement:UsermanagementService,
     public dialog: MatDialog,
@@ -74,6 +75,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
       this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
       this.matchBfId=this.route.snapshot.paramMap.get('bfId');
       this.matchid=this.route.snapshot.paramMap.get('id');
+      this.Flag=this.route.snapshot.paramMap.get('flag');
       
       this.usermanagement.getAccountInfo().subscribe(resp=>{
         // console.log(resp.data);
@@ -112,7 +114,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
             this.bmBetdata=this.admReport.bmBetdata;
           }
           if(!this.isFancySignalr){
-            // this.fancyData=this.Event.fancyList;
+            if(this.Event.fancyList!=null){
+              this.fancyData=this.Event.fancyList;
+            }
           }
           if(!this.isMarketSignalr){
             this.AllMarkets=this.Event.mktList;
@@ -144,7 +148,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
       this.sportdataservice.HubAddress(this.EventMarketId).subscribe(resp=>{
         // console.log(resp)
         if(resp!=null){
-          this.marketservice.connectMarket(resp,this.AllMarkets);
+          if(this.Flag=='1'){
+            this.marketservice.connectMarket(resp,this.AllMarkets);
+          }
         }
         this.marketservice.marketSource.subscribe(runner=>{
           if(runner!=null){
@@ -227,7 +233,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
             _.forEach(this.BookRates, (item, index) => {
               if(item.name=="BOOK MAKING"){
                 _.forEach(item.runnerData, (item1, index) => {
-                  if(this.bmBookData.runner1name!=null){
+                  if(this.bmBookData!=null){
                     if(item1.name==this.bmBookData.runner1name){
                       item1["book"]=this.bmBookData.runner1Book;
                     }
@@ -320,7 +326,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
       });
     }
     openfancybookDialog(fancy): void {
-      console.log(fancy);
+      // console.log(fancy);
       this.fancyservice.GetAnalysisFancyBook(fancy.id).subscribe(resp=>{
         this.fancybook=resp.data;
         const dialogRef = this.dialog.open(FancyBookDialog, {

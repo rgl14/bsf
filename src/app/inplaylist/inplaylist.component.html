@@ -20,7 +20,85 @@
                                Cricket
                              </div>
                            </div>
-                           <h2>No matches...</h2>
+                           <ng-container *ngFor="let match of bookfarmatted;trackBy:trackByFn;">
+                              <div class="Inplay-data">
+                                <div class="sport_row">
+                                
+                                  <div class="event-details" [routerLink]="['/analysismarket','4',match.mtBfId,match.matchId,'0']">
+                                    <span class="label " ><b>{{match.matchName}}</b></span>
+                                    <p class="date-info"> <span class="">[ {{match.matchDate}} ]</span>
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="modds" *ngFor="let runner of match.runnerData;trackBy:trackByFn;">
+                                  <div class="list-body distinct">
+                                               <div id="1153608013" >
+                                                <div class="">
+                                                    <div class="">
+                                                     <div class="market list-item" id="selection-1.143317969-2954262">
+                                                        <div class="runner-details">
+                                                           <div class="title">
+                                                              <span class="">{{runner.name}}</span>
+                                                           </div>
+                                                           <div class="pnl">
+                                                              <span id="matchodd0_1618" [ngClass]="(match.book>=0)?'text-success':'text-danger'">» {{match.book | number : '1.2-2'}}</span>
+                                                           </div>
+                                                        </div>
+                                                        <div class="odds-container">
+                                                           <div selected-odds="" type="back" class="not-selected bet-button">
+                                                              <div class="back" id="runner0back1">
+                                                                 <div class="dash " *ngIf="runner.backPrice!='-'">{{runner.backPrice}}</div>
+                                                                 <div class="dash " *ngIf="runner.backPrice=='-'"><mat-icon>lock</mat-icon></div>
+                                                              </div>
+                                                           </div>
+                                                           <div selected-odds="" type="lay" class="not-selected bet-button">
+                                                              <div class="lay" id="runner0lay1">
+                                                                 <div class="dash " *ngIf="runner.layPrice!='-'">{{runner.layPrice}}</div>
+                                                                 <div class="dash " *ngIf="runner.layPrice=='-'"><mat-icon>lock</mat-icon></div>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                                </div>
+                                               </div>
+                                               <!-- <div ng-show="matchStatus!='OPEN'">
+                                                  <div class="market-suspended">
+                                                     <div class="runners">
+                                                      <div class="">
+                                                           <div class="list-item">
+                                                              <div class="details">
+                                                                 <div class="title">
+                                                                    <span class="">West Indies</span>
+                                                                 </div>
+                                                                 <div class="pnl">
+                                                                    <span id="matchodd0_1618" class="-positive "  style="color: red;">» -42.06</span>
+                                                                 </div>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                        <div class="">
+                                                           <div class="list-item">
+                                                              <div class="details">
+                                                                 <div class="title">
+                                                                    <span class="">Ireland</span>
+                                                                 </div>
+                                                                 <div class="pnl">
+                                                                    <span id="matchodd0_1618" class="-positive " style="color: red;">» -1,247.20</span>
+                                                                 </div>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div> -->
+                                            </div>
+                        
+                                </div>
+                              </div>
+                              
+                          </ng-container>
+                          <h2 *ngIf="bookfarmatted.length==0">No matches...</h2>
                      </ng-container>
                        </div>
                      </mat-tab>
@@ -40,7 +118,7 @@
                                <div class="Inplay-data">
                                  <div class="sport_row">
                                  
-                                   <div class="event-details" [routerLink]="['/analysismarket',match.sportBfId,match.bfId,match.id]">
+                                   <div class="event-details" [routerLink]="['/analysismarket',match.sportBfId,match.bfId,match.id,'1']">
                                      <span class="label " ><b>{{match.name}}</b></span>
                                      <p class="date-info"> <span class="">[ {{match.eventDate}} ]</span>
                                      </p>
@@ -63,12 +141,14 @@
                                                          <div class="odds-container">
                                                             <div selected-odds="" type="back" class="not-selected bet-button">
                                                                <div class="back" id="runner0back1">
-                                                                  <div class="dash ">{{match.runner1Back}}</div>
+                                                                  <div class="dash " *ngIf="match.runner1Back!=''">{{match.runner1Back}}</div>
+                                                                  <div class="dash " *ngIf="match.runner1Back==''"><mat-icon>lock</mat-icon></div>
                                                                </div>
                                                             </div>
                                                             <div selected-odds="" type="lay" class="not-selected bet-button">
                                                                <div class="lay" id="runner0lay1">
-                                                                  <div class="dash ">{{match.runner1Lay}}</div>
+                                                                  <div class="dash " *ngIf="match.runner1Lay!=''">{{match.runner1Lay}}</div>
+                                                                  <div class="dash " *ngIf="match.runner1Lay==''"><mat-icon>lock</mat-icon></div>
                                                                </div>
                                                             </div>
                                                          </div>
@@ -87,12 +167,14 @@
                                                          <div class="odds-container">
                                                             <div selected-odds="" type="back" class="not-selected bet-button">
                                                                <div class="back" id="runner1back1">
-                                                                  <div class="dash ">{{match.runner2Back}}</div>
+                                                                  <div class="dash " *ngIf="match.runner2Back!=''">{{match.runner2Back}}</div>
+                                                                  <div class="dash " *ngIf="match.runner2Back==''"><mat-icon>lock</mat-icon></div>
                                                                </div>
                                                             </div>
                                                             <div selected-odds="" type="lay" class="not-selected bet-button">
                                                                <div class="lay" id="runner1lay1">
-                                                                  <div class="dash ">{{match.runner2Lay}}</div>
+                                                                  <div class="dash " *ngIf="match.runner2Lay!=''">{{match.runner2Lay}}</div>
+                                                                  <div class="dash " *ngIf="match.runner2Lay==''"><mat-icon>lock</mat-icon></div>
                                                                </div>
                                                             </div>
                                                          </div>
@@ -111,12 +193,14 @@
                                                         <div class="odds-container">
                                                            <div selected-odds="" type="back" class="not-selected bet-button">
                                                               <div class="back" id="runner1back1">
-                                                                 <div class="dash ">{{match.runner3Back}}</div>
+                                                                 <div class="dash " *ngIf="match.runner3Back!=''">{{match.runner3Back}}</div>
+                                                                 <div class="dash " *ngIf="match.runner3Back==''"><mat-icon>lock</mat-icon></div>
                                                               </div>
                                                            </div>
                                                            <div selected-odds="" type="lay" class="not-selected bet-button">
                                                               <div class="lay" id="runner1lay1">
-                                                                 <div class="dash ">{{match.runner3Lay}}</div>
+                                                                 <div class="dash " *ngIf="match.runner3Lay!=''">{{match.runner3Lay}}</div>
+                                                                 <div class="dash " *ngIf="match.runner3Lay==''"><mat-icon>lock</mat-icon></div>
                                                               </div>
                                                            </div>
                                                         </div>
