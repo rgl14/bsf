@@ -24,9 +24,9 @@ export class PackageSettingsComponent implements OnInit {
   constructor(private sportService: SportDataService) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      { headerName: 'ID', field: 'id', width: 100, sortable: true, lockPosition: true, suppressNavigable: true },
-      { headerName: 'Package Name', field: 'label', sortable: true, width: 600 },
-      { headerName: 'Edit', field: '', sortable: true, width: 600, cellRendererFramework: CustomcellbuttonsComponent, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
+      { headerName: 'ID', field: 'id', minWidth: 50, sortable: true, lockPosition: true, suppressNavigable: true },
+      { headerName: 'Package Name', field: 'label', sortable: true, minWidth: 100 },
+      { headerName: 'Edit', field: '', sortable: true, minWidth: 100, cellRendererFramework: CustomcellbuttonsComponent, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
     ];
 
     this.overlayLoadingTemplate =
@@ -61,6 +61,10 @@ export class PackageSettingsComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   onGridReady(params:any) {
