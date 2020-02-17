@@ -26,7 +26,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Tournament Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="tourname"  class="form-control" name="username" [ngClass]="{ 'is-invalid': submitted && f.tourname.errors && f.tourname.touched}"  placeholder="" type="text" >
+                                  <input formControlName="tourname" appInputRestriction="noSpecialChars" class="form-control" name="username" [ngClass]="{ 'is-invalid': submitted && f.tourname.errors && f.tourname.touched}"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.tourname.errors && f.tourname.touched" class="invalid-feedback">
                                      <mat-error *ngIf="f.tourname.errors.required">This field is mandatory.</mat-error>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                        <input formControlName="tourbfid"  class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.tourbfid.errors && f.tourbfid.touched}"  placeholder="" type="text" >
+                                        <input formControlName="tourbfid" appInputRestriction="integer" class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.tourbfid.errors && f.tourbfid.touched}"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.tourbfid.errors && f.tourbfid.touched" class="invalid-feedback">
                                      <mat-error *ngIf="f.tourbfid.errors.required">This field is mandatory.</mat-error>

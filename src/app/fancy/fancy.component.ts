@@ -45,18 +45,18 @@ export class FancyComponent implements OnInit {
     this.gridOptions = {context: {componentParent: this}};
 
     this.gridOptions.columnDefs = [
-      { headerName: 'ID', field: 'fancyCode', width: 50, lockPosition: true, suppressNavigable: true },
-      { headerName: 'Fancy Type', field: 'fancyType', sortable: true, width: 100, cellStyle: { 'font-weight': 'bolder' } },
-      { headerName: 'Fancy Name', field: 'fancyName', sortable: true, width: 225, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
-      { headerName: 'Match', field: 'matchName', sortable: true, width: 225, cellStyle: { 'font-weight': 'bolder' } },
-      { headerName: 'Status', field: 'betStatus', sortable: true, width: 100 },
-      { headerName: 'Mode', field: 'automatic', sortable: true, width: 175, cellRendererFramework: NavigationcellComponent },
-      { headerName: 'Rate', field: '', sortable: true, width: 100, cellRendererFramework: RatesnavigationComponent },
-      { headerName: 'Setting', field: '', sortable: true, width: 100, cellRendererFramework: SettingfancybookcellComponent },
-      { headerName: 'Active', field: 'isActive', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
-      { headerName: 'Bet Allow', field: 'isBetAllow', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
-      // { headerName: 'Commission', field: 'isApplyComm', sortable: true, width: 100, cellRendererFramework: ButtontogglecellComponent },
-      { headerName: 'Actions', field: '', sortable: true, width: 250, cellRendererFramework: CustomcellbuttonsComponent },
+      { headerName: 'ID', field: 'fancyCode', minWidth: 50, lockPosition: true, suppressNavigable: true },
+      { headerName: 'Fancy Type', field: 'fancyType', sortable: true, minWidth: 100, cellStyle: { 'font-weight': 'bolder' } },
+      { headerName: 'Fancy Name', field: 'fancyName', sortable: true, minWidth: 225, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
+      { headerName: 'Match', field: 'matchName', sortable: true, minWidth: 200, cellStyle: { 'font-weight': 'bolder' } },
+      { headerName: 'Status', field: 'betStatus', sortable: true, minWidth: 100 },
+      // { headerName: 'Mode', field: 'automatic', sortable: true, minWidth: 175, cellRendererFramework: NavigationcellComponent },
+      { headerName: 'Rate', field: 'rate', sortable: true, minWidth: 75, cellRendererFramework: RatesnavigationComponent },
+      { headerName: 'Setting', field: 'setting', sortable: true, minWidth: 75, cellRendererFramework: SettingfancybookcellComponent },
+      { headerName: 'Active', field: 'isActive', sortable: true, minWidth: 75, cellRendererFramework: ButtontogglecellComponent },
+      { headerName: 'Bet Allow', field: 'isBetAllow', sortable: true, minWidth: 75, cellRendererFramework: ButtontogglecellComponent },
+      { headerName: 'Result', field: 'result', sortable: true, minWidth: 75},
+      { headerName: 'Actions', field: 'action', sortable: true, minWidth: 300, cellRendererFramework: CustomcellbuttonsComponent },
     ];
 
     this.overlayLoadingTemplate =
@@ -85,13 +85,24 @@ export class FancyComponent implements OnInit {
     this.gridOptions.api.paginationSetPageSize(Number(value));
   }
 
+  showresult(show) {
+    this.gridColumnApi.setColumnVisible("result", show);
+  }
+
+  showsettle(show) {
+    this.gridColumnApi.setColumnsVisible(["rate", "setting", "isBetAllow","isActive"], show);
+  }
+
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }
 
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
+  }
+
   ngOnInit() {
     this.GetSportList();
-    this.GetFancyList();
   }
 
   GetSportList() {
@@ -136,7 +147,11 @@ export class FancyComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
+    this.GetFancyList();
+    this.showresult(false);
   }
+
+ 
 
   GetFancyList() {
     let sportid = this.sport.betfairId;
@@ -159,8 +174,12 @@ export class FancyComponent implements OnInit {
     }
     if (this.checked) {
       var isettled = 1;
+      this.showresult(true);
+      this.showsettle(false);
     }else{
       var isettled = 0;
+      this.showresult(false);
+      this.showsettle(true);
     }
 
     this.fancyService.GetFancyList(sportid, tourid, matchid, status, isettled).subscribe(data => {

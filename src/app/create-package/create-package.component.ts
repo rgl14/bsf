@@ -39,18 +39,18 @@ export class CreatePackageComponent implements OnInit {
 
   initSavePackageForm() {
     this.savePackageForm = this.fb.group({
-      betBeforeInplayMins: ['', Validators.required],
-      betDelay: ['', Validators.required],
+      betBeforeInplayMins: ['', [ Validators.required,Validators.min(1), Validators.max(60)]],
+      betDelay: ['', [ Validators.required,Validators.min(1), Validators.max(60)]],
       isCheckVol: [false, Validators.required],
       isUnMatched: [false, Validators.required],
-      maxLoss: ['', Validators.required],
-      maxProfit: ['', Validators.required],
-      maxRate: ['', Validators.required],
-      maxStake: ['', Validators.required],
-      minRate: ['', Validators.required],
-      minStake: ['', Validators.required],
-      mktBeforeInplayStake: ['', Validators.required],
-      mktVolMulti: ['', Validators.required],
+      maxLoss: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      maxProfit: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      maxRate: ['', [ Validators.required,Validators.min(1.01), Validators.max(1000.00)]],
+      maxStake: ['',[ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      minRate: ['', [ Validators.required,Validators.min(1.01), Validators.max(100.00)]],
+      minStake: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      mktBeforeInplayStake: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      mktVolMulti: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
       name: ['', Validators.required],
       userId: ['1']
     })

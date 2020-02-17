@@ -32,11 +32,9 @@ export class ChangepasswordComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.changepassword.invalid) {  
-      this.notification.error('Please Enter values');
       return;
     }else{
       var changepassworddata=this.changepassword.value;
-      console.log(changepassworddata)
       var data={
         "context":"web",
         "newPwd":changepassworddata.oldpassword,

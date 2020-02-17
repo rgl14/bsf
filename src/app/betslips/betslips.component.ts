@@ -29,11 +29,12 @@ export class BetslipsComponent implements OnInit,OnDestroy {
   rowData=[];
   matchId: string;
   MktId: string;
+  accountInfo: any;
 
   constructor(private route:ActivatedRoute,private usermanagement:UsermanagementService,private analysisservice:AnalysisSignalrService,) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Action', field: '', sortable: true, width: 75,cellRendererFramework:CustomcellbuttonsComponent,cellStyle: {cursor:'pointer','text-align':'center'}},
+      {headerName: 'Action', field: 'action', sortable: true, width: 75,cellRendererFramework:CustomcellbuttonsComponent,cellStyle: {cursor:'pointer','text-align':'center'}},
       // {headerName: 'ID', field: 'userId', width: 100,lockPosition:true,suppressNavigable:true},
       {headerName: 'Runner', field: 'runnerName', sortable: true, width: 200,cellStyle: {color: '#414141','font-weight':'bolder'}},
       {headerName: 'Bet type', field: 'backLay', sortable: true, width: 150},
@@ -89,6 +90,10 @@ export class BetslipsComponent implements OnInit,OnDestroy {
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }
+
+  showaction(show) {
+    this.gridColumnApi.setColumnVisible("action", show);
+  }
   
   onGridReady(params:any) {
     this.gridApi = params.api;
@@ -100,6 +105,15 @@ export class BetslipsComponent implements OnInit,OnDestroy {
     this.title=this.route.snapshot.paramMap.get('title');
     this.sportBfId=this.route.snapshot.paramMap.get('sportBfId');
     this.matchBfId=this.route.snapshot.paramMap.get('bfId');
+    this.usermanagement.getAccountInfo().subscribe(data=>{
+      this.accountInfo=data.data;
+      // console.log(this.accountInfo)
+      if(this.accountInfo.userType==1){
+        this.showaction(true);
+      }else{
+        this.showaction(false);
+      }
+    })
       this.usermanagement.getAccountInfo().subscribe(resp=>{
         // console.log(resp.data);
         this.userId=resp.data.userId;

@@ -24,6 +24,7 @@ export class AddfancyComponent implements OnInit {
 
   fancyInfo: any;
   fancyId: number;
+  minstakeval: any;
 
   constructor(
     private fb: FormBuilder,
@@ -52,20 +53,20 @@ export class AddfancyComponent implements OnInit {
 
   initFancyForm() {
     this.fancyForm = this.fb.group({
-      betDelay: ['', Validators.required],
+      betDelay: ['', [ Validators.required,Validators.min(1), Validators.max(60)]],
       betName: ['', Validators.required],
       fancyType: ['', Validators.required],
       isActive: [false, Validators.required],
       isApplyComm: [false, Validators.required],
-      maxLoss: ['', Validators.required],
-      maxProfit: ['', Validators.required],
-      maxStake: ['', Validators.required],
-      minStake: ['', Validators.required],
-      maxStakePerRate: ['', Validators.required],
+      maxLoss: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      maxProfit: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      maxStake: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      minStake: ['',[ Validators.required,Validators.min(1), Validators.max(10000000000)]],
+      maxStakePerRate: ['', [ Validators.required,Validators.min(1), Validators.max(10000000000)]],
       note: [''],
-      position: ['', Validators.required],
-      rateDifference: ['', Validators.required],
-      rateRange: ['', Validators.required],
+      position: ['', [ Validators.required,Validators.min(1), Validators.max(100)]],
+      rateDifference: ['', [ Validators.required,Validators.min(1), Validators.max(100)]],
+      rateRange: ['', [ Validators.required,Validators.min(1), Validators.max(100)]],
       rules: [''],
       sport: ['', Validators.required],
       tournament: ['', Validators.required],
@@ -158,6 +159,8 @@ export class AddfancyComponent implements OnInit {
     });
 
   }
+
+  
 
   getMatchList() {
     this.matchList = [];

@@ -13,7 +13,7 @@
                             <div class="form-group">
                                     <label class="col-sm-2 label-control">Title<span class="danger">*</span> :</label>
                                     <div class="col-md-10 col-sm-3">              
-                                      <input formControlName="ticker" specialIsAlphaNumeric class="form-control" name="ticker" [ngClass]="{ 'is-invalid': submitted && f.ticker.errors }"  placeholder="Ticker" type="text" >
+                                      <input formControlName="ticker" appInputRestriction="noSpecialChars" class="form-control" name="ticker" [ngClass]="{ 'is-invalid': submitted && f.ticker.errors }"  placeholder="Ticker" type="text" >
                                       
                                       <div *ngIf="submitted && f.ticker.errors" class="invalid-feedback">
                                          <mat-error *ngIf="f.ticker.errors.required">This field is mandatory.</mat-error>

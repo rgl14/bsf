@@ -49,7 +49,7 @@ export class NavigationcellComponent implements OnInit {
     this.bmService.SettleBook(data).subscribe(data=>{
       if (data.status == "Success") {
         this.notifyService.success(data.result);
-        this.params.context.GetBookList();
+        this.params.context.componentParent.GetBookList();
       }
       else {
         this.notifyService.error(data.result);

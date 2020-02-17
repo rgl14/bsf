@@ -13,7 +13,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Sport Name<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                  <input formControlName="sportname" specialIsAlphaNumeric class="form-control" name="username" [ngClass]="{ 'is-invalid': submitted && f.sportname.errors }"  placeholder="" type="text" >
+                                  <input formControlName="sportname" appInputRestriction="noSpecialChars" class="form-control" name="username" [ngClass]="{ 'is-invalid': submitted && f.sportname.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.sportname.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.sportname.errors.required">This field is mandatory.</mat-error>
@@ -23,7 +23,7 @@
                         <div class="form-group">
                                 <label class="col-sm-2 label-control">Betfair ID<span class="danger">*</span> :</label>
                                 <div class="col-md-10 col-sm-3">              
-                                        <input formControlName="sportbfid" specialIsAlphaNumeric class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.sportbfid.errors }"  placeholder="" type="text" >
+                                        <input formControlName="sportbfid" appInputRestriction="integer" class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.sportbfid.errors }"  placeholder="" type="text" >
                                   
                                   <div *ngIf="submitted && f.sportbfid.errors" class="invalid-feedback">
                                      <mat-error *ngIf="f.sportbfid.errors.required">This field is mandatory.</mat-error>

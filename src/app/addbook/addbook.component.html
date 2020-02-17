@@ -76,7 +76,7 @@
                                     <label class="col-md-2 label-control">Book Header Name<span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="text" specialIsAlphaNumeric formControlName="headerName" class="form-control"
+                                        <input type="text" appInputRestriction="noSpecialChars" formControlName="headerName" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.headerName.invalid && f.headerName.touched}">
                                         <div *ngIf="f.headerName.invalid && f.headerName.touched"
                                             class="invalid-feedback">
@@ -107,20 +107,18 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 label-control">Min Rate <span class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="minRate"   class="form-control"
+                                        <input type="number" formControlName="minRate" appInputRestriction="integer" min="1.01" max="100.00"  class="form-control"
                                             [ngClass]="{ 'is-invalid': f.minRate.invalid && f.minRate.touched}">
                                         <div *ngIf="f.minRate.invalid && f.minRate.touched" class="invalid-feedback">
-                                            <mat-error>This field is mandatory.
-                                            </mat-error>
+                                            <mat-error>This field is Invalid (1.01-100.00).</mat-error>
                                         </div>
                                     </div>
                                     <label class="col-md-2 label-control">Max Rate <span class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxRate"   class="form-control"
+                                        <input type="number" formControlName="maxRate" appInputRestriction="integer" min="1.01" max="1000.00" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxRate.invalid && f.maxRate.touched}">
                                         <div *ngIf="f.maxRate.invalid && f.maxRate.touched" class="invalid-feedback">
-                                            <mat-error>This field is mandatory.
-                                            </mat-error>
+                                            <mat-error>This field is Invalid (1.01-1000.00).</mat-error>
                                         </div>
                                     </div>
                                 </div>
@@ -128,21 +126,19 @@
                                     <label class="col-md-2 label-control">Min Stake <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="minStake" specialIsAlphaNumeric class="form-control"
+                                        <input type="number" formControlName="minStake" appInputRestriction="integer" min="1" max="1000000000" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.minStake.invalid && f.minStake.touched}">
                                         <div *ngIf="f.minStake.invalid && f.minStake.touched" class="invalid-feedback">
-                                            <mat-error>This field is mandatory.
-                                            </mat-error>
+                                            <mat-error>This field is Invalid (1-1000000000).</mat-error>
                                         </div>
                                     </div>
                                     <label class="col-md-2 label-control">Max Stake <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxStake" specialIsAlphaNumeric class="form-control"
+                                        <input type="number" formControlName="maxStake" appInputRestriction="integer" min="1" max="1000000000" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxStake.invalid && f.maxStake.touched}">
                                         <div *ngIf="f.maxStake.invalid && f.maxStake.touched" class="invalid-feedback">
-                                            <mat-error>This field is mandatory.
-                                            </mat-error>
+                                            <mat-error>This field is Invalid (1-1000000000).</mat-error>
                                         </div>
                                     </div>
                                 </div>
@@ -150,11 +146,11 @@
                                     <label class="col-md-2 label-control">Max Profit <span
                                             class="danger">*</span></label>
                                     <div class="col-md-3">
-                                        <input type="number" formControlName="maxProfit" specialIsAlphaNumeric class="form-control"
+                                        <input type="number" formControlName="maxProfit" appInputRestriction="integer" min="1" max="1000000000" class="form-control"
                                             [ngClass]="{ 'is-invalid': f.maxProfit.invalid && f.maxProfit.touched}">
                                         <div *ngIf="f.maxProfit.invalid && f.maxProfit.touched"
                                             class="invalid-feedback">
-                                            <mat-error>This field is mandatory.</mat-error>
+                                            <mat-error>This field is Invalid (1-1000000000).</mat-error>
                                         </div>
                                     </div>
                                     <!-- <label class="col-md-2 label-control">Max Loss <span class="danger">*</span></label>
@@ -168,11 +164,11 @@
                                 <label class="col-md-2 label-control">Rates Different<span
                                         class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="rateDifference" specialIsAlphaNumeric class="form-control"
+                                    <input type="number" formControlName="rateDifference" appInputRestriction="integer" min="1" max="100" class="form-control"
                                         [ngClass]="{ 'is-invalid': f.rateDifference.invalid && f.rateDifference.touched}">
                                     <div *ngIf="f.rateDifference.invalid && f.rateDifference.touched"
                                         class="invalid-feedback">
-                                        <mat-error>This field is mandatory.</mat-error>
+                                        <mat-error>This field is Invalid (1-100).</mat-error>
                                     </div>
                                 </div>
                             </div>
@@ -180,11 +176,11 @@
                                 <label class="col-md-2 label-control">maxStakePerRate<span
                                         class="danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="number" formControlName="maxStakePerRate" specialIsAlphaNumeric class="form-control"
+                                    <input type="number" formControlName="maxStakePerRate" appInputRestriction="integer" min="1" max="1000000000" class="form-control"
                                         [ngClass]="{ 'is-invalid': f.maxStakePerRate.invalid && f.maxStakePerRate.touched}">
                                     <div *ngIf="f.maxStakePerRate.invalid && f.maxStakePerRate.touched"
                                         class="invalid-feedback">
-                                        <mat-error>This field is mandatory.</mat-error>
+                                        <mat-error>This field is Invalid (1-1000000000).</mat-error>
                                     </div>
                                 </div>
                             </div>

@@ -46,6 +46,7 @@ import { CellcurrentlimittextfeildComponent } from './cellcurrentlimittextfeild/
 import { RemoveSpacePipe } from './Directives/removespacepipe';
 import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysis.component';
 import { SpecialCharacterDirective } from './Directives/Special-character';
+import { InputRestrictionDirective } from './Directives/SpecialcharInput';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 
@@ -86,6 +87,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     FancyBookDialog,
     RejectBetdialog,
     SpecialCharacterDirective,
+    InputRestrictionDirective
   ],
   imports: [
     BrowserModule,
