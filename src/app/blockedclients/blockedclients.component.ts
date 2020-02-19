@@ -42,7 +42,7 @@ export class BlockedclientsComponent implements OnInit {
     this.overlayNoRowsTemplate =
     '<span class="ag-overlay-loading-center">NO DATA</span>';
 
-    this.gridOptions.paginationPageSize=10;
+    this.gridOptions.paginationPageSize=50;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };

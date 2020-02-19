@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReportsService } from '../services/reports.service';
 import { SharedataService } from '../services/sharedata.service';
+import { UsermanagementService } from '../services/usermanagement.service';
 
 @Component({
   selector: 'app-userdashboard',
@@ -19,14 +20,12 @@ export class UserdashboardComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     private getreports:ReportsService,
-    private sharedata: SharedataService
+    private sharedata: SharedataService,
+    private usermanagement:UsermanagementService
     ) { }
   
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-    this.userName=this.route.snapshot.paramMap.get('userName');
-    this.name=this.route.snapshot.paramMap.get('name');
-    this.userType=this.route.snapshot.paramMap.get('userType');
 
     this.getclientLedgerBal();
     this.LoggedUserInfo();
@@ -34,15 +33,21 @@ export class UserdashboardComponent implements OnInit {
 
   getclientLedgerBal(){
     this.getreports.GetClientLedgerBal(this.userId).subscribe(resp=>{
-      console.log(resp.ledgerBal)
+      // console.log(resp.ledgerBal)
       this.ledgerbal=resp.ledgerBal;
+    })
+    this.usermanagement.getUserInfo(this.userId).subscribe(resp=>{
+      // console.log(resp)
+    this.userName=resp.data.userName;
+    this.name=resp.data.name;
+    this.userType=resp.data.userType;
     })
   }
 
   LoggedUserInfo(){
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
-        console.log(data)
+        // console.log(data)
         this.LoggeduserType=data.userType;
       }
     })

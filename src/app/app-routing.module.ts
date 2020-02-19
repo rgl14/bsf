@@ -137,7 +137,7 @@ const routes: Routes = [
   { path: 'collectionreport', component: CollectionreportComponent },
   { path: 'myledger', component: MyledgersComponent },
   { path: 'profitnloss', component: ProfitnlossComponent },
-  { path: 'userdashboard/:userType/:userId/:userName/:name', component: UserdashboardComponent },
+  { path: 'userdashboard/:userId', component: UserdashboardComponent },
   { path: 'recevcash/:userId/:userName/:name', component: RecevcashComponent },
   { path: 'paycash/:userId/:userName/:name', component: PaycashComponent },
   { path: 'userledger/:userId/:userName/:name', component: UserledgerComponent },

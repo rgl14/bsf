@@ -23,7 +23,7 @@
                          <div class="form-group">
                                    <label class="col-sm-2 control-label">Full Name</label>
                                    <div class="col-sm-10">              
-                                     <input formControlName="firstName" specialIsAlphaNumeric class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"  placeholder="Full Name" type="text">
+                                     <input formControlName="firstName" appInputRestriction="noSpecialChars" class="form-control" name="fullname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"  placeholder="Full Name" type="text">
                                      
                                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                                         <mat-error *ngIf="f.firstName.errors.required">This field is mandatory.</mat-error>

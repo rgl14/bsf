@@ -61,7 +61,7 @@ export class MyledgersComponent implements OnInit {
       { date: '04 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '10000.00',balance: '100000.00',note:'--' },
       { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '12000.00',credit: '--',balance: '160000.00',note:'--' },
     ];
-    this.gridOptions.paginationPageSize=50;
+    this.gridOptions.paginationPageSize=200;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
@@ -93,11 +93,9 @@ ranges: any = {
   ngOnInit(){
     this.sharedata.AccountInfoSource.subscribe(data=>{
       if(data!=null){
-        console.log(data)
         this.accountInfo=data;
         this.userId=data.userId;
         this.getreports.GetLedger(this.userId).subscribe(resp=>{
-          // console.log(resp)
           this.rowData=resp.data;
         })
       }
