@@ -218,7 +218,7 @@ body {
     -moz-user-select: none;
     user-select: none;
 }
- {
+.btn{
     height: 45px;
     width: 90px;
 }

@@ -1,11 +1,11 @@
-<div class="login-wrapper">
+<!-- <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
 
-    <!-- <form [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()" class="example-form">
+    <form [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()" class="example-form">
       <mat-card-content>
         <mat-form-field class="example-full-width">
           <input type="text" matInput placeholder="Username" formControlName="username">
@@ -23,38 +23,28 @@
       </mat-card-content>
       <button type="submit" mat-stroked-button color="accent" class="btn-block" [disabled]="loginForm.invalid">Log
         in</button>
-    </form> -->
-    <div id="loginBackground" >
-      <div id="loginRoot" >
-          <div id="formRoot">
-              <form  #loginForm [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
-                  <div class="logo">
-                      <img src="assets/img/orbit1.png" alt="GameX">
-                  </div>
-                  <div class="input-group">
-                      <input class="form-input" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" type="text" name="username" id="username" placeholder="Username"
-                          autocomplete="off">
-                      <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                          <p>{{ getUsernameErrors() }} </p>
-                      </div> -->
-                  </div>
-                  <div class="input-group">
-                      <input class="form-input" formControlName="pwd" type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name="pwd" id="pwd" placeholder="Password">
-                      <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                          <p> {{ getPasswordErrors() }} </p>
-                      </div> -->
-                  </div>
-                  
-                  <button type="submit" class="btn btn-width" [ngClass]="loginForm.valid? 'raised': ''" [disabled]="!loginForm.valid">Login</button>
-                  <!-- <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                      <label class="custom-control-label" for="customCheck">Remember me!</label>
-                  </div> -->
-              </form>
-
-          </div>
-      </div>
-</div>
+    </form>
   </mat-card>
 
+</div> -->
+<div id="loginBackground" >
+  <div id="loginRoot" >
+      <div id="formRoot">
+          <form  [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()" >
+              <div class="logo">
+                  <img src="assets/img/orbit-1.png" alt="GameX">
+              </div>
+              <div class="input-group">
+                  <input class="form-input" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" type="text" name="username" placeholder="Username"
+                      autocomplete="off">
+              </div>
+              <div class="input-group">
+                  <input class="form-input" formControlName="pwd" type="password" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" name="pwd" id="pwd" placeholder="Password">
+              </div>
+              
+              <button type="submit" class="btn btn-width" [ngClass]="loginForm.valid? 'raised': ''" [disabled]="!loginForm.valid">Login</button>
+          </form>
+
+      </div>
+  </div>
 </div>
