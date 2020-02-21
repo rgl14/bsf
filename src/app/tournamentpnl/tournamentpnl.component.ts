@@ -28,12 +28,12 @@ export class TournamentpnlComponent implements OnInit {
   constructor(private getreports:ReportsService,private sharedata:SharedataService,private SportSettingdata:SportDataService) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'date', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Entry', field: 'entry', sortable: true, width: 500,cellStyle: {color: '#0084e7' }},
-      {headerName: 'Debit', field: 'debit', sortable: true, width: 150,cellStyle: {color: 'red'}},
-      {headerName: 'Credit', field: 'credit', sortable: true, width: 150,cellStyle: {color: 'green'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 180,cellStyle: {color: 'green','font-weight':'bolder'}},
-      {headerName: 'Note', field: 'note', sortable: true, width: 270},
+      {headerName: 'Date/Time', field: 'date', sortable: true, minWidth: 100,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Entry', field: 'entry', sortable: true, minWidth: 150,cellStyle: {color: '#0084e7' }},
+      {headerName: 'Debit', field: 'debit', sortable: true, minWidth: 75,cellStyle: {color: 'red'}},
+      {headerName: 'Credit', field: 'credit', sortable: true, minWidth: 75,cellStyle: {color: 'green'}},
+      {headerName: 'Balance', field: 'balance', sortable: true, minWidth: 75,cellStyle: {color: 'green','font-weight':'bolder'}},
+      {headerName: 'Note', field: 'note', sortable: true, minWidth: 125},
     ]; 
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
@@ -53,6 +53,10 @@ export class TournamentpnlComponent implements OnInit {
 
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
   
   ngOnInit(){

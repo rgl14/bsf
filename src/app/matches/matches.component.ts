@@ -24,14 +24,14 @@ export class MatchesComponent implements OnInit {
   constructor(private getreports:ReportsService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', width: 100, sortable: true,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Title', field: 'title', sortable: true, width: 500,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Sport', field: 'sport', width: 100},
-      {headerName: 'Date', field: 'dateTime', sortable: true, width: 200},
+      {headerName: 'ID', field: 'id', minWidth: 50, sortable: true,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Title', field: 'title', sortable: true, minWidth: 220,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Sport', field: 'sport', minWidth: 100},
+      {headerName: 'Date', field: 'dateTime', sortable: true, minWidth: 100},
       // {headerName: 'Type', field: 'type', width: 150},
-      {headerName: 'Declared', field: 'declared', width: 200},
-      {headerName: 'Won By', field: 'wonBy', width: 200},
-      {headerName: 'Profit / Loss', field: 'pNl', width: 200, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Declared', field: 'declared', minWidth: 75},
+      {headerName: 'Won By', field: 'wonBy', minWidth: 125},
+      {headerName: 'Profit / Loss', field: 'pNl', minWidth: 125, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
     ]; 
 
     function balanceFormatter(params){
@@ -58,6 +58,10 @@ export class MatchesComponent implements OnInit {
 
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   ngOnInit() {

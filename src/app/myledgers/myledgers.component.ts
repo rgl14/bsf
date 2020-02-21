@@ -31,12 +31,12 @@ export class MyledgersComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.alwaysShowCalendars = true;
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'date', sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Entry', field: 'entry', sortable: true, width: 500,cellStyle: {color: '#0084e7'}},
-      {headerName: 'Debit', field: 'debit', sortable: true, width: 150,cellStyle: {color: 'red'}},
-      {headerName: 'Credit', field: 'credit', sortable: true, width: 150,cellStyle: {color: 'green'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 180,cellStyle: {color: 'green','font-weight':'bolder'}},
-      {headerName: 'Note', field: 'note', sortable: true, width: 270},
+      {headerName: 'Date/Time', field: 'date', sortable: true, minWidth: 100,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Entry', field: 'entry', sortable: true, minWidth: 150,cellStyle: {color: '#0084e7'}},
+      {headerName: 'Debit', field: 'debit', sortable: true, minWidth: 75,cellStyle: {color: 'red'}},
+      {headerName: 'Credit', field: 'credit', sortable: true, minWidth: 75,cellStyle: {color: 'green'}},
+      {headerName: 'Balance', field: 'balance', sortable: true, minWidth: 75,cellStyle: {color: 'green','font-weight':'bolder'}},
+      {headerName: 'Note', field: 'note', sortable: true, minWidth: 100},
     ]; 
 
     this.overlayLoadingTemplate =
@@ -44,23 +44,6 @@ export class MyledgersComponent implements OnInit {
     this.overlayNoRowsTemplate =
     '<span class="ag-overlay-loading-center">NO DATA</span>';
 
-
-    this.gridOptions.rowData = [
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '12000.00',credit: '--',balance: '160000.00',note:'--' },
-      { date: '04 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '10000.00',balance: '100000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '06 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '10000.00',credit: '--',balance: '180000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '16000.00',balance: '180000.00',note:'--' },
-      { date: '05 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '11000.00',balance: '100000.00',note:'--' },
-      { date: '04 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '--',credit: '10000.00',balance: '100000.00',note:'--' },
-      { date: '08 Oct 19', entry: 'Guyana Amazon Warriors vs Jamaica Tallawahs	', debit: '12000.00',credit: '--',balance: '160000.00',note:'--' },
-    ];
     this.gridOptions.paginationPageSize=200;
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
@@ -84,6 +67,9 @@ ranges: any = {
 
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
+  }
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
   onPageSizeChanged(newPageSize:any) {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;

@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Updates Coins</label>
                   <div class="col-sm-9">
-                    <input formControlName="coins" specialIsAlphaNumeric type="number"  name="coins" [ngClass]="{ 'is-invalid': submitted && f.coins.errors }" class="form-control added-coin">
+                    <input formControlName="coins" appInputRestriction="integer" type="number" min="0" max="10000000000"  name="coins" [ngClass]="{ 'is-invalid': submitted && f.coins.errors }" class="form-control added-coin">
                     <div *ngIf="submitted && f.coins.errors" class="invalid-feedback">
                       <mat-error *ngIf="f.coins.errors.required">This field is mandatory.</mat-error>
                     </div>
@@ -26,7 +26,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Note</label>
                   <div class="col-sm-9">
-                    <textarea formControlName="note"  name="note" [ngClass]="{ 'is-invalid': submitted && f.note.errors }" class="form-control added-note"></textarea>
+                    <textarea formControlName="note" appInputRestriction="noSpecialChars"  name="note" [ngClass]="{ 'is-invalid': submitted && f.note.errors }" class="form-control added-note"></textarea>
                     <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
                       <mat-error *ngIf="f.note.errors.required">This field is mandatory.</mat-error>
                     </div>

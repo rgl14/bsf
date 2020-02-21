@@ -31,7 +31,7 @@ export class PaycashComponent implements OnInit {
     this.name=this.route.snapshot.paramMap.get('name');
 
     this.Paycashform=this.formbuilder.group({
-      coins:['',Validators.required],
+      coins:['',[ Validators.required,Validators.min(0), Validators.max(10000000000)]],
       note:[''],
     })
 

@@ -33,7 +33,7 @@ export class RecevcashComponent implements OnInit {
     this.name=this.route.snapshot.paramMap.get('name');
 
     this.Recevcashform=this.formbuilder.group({
-      coins:['',Validators.required],
+      coins:['',[ Validators.required,Validators.min(0), Validators.max(10000000000)]],
       note:[''],
     })
   }
@@ -57,7 +57,7 @@ export class RecevcashComponent implements OnInit {
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
                 setTimeout(() => {
-                  this.router.navigateByUrl('/userdashboard/'+this.userId+'/'+this.userName+'/'+this.name);
+                  this.router.navigateByUrl('/userdashboard/'+this.userId);
                 }, 2000);
               }else{
                 this.notification.error(resp.result);

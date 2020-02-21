@@ -44,12 +44,12 @@ export class ProfitnlossComponent implements OnInit {
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'dateTime',sort: "desc", sortable: true, width: 200,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Match Id', field: 'matchId', sortable: true, width: 150,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Match Title', field: 'matchTitle', sortable: true, width: 450,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Match Earnings', field: 'matchEarning', sortable: true, width: 200,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
-      {headerName: 'Commission Earnings', field: 'commEarning', sortable: true, width: 200,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
-      {headerName: 'Total Earnings', field: 'totalEarning', sortable: true, width: 250,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
+      {headerName: 'Date/Time', field: 'dateTime',sort: "desc", sortable: true, minWidth: 125,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Match Id', field: 'matchId', sortable: true, minWidth: 100,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Match Title', field: 'matchTitle', sortable: true, minWidth: 150,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Match Earnings', field: 'matchEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Commission Earnings', field: 'commEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Total Earnings', field: 'totalEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
     ]; 
     
 
@@ -79,6 +79,10 @@ export class ProfitnlossComponent implements OnInit {
   onPageSizeChanged(newPageSize:any) {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridOptions.api.paginationSetPageSize(Number(value));
+  }
+
+  onGridSizeChanged(params) {
+    params.api.sizeColumnsToFit();
   }
 
   onFilterTextBoxChanged() {
