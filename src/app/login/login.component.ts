@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  submitted=false;
 
   @Output() isLoggedIn = new EventEmitter<any>();
 
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   login() {
-
+    this.submitted = true;
+    
     if (this.loginForm.invalid) {
       return;
     }
