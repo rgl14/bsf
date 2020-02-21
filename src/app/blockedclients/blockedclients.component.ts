@@ -21,6 +21,7 @@ export class BlockedclientsComponent implements OnInit {
   overlayNoRowsTemplate: string;
   gridApi: any;
   gridColumnApi: any;
+  innerHeight: number;
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions = {
@@ -72,6 +73,7 @@ export class BlockedclientsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.innerHeight=window.innerHeight;
   }
 
   onGridReady(params:any) {

@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
   gridColumnApi: any;
   creatorId: any;
   defaultColDef: { sortable: boolean; };
+  innerHeight: number;
 
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
@@ -89,6 +90,7 @@ export class AdminComponent implements OnInit {
   
   ngOnInit() {
     this.creatorId=this.route.snapshot.paramMap.get('userId');
+    this.innerHeight=window.innerHeight;
   }
   onGridReady(params:any) {
     this.gridApi = params.api;

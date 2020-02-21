@@ -25,6 +25,7 @@ export class SuperagentComponent implements OnInit {
   gridColumnApi: any;
   usertype: number;
   creatorId: any;
+  innerHeight: number;
 
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
@@ -88,6 +89,7 @@ export class SuperagentComponent implements OnInit {
 
   ngOnInit() {
     this.creatorId=this.route.snapshot.paramMap.get('userId');
+    this.innerHeight=window.innerHeight;
   }
 
   onGridReady(params:any) {

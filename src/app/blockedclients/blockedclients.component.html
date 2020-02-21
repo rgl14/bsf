@@ -8,8 +8,9 @@
           </div>
           <div class="ibox-content-table table-responsive">
             <div class="table-container mat-elevation-z8">
-                <ag-grid-angular 
-                  style="width: 100%; height: 450px"
+                <ag-grid-angular
+                  [ngStyle]="{ 'height': innerHeight-185 + 'px' }" 
+                  style="width: 100%;"
                   class="ag-theme-balham"
                   [gridOptions]="gridOptions"
                   [rowData]="rowData" 

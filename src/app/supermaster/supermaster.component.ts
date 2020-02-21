@@ -25,6 +25,7 @@ export class SupermasterComponent implements OnInit {
   gridColumnApi: any;
   usertype: number;
   creatorId: string;
+  innerHeight: number;
 
   constructor(private usermanagement:UsermanagementService,private route:ActivatedRoute) { 
     this.gridOptions = <GridOptions>{};
@@ -88,6 +89,7 @@ export class SupermasterComponent implements OnInit {
 
   ngOnInit() {
     this.creatorId=this.route.snapshot.paramMap.get('userId');
+    this.innerHeight=window.innerHeight;
   }
 
   onGridReady(params:any) {
