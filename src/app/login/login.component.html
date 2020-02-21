@@ -28,9 +28,9 @@
 
 </div> -->
 <div id="loginBackground" >
-  <div id="loginRoot" >
+  <!-- <div id="loginRoot" > -->
       <div id="formRoot">
-          <form  [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()" >
+          <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()" >
               <div class="logo">
                   <img src="assets/img/orbit-1.png" alt="GameX">
               </div>
@@ -46,5 +46,5 @@
           </form>
 
       </div>
-  </div>
+  <!-- </div> -->
 </div>

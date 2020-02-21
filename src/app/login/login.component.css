@@ -92,12 +92,6 @@
 .mat-card-header .mat-card-title {
   margin-bottom: 12px;
 } */
-
-
-@import 'https://fonts.googleapis.com/css?family=Staatliches&display=swap';
-$primary: #0a4949;
-$accent: yellow;
-
 html,
 body {
     margin: 0;
@@ -110,15 +104,6 @@ body {
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Material Icons'), 
-         local('MaterialIcons-Regular'), 
-         url(https://fonts.gstatic.com/s/materialicons/v21/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
-}
-  
 .material-icons {
     font-family: 'Material Icons';
 }
@@ -142,8 +127,6 @@ body {
 }
 
 #loginRoot {
-    min-height: 470px;
-    min-width: 350px;
     border-radius: 10px;
     color: #fff;
     position: relative;
@@ -161,6 +144,7 @@ body {
     height: 46px;
     background:rgba(255, 255, 255, 0.15);
     color: #fff;
+    text-align: center;
     outline: none;
     padding-left: 12px;
     transition: background 400ms ease;
@@ -181,8 +165,21 @@ body {
     color: white;
 }
 #formRoot {
-    width: 80%;
-    z-index: 10;
+  /* width: 80%; */
+  position: absolute;
+  z-index: 10;
+  height: 470px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#loginForm > *:not(:last-child) {
+  margin-bottom: 20px;
 }
 .logo {
     position: relative;
