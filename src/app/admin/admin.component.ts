@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
       {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, minWidth: 75},
       {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: 'action', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     // this.defaultColDef = { sortable: true };
 
@@ -84,6 +84,10 @@ export class AdminComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
 
+  showraction(show) {
+    this.gridColumnApi.setColumnVisible("action", show);
+  }
+
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }
@@ -103,6 +107,9 @@ export class AdminComponent implements OnInit {
     this.usertype=2;
     if(this.creatorId==undefined){
       this.creatorId='0';
+      this.showraction(true);
+    }else{
+      this.showraction(false);
     }
     this.usermanagement.getUserlist(this.usertype,this.creatorId).subscribe(resp=>{
       this.rowData=resp._data;

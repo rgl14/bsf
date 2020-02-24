@@ -61,7 +61,7 @@ export class CreateclientComponent implements OnInit {
           this.clientform=this.formbuilder.group({
             username:[''],
             firstName:['',Validators.required],
-            fixLimit:[''],
+            fixLimit:[{value: '', disabled: this.isdisabled}],
             // myShare:['',Validators.required],
             MComm:[''],
             SComm:[''],

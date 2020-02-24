@@ -82,7 +82,7 @@
         <div class="ibox-content-form table-responsive">
 
 
-          <form [formGroup]="Companyform" (ngSubmit)="onSubmit()" class="form-horizontal">
+          <form [formGroup]="Companyform" (ngSubmit)="onSubmit()" *ngIf="Companyform" class="form-horizontal">
             <div class="form-group"><label class="col-sm-2 control-label">User Name</label>
               <div class="col-sm-10">
                 <input class="form-control" formControlName="username" name="user_name" placeholder="User Name"

@@ -45,7 +45,7 @@ export class AgentComponent implements OnInit {
       {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, minWidth: 75},
       {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: 'action', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     function balanceFormatter(params){
@@ -83,6 +83,10 @@ export class AgentComponent implements OnInit {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }
 
+  showraction(show) {
+    this.gridColumnApi.setColumnVisible("action", show);
+  }
+
   onGridSizeChanged(params) {
     params.api.sizeColumnsToFit();
   }
@@ -103,6 +107,9 @@ export class AgentComponent implements OnInit {
     this.usertype=6;
     if(this.creatorId==undefined){
       this.creatorId='0';
+      this.showraction(true);
+    }else{
+      this.showraction(false);
     }
     this.usermanagement.getUserlist(this.usertype,this.creatorId).subscribe(resp=>{
       this.rowData=resp._data;

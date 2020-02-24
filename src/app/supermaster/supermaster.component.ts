@@ -45,7 +45,7 @@ export class SupermasterComponent implements OnInit {
       {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, minWidth: 75},
       {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: '', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'Actions', field: 'action', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     function balanceFormatter(params){
@@ -87,6 +87,10 @@ export class SupermasterComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
 
+  showraction(show) {
+    this.gridColumnApi.setColumnVisible("action", show);
+  }
+
   ngOnInit() {
     this.creatorId=this.route.snapshot.paramMap.get('userId');
     this.innerHeight=window.innerHeight;
@@ -103,6 +107,9 @@ export class SupermasterComponent implements OnInit {
     this.usertype=3;
     if(this.creatorId==undefined){
       this.creatorId='0';
+      this.showraction(true);
+    }else{
+      this.showraction(false);
     }
     this.usermanagement.getUserlist(this.usertype,this.creatorId).subscribe(resp=>{
       this.rowData=resp._data;

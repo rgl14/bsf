@@ -127,6 +127,15 @@ export class ButtontogglecellComponent implements OnInit {
         this.UpdateFancyBetStatus();
       }
     }
+    else if (this.data.marketInfo) {
+      if (this.params.colDef.field == "active") {
+        this.UpdateMktStatus();
+      }
+
+      if (this.params.colDef.field == "betAllow") {
+        this.UpdateMktBetStatus();
+      }
+    }
     else if (this.data.bookCode) {
       if (this.params.colDef.field == "isActive") {
         this.EditBookStatus();
@@ -140,15 +149,6 @@ export class ButtontogglecellComponent implements OnInit {
       if (this.params.colDef.field == "accStatus") {
         this.UpdateUserStatus(isall);
       }
-    else if (this.data.marketInfo) {
-      if (this.params.colDef.field == "active") {
-        this.UpdateMktStatus();
-      }
-
-      if (this.params.colDef.field == "betAllow") {
-        this.UpdateMktBetStatus();
-      }
-    }
 
       if (this.params.colDef.field == "betStatus") {
         this.UpdateBetStatus(isall);
@@ -291,8 +291,6 @@ export class ButtontogglecellComponent implements OnInit {
 
       this.disabled = false;
 
-    }, err => {
-
     })
   }
 
@@ -368,6 +366,7 @@ export class ButtontogglecellComponent implements OnInit {
         else {
           this.isActive = true;
         }
+        this.params.context.componentParent.GetImportRateList();
         this.notifyService.success(data.result);
       }
       else {
@@ -394,6 +393,7 @@ export class ButtontogglecellComponent implements OnInit {
         else {
           this.isActive = true;
         }
+        this.params.context.componentParent.GetImportRateList();
         this.notifyService.success(data.result);
       }
       else {
