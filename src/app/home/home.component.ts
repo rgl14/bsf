@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsermanagementService } from '../services/usermanagement.service';
-import { SharedataService } from '../services/sharedata.service';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +9,11 @@ import { SharedataService } from '../services/sharedata.service';
 export class HomeComponent implements OnInit {
   userinfo: any;
 
-  constructor(private sharedata:SharedataService) { }
+  constructor(private usermanagement:UsermanagementService,) { }
 
   ngOnInit() {
-    this.sharedata.AccountInfoSource.subscribe(resp=>{
-      if(resp!=null){
-        this.userinfo=resp;
-      }
+    this.usermanagement.getAccountInfo().subscribe(data=>{
+      this.userinfo=data.data;
     })
   }
 
