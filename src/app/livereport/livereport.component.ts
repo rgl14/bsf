@@ -214,10 +214,12 @@ export class LivereportComponent implements OnInit,OnDestroy {
    }
 
   ngOnDestroy(){
-    this.analysisdata.unsubscribe();
-    this.marketservice.UnsuscribeMarkets(this.AllMarkets);
-    this.fancysignalrservice.UnsuscribeFancy(this.matchid);
-    this.Fancysignalrdata.unsubscribe();
-    this.isMarketSignalr=false;
+    if(this.Event!=undefined){
+      this.analysisdata.unsubscribe();
+      this.marketservice.UnsuscribeMarkets(this.AllMarkets);
+      this.fancysignalrservice.UnsuscribeFancy(this.matchid);
+      this.Fancysignalrdata.unsubscribe();
+      this.isMarketSignalr=false;
+    }
   }
 }

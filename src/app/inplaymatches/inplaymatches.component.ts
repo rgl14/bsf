@@ -24,12 +24,12 @@ export class InplaymatchesComponent implements OnInit,OnDestroy {
   constructor(private getreports:ReportsService,private analysisservice:AnalysisSignalrService,private anlysisformat:AnalysisFormatService) { 
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', width: 100, sortable: true,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Title', field: 'name', sortable: true, width: 500,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Sport', field: 'sportName', width: 100},
-      {headerName: 'Date', field: 'eventDate', sortable: true, width: 200},
-      {headerName: 'Type', field: 'type', width: 150},
-      {headerName: 'Match Status', field: 'isInplay', width: 400,valueGetter: valueFormatter,cellStyle: matchStatusStyle},
+      {headerName: 'ID', field: 'id', minWidth: 75, sortable: true,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Match Status', field: 'isInplay', minWidth: 100,valueGetter: valueFormatter,cellStyle: matchStatusStyle},
+      {headerName: 'Title', field: 'name', sortable: true, minWidth: 300,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Sport', field: 'sportName', minWidth: 75},
+      {headerName: 'Date', field: 'eventDate', sortable: true, minWidth: 125},
+      // {headerName: 'Type', field: 'type', width: 150},
       // {headerName: 'Won By', field: 'wonBy', width: 200},
       // {headerName: 'Profit / Loss', field: 'pNl', width: 200, sortable: true,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
@@ -64,7 +64,10 @@ export class InplaymatchesComponent implements OnInit,OnDestroy {
     var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridOptions.api.paginationSetPageSize(Number(value));
   }
-
+  
+  onGridSizeChanged(params) {
+      params.api.sizeColumnsToFit();
+  }
   onFilterTextBoxChanged() {
     this.gridOptions.api.setQuickFilter((document.getElementById('filter-text-box') as HTMLInputElement).value);
   }

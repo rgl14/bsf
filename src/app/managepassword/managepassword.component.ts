@@ -51,7 +51,6 @@ export class ManagepasswordComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.managepassword.invalid) {  
-      this.notification.error('Please Enter values');
       return;
     }else{
       var changepassworddata=this.managepassword.value;
@@ -66,7 +65,6 @@ export class ManagepasswordComponent implements OnInit {
       this.usermanagement.getResetPwd(data).subscribe(resp=>{
         if(resp.status=='Success'){
           this.notification.success(resp.result);
-          this.managepassword.reset();
         }else{
           this.notification.error(resp.result);
         }

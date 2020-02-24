@@ -127,7 +127,7 @@ export class SessionbetslipsComponent implements OnInit,OnDestroy {
       if(resp!=null){
         this.analysiseventdata=resp;
           this.Event=this.analysiseventdata[this.sportBfId].eventList[this.matchBfId];
-          console.log(this.Event);
+          // console.log(this.Event);
           this.admReport=this.Event._admReport[userId];
           if(this.admReport.fancyBetdata!=null ){
             this.rowData=this.fancybetformat(this.admReport.fancyBetdata);
