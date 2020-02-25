@@ -9,46 +9,28 @@
                         <h5>Summary</h5>                                
             </div>
             <div class="ibox-content table-responsive">
-                <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                            <th>All Time Total</th> 
                            <th [ngClass]="(allTimeTotal>=0)?'profit':'loss'">{{allTimeTotal | number : '1.2-2'}}</th>                            
                         </tr>
+                        <tr>
+                            <th>Match Earnings</th> 
+                            <th [ngClass]="(matchEarnings>=0)?'profit':'loss'">{{matchEarnings | number : '1.2-2'}}</th>                            
+                        </tr>
+                        <tr>
+                          <th>Selected Total</th> 
+                          <th [ngClass]="(selectedTotal>=0)?'profit':'loss'">{{selectedTotal | number : '1.2-2'}}</th>                            
+                        </tr>
+                        <tr>
+                          <th>Total Earnings</th> 
+                          <th [ngClass]="(totalEarnings>=0)?'profit':'loss'">{{totalEarnings | number : '1.2-2'}}</th>                            
+                        </tr>
                     </thead>
                     <tbody>                            
                     </tbody>
                 </table>
-                <table class="table table-bordered table-striped" cellspacing="0" width="100%">
-                  <thead>
-                      <tr>
-                         <th>Match Earnings</th> 
-                         <th [ngClass]="(matchEarnings>=0)?'profit':'loss'">{{matchEarnings | number : '1.2-2'}}</th>                            
-                      </tr>
-                  </thead>
-                  <tbody>                            
-                  </tbody>
-              </table>
-              <table class="table table-bordered table-striped" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                       <th>Selected Total</th> 
-                       <th [ngClass]="(selectedTotal>=0)?'profit':'loss'">{{selectedTotal | number : '1.2-2'}}</th>                            
-                    </tr>
-                </thead>
-                <tbody>                            
-                </tbody>
-              </table>
-            <table class="table table-bordered table-striped" cellspacing="0" width="100%">
-              <thead>
-                  <tr>
-                     <th>Total Earnings</th> 
-                     <th [ngClass]="(totalEarnings>=0)?'profit':'loss'">{{totalEarnings | number : '1.2-2'}}</th>                            
-                  </tr>
-              </thead>
-              <tbody>                            
-              </tbody>
-            </table>
             </div>
             </div>
             </div>  

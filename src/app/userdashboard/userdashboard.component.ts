@@ -16,12 +16,13 @@ export class UserdashboardComponent implements OnInit {
   ledgerbal: any;
   userType: any;
   LoggeduserType: any;
+  amount: any;
 
   constructor(
     private route:ActivatedRoute,
     private getreports:ReportsService,
     private sharedata: SharedataService,
-    private usermanagement:UsermanagementService
+    private usermanagement:UsermanagementService,
     ) { }
   
   ngOnInit() {
@@ -29,6 +30,9 @@ export class UserdashboardComponent implements OnInit {
 
     this.getclientLedgerBal();
     this.LoggedUserInfo();
+    this.getreports.UserCollectionReport(this.userId).subscribe(resp=>{
+      this.amount=resp.amount;
+    })
   }
 
   getclientLedgerBal(){

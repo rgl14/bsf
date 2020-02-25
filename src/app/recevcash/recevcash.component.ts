@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LimitsService } from '../services/limits.service';
 import { NotificationService } from '../shared/notification.service';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-recevcash',
@@ -15,6 +16,8 @@ export class RecevcashComponent implements OnInit {
   userId: string;
   userName: string;
   name: string;
+  amount: any;
+  changedcoin: number=0;
 
   constructor(
     private route:ActivatedRoute,
@@ -22,6 +25,7 @@ export class RecevcashComponent implements OnInit {
     private formbuilder : FormBuilder,
     private router: Router,
     public notification:NotificationService,
+    public report :ReportsService
     ) { }
 
     
@@ -36,6 +40,26 @@ export class RecevcashComponent implements OnInit {
       coins:['',[ Validators.required,Validators.min(0), Validators.max(10000000000)]],
       note:[''],
     })
+
+    this.usercollectionreportapi();
+    this.formControlcoinChanged()
+  }
+
+  usercollectionreportapi(){
+    this.report.UserCollectionReport(this.userId).subscribe(resp=>{
+      this.amount=resp.amount;
+      // this.respamt=resp.amount;
+    })
+  }
+
+  formControlcoinChanged() {
+    this.Recevcashform.get('coins').valueChanges.subscribe(
+        (mode: number) => {
+          this.changedcoin=mode;
+            if(mode > this.amount){
+              this.Recevcashform.controls['coins'].setValue(this.amount);
+            }
+    });
   }
 
 

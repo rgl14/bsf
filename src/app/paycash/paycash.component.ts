@@ -16,6 +16,9 @@ export class PaycashComponent implements OnInit {
   userId: string;
   userName: string;
   name: string;
+  amount: any;
+  changedcoin: number=0;
+  respamt: any;
 
   constructor(
     private route:ActivatedRoute,
@@ -23,6 +26,7 @@ export class PaycashComponent implements OnInit {
     private formbuilder : FormBuilder,
     private router: Router,
     public notification:NotificationService,
+    public report :ReportsService
     ) { }
 
   ngOnInit() {
@@ -34,7 +38,25 @@ export class PaycashComponent implements OnInit {
       coins:['',[ Validators.required,Validators.min(0), Validators.max(10000000000)]],
       note:[''],
     })
+    this.usercollectionreportapi();
+    this.formControlcoinChanged()
+  }
 
+  usercollectionreportapi(){
+    this.report.UserCollectionReport(this.userId).subscribe(resp=>{
+      this.amount=resp.amount*-1;
+      this.respamt=resp.amount;
+    })
+  }
+
+  formControlcoinChanged() {
+    this.Paycashform.get('coins').valueChanges.subscribe(
+        (mode: number) => {
+          this.changedcoin=mode;
+            if(mode > this.amount){
+              this.Paycashform.controls['coins'].setValue(this.amount);
+            }
+    });
   }
 
   get f() { return this.Paycashform.controls; }

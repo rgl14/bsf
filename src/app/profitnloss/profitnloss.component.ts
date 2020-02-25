@@ -1,11 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import {GridOptions} from "ag-grid-community";
 import { ReportsService } from '../services/reports.service';
+import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
+
+export function getTimepickerConfig(): TimepickerConfig {
+  return Object.assign(new TimepickerConfig(), {
+    hourStep: 1,
+    minuteStep: 1,
+    secondsStep:1,
+    showMeridian: false,
+    readonlyInput: false,
+    mousewheel: true,
+    showMinutes: true,
+    showSeconds: false,
+    labelHours: 'Hours',
+    labelMinutes: 'Minutes',
+    labelSeconds: 'Seconds'
+  });
+}
 
 @Component({
   selector: 'app-profitnloss',
   templateUrl: './profitnloss.component.html',
-  styleUrls: ['./profitnloss.component.css']
+  styleUrls: ['./profitnloss.component.css'],
+  providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
 })
 export class ProfitnlossComponent implements OnInit {
   gridOptions: GridOptions;
@@ -44,12 +62,12 @@ export class ProfitnlossComponent implements OnInit {
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'dateTime',sort: "desc", sortable: true, minWidth: 125,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Match Id', field: 'matchId', sortable: true, minWidth: 100,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Match Title', field: 'matchTitle', sortable: true, minWidth: 150,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Match Earnings', field: 'matchEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
-      {headerName: 'Commission Earnings', field: 'commEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
-      {headerName: 'Total Earnings', field: 'totalEarning', sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
+      {headerName: 'Date/Time', field: 'dateTime',sort: "desc",resizable: true, sortable: true, minWidth: 125,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Match Id', field: 'matchId', sortable: true,resizable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Title', field: 'matchTitle', sortable: true,resizable: true, minWidth: 150,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Earnings', field: 'matchEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Commission Earnings', field: 'commEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Total Earnings', field: 'totalEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
     ]; 
     
 
@@ -72,8 +90,8 @@ export class ProfitnlossComponent implements OnInit {
     
     this.selectfromdate = new Date(new Date().setDate(new Date().getDate() - 1));
     this.selecttodate = new Date();
-    this.selectfromtime = new Date(new Date().setHours(9, 59, 0, 0));
-    this.selecttotime = new Date(new Date().setHours(9,59,0,0));
+    this.selectfromtime = new Date(new Date().setHours(10, 0, 0, 0));
+    this.selecttotime = new Date(new Date().setHours(9,59,59,0));
   }
 
   onPageSizeChanged(newPageSize:any) {

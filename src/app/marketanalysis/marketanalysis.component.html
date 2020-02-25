@@ -213,6 +213,36 @@
                     </ul>
                   </div>
                 </div>
+                <div class="ibox float-e-margins" *ngIf="sessionpnlreport.length!=0">
+                  <div class="table-responsive">
+                     <table  class="table tblpad table-striped table-bordered table-hover">
+                           <thead>
+                              <tr>
+                                 <th colspan="4" class="bet-place-tbl-th align-left" style="background-color: #474747;color: #fff;">Settled Markets</th>
+                              </tr>
+                              <tr>
+                                 <th>Market Name</th>
+                                 <th>Result</th>
+                                 <th>Profit & Loss</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr *ngFor="let pnl of sessionpnlreport;trackBy:trackByindex">
+                                 <td title="'Market name'" class="tbltd" style="text-align: left;"><b>{{pnl.market}}</b></td>
+                                 <td title="'Result'"  class="Cursor-pointer tbltd"><b>{{pnl.result}}</b></td>
+                                 <td title="'P | L'"  class="Cursor-pointer tbltd" [ngClass]="(pnl.position>=0)?'text-success':'text-danger'"><b>{{pnl.position | number:'1.2-2'}}</b></td>
+                              </tr>
+                           </tbody>
+                           <tfoot>
+                              <tr>
+                                 <th colspan="2" style="text-align: right;">Declared Market Total</th>
+                                 <th [ngClass]="(totalsessionpnl>=0)?'text-success':'text-danger'">{{totalsessionpnl | number:'1.2-2'}}</th>
+                              </tr>
+                           </tfoot>
+                           
+                     </table>
+                  </div>
+               </div>
               </div>
             </div>
           </div>

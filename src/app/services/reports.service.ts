@@ -89,4 +89,12 @@ export class ReportsService {
     return this.http.get(`${BASEURL}/Reports/GetFancyBetSlip?mtid=${ID}`);
   }
 
+  UserCollectionReport(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/UserCollectionReport?id=${ID}`);
+  }
+
+  SessionPNl(ID): Observable<any> {
+    return this.http.get(`${BASEURL}/Reports/SessionPNl?mtid=${ID}`);
+  }
+
 }

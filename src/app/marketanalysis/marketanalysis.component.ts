@@ -10,6 +10,7 @@ import _ from "lodash";
 import { Subscription } from 'rxjs';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { ReportsService } from '../services/reports.service';
 
 @Component({
   selector: 'app-marketanalysis',
@@ -58,6 +59,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
   TvWidth: number;
   showtv: boolean;
   Flag: string;
+  sessionpnlreport=[];
+  totalsessionpnl: any;
+  sessionpnlInterval: any;
   constructor(
     private usermanagement:UsermanagementService,
     public dialog: MatDialog,
@@ -67,7 +71,8 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
     private fancysignalrservice:FancySignalrService,
     private marketservice:MarketSignalrService,  
     private sanitizer: DomSanitizer,
-    private fancyservice:FancyService
+    private fancyservice:FancyService,
+    private getreports:ReportsService
     ) { }
 
     ngOnInit() {
@@ -82,8 +87,10 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         this.userId=resp.data.userId;
         this.ConnectAnalysisdata(this.userId);
       })
-      
-      
+
+      this.sessionpnlInterval = setInterval(() => {
+        this.sessionpnlreportcall(); 
+      }, 10000);
     }
     
     ConnectAnalysisdata(userId){
@@ -144,7 +151,16 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         }
       })
     }
+
+    sessionpnlreportcall(){
+      this.getreports.SessionPNl(this.matchid).subscribe(resp=>{
+        this.sessionpnlreport=resp.data;
+        this.totalsessionpnl=resp.total;
+      })
+    }
+
     getHubaddress(){
+      
       this.sportdataservice.HubAddress(this.EventMarketId).subscribe(resp=>{
         // console.log(resp)
         if(resp!=null){
@@ -360,6 +376,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
      trackByName(index,item){
       return item.name;
      }
+     trackByindex(index,item){
+       return index;
+     }
      ngOnDestroy(){
        if(this.Event!=undefined){
         this.analysisdata.unsubscribe();
@@ -369,6 +388,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         this.isMarketSignalr=false;
         this.isFancySignalr=false;
        }
+       if (this.sessionpnlInterval) {
+        clearInterval(this.sessionpnlInterval);
+      }
     }
 
     
