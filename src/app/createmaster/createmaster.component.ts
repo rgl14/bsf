@@ -173,7 +173,9 @@ export class CreatemasterComponent implements OnInit {
               var matchComm=this.userdata.MComm;
             }
             if(this.userdata.fixedfees==""){
-              this.userdata.fixedfees=1;
+              var fixedfeess=this.accountInfo.fixFees;
+            }else{
+              var fixedfeess=this.userdata.fixedfees;
             }
             if(this.userdata.bookdisplaytype==""){
               var bookdisplay=this.accountInfo.bookDisplayType;
@@ -197,7 +199,7 @@ export class CreatemasterComponent implements OnInit {
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
-              "fixFees":this.userdata.fixedfees,
+              "fixFees":fixedfeess,
               "isMComm":0,
               "isSComm":0,
               "myShare":this.userdata.myShare,

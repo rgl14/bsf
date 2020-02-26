@@ -42,7 +42,7 @@ export class MasterComponent implements OnInit {
       {headerName: 'My share (%)', field: 'myShare', sortable: true, minWidth: 75},
       {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, minWidth: 75},
       {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, minWidth: 75},
-      {headerName: 'S-Comm  (%)', field: 'SComm', sortable: true, minWidth: 75},
+      {headerName: 'S-Comm  (%)', field: 'sLossingComm', sortable: true, minWidth: 75},
       {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
       {headerName: 'Actions', field: 'action', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},

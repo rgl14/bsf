@@ -54,16 +54,22 @@ export class CollectionreportComponent implements OnInit {
   }
 
   clearcash(userid,amount,type){
-    let data={
-      USERID:userid,
-      AMOUNT:amount
-    }
+    
+    if(type==1){
+      let data={
+        USERID:userid,
+        AMOUNT:amount
+      }
     console.log(data,type)
-    // if(type==1){
-    //   this.clearRecevcash(data);
-    // }else{
-    //   this.clearpaycash(data);
-    // }
+      // this.clearRecevcash(data);
+    }else{
+      let data={
+        USERID:userid,
+        AMOUNT:(amount*-1)
+      }
+    console.log(data,type)
+      // this.clearpaycash(data);
+    }
   }
 
   clearRecevcash(data){
