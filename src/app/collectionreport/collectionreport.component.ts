@@ -60,15 +60,15 @@ export class CollectionreportComponent implements OnInit {
         USERID:userid,
         AMOUNT:amount
       }
-    console.log(data,type)
-      // this.clearRecevcash(data);
+    // console.log(data,type)
+      this.clearRecevcash(data);
     }else{
       let data={
         USERID:userid,
         AMOUNT:(amount*-1)
       }
-    console.log(data,type)
-      // this.clearpaycash(data);
+    // console.log(data,type)
+      this.clearpaycash(data);
     }
   }
 

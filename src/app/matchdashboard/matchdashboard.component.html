@@ -8,7 +8,8 @@
                         <div class="button-row ibox-content mob-button">
                           <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/betslips',sprtID,mtbfID,title]">Odds Bet Slips</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/declaredbetslips',matchId,MktId,title]">Odds Bet Slips</button>
-                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/sessionbetslips',sprtID,mtbfID,title]">Fancy Bet Slip</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/sessionbetslips',sprtID,mtbfID,title]">Fancy Bet Slips</button>
+                          <button mat-raised-button color="primary" *ngIf="sprtID==4" [routerLink]="['/bmbetslips',sprtID,mtbfID,title]">BookMaker Bet Slips</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID==null" [routerLink]="['/declaredsessionbetslips',matchId,MktId,title]">Fancy Bet Slip</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/analysismarket',sprtID,mtbfID,matchId,'1']">Live Report</button>
                           <button mat-raised-button color="primary" *ngIf="sprtID!=null" [routerLink]="['/marketreport',sprtID,mtbfID,title]">Market Report</button>

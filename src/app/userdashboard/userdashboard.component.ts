@@ -27,7 +27,6 @@ export class UserdashboardComponent implements OnInit {
   
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
-
     this.getclientLedgerBal();
     this.LoggedUserInfo();
     this.getreports.UserCollectionReport(this.userId).subscribe(resp=>{

@@ -127,11 +127,13 @@ export class BetslipsComponent implements OnInit,OnDestroy {
           this.Event=this.analysiseventdata[this.sportBfId].eventList[this.matchBfId];
           // console.log(this.Event);
           this.admReport=this.Event._admReport[userId];
-          this.bookData=this.admReport.bookData;
-          if(this.admReport.moBetdata!=null ){
-            this.rowData=this.admReport.moBetdata;
-          }else{
-            this.rowData=[];
+          if(this.admReport){
+            this.bookData=this.admReport.bookData;
+            if(this.admReport.moBetdata!=null ){
+              this.rowData=this.admReport.moBetdata;
+            }else{
+              this.rowData=[];
+            }
           }
       }
     })

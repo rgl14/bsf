@@ -77,7 +77,7 @@ export class PaycashComponent implements OnInit {
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
                 setTimeout(() => {
-                  this.router.navigateByUrl('/userdashboard/'+this.userId+'/'+this.userName+'/'+this.name);
+                  this.router.navigateByUrl('/userdashboard/'+this.userId);
                 }, 2000);
               }else{
                 this.notification.error(resp.result);

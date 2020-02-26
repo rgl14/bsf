@@ -229,7 +229,7 @@ export class CreatesuperComponent implements OnInit {
               "sLossingComm":this.supermasterform.get("SloseComm").value,
               "userType":3
             }
-            console.log(data,"userdata")
+            // console.log(data,"userdata")
             this.usermanagement.getCreatUser(data).subscribe(resp=>{
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
