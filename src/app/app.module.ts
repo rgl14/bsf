@@ -48,7 +48,6 @@ import { FancyBookDialog, RejectBetdialog } from './marketanalysis/marketanalysi
 import { SpecialCharacterDirective } from './Directives/Special-character';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { InputRestrictionDirective } from './Directives/specialcharInput';
-import { BmbetslipsComponent } from './bmbetslips/bmbetslips.component';
 
 
 
@@ -89,7 +88,6 @@ import { BmbetslipsComponent } from './bmbetslips/bmbetslips.component';
     RejectBetdialog,
     SpecialCharacterDirective,
     InputRestrictionDirective,
-    BmbetslipsComponent
   ],
   imports: [
     BrowserModule,

@@ -86,6 +86,7 @@ import { InplaymatchesComponent } from './inplaymatches/inplaymatches.component'
 import { BlockedclientsComponent } from './blockedclients/blockedclients.component';
 import { DeclaredbetslipComponent } from './declaredbetslip/declaredbetslip.component';
 import { DeclaredfancybetslipComponent } from './declaredfancybetslip/declaredfancybetslip.component';
+import { BmbetslipsComponent } from './bmbetslips/bmbetslips.component';
 
 
 const routes: Routes = [
@@ -147,6 +148,7 @@ const routes: Routes = [
   { path: 'matchdashboard/:matchId/:id/:title', component: MatchdashboardComponent },
   { path: 'matchdashboard/:sportBfId/:bfId/:matchId/:title', component: MatchdashboardComponent },
   { path: 'betslips/:sportBfId/:bfId/:title', component: BetslipsComponent },
+  { path: 'bmbetslips/:sportBfId/:bfId/:title', component: BmbetslipsComponent },
   { path: 'declaredbetslips/:matchId/:id/:title', component: DeclaredbetslipComponent },
   { path: 'sessionbetslips/:sportBfId/:bfId/:title', component: SessionbetslipsComponent },
   { path: 'declaredsessionbetslips/:matchId/:id/:title', component: DeclaredfancybetslipComponent },
@@ -285,5 +287,6 @@ export const componentRouting = [
   InplaymatchesComponent,
   BlockedclientsComponent,
   DeclaredbetslipComponent,
-  DeclaredfancybetslipComponent
+  DeclaredfancybetslipComponent,
+  BmbetslipsComponent
 ]
