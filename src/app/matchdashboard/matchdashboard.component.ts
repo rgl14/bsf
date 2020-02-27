@@ -28,9 +28,15 @@ export class MatchdashboardComponent implements OnInit {
 
     this.getreports.GetMatchDashboard(this.matchId).subscribe(resp=>{
       // console.log(resp);
-      this.matchMarkets=resp.matchMarkets;
-      this.sessionMarkets=resp.sessionMarkets;
-      this.bookMarkets=resp.bookMarkets;
+      if(resp.matchMarkets!=null){
+        this.matchMarkets=resp.matchMarkets;
+      }
+      if(resp.sessionMarkets!=null){
+        this.sessionMarkets=resp.sessionMarkets;
+      }
+      if(resp.bookMarkets!=null){
+        this.bookMarkets=resp.bookMarkets;
+      }
     })
   }
 
