@@ -122,9 +122,9 @@
 </div>
 
 <div class="Action-buttons" *ngIf="currentroute=='/bookmaker'">
-        <button [routerLink]="['/editbook',data.bookCode]" mat-raised-button title="Edit" class="btn-dark">
+        <!-- <button [routerLink]="['/editbook',data.bookCode]" mat-raised-button title="Edit" class="btn-dark">
                 <i class="fa fa-pencil"></i> Edit
-        </button>
+        </button> -->
         <button *ngIf="data.status=='SETTLED'" (click)="getvalue(data)" mat-raised-button class="btn-dark" title="Reverse">
                 <i class="fa fa-repeat"></i> Reverse
         </button>
@@ -193,7 +193,7 @@
         <button (click)="updatelimit(data)" *ngIf="!data.currentLimit" mat-raised-button title="Update" class="btn-dark">
                 Update
         </button>
-        <button (click)="updatelimitcl(data)" *ngIf="data.currentLimit" mat-raised-button title="Update" class="btn-dark">
+        <button (click)="updatelimitforclients(data)" *ngIf="data.currentLimit" mat-raised-button title="Update" class="btn-dark">
                 Update
         </button>
 </div>

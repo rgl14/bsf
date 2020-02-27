@@ -23,18 +23,19 @@ export class TournamentpnlComponent implements OnInit {
   overlayNoRowsTemplate: string;
   userId: any;
   sportsList: any;
-  sport:any='';
+  sport:any=4;
   sportbfId: any;
   constructor(private getreports:ReportsService,private sharedata:SharedataService,private SportSettingdata:SportDataService) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'date', sortable: true, minWidth: 100,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Entry', field: 'entry', sortable: true, minWidth: 150,cellStyle: {color: '#0084e7' }},
-      {headerName: 'Debit', field: 'debit', sortable: true, minWidth: 75,cellStyle: {color: 'red'}},
-      {headerName: 'Credit', field: 'credit', sortable: true, minWidth: 75,cellStyle: {color: 'green'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, minWidth: 75,cellStyle: {color: 'green','font-weight':'bolder'}},
-      {headerName: 'Note', field: 'note', sortable: true, minWidth: 125},
+      {headerName: 'Tournament Name', field: 'tournamentName', sortable: true, minWidth: 250,cellStyle: {'font-weight':'bolder'},lockPosition:true,suppressNavigable:true},
+      {headerName: 'Profit & Loss', field: 'pNl', sortable: true, minWidth: 75,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Note', field: '', sortable: true, minWidth: 75},
     ]; 
+    function balanceFormatter(params){
+      var twodecimalvalue=parseFloat(params.value).toFixed(2);
+      return twodecimalvalue;
+    }
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
@@ -79,9 +80,9 @@ export class TournamentpnlComponent implements OnInit {
   }
 
   getsportpnl(){
-    this.sportbfId=this.sport.betfairId;
-    if(this.sportbfId==undefined){
-      this.sportbfId="0";
+    this.sportbfId=this.sport;
+    if(this.sportbfId==''){
+      this.sportbfId=0;
     }
     this.getreports.GetTournamentPnl(this.userId,this.sportbfId).subscribe(resp=>{
       // console.log(resp)

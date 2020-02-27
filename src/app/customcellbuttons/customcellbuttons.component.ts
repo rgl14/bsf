@@ -57,19 +57,19 @@ export class CustomcellbuttonsComponent implements OnInit {
     this.usermanagement.UpdateFixLimits(userdata.id,userdata.fixLimit).subscribe(data=>{
       if (data.status == "Success") {
         this.notifyService.success(data.result);
-        // this.params.context.componentParent.GetFancyList();
+        this.params.context.componentParent.getupdatelimitlist();
       }
       else {
         this.notifyService.error(data.result);
       }
     })
   }
-  updatelimitcl(userdata:any) {
+  updatelimitforclients(userdata:any) {
     // console.log(userdata)
     this.limits.UpdateFixLimitsCl(userdata.id,userdata.fixLimit,userdata.currentLimit).subscribe(data=>{
       if (data.status == "Success") {
         this.notifyService.success(data.result);
-        // this.params.context.componentParent.GetFancyList();
+        this.params.context.componentParent.getupdatelimitlist();
       }
       else {
         this.notifyService.error(data.result);

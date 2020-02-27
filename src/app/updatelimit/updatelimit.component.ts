@@ -36,6 +36,7 @@ export class UpdatelimitComponent implements OnInit {
 
   constructor(private usermanagement:UsermanagementService) { 
     this.gridOptions = <GridOptions>{};
+    this.gridOptions = {context: {componentParent: this}};
     this.gridOptions.columnDefs = [
       {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true},
       {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
@@ -97,6 +98,9 @@ export class UpdatelimitComponent implements OnInit {
 
   ngOnInit() {
     this.userType=this.usermanagement.getUserType();
+    this.getupdatelimitlist();
+  }
+  getupdatelimitlist(){
     this.usermanagement.GetCommNLimits().subscribe(resp=>{
       // console.log(resp) 
       this.updatelimitresp=resp;
@@ -108,7 +112,6 @@ export class UpdatelimitComponent implements OnInit {
       this.userList=resp.userList;
     })
   }
-
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

@@ -60,7 +60,7 @@
                     <div class="col-md-3 top_marg">
                       <select [(ngModel)]="sport" (change)="getsportpnl()" class="form-control">
                         <option value="">Select Sport</option>
-                        <option [ngValue]="sport" *ngFor="let sport of sportsList">{{sport.sportName}}</option>
+                        <option [ngValue]="sport.betfairId" *ngFor="let sport of sportsList">{{sport.sportName}}</option>
                       </select>
                     </div>
                   </div>

@@ -28,7 +28,7 @@
                         <h5>Coins</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins loss">0.00</h1>
+                        <h1 class="no-margins" [ngClass]="(amount>=0)?'text-success':'text-danger'">{{(amount==null)? 0.00:amount | number:'1.2-2'}}</h1>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         <h5>Ledger Balance</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins loss" [ngClass]="(ledgerbal>=0)?'text-success':'text-danger'">{{(ledgerbal==null)? 0.00:ledgerbal | number:'1.2-2'}}</h1>
+                        <h1 class="no-margins" [ngClass]="(amount>=0)?'text-success':'text-danger'">{{(amount==null)? 0.00:amount | number:'1.2-2'}}</h1>
                     </div>
                 </div>
             </div>

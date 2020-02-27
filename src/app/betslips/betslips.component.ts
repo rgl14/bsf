@@ -98,6 +98,8 @@ export class BetslipsComponent implements OnInit,OnDestroy {
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    // this.gridApi.refreshCells(params);
+    this.gridApi.redrawRows(params);
     this.gridApi.showLoadingOverlay();
   }
 
@@ -126,6 +128,7 @@ export class BetslipsComponent implements OnInit,OnDestroy {
         this.analysiseventdata=resp;
           this.Event=this.analysiseventdata[this.sportBfId].eventList[this.matchBfId];
           // console.log(this.Event);
+          this.gridApi.redrawRows();
           this.admReport=this.Event._admReport[userId];
           if(this.admReport){
             this.bookData=this.admReport.bookData;

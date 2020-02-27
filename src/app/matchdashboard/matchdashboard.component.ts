@@ -9,12 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MatchdashboardComponent implements OnInit {
   matchId: string;
-  matchMarkets: any;
-  sessionMarkets: any;
+  matchMarkets=[];
+  sessionMarkets=[];
   title: string;
   sprtID: string;
   mtbfID: string;
   MktId: string;
+  bookMarkets=[];
 
   constructor(private route:ActivatedRoute,private getreports:ReportsService) { }
 
@@ -29,6 +30,7 @@ export class MatchdashboardComponent implements OnInit {
       // console.log(resp);
       this.matchMarkets=resp.matchMarkets;
       this.sessionMarkets=resp.sessionMarkets;
+      this.bookMarkets=resp.bookMarkets;
     })
   }
 
