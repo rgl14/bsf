@@ -50,4 +50,7 @@ export class FancyService {
   SettleFancy(data): Observable<any> {
     return this.http.post(`${BASEURL}/Fancy/SettleFancy?mid=${data.MID}&fid=${data.FID}&s=${data.S}`,{});
   }
+  UpdateFRateMode(FID,MODE): Observable<any> {
+    return this.http.post(`${BASEURL}/FancyRates/UpdateFRateMode?fid=${FID}&mode=${MODE}`,{});
+  }
 }

@@ -50,7 +50,7 @@ export class FancyComponent implements OnInit {
       { headerName: 'Fancy Name', field: 'fancyName', sortable: true, minWidth: 225, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
       { headerName: 'Match', field: 'matchName', sortable: true, minWidth: 200, cellStyle: { 'font-weight': 'bolder' } },
       { headerName: 'Status', field: 'betStatus', sortable: true, minWidth: 100 },
-      // { headerName: 'Mode', field: 'automatic', sortable: true, minWidth: 175, cellRendererFramework: NavigationcellComponent },
+      { headerName: 'Mode', field: 'automatic', sortable: true, minWidth: 175, cellRendererFramework: NavigationcellComponent },
       { headerName: 'Rate', field: 'rate', sortable: true, minWidth: 75, cellRendererFramework: RatesnavigationComponent },
       { headerName: 'Setting', field: 'setting', sortable: true, minWidth: 75, cellRendererFramework: SettingfancybookcellComponent },
       { headerName: 'Active', field: 'isActive', sortable: true, minWidth: 75, cellRendererFramework: ButtontogglecellComponent },
@@ -183,7 +183,7 @@ export class FancyComponent implements OnInit {
     }
 
     this.fancyService.GetFancyList(sportid, tourid, matchid, status, isettled).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.rowData = data.fancyList;
     })
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookmakingService } from '../services/bookmaking.service';
 import { NotificationService } from '../shared/notification.service';
+import { FancyService } from '../services/fancy.service';
 
 @Component({
   selector: 'app-navigationcell',
@@ -14,9 +15,12 @@ export class NavigationcellComponent implements OnInit {
   automatic: string;
   runner: any = "";
   params: any;
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private bmService: BookmakingService,
-    private notifyService: NotificationService,) {
+    private notifyService: NotificationService,
+    private fancy:FancyService
+    ) {
 
     this.currentroute = this.router.url;
     
@@ -50,6 +54,20 @@ export class NavigationcellComponent implements OnInit {
       if (data.status == "Success") {
         this.notifyService.success(data.result);
         this.params.context.componentParent.GetBookList();
+      }
+      else {
+        this.notifyService.error(data.result);
+      }
+    })
+  }
+
+  toggleMethod(value){
+    var fid=this.data.fancyCode;
+    // console.log(fid)
+    this.fancy.UpdateFRateMode(fid,value).subscribe(data=>{
+      if (data.status == "Success") {
+        this.notifyService.success(data.result);
+        this.params.context.componentParent.GetFancyList();
       }
       else {
         this.notifyService.error(data.result);

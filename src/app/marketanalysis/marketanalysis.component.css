@@ -251,6 +251,22 @@ td span {
     .matchBoxMain table {
         margin-bottom: 0;
     }
+    .ball-msg-box {
+        width: 45%;
+        right: 0;
+    }
+    .ball-msg-box {
+        background: #fff;
+        opacity: .9;
+        text-align: center;
+        /* width: 22%; */
+        position: absolute;
+        top: 1px;
+        color: #000;
+        padding: 3px 0;
+        /* right: 130px; */
+        height: 38px;
+    }
     .session_content td span {
         width: 100%!important;
     }
@@ -421,6 +437,10 @@ ul.sport-high.fancyListDiv li {
     position: absolute;
     top: 4px;
     right: 0;
+}
+
+.ball-msg-box h1 {
+    font-size: 14px;
 }
 
 .modal-body p {

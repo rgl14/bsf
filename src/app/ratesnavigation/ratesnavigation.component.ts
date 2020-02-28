@@ -16,6 +16,7 @@ export class RatesnavigationComponent implements OnInit {
 
   agInit(params) {
     this.data = params.data;
+    // console.log(this.data)
   }
   ngOnInit() {
   }

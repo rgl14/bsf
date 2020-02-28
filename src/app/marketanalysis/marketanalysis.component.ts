@@ -154,8 +154,12 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
 
     sessionpnlreportcall(){
       this.getreports.SessionPNl(this.matchid).subscribe(resp=>{
-        this.sessionpnlreport=resp.data;
-        this.totalsessionpnl=resp.total;
+        if(resp.data!=null){
+          this.sessionpnlreport=resp.data;
+        }
+        if(resp.total!=null){
+          this.totalsessionpnl=resp.total;
+        }
       })
     }
 

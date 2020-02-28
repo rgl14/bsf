@@ -1,5 +1,5 @@
 <div class="Action-buttons">
-  <button *ngIf="currentroute=='/fancy'" (click)="openRatePage()" mat-mini-fab color="warn" title="Edit">
+  <button *ngIf="currentroute=='/fancy' && data.automatic==0" (click)="openRatePage()" mat-mini-fab color="warn" title="Edit">
     <i class="fa fa-plus" aria-hidden="true"></i>
   </button>
   <button *ngIf="currentroute=='/bookmaker'" (click)="openRatePage()" mat-mini-fab color="warn" title="Edit">
