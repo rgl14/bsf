@@ -13,6 +13,7 @@ import { SharedataService } from '../services/sharedata.service';
   styleUrls: ['./createsuperagent.component.css']
 })
 export class CreatesuperagentComponent implements OnInit {
+  
   superagentform:FormGroup;
   submitted=false;
   isdisabled: boolean=false;

@@ -13,12 +13,8 @@ export class CellcurrentlimittextfeildComponent implements OnInit {
 
   ngOnInit() {
   }
-  agInit(params:any){
-    // console.log(params.data.currentLimit);
-    if(params.data.currentLimit){
-      this.Currentlimit=parseFloat(params.data.currentLimit).toFixed(0);
-    }
-    // this.data=params.data;
+  agInit(params) {
+    this.data = params.data;
   }
 
 }
