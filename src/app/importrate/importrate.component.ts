@@ -39,6 +39,7 @@ export class ImportrateComponent implements OnInit {
     this.gridOptions.columnDefs = [
       { headerName: 'ID', field: 'id', width: 100, lockPosition: true, suppressNavigable: true },
       { headerName: 'Market Type', field: 'marketType', sortable: true, width: 100 },
+      { headerName: 'Package Name', field: 'packageName', sortable: true, width: 100},
       { headerName: 'Market Name', field: 'marketInfo', sortable: true, width: 600, cellStyle: { 'font-weight': 'bolder' } },
       { headerName: 'Status', field: 'status', sortable: true, width: 100 },
       // { headerName: 'Setting', field: '', sortable: true, width: 100, cellRendererFramework: RatesnavigationComponent },
