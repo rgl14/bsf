@@ -30,11 +30,11 @@ export class BlockedclientsComponent implements OnInit {
       }
     };
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'userId',sort: "desc",width:25, minWidth: 50,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true,width:35, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Name', field: 'name', sortable: true,width:50, minWidth: 100},
-      {headerName: 'M-Comm  (%)', field: 'matchComm',width:50, sortable: true, minWidth: 75},
-      {headerName: 'S-Comm  (%)', field: 'sessionComm',width:50, sortable: true, minWidth: 75},
+      {headerName: 'ID', field: 'userId',sort: "desc",width:75,suppressSizeToFit: true, minWidth: 50,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Username', field: 'userName', sortable: true,width:100,suppressSizeToFit: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Name', field: 'name', sortable: true,width:100,suppressSizeToFit: true, minWidth: 100},
+      {headerName: 'Match Commission  (%)', field: 'matchComm',width:150,suppressSizeToFit: true, sortable: true, minWidth: 75},
+      {headerName: 'Session Commission  (%)', field: 'sessionComm',width:160,suppressSizeToFit: true, sortable: true, minWidth: 75},
       {headerName: 'Status', field: 'accStatus', minWidth: 100,cellRendererFramework:ButtontogglecellComponent},
     ]; 
     

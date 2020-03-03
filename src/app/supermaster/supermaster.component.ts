@@ -35,17 +35,17 @@ export class SupermasterComponent implements OnInit {
       }
     };
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'userId',sort: "desc", minWidth: 50,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
-      {headerName: 'Name', field: 'name', sortable: true, minWidth: 100},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,valueFormatter: balanceFormatter},
-      {headerName: 'My share (%)', field: 'myShare', sortable: true, minWidth: 75},
-      {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, minWidth: 75},
-      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, minWidth: 75},
-      {headerName: 'S-Comm  (%)', field: 'sLossingComm', sortable: true, minWidth: 75},
-      {headerName: 'Status', field: 'accStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,cellRendererFramework:ButtontogglecellComponent},
-      {headerName: 'Actions', field: 'action', minWidth: 250,cellRendererFramework:CustomcellbuttonsComponent},
+      {headerName: 'ID', field: 'userId',sort: "desc", minWidth: 50,lockPosition:true,suppressNavigable:true,width:75,suppressSizeToFit: true},
+      {headerName: 'Username', field: 'userName', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,cellRendererFramework:NavigationcellComponent,cellStyle: {color: '#0084e7','font-weight':'bolder'}},
+      {headerName: 'Name', field: 'name', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,width:100,suppressSizeToFit: true,valueFormatter: balanceFormatter},
+      {headerName: 'My share (%)', field: 'myShare', sortable: true, minWidth: 75,width:100,suppressSizeToFit: true},
+      {headerName: 'Max Share (%)', field: 'maxShare', sortable: true, minWidth: 75,width:125,suppressSizeToFit: true},
+      {headerName: 'M-Comm  (%)', field: 'mLossingComm', sortable: true, minWidth: 75,width:100,suppressSizeToFit: true},
+      {headerName: 'S-Comm  (%)', field: 'sLossingComm', sortable: true, minWidth: 75,width:100,suppressSizeToFit: true},
+      {headerName: 'Status', field: 'accStatus', minWidth: 75,width:100,suppressSizeToFit: true,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Bet Allow', field: 'betStatus', minWidth: 75,width:100,suppressSizeToFit: true,cellRendererFramework:ButtontogglecellComponent},
+      {headerName: 'Actions', field: 'action', minWidth: 250,width:250,suppressSizeToFit: false,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
     function balanceFormatter(params){

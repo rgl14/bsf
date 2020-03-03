@@ -15,6 +15,8 @@ export class CellcurrentlimittextfeildComponent implements OnInit {
   }
   agInit(params) {
     this.data = params.data;
+    this.data.currentLimit=parseFloat(this.data.currentLimit).toFixed(0);
+    console.log(this.data.currentLimit);
   }
 
 }

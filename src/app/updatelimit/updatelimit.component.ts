@@ -38,22 +38,22 @@ export class UpdatelimitComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.gridOptions = {context: {componentParent: this}};
     this.gridOptions.columnDefs = [
-      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true},
-      {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
-      {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
-      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true,width:75,suppressSizeToFit: true},
+      {headerName: 'Agent Name', field: 'clientName', sortable: true, minWidth: 150,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder','text-align':'center'}},
+      {headerName: 'M-Comm (%)', field: 'matchComm', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'S-Comm (%)', field: 'sessionComm', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
       {headerName: 'Actions', field: '', sortable: true, minWidth: 100,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
     this.ClientcolumnDefs = [
-      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true},
-      {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 150,cellStyle: {'font-weight':'bolder','text-align':'center'}},
-      {headerName: 'Match Commission', field: 'matchComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Session Commission', field: 'sessionComm', sortable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
-      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
-      {headerName: 'Current Limit', field: 'currentLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
-      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
+      {headerName: 'ID', field: 'id', minWidth: 50,sort: "desc",lockPosition:true,suppressNavigable:true,width:75,suppressSizeToFit: true},
+      {headerName: 'Client Name', field: 'clientName', sortable: true, minWidth: 150,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder','text-align':'center'}},
+      {headerName: 'M-Comm (%)', field: 'matchComm', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'S-Comm (%)', field: 'sessionComm', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledtextfieldComponent},
+      {headerName: 'Fix Limit', field: 'fixLimit', sortable: true, minWidth: 125,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelltextfieldComponent},
+      {headerName: 'Current Limit', field: 'currentLimit', sortable: true, minWidth: 125,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CellcurrentlimittextfeildComponent},
+      {headerName: 'Used Limit', field: 'usedLimit', sortable: true, minWidth: 125,width:125,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CelldisabledusedlimitComponent},
       {headerName: 'Actions', field: '', sortable: true, minWidth: 100,cellRendererFramework:CustomcellbuttonsComponent},
     ]; 
 
