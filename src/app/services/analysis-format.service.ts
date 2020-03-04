@@ -106,52 +106,39 @@ export class AnalysisFormatService {
     return sportDataFormat;
   }
 
-  highlightdatawiseFormat(analysisData){
-    let highlightdata=[]
+  allMatchdateWiseFormat(analysisData){
+    let AllmatchList=[];
     _.forEach(analysisData, (item, index) => {
       _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay==1 && item2.sportBfId=="4"){
-          highlightdata.push(item2)
-        }
+          AllmatchList.push(item2)
       })
     })
-    _.forEach(analysisData, (item, index) => {
-      _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay!=1 && item2.sportBfId=="4"){
-          highlightdata.push(item2)
-        }
-      })
-    })
-    _.forEach(analysisData, (item, index) => {
-      _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay==1 && item2.sportBfId=="2"){
-          highlightdata.push(item2)
-        }
-      })
-    })
-    _.forEach(analysisData, (item, index) => {
-      _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay!=1 && item2.sportBfId=="2"){
-          highlightdata.push(item2)
-        }
-      })
-    })
-    _.forEach(analysisData, (item, index) => {
-      _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay==1 && item2.sportBfId=="1"){
-          highlightdata.push(item2)
-        }
-      })
-    })
-    _.forEach(analysisData, (item, index) => {
-      _.forEach(item.eventList, (item2, index2) => {
-        if(item2.isInplay!=1 && item2.sportBfId=="1"){
-          highlightdata.push(item2)
-        }
-      })
-    })
-    // console.log(highlightdata.reverse());
-    return highlightdata;
+    AllmatchList.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return <any>new Date(a.eventDate)-<any>new Date(b.eventDate);
+    });
+    return AllmatchList;
+  }
+
+  allMachDataListFormat(allmatchlistdata){
+    var displaymatchlistdata=[];
+    allmatchlistdata.forEach(match => {
+      if(match.sportBfId=="4"){
+        displaymatchlistdata.push(match)
+      }
+    });
+    allmatchlistdata.forEach(match => {
+      if(match.sportBfId=="2"){
+        displaymatchlistdata.push(match)
+      }
+    });
+    allmatchlistdata.forEach(match => {
+      if(match.sportBfId=="1"){
+        displaymatchlistdata.push(match)
+      }
+    });
+    return displaymatchlistdata;
   }
 
   eventsWise(eventsList) {

@@ -12,9 +12,8 @@ export class AnalysisSignalrService {
   private analysisConnection;
   private analysisProxy;
   private analysisHubConn;
-
   private analysisHubAddress;
-
+  
   analysisSource: Observable<any>;
   private currentAnalysis: BehaviorSubject<any>;
 
@@ -59,6 +58,8 @@ export class AnalysisSignalrService {
     this.analysisProxy.on("BroadcastSubscribedData", (analysis) => {
       // console.log(analysis);
       analysis = this.AFService.analysisFormat(analysis,userId);
+      var allmatch = this.AFService.allMatchdateWiseFormat(analysis);
+      // console.log(allmatch);
       this.currentAnalysis.next(analysis);
     });
   }
