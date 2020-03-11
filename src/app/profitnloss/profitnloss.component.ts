@@ -62,11 +62,11 @@ export class ProfitnlossComponent implements OnInit {
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.gridOptions = <GridOptions>{};
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'dateTime',sort: "desc",resizable: true, sortable: true, minWidth: 125,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Match Id', field: 'matchId', sortable: true,resizable: true, minWidth: 100,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Match Title', field: 'matchTitle', sortable: true,resizable: true, minWidth: 150,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Match Earnings', field: 'matchEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
-      {headerName: 'Commission Earnings', field: 'commEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Date/Time', field: 'dateTime',sort: "desc",resizable: true, sortable: true, minWidth: 125,width:100,suppressSizeToFit: true,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Match Id', field: 'matchId', sortable: true,resizable: true, minWidth: 75,width:75,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Title', field: 'matchTitle', sortable: true,resizable: true, minWidth: 150,width:150,suppressSizeToFit: true,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Match Earnings', field: 'matchEarning',resizable: true, sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Commission Earnings', field: 'commEarning',resizable: true, sortable: true, minWidth: 100,width:100,suppressSizeToFit: true,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
       {headerName: 'Total Earnings', field: 'totalEarning',resizable: true, sortable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}}
     ]; 
     
@@ -196,7 +196,7 @@ this.dropdownSettings = {
     
     onItemSelect(item:any){
         // console.log(this.selectedItems);
-        console.log(this.bsRangeValue)
+        console.log(this.bsRangeValue);
         this.selectfromdate=this.convertfrom(this.bsRangeValue[0]);
         this.selecttodate=this.convertto(this.bsRangeValue[1]);
         console.log(this.selectfromdate,this.selecttodate);

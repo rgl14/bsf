@@ -105,7 +105,7 @@ export class AgentComponent implements OnInit {
 
   GetuserList(){
     this.usertype=6;
-    if(this.creatorId==undefined){
+    if(this.creatorId==undefined || this.creatorId=='0'){
       this.creatorId='0';
       this.showraction(true);
     }else{

@@ -105,7 +105,7 @@ export class SuperagentComponent implements OnInit {
 
   GetuserList(){
     this.usertype=5;
-    if(this.creatorId==undefined){
+    if(this.creatorId==undefined || this.creatorId=='0'){
       this.creatorId='0';
       this.showraction(true);
     }else{

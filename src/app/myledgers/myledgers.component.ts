@@ -32,11 +32,11 @@ export class MyledgersComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.alwaysShowCalendars = true;
     this.gridOptions.columnDefs = [
-      {headerName: 'Date/Time', field: 'dateTime',resizable: true, sortable: true, minWidth: 150,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Entry', field: 'collectionName', sortable: true ,resizable: true, minWidth: 300,cellStyle: {color: '#0084e7'}},
-      {headerName: 'Debit', field: 'debit', sortable: true,resizable: true, minWidth: 100,valueFormatter: debitFormatter,cellClass:'loss'},
-      {headerName: 'Credit', field: 'credit', sortable: true,resizable: true, minWidth: 100,valueFormatter: creditFormatter,cellClass:'profit'},
-      {headerName: 'Balance', field: 'balance', sortable: true,resizable: true, minWidth: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Date/Time', field: 'dateTime',resizable: true, sortable: true, minWidth: 50,width:100,suppressSizeToFit: true,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Entry', field: 'collectionName', sortable: true ,resizable: true, minWidth: 250,width:600,suppressSizeToFit: true,cellStyle: {color: '#0084e7'}},
+      {headerName: 'Debit', field: 'debit', sortable: true,resizable: true, minWidth: 100,width:100,suppressSizeToFit: true,valueFormatter: debitFormatter,cellClass:'loss'},
+      {headerName: 'Credit', field: 'credit', sortable: true,resizable: true, minWidth: 100,width:100,suppressSizeToFit: true,valueFormatter: creditFormatter,cellClass:'profit'},
+      {headerName: 'Balance', field: 'balance', sortable: true,resizable: true, minWidth: 100,width:100,suppressSizeToFit: true,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
       {headerName: 'Note', field: 'note', sortable: true, minWidth: 100},
     ]; 
     

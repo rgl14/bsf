@@ -105,7 +105,7 @@ export class MasterComponent implements OnInit {
 
   GetuserList(){
     this.usertype=4;
-    if(this.creatorId==undefined){
+    if(this.creatorId==undefined || this.creatorId=='0'){
       this.creatorId='0';
       this.showraction(true);
     }else{

@@ -105,7 +105,7 @@ export class AdminComponent implements OnInit {
 
   GetuserList(){
     this.usertype=2;
-    if(this.creatorId==undefined){
+    if(this.creatorId==undefined || this.creatorId=='0'){
       this.creatorId='0';
       this.showraction(true);
     }else{
