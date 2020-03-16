@@ -26,7 +26,6 @@ export class CreateadminComponent implements OnInit {
   maxcompanyshare: number;
   usertype: number;
   iscommissionedit: boolean;
-  // constructor(private service: ManageformService,public notification:NotificationService) { }
   constructor(
     private usermanagement:UsermanagementService,
     private formbuilder : FormBuilder,
@@ -35,10 +34,31 @@ export class CreateadminComponent implements OnInit {
     private router: Router,
     private sharedata: SharedataService
     ) { }
-  // hide = true;
-  // confirmhide = true;
+
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
+    if(this.userId){
+      this.isdisabled=true;
+    }
+    this.Companyform=this.formbuilder.group({
+      username:[''],
+      firstName:['',Validators.required],
+      fixLimit:['',Validators.required],
+      CompanyShare:[{value: '', disabled: true},Validators.required],
+      myShare:['',Validators.required],
+      MComm:[''],
+      SComm:['',Validators.required],
+      MloseComm:['',Validators.required],
+      SloseComm:['',Validators.required],
+      fixedfees:[''],
+      bookdisplaytype:[''],
+      password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+      confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+      // isMComm: false,
+      // isSComm: false,
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    })
     this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
       this.accountInfo=data.data;
@@ -56,58 +76,18 @@ export class CreateadminComponent implements OnInit {
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
-          this.isdisabled=true;
-          this.Companyform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
-            CompanyShare:[{value: '', disabled: true},Validators.required],
-            myShare:['',Validators.required],
-            MComm:[''],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:[''],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
-          })
         }else{
           this.usertype=2;
           this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
             this.Companyform.controls['username'].setValue(resp.userName);
           })
-          this.Companyform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
-            CompanyShare:[{value: '', disabled: true},Validators.required],
-            myShare:['',Validators.required],
-            MComm:[''],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:['',Validators.required],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
-          })
           // this.Companyform.controls['MComm'].setValue(data.matchComm);
           // this.Companyform.controls['SComm'].setValue(data.sessionComm);
           // this.Companyform.controls['MloseComm'].setValue(data.mLossingComm);
           // this.Companyform.controls['SloseComm'].setValue(data.sLossingComm);
-          this.formControlsmysharechanged()
-
         }
         // this.formControlsmaxsharechanged()
+        this.formControlsmysharechanged();
         this.formControlfixlimitChanged()
         this.formControlmcommchanged();
         this.formControlscommchanged();
@@ -137,7 +117,7 @@ export class CreateadminComponent implements OnInit {
           // console.log(this.Companyform)
           if(this.userId){
               this.edituserdata=this.Companyform.value;
-              console.log(this.Companyform.value)
+              // console.log(this.Companyform.value)
               // if(this.edituserdata.isMComm){
               //   this.ismatchcomm=1;
               // }else{
@@ -168,7 +148,9 @@ export class CreateadminComponent implements OnInit {
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
                 if (resp.status == "Success") {
                   this.notification.success(resp.result);
-                  this.router.navigateByUrl("/admin");
+                  setTimeout(() => {
+                    this.router.navigateByUrl('/admin');
+                  }, 2000);
                 }else{
                   this.notification.error(resp.result);
                 }
@@ -185,14 +167,26 @@ export class CreateadminComponent implements OnInit {
             // }else{
             //   this.issessioncomm=0;
             // }
+            if(this.userdata.MComm==="" || this.userdata.MComm===null){
+              var matchComm:any=0;
+            }
+            else{
+              var matchComm:any=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==="" || this.userdata.fixedfees===null){
+              var fixedfeess:any=0;
+            }
+            else{
+              var fixedfeess:any=this.userdata.fixedfees;
+            }
             var data={
-              "MComm":this.Companyform.get("MComm").value,
+              "MComm":matchComm,
               "SComm":this.Companyform.get("SComm").value,
               "agentShare":this.Companyform.get("CompanyShare").value,
               "context":"web",
               "firstName":this.userdata.firstName,
               "fixLimit":this.userdata.fixLimit,
-              "fixFees":this.userdata.fixedfees,
+              "fixFees":fixedfeess,
               "isMComm":0,
               "isSComm":0,
               "myShare":this.userdata.myShare,
@@ -203,11 +197,13 @@ export class CreateadminComponent implements OnInit {
               "sLossingComm":this.Companyform.get("SloseComm").value,
               "userType":2
             }
-            // console.log(data,"userdata")
+            // console.log(data,"userdata");
             this.usermanagement.getCreatUser(data).subscribe(resp=>{
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
-                this.router.navigateByUrl("/admin");
+                setTimeout(() => {
+                  this.router.navigateByUrl('/admin');
+                }, 2000);
               }else{
                 this.notification.error(resp.result);
               }

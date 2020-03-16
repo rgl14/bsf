@@ -35,6 +35,28 @@ export class CreateagentComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
+    if(this.userId){
+      this.isdisabled=true;
+    }
+    this.agentform=this.formbuilder.group({
+      username:[''],
+      firstName:['',Validators.required],
+      fixLimit:['',Validators.required],
+      Agentshare:[{value: '', disabled: true},Validators.required],
+      myShare:['',Validators.required],
+      MComm:[''],
+      SComm:['',Validators.required],
+      MloseComm:['',Validators.required],
+      SloseComm:['',Validators.required],
+      fixedfees:[''],
+      bookdisplaytype:[''],
+      password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+      confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+      // isMComm: false,
+      // isSComm: false,
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    })
     this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
       this.accountInfo=data.data;
@@ -51,48 +73,10 @@ export class CreateagentComponent implements OnInit {
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
-          this.isdisabled=true;
-          this.agentform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:[{value: '', disabled: this.isdisabled},Validators.required],
-            Agentshare:[{value: '', disabled: true},Validators.required],
-            myShare:['',Validators.required],
-            MComm:[''],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:[''],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
-          })
         }else{
-          this.agentform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
-            Agentshare:[{value: '', disabled: true},Validators.required],
-            myShare:['',Validators.required],
-            MComm:[''],
-            SComm:['',Validators.required],
-            MloseComm:['',Validators.required],
-            SloseComm:['',Validators.required],
-            fixedfees:[''],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
-          })
-          this.formControlfixlimitChanged()
+          
         }
+        this.formControlfixlimitChanged()
         this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
         this.formControlmcommchanged();
@@ -150,22 +134,32 @@ export class CreateagentComponent implements OnInit {
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
                 if (resp.status == "Success") {
                   this.notification.success(resp.result);
-                  this.router.navigateByUrl("/agent");
+                  setTimeout(() => {
+                    this.router.navigateByUrl('/agent');
+                  }, 2000);
                 }else{
                   this.notification.error(resp.result);
                 }
               })
           }else{
             this.userdata=this.agentform.value;
-            if(this.userdata.MComm==""){
-              var matchComm=this.accountInfo.matchComm;
-            }else{
-              var matchComm=this.userdata.MComm;
+            if(this.userdata.MComm==="" && this.iscommissionedit===true){
+              var matchComm:any=this.accountInfo.matchComm;
             }
-            if(this.userdata.fixedfees==""){
-              var fixedfeess=this.accountInfo.fixFees;
-            }else{
-              var fixedfeess=this.userdata.fixedfees;
+            else if((this.userdata.MComm==="" || this.userdata.MComm===null) && this.iscommissionedit===false){
+              var matchComm:any=0;
+            }
+            else{
+              var matchComm:any=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==="" && this.iscommissionedit===true){
+              var fixedfeess:any=this.accountInfo.fixFees;
+            }
+            else if((this.userdata.fixedfees==="" || this.userdata.fixedfees===null) && this.iscommissionedit===false){
+              var fixedfeess:any=0;
+            }
+            else{
+              var fixedfeess:any=this.userdata.fixedfees;
             }
             if(this.userdata.bookdisplaytype==""){
               var bookdisplay=this.accountInfo.bookDisplayType;
@@ -204,7 +198,9 @@ export class CreateagentComponent implements OnInit {
             this.usermanagement.getCreatUser(data).subscribe(resp=>{
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
-                this.router.navigateByUrl("/agent");
+                setTimeout(() => {
+                  this.router.navigateByUrl('/agent');
+                }, 2000);
               }else{
                 this.notification.error(resp.result);
               }

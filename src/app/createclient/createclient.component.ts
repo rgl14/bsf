@@ -38,6 +38,27 @@ export class CreateclientComponent implements OnInit {
 
   ngOnInit() {
     this.userId=this.route.snapshot.paramMap.get('userId');
+    if(this.userId){
+      this.isdisabled=true;
+    }
+    this.clientform=this.formbuilder.group({
+      username:[''],
+      firstName:['',Validators.required],
+      fixLimit:[{value: '', disabled: this.isdisabled}],
+      // myShare:['',Validators.required],
+      MComm:[''],
+      SComm:[''],
+      MloseComm:[''],
+      SloseComm:[''],
+      fixedfees:[''],
+      bookdisplaytype:[''],
+      password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
+      confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
+      // isMComm: false,
+      // isSComm: false,
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    })
     this.accountInfo='';
     this.usermanagement.getAccountInfo().subscribe(data=>{
       this.accountInfo=data.data;
@@ -57,47 +78,10 @@ export class CreateclientComponent implements OnInit {
         this.accountInfo=data;
         if(this.userId){
           this.getuserdata();
-          this.isdisabled=true;
-          this.clientform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:[{value: '', disabled: this.isdisabled}],
-            // myShare:['',Validators.required],
-            MComm:[''],
-            SComm:[''],
-            MloseComm:[''],
-            SloseComm:[''],
-            fixedfees:[''],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
-          })
         }else{
           this.usertype=6;
           this.usermanagement.GetNextUsername(this.usertype).subscribe(resp=>{
             this.clientform.controls['username'].setValue(resp.userName);
-          })
-          this.clientform=this.formbuilder.group({
-            username:[''],
-            firstName:['',Validators.required],
-            fixLimit:['',Validators.required],
-            // myShare:['',Validators.required],
-            MComm:[''],
-            SComm:[''],
-            MloseComm:[''],
-            SloseComm:[''],
-            fixedfees:[''],
-            bookdisplaytype:[''],
-            password:[{value: '', disabled: this.isdisabled},[Validators.required, Validators.minLength(6)]],
-            confirmPassword:[{value: '', disabled: this.isdisabled},Validators.required],
-            // isMComm: false,
-            // isSComm: false,
-          }, {
-            validator: MustMatch('password', 'confirmPassword')
           })
           this.clientform.controls['fixLimit'].setValue(0);
           this.clientform.controls['MComm'].setValue(0);
@@ -105,8 +89,8 @@ export class CreateclientComponent implements OnInit {
           this.clientform.controls['MloseComm'].setValue(0);
           this.clientform.controls['SloseComm'].setValue(0);
           this.clientform.controls['fixedfees'].setValue(0);
-          this.formControlfixlimitChanged()
         }
+        this.formControlfixlimitChanged();
         // this.formControlsmysharechanged();
         // this.formControlsmaxsharechanged();
         this.formControlmcommchanged();
@@ -164,22 +148,32 @@ export class CreateclientComponent implements OnInit {
               this.usermanagement.getEditUserData(editusersdata).subscribe(resp=>{
                 if (resp.status == "Success") {
                   this.notification.success(resp.result);
-                  this.router.navigateByUrl("/clients");
+                  setTimeout(() => {
+                    this.router.navigateByUrl('/clients');
+                  }, 2000);
                 }else{
                   this.notification.error(resp.result);
                 }
               })
           }else{
             this.userdata=this.clientform.value;
-            if(this.userdata.MComm==""){
-              var matchComm=this.accountInfo.matchComm;
-            }else{
-              var matchComm=this.userdata.MComm;
+            if(this.userdata.MComm==="" && this.iscommissionedit===true){
+              var matchComm:any=this.accountInfo.matchComm;
             }
-            if(this.userdata.fixedfees==""){
-              var fixedfeess=this.accountInfo.fixFees;
-            }else{
-              var fixedfeess=this.userdata.fixedfees;
+            else if((this.userdata.MComm==="" || this.userdata.MComm===null) && this.iscommissionedit===false){
+              var matchComm:any=0;
+            }
+            else{
+              var matchComm:any=this.userdata.MComm;
+            }
+            if(this.userdata.fixedfees==="" && this.iscommissionedit===true){
+              var fixedfeess:any=this.accountInfo.fixFees;
+            }
+            else if((this.userdata.fixedfees==="" || this.userdata.fixedfees===null) && this.iscommissionedit===false){
+              var fixedfeess:any=0;
+            }
+            else{
+              var fixedfeess:any=this.userdata.fixedfees;
             }
             if(this.userdata.bookdisplaytype==""){
               var bookdisplay=this.accountInfo.bookDisplayType;
@@ -214,11 +208,13 @@ export class CreateclientComponent implements OnInit {
               "sLossingComm":this.clientform.get("SloseComm").value,
               "userType":6
             }
-            // console.log(data,"userdata")
+            console.log(data,"userdata")
             this.usermanagement.getCreatUser(data).subscribe(resp=>{
               if (resp.status == "Success") {
                 this.notification.success(resp.result);
-                this.router.navigateByUrl("/clients");
+                setTimeout(() => {
+                  this.router.navigateByUrl('/clients');
+                }, 2000);
               }else{
                 this.notification.error(resp.result);
               }

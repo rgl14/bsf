@@ -75,11 +75,11 @@
                         <div class="col-sm-10">
                           <input formControlName="fixedfees" specialIsAlphaNumeric class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.fixedfees.errors }" max="100" min="0"
-                            name="match_commission" placeholder="Agent Match Commission" type="number">
+                            name="match_commission" placeholder="Agent Match Fixed Fees" type="number">
                           <div *ngIf="submitted && f.fixedfees.errors" class="invalid-feedback">
                             <mat-error *ngIf="f.fixedfees.errors.required">This field is mandatory.</mat-error>
                           </div>
-                          <!-- <mat-hint class="hint"><b>Note</b> : Agent Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
+                          <!-- <mat-hint class="hint"><b>Note</b> : Agent Match Fixed Fees set below or equal to <b>{{accountInfo.matchComm}}</b>
                           </mat-hint> -->
                         </div>
                       </div>
