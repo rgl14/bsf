@@ -197,6 +197,14 @@
                 Update
         </button>
 </div>
+<div class="Action-buttons" *ngIf="currentroute=='/Scorelist'">
+        <button (click)="openUpdateResultDialog(data)" *ngIf="colDef==='updateresult'" mat-raised-button title="Update" class="btn-dark">
+                Update Result
+        </button>
+        <button (click)="openUpdateTossDialog(data)" *ngIf="colDef==='updatetoss'" mat-raised-button title="Update" class="btn-dark">
+                Update Toss
+        </button>
+</div>
 <div class="Action-buttons" *ngIf="matchBfId!=null">
         <i class="fa fa-trash" aria-hidden="true" style="color:red;" (click)="openDeleteBetDialog(data)"></i>
 </div>

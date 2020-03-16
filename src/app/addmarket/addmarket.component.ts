@@ -27,7 +27,12 @@ export class AddmarketComponent implements OnInit {
   ];
   formdata: any;
   MktSettingsPckgList:[];
-  constructor(private formbuilder:FormBuilder,private notifyService:NotificationService,private SportSettingdata:SportDataService,private router:Router) { }
+  constructor(
+    private formbuilder:FormBuilder,
+    private notifyService:NotificationService,
+    private SportSettingdata:SportDataService,
+    private router:Router
+    ) { }
 
   ngOnInit() {
     this.SportSettingdata.GetSportList().subscribe(resp=>{

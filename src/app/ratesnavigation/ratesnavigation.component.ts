@@ -32,6 +32,9 @@ export class RatesnavigationComponent implements OnInit {
     if(this.data.fancyCode){
       window.open('FancyRate.html?f_id=' + this.data.fancyCode, '_blank');
     }
+    if(this.data.matchId){
+      this.router.navigateByUrl('/ScoreInput/'+this.data.matchId);
+    }
   }
 
 }

@@ -5,6 +5,9 @@
   <button *ngIf="currentroute=='/bookmaker'" (click)="openRatePage()" mat-mini-fab color="warn" title="Edit">
     <i class="fa fa-plus" aria-hidden="true"></i>
   </button>
+  <button *ngIf="currentroute=='/Scorelist'" (click)="openRatePage()" mat-mini-fab color="warn" title="Edit">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+  </button>
   <button *ngIf="currentroute=='/importrate'" [routerLink]="'/matchsetting'" (click)="getvalue(data)" mat-mini-fab
     color="accent" title="Match Settings">
     <i class="fa fa-cog"></i>

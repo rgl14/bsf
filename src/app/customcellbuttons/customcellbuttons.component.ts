@@ -9,6 +9,7 @@ import { UsermanagementService } from '../services/usermanagement.service';
 import { TickerService } from '../services/ticker.service';
 import { LimitsService } from '../services/limits.service';
 import { ReportsService } from '../services/reports.service';
+import { ScoreService } from '../services/score.service';
 
 @Component({
   selector: 'app-customcellbuttons',
@@ -24,6 +25,9 @@ export class CustomcellbuttonsComponent implements OnInit {
   sportBfId: string;
   matchBfId: string;
   title: string;
+  colDef: any;
+  teamname: string='0';
+  splitmatchname=[];
 
   constructor(
     private router: Router,
@@ -36,14 +40,16 @@ export class CustomcellbuttonsComponent implements OnInit {
     private newsticker:TickerService,
     private limits:LimitsService,
     private route:ActivatedRoute,
-    private report:ReportsService
+    private report:ReportsService,
+    private scoreinput :ScoreService
   ) {
     this.currentroute = this.router.url;
   }
 
   agInit(params) {
     this.params = params;
-    // console.log(this.params)
+    console.log(this.params)
+    this.colDef=this.params.colDef.field;
     this.data = this.params.data;
   }
   ngOnInit() {
@@ -214,6 +220,60 @@ export class CustomcellbuttonsComponent implements OnInit {
     });
   }
 
+  openUpdateTossDialog(bet): void {
+    console.log(bet)
+    this.data.matchResult='';
+    this.data.tossResult='';
+    const dialogRef = this.dialog.open(UpdateTossDialog, {
+      width: '300px',
+      data:bet,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result!=undefined){
+        var resultstring= result.matchResult+' Elected To '+result.tossResult+' First';
+        this.scoreinput.UpdateTossResult(result.matchId,resultstring).subscribe(data=>{
+          if (data.status == "Success") {
+            this.notifyService.success(data.result);
+            this.params.context.componentParent.getscoreList();
+          }
+          else {
+            this.notifyService.error(data.result);
+          }
+        })
+      }
+    });
+  }
+  Tossstatus(Tossstatus: any, teamname: string) {
+    throw new Error("Method not implemented.");
+  }
+
+  openUpdateResultDialog(data): void {
+    console.log(data)
+    this.data.matchResult='';
+    this.data.tossResult='';
+    const dialogRef = this.dialog.open(UpdateResultDialog, {
+      width: '300px',
+      data:data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result!=undefined){
+        var resultstring= result.matchResult+' Won By '+result.tossResult;
+        this.scoreinput.UpdateMatchResult(result.matchId,resultstring).subscribe(data=>{
+          if (data.status == "Success") {
+            this.notifyService.success(data.result);
+            this.params.context.componentParent.getscoreList();
+          }
+          else {
+            this.notifyService.error(data.result);
+          }
+        })
+      }
+    });
+  }
+
 
 }
 
@@ -267,4 +327,40 @@ export class RejectBetdialogcell {
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
+
+@Component({
+  selector: 'update-toss-dialog',
+  templateUrl: 'update-toss-dialog.html',
+})
+export class UpdateTossDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<UpdateTossDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    // console.log(data);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'update-result-dialog',
+  templateUrl: 'update-result-dialog.html',
+})
+export class UpdateResultDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<UpdateResultDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    // console.log(data);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

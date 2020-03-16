@@ -10,7 +10,7 @@ import { MaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManageformService } from './manageform.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { CustomcellbuttonsComponent, SetMatchLiveTvDialog,SettleFancyDialog,RejectBetdialogcell } from './customcellbuttons/customcellbuttons.component';
+import { CustomcellbuttonsComponent, SetMatchLiveTvDialog,SettleFancyDialog,RejectBetdialogcell,UpdateTossDialog,UpdateResultDialog } from './customcellbuttons/customcellbuttons.component';
 import { NavigationcellComponent } from './navigationcell/navigationcell.component';
 import { ButtontogglecellComponent,UserstatusDialog } from './buttontogglecell/buttontogglecell.component';
 import { RatesnavigationComponent } from './ratesnavigation/ratesnavigation.component';
@@ -77,6 +77,8 @@ import { InputRestrictionDirective } from './Directives/specialcharInput';
     SetMatchLiveTvDialog,
     SettleFancyDialog,
     RejectBetdialogcell,
+    UpdateTossDialog,
+    UpdateResultDialog,
     TournamenttogglecellComponent,
     MatchtogglecellComponent,
     MarkettogglecellComponent,
@@ -103,7 +105,7 @@ import { InputRestrictionDirective } from './Directives/specialcharInput';
     AngularMultiSelectModule,
     TimepickerModule.forRoot()
   ],
-  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog,FancyBookDialog,RejectBetdialog,RejectBetdialogcell],
+  entryComponents: [BottomSheetComponent, CustomcellbuttonsComponent, NavigationcellComponent, ButtontogglecellComponent,UserstatusDialog,CustomsporttogglecellComponent,TournamenttogglecellComponent,MatchtogglecellComponent,MarkettogglecellComponent, RatesnavigationComponent, CelltextfieldComponent,CellcurrentlimittextfeildComponent, CelldisabledtextfieldComponent, CelldisabledusedlimitComponent, SetMatchLiveTvDialog,SettleFancyDialog,SettingfancybookcellComponent,FancyBooksettingDialog,FancyBookDialog,RejectBetdialog,RejectBetdialogcell,UpdateTossDialog,UpdateResultDialog],
   providers: [
     ManageformService,
     DatePipe,

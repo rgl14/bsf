@@ -82,6 +82,8 @@ import { MarketanalysisComponent } from './marketanalysis/marketanalysis.compone
 import { MarketreportComponent } from './marketreport/marketreport.component';
 import { UseranalysisComponent } from './useranalysis/useranalysis.component';
 import { ScoreInputComponent } from './score-input/score-input.component';
+import { ScoreListComponent } from './score-list/score-list.component';
+import { AddscoreComponent } from './addscore/addscore.component';
 import { InplaymatchesComponent } from './inplaymatches/inplaymatches.component';
 import { BlockedclientsComponent } from './blockedclients/blockedclients.component';
 import { DeclaredbetslipComponent } from './declaredbetslip/declaredbetslip.component';
@@ -194,7 +196,9 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'marketreport/:sportBfId/:bfId/:title', component: MarketreportComponent },
   { path: 'userAnalysis', component: UseranalysisComponent },
-  { path: 'ScoreInput', component: ScoreInputComponent },
+  { path: 'ScoreInput/:matchId', component: ScoreInputComponent },
+  { path: 'addscore', component: AddscoreComponent },
+  { path: 'Scorelist', component: ScoreListComponent },
   { path: 'AllMatch', component: InplaymatchesComponent },
   { path: 'blockedclient', component: BlockedclientsComponent },
 ];
@@ -284,6 +288,8 @@ export const componentRouting = [
   MarketreportComponent,
   UseranalysisComponent,
   ScoreInputComponent,
+  ScoreListComponent,
+  AddscoreComponent,
   InplaymatchesComponent,
   BlockedclientsComponent,
   DeclaredbetslipComponent,
