@@ -27,10 +27,10 @@ export class ScoreListComponent implements OnInit {
       { headerName: 'Match Date', field: 'matchDate', sortable: true, minWidth: 150,width:150,suppressSizeToFit: true, cellStyle: { 'font-weight': 'bolder' } },
       { headerName: 'Match Name', field: 'matchName', sortable: true, minWidth: 225,width:225,suppressSizeToFit: true, cellStyle: { color: '#0084e7', 'font-weight': 'bolder' } },
       { headerName: 'Score Input', field: 'rate', sortable: true, minWidth: 100,width:100,suppressSizeToFit: true, cellRendererFramework: RatesnavigationComponent },
-      { headerName: 'Toss', field: 'updatetoss', sortable: true, minWidth: 150,width:150,suppressSizeToFit: true, cellRendererFramework: CustomcellbuttonsComponent },
-      { headerName: 'Toss Result', field: 'tossResult', sortable: true, minWidth: 100 },
-      { headerName: 'Result', field: 'updateresult', sortable: true, minWidth: 150,width:150,suppressSizeToFit: true, cellRendererFramework: CustomcellbuttonsComponent },
-      { headerName: 'Match Result', field: 'matchResult', sortable: true, minWidth: 100 },
+      { headerName: 'Toss', field: 'updatetoss', minWidth: 150,width:150,suppressSizeToFit: true, cellRendererFramework: CustomcellbuttonsComponent },
+      { headerName: 'Toss Result', field: 'tossResult', resizable: true, minWidth: 200},
+      { headerName: 'Result', field: 'updateresult', minWidth: 150,width:150,suppressSizeToFit: true, cellRendererFramework: CustomcellbuttonsComponent },
+      { headerName: 'Match Result', field: 'matchResult', resizable: true, minWidth: 200 },
     ];
 
     this.overlayLoadingTemplate =

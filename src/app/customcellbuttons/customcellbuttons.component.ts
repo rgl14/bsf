@@ -48,7 +48,6 @@ export class CustomcellbuttonsComponent implements OnInit {
 
   agInit(params) {
     this.params = params;
-    console.log(this.params)
     this.colDef=this.params.colDef.field;
     this.data = this.params.data;
   }
@@ -136,8 +135,6 @@ export class CustomcellbuttonsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result)
       if (result) {
         this.SaveLiveTvbyMatch(result);
       }
@@ -151,8 +148,6 @@ export class CustomcellbuttonsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      // console.log(result)
       if (result) {
         this.SettleFancy(result);
       }
@@ -181,7 +176,6 @@ export class CustomcellbuttonsComponent implements OnInit {
     })
   }
   SettleFancy(result){
-    // console.log(this.Settle,result);
     let fancydata={
       MID:result.matchId,
       FID:result.fancyCode,
@@ -206,7 +200,6 @@ export class CustomcellbuttonsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
       if(result!=undefined){
         this.report.RejectBets(result.id,result.adminUsername).subscribe(data=>{
           if (data.status == "Success") {
@@ -221,7 +214,6 @@ export class CustomcellbuttonsComponent implements OnInit {
   }
 
   openUpdateTossDialog(bet): void {
-    console.log(bet)
     this.data.matchResult='';
     this.data.tossResult='';
     const dialogRef = this.dialog.open(UpdateTossDialog, {
@@ -231,7 +223,7 @@ export class CustomcellbuttonsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result!=undefined){
-        var resultstring= result.matchResult+' Elected To '+result.tossResult+' First';
+        var resultstring= result.matchResult+' Won The Toss Elected To '+result.tossResult+' First';
         this.scoreinput.UpdateTossResult(result.matchId,resultstring).subscribe(data=>{
           if (data.status == "Success") {
             this.notifyService.success(data.result);
@@ -248,17 +240,15 @@ export class CustomcellbuttonsComponent implements OnInit {
     throw new Error("Method not implemented.");
   }
 
-  openUpdateResultDialog(data): void {
-    console.log(data)
+  openUpdateResultDialog(bet): void {
     this.data.matchResult='';
     this.data.tossResult='';
     const dialogRef = this.dialog.open(UpdateResultDialog, {
       width: '300px',
-      data:data,
+      data:bet,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
       if(result!=undefined){
         var resultstring= result.matchResult+' Won By '+result.tossResult;
         this.scoreinput.UpdateMatchResult(result.matchId,resultstring).subscribe(data=>{

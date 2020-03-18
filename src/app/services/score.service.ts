@@ -25,8 +25,16 @@ export class ScoreService {
     return this.http.post(`${BASEURL}/LiveScore/UpdateMatchResult?mtid=${MTID}&res=${RES}`, {});
   }
 
-  UpdateScore(TID,RUNS): Observable<any> {
-    return this.http.post(`${BASEURL}/LiveScore/UpdateScore?tid=${TID}&runs=${RUNS}`, {});
+  UpdateComments(data): Observable<any> {
+    return this.http.post(`${BASEURL}/LiveScore/UpdateComments`, data);
+  }
+
+  UpdateScore(TID,RUNS,BALL,WKT): Observable<any> {
+    return this.http.post(`${BASEURL}/LiveScore/UpdateScore?tid=${TID}&runs=${RUNS}&ball=${BALL}&wkt=${WKT}`, {});
+  }
+
+  UpdateScore2(TID,SCORE,OVER,BALL,WKT): Observable<any> {
+    return this.http.post(`${BASEURL}/LiveScore/UpdateScore2?tid=${TID}&score=${SCORE}&over=${OVER}&ball=${BALL}&wkt=${WKT}`, {});
   }
 
   UpdateScoreTeamStatus(TID,STATUS): Observable<any> {

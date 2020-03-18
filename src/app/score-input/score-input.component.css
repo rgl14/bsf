@@ -27,3 +27,12 @@
 button.col  {
   margin-right: 3px;
 }
+.Margin{
+  margin-left: 5px;
+}
+.card{
+  margin:5px;
+}
+.active-Score{
+  background: #9ed40873;
+}
