@@ -38,6 +38,8 @@
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "signalr-no-jquery": "^0.1.10",
+    "@types/socket.io-client": "^1.4.32",
+    "socket.io-client": "^2.3.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 import { UsermanagementService } from '../services/usermanagement.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { ReportsService } from '../services/reports.service';
+import * as io from 'socket.io-client';
+var BSFDATA:any;
 
 @Component({
   selector: 'app-marketanalysis',
@@ -62,6 +64,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
   sessionpnlreport=[];
   totalsessionpnl: any;
   sessionpnlInterval: any;
+  liveScore: any;
+  socket: any;
+  BSFscore: any;
   constructor(
     private usermanagement:UsermanagementService,
     public dialog: MatDialog,
@@ -73,7 +78,9 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
     private sanitizer: DomSanitizer,
     private fancyservice:FancyService,
     private getreports:ReportsService
-    ) { }
+    ) {
+      this.socket = io('http://139.180.146.253:3000');
+     }
 
     ngOnInit() {
       this.TvWidth = window.innerWidth;
@@ -238,11 +245,18 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
           }
         })
         
+        var fancysignalrcount=0;
         this.Fancysignalrdata=this.fancysignalrservice.fancySource.subscribe(fancy=>{
           if(fancy!=null){
             // console.log(fancy);
+            fancysignalrcount++;
+            if(fancysignalrcount==1){
+              // this.socketConnection(this.matchBfId);
+            }
+            this.setDatabsfScore();
             this.isFancySignalr=true;
             this.fancyData=fancy.data;
+            this.liveScore=fancy.liveScore;
             _.forEach(this.fancyData, (item, index) => {
               if(this.eventfancybook!=null){
               item["book"]=this.eventfancybook[item.id];
@@ -363,6 +377,24 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
       
     }
 
+    socketConnection(mtbfid){
+      this.socket.emit('market_login_main',mtbfid);
+      this.socket.on('sendSkyScoreData',function(data){
+          // console.log(data)
+          if (parseInt(mtbfid)==data.matchBfId) {
+            BSFDATA=data;
+          }
+          else{
+              this.socket.disconnect();
+          }
+      });
+  }
+
+  setDatabsfScore(){
+    this.BSFscore=BSFDATA;
+    // console.log(this.BSFscore);
+  }
+
     getAnalysisfancyBook(id){
       this.fancyservice.GetAnalysisFancyBook(id).subscribe(resp=>{
         this.fancybook=resp.data;
@@ -392,6 +424,7 @@ export class MarketanalysisComponent implements OnInit,OnDestroy {
         this.isMarketSignalr=false;
         this.isFancySignalr=false;
        }
+       this.socket.disconnect();
        if (this.sessionpnlInterval) {
         clearInterval(this.sessionpnlInterval);
       }

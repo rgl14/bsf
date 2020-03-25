@@ -85,13 +85,13 @@ export class BookmakerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.GetBookList();
   }
 
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
+    this.GetBookList();
   }
 
   GetBookList() {
@@ -110,7 +110,7 @@ export class BookmakerComponent implements OnInit {
     }
 
     this.bmService.GetBookList(status, isettled).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.rowData = data.data;
     })
   }
