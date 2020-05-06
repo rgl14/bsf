@@ -24,7 +24,8 @@ export class AnalysisSignalrService {
 
   connectAnalysis(analysisHubAddress, userId) {
     // console.log(analysisHubAddress, userId);
-    this.analysisHubAddress = analysisHubAddress;
+    // this.analysisHubAddress = analysisHubAddress;
+    this.analysisHubAddress = "http://173.249.21.26:11334";
 
     // if(this.analysisHubConn==null){
     this.analysisConnection = hubConnection(this.analysisHubAddress);

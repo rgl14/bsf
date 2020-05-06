@@ -22,7 +22,7 @@ export class BookmakerSignalrService {
 
    connectBM(MatchId) {
     // console.log(this.BMHubConn);
-    this.BMHubAddress="http://173.249.43.228:11112";
+    this.BMHubAddress="http://173.249.21.26:11112";
     // if(this.BMHubConn==null){
     this.BMConnection = hubConnection(this.BMHubAddress);
     this.BMProxy = this.BMConnection.createHubProxy("FancyHub");

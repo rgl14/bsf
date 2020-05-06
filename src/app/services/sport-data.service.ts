@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const BASEURL = "http://www.gamex247.net/Admin/Admin.svc";
+const BASEURL = "http://gamex247.net/Admin/Admin.svc";
 
 @Injectable({
   providedIn: 'root'

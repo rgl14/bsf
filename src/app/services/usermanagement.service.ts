@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { ReturnStatement } from "@angular/compiler";
 import { CookieService } from 'ngx-cookie-service';
 
-const BASEURL = "http://www.gamex247.net/Admin/Admin.svc";
+const BASEURL = "http://gamex247.net/Admin/Admin.svc";
 @Injectable({
   providedIn: 'root'
 })
